@@ -13,6 +13,13 @@
 		ED29CBFE2622D54E00337960 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED29CBFC2622D54E00337960 /* Main.storyboard */; };
 		ED29CC002622D54F00337960 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED29CBFF2622D54F00337960 /* Assets.xcassets */; };
 		ED29CC032622D54F00337960 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED29CC012622D54F00337960 /* LaunchScreen.storyboard */; };
+		EDC99726262858AF00993467 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC99725262858AF00993467 /* Extension+UIColor.swift */; };
+		EDC9972F2628770F00993467 /* ReminderMainTopTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC9972D2628770F00993467 /* ReminderMainTopTVC.swift */; };
+		EDC997302628770F00993467 /* ReminderMainTopTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC9972E2628770F00993467 /* ReminderMainTopTVC.xib */; };
+		EDC997342628871100993467 /* ReminderMainBottomTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC997322628871100993467 /* ReminderMainBottomTVC.swift */; };
+		EDC997352628871100993467 /* ReminderMainBottomTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC997332628871100993467 /* ReminderMainBottomTVC.xib */; };
+		EDC99739262892A300993467 /* ListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC99737262892A300993467 /* ListTVC.swift */; };
+		EDC9973A262892A300993467 /* ListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC99738262892A300993467 /* ListTVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,13 @@
 		ED29CBFF2622D54F00337960 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED29CC022622D54F00337960 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED29CC042622D54F00337960 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDC99725262858AF00993467 /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
+		EDC9972D2628770F00993467 /* ReminderMainTopTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderMainTopTVC.swift; sourceTree = "<group>"; };
+		EDC9972E2628770F00993467 /* ReminderMainTopTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReminderMainTopTVC.xib; sourceTree = "<group>"; };
+		EDC997322628871100993467 /* ReminderMainBottomTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderMainBottomTVC.swift; sourceTree = "<group>"; };
+		EDC997332628871100993467 /* ReminderMainBottomTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReminderMainBottomTVC.xib; sourceTree = "<group>"; };
+		EDC99737262892A300993467 /* ListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTVC.swift; sourceTree = "<group>"; };
+		EDC99738262892A300993467 /* ListTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +79,7 @@
 		ED29CC0B2622D55A00337960 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				EDC997242628589C00993467 /* Extensions */,
 				ED29CC0E2622D58D00337960 /* MainScene */,
 				ED29CC0D2622D57C00337960 /* Support */,
 			);
@@ -119,8 +134,30 @@
 		ED29CC112622D5A500337960 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				EDC997282628766D00993467 /* TVC */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		EDC997242628589C00993467 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EDC99725262858AF00993467 /* Extension+UIColor.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EDC997282628766D00993467 /* TVC */ = {
+			isa = PBXGroup;
+			children = (
+				EDC9972D2628770F00993467 /* ReminderMainTopTVC.swift */,
+				EDC9972E2628770F00993467 /* ReminderMainTopTVC.xib */,
+				EDC997322628871100993467 /* ReminderMainBottomTVC.swift */,
+				EDC997332628871100993467 /* ReminderMainBottomTVC.xib */,
+				EDC99737262892A300993467 /* ListTVC.swift */,
+				EDC99738262892A300993467 /* ListTVC.xib */,
+			);
+			path = TVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,6 +219,9 @@
 			files = (
 				ED29CC032622D54F00337960 /* LaunchScreen.storyboard in Resources */,
 				ED29CC002622D54F00337960 /* Assets.xcassets in Resources */,
+				EDC997302628770F00993467 /* ReminderMainTopTVC.xib in Resources */,
+				EDC9973A262892A300993467 /* ListTVC.xib in Resources */,
+				EDC997352628871100993467 /* ReminderMainBottomTVC.xib in Resources */,
 				ED29CBFE2622D54E00337960 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,8 +234,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED29CBFB2622D54E00337960 /* ViewController.swift in Sources */,
+				EDC9972F2628770F00993467 /* ReminderMainTopTVC.swift in Sources */,
+				EDC99739262892A300993467 /* ListTVC.swift in Sources */,
 				ED29CBF72622D54E00337960 /* AppDelegate.swift in Sources */,
+				EDC997342628871100993467 /* ReminderMainBottomTVC.swift in Sources */,
 				ED29CBF92622D54E00337960 /* SceneDelegate.swift in Sources */,
+				EDC99726262858AF00993467 /* Extension+UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
