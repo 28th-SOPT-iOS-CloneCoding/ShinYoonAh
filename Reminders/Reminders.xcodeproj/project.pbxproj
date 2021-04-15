@@ -20,6 +20,9 @@
 		EDC997352628871100993467 /* ReminderMainBottomTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC997332628871100993467 /* ReminderMainBottomTVC.xib */; };
 		EDC99739262892A300993467 /* ListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC99737262892A300993467 /* ListTVC.swift */; };
 		EDC9973A262892A300993467 /* ListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC99738262892A300993467 /* ListTVC.xib */; };
+		EDC9973D2628B05800993467 /* NewAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC9973C2628B05800993467 /* NewAlertVC.swift */; };
+		EDC997402628B0E400993467 /* NewListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC9973F2628B0E400993467 /* NewListVC.swift */; };
+		EDC997432628B1CF00993467 /* EditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC997422628B1CF00993467 /* EditVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		EDC997332628871100993467 /* ReminderMainBottomTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReminderMainBottomTVC.xib; sourceTree = "<group>"; };
 		EDC99737262892A300993467 /* ListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTVC.swift; sourceTree = "<group>"; };
 		EDC99738262892A300993467 /* ListTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTVC.xib; sourceTree = "<group>"; };
+		EDC9973C2628B05800993467 /* NewAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAlertVC.swift; sourceTree = "<group>"; };
+		EDC9973F2628B0E400993467 /* NewListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListVC.swift; sourceTree = "<group>"; };
+		EDC997422628B1CF00993467 /* EditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				ED29CC0F2622D59C00337960 /* View */,
-				ED29CBFC2622D54E00337960 /* Main.storyboard */,
 			);
 			path = MainScene;
 			sourceTree = "<group>";
@@ -117,6 +122,7 @@
 		ED29CC0F2622D59C00337960 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ED29CBFC2622D54E00337960 /* Main.storyboard */,
 				ED29CC112622D5A500337960 /* Cell */,
 				ED29CC102622D5A100337960 /* VC */,
 			);
@@ -127,6 +133,9 @@
 			isa = PBXGroup;
 			children = (
 				ED29CBFA2622D54E00337960 /* ViewController.swift */,
+				EDC9973C2628B05800993467 /* NewAlertVC.swift */,
+				EDC9973F2628B0E400993467 /* NewListVC.swift */,
+				EDC997422628B1CF00993467 /* EditVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -233,12 +242,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDC997432628B1CF00993467 /* EditVC.swift in Sources */,
 				ED29CBFB2622D54E00337960 /* ViewController.swift in Sources */,
 				EDC9972F2628770F00993467 /* ReminderMainTopTVC.swift in Sources */,
 				EDC99739262892A300993467 /* ListTVC.swift in Sources */,
 				ED29CBF72622D54E00337960 /* AppDelegate.swift in Sources */,
 				EDC997342628871100993467 /* ReminderMainBottomTVC.swift in Sources */,
 				ED29CBF92622D54E00337960 /* SceneDelegate.swift in Sources */,
+				EDC997402628B0E400993467 /* NewListVC.swift in Sources */,
+				EDC9973D2628B05800993467 /* NewAlertVC.swift in Sources */,
 				EDC99726262858AF00993467 /* Extension+UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

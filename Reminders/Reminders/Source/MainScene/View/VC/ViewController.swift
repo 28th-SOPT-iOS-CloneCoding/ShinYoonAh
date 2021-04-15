@@ -51,7 +51,7 @@ class ViewController: UIViewController {
     
     var items: [UIBarButtonItem] = []
     var lists: [String] = ["나의 목록", "너의 목록", "클론코딩"]
-    var menus: [String] = ["오늘", "예정", "전체"]
+    var menus: [String] = ["전체", "오늘", "예정"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +73,7 @@ extension ViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReminderMainTopTVC.identifier) as? ReminderMainTopTVC else {
                 return UITableViewCell()
             }
-            cell.setLists(lists: lists)
+            cell.setLists(lists: menus)
             return cell
         }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ReminderMainBottomTVC.identifier) as? ReminderMainBottomTVC else {
@@ -88,7 +88,7 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             switch menus.count {
-            case 3: return 199
+            case 3: return 194
             case 2, 1: return 90
             default: return 0
             }
@@ -157,16 +157,18 @@ extension ViewController {
 extension ViewController {
     @objc
     private func touchUpEdit(_ sender: Any) {
-        print("편집")
+  
     }
     
     @objc
     private func touchUpAddNewAlert(_ sender: Any) {
-        print("새로운 알람")
+        guard let dvc = storyboard?.instantiateViewController(identifier: "NewAlertVC") as? NewAlertVC else { return }
+        present(dvc, animated: true, completion: nil)
     }
     
     @objc
     private func touchUpAddList(_ sender: Any) {
-        print("새로운 목록 추가")
+        guard let dvc = storyboard?.instantiateViewController(identifier: "NewListVC") as? NewListVC else { return }
+        present(dvc, animated: true, completion: nil)
     }
 }

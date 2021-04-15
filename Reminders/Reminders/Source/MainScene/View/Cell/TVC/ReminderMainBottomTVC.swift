@@ -33,6 +33,8 @@ extension ReminderMainBottomTVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListTVC.identifier) as? ListTVC else {
             return UITableViewCell()
         }
+        cell.setLists(title: lists[indexPath.row])
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
 }
@@ -55,6 +57,7 @@ extension ReminderMainBottomTVC {
         listTableView.dataSource = self
         listTableView.delegate = self
         listTableView.backgroundColor = .reminderGray
+        listTableView.separatorInset = .init(top: 0, left: 60, bottom: 0, right: 0)
         
         var frame = CGRect.zero
         frame.size.height = .leastNormalMagnitude

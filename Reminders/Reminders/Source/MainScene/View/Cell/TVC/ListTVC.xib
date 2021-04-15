@@ -12,12 +12,52 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListTVC" id="KGk-i7-Jjw" customClass="ListTVC" customModule="Reminders" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqg-kx-YE2">
+                        <rect key="frame" x="12" y="10" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="6Hf-Zt-tlV"/>
+                            <constraint firstAttribute="height" constant="32" id="XAF-Kj-K5v"/>
+                        </constraints>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" image="list.bullet" catalog="system"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJ6-Tn-NAI">
+                        <rect key="frame" x="59" y="15.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0A-8u-8Gx">
+                        <rect key="frame" x="271" y="15.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="M0A-8u-8Gx" secondAttribute="trailing" constant="7" id="3wP-i3-bi4"/>
+                    <constraint firstItem="YJ6-Tn-NAI" firstAttribute="centerY" secondItem="hqg-kx-YE2" secondAttribute="centerY" id="6oX-fd-xtm"/>
+                    <constraint firstItem="hqg-kx-YE2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="TzU-EG-dsM"/>
+                    <constraint firstItem="hqg-kx-YE2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="XFJ-1n-cW5"/>
+                    <constraint firstItem="M0A-8u-8Gx" firstAttribute="centerY" secondItem="hqg-kx-YE2" secondAttribute="centerY" id="cI1-h2-mLc"/>
+                    <constraint firstItem="YJ6-Tn-NAI" firstAttribute="leading" secondItem="hqg-kx-YE2" secondAttribute="trailing" constant="15" id="iRg-jd-LdG"/>
+                    <constraint firstAttribute="bottom" secondItem="hqg-kx-YE2" secondAttribute="bottom" constant="10" id="lrv-tB-OlD"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="countLabel" destination="M0A-8u-8Gx" id="FEd-Sg-kbP"/>
+                <outlet property="listImageButton" destination="hqg-kx-YE2" id="yta-Nt-RNP"/>
+                <outlet property="titleLabel" destination="YJ6-Tn-NAI" id="a0B-n6-MCV"/>
+            </connections>
             <point key="canvasLocation" x="-72" y="110"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="list.bullet" catalog="system" width="128" height="88"/>
+    </resources>
 </document>
