@@ -44,13 +44,15 @@ class ViewController: UIViewController {
         toolbar.trailingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.trailingAnchor, multiplier: 0).isActive = true
         toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         toolbar.isTranslucent = true
-        toolbar.backgroundColor = .clear
         toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
         return toolbar
     }()
     
+    let bottomView = UIView()
+    let toolBarSeparator = UIView()
+    
     var items: [UIBarButtonItem] = []
-    var lists: [String] = ["나의 목록", "너의 목록", "클론코딩"]
+    var lists: [String] = ["나의 목록", "너의 목록", "클론코딩", "우와재밌다", "우와", "한다"]
     var menus: [String] = ["전체", "오늘", "예정"]
     
     override func viewDidLoad() {
@@ -74,11 +76,13 @@ extension ViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.setLists(lists: menus)
+            cell.selectionStyle = .none
             return cell
         }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ReminderMainBottomTVC.identifier) as? ReminderMainBottomTVC else {
             return UITableViewCell()
         }
+        cell.selectionStyle = .none
         cell.setLists(lists: lists)
         return cell
     }
@@ -96,6 +100,19 @@ extension ViewController: UITableViewDelegate {
         
         let defaultHeight = 49
         return CGFloat(defaultHeight + (61 * lists.count))
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offset = mainTableView.contentOffset.y
+        if offset < -50 {
+            print("닿음")
+            toolBar.backgroundColor = UIColor.reminderGray.withAlphaComponent(0.95)
+            toolBar.setShadowImage(UIImage(ciImage: CIImage(color: CIColor.init(red: 0, green: 0, blue: 0))), forToolbarPosition: .any)
+            toolBarSeparator.isHidden = false
+        } else {
+            toolBar.backgroundColor = UIColor.clear
+            toolBarSeparator.isHidden = true
+        }
     }
 }
 
@@ -146,6 +163,32 @@ extension ViewController {
     
     private func setView() {
         view.backgroundColor = .reminderGray
+        
+        view.addSubview(bottomView)
+        bottomView.translatesAutoresizingMaskIntoConstraints = false
+        bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        bottomView.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        bottomView.backgroundColor = UIColor.reminderGray.withAlphaComponent(0.95)
+        
+        view.addSubview(toolBarSeparator)
+        toolBarSeparator.translatesAutoresizingMaskIntoConstraints = false
+        toolBarSeparator.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        toolBarSeparator.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        toolBarSeparator.bottomAnchor.constraint(equalTo: toolBar.topAnchor).isActive = true
+        toolBarSeparator.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        toolBarSeparator.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        
+        if mainTableView.rowHeight >= (UIScreen.main.bounds.size.height - 200) {
+            print("작음")
+            toolBar.backgroundColor = UIColor.reminderGray.withAlphaComponent(0.95)
+            toolBarSeparator.isHidden = false
+        } else {
+            print("큼")
+            toolBar.backgroundColor = .clear
+            toolBarSeparator.isHidden = true
+        }
     }
     
     private func setButton() {
@@ -162,7 +205,7 @@ extension ViewController {
     
     @objc
     private func touchUpAddNewAlert(_ sender: Any) {
-        guard let dvc = storyboard?.instantiateViewController(identifier: "NewAlertVC") as? NewAlertVC else { return }
+        guard let dvc = storyboard?.instantiateViewController(identifier: "newAlertNavi") else { return }
         present(dvc, animated: true, completion: nil)
     }
     
