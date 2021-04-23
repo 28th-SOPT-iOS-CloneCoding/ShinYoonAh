@@ -61,7 +61,11 @@ extension NewAlertVC: UITableViewDataSource {
     }
 }
 
-extension NewAlertVC: UITableViewDelegate { }
+extension NewAlertVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+}
 
 // MARK: - UI
 extension NewAlertVC {

@@ -27,6 +27,13 @@
 		EDC9973D2628B05800993467 /* NewAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC9973C2628B05800993467 /* NewAlertVC.swift */; };
 		EDC997402628B0E400993467 /* NewListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC9973F2628B0E400993467 /* NewListVC.swift */; };
 		EDC997432628B1CF00993467 /* EditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC997422628B1CF00993467 /* EditVC.swift */; };
+		EDD155B4263272E4009A0D52 /* EditTopTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD155B2263272E4009A0D52 /* EditTopTVC.swift */; };
+		EDD155B5263272E4009A0D52 /* EditTopTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD155B3263272E4009A0D52 /* EditTopTVC.xib */; };
+		EDD155BA2632819A009A0D52 /* EditBottomTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD155B82632819A009A0D52 /* EditBottomTVC.swift */; };
+		EDD155BB2632819A009A0D52 /* EditBottomTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD155B92632819A009A0D52 /* EditBottomTVC.xib */; };
+		EDD155C026328C45009A0D52 /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDD155BF26328C45009A0D52 /* List.storyboard */; };
+		EDD155C526328C78009A0D52 /* TotalListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD155C426328C78009A0D52 /* TotalListVC.swift */; };
+		EDD155C926328F44009A0D52 /* PresentViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD155C826328F44009A0D52 /* PresentViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +59,13 @@
 		EDC9973C2628B05800993467 /* NewAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAlertVC.swift; sourceTree = "<group>"; };
 		EDC9973F2628B0E400993467 /* NewListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListVC.swift; sourceTree = "<group>"; };
 		EDC997422628B1CF00993467 /* EditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVC.swift; sourceTree = "<group>"; };
+		EDD155B2263272E4009A0D52 /* EditTopTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTopTVC.swift; sourceTree = "<group>"; };
+		EDD155B3263272E4009A0D52 /* EditTopTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditTopTVC.xib; sourceTree = "<group>"; };
+		EDD155B82632819A009A0D52 /* EditBottomTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBottomTVC.swift; sourceTree = "<group>"; };
+		EDD155B92632819A009A0D52 /* EditBottomTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditBottomTVC.xib; sourceTree = "<group>"; };
+		EDD155BF26328C45009A0D52 /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
+		EDD155C426328C78009A0D52 /* TotalListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalListVC.swift; sourceTree = "<group>"; };
+		EDD155C826328F44009A0D52 /* PresentViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				EDC997242628589C00993467 /* Extensions */,
+				EDD155BD26328C1A009A0D52 /* ListScene */,
 				ED29CC0E2622D58D00337960 /* MainScene */,
 				ED29CC0D2622D57C00337960 /* Support */,
 			);
@@ -122,6 +137,7 @@
 		ED29CC0E2622D58D00337960 /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
+				EDD155C726328E48009A0D52 /* Protocol */,
 				ED29CC0F2622D59C00337960 /* View */,
 			);
 			path = MainScene;
@@ -191,10 +207,63 @@
 		EDC997282628766D00993467 /* TVC */ = {
 			isa = PBXGroup;
 			children = (
+				EDD155B1263272CB009A0D52 /* Edit */,
 				EDC3B61826292D05003CA6C0 /* NewAlert */,
 				EDC3B61726292CF7003CA6C0 /* Main */,
 			);
 			path = TVC;
+			sourceTree = "<group>";
+		};
+		EDD155B1263272CB009A0D52 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				EDD155B2263272E4009A0D52 /* EditTopTVC.swift */,
+				EDD155B3263272E4009A0D52 /* EditTopTVC.xib */,
+				EDD155B82632819A009A0D52 /* EditBottomTVC.swift */,
+				EDD155B92632819A009A0D52 /* EditBottomTVC.xib */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		EDD155BD26328C1A009A0D52 /* ListScene */ = {
+			isa = PBXGroup;
+			children = (
+				EDD155BF26328C45009A0D52 /* List.storyboard */,
+				EDD155BE26328C34009A0D52 /* View */,
+			);
+			path = ListScene;
+			sourceTree = "<group>";
+		};
+		EDD155BE26328C34009A0D52 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EDD155C226328C4C009A0D52 /* TVC */,
+				EDD155C326328C51009A0D52 /* VC */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EDD155C226328C4C009A0D52 /* TVC */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TVC;
+			sourceTree = "<group>";
+		};
+		EDD155C326328C51009A0D52 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				EDD155C426328C78009A0D52 /* TotalListVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		EDD155C726328E48009A0D52 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				EDD155C826328F44009A0D52 /* PresentViewDelegate.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,12 +323,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDD155BB2632819A009A0D52 /* EditBottomTVC.xib in Resources */,
+				EDD155B5263272E4009A0D52 /* EditTopTVC.xib in Resources */,
 				ED29CC032622D54F00337960 /* LaunchScreen.storyboard in Resources */,
 				ED29CC002622D54F00337960 /* Assets.xcassets in Resources */,
 				EDC3B62026292D31003CA6C0 /* NewAlertTVC.xib in Resources */,
 				EDC997302628770F00993467 /* ReminderMainTopTVC.xib in Resources */,
 				EDC9973A262892A300993467 /* ListTVC.xib in Resources */,
 				EDC997352628871100993467 /* ReminderMainBottomTVC.xib in Resources */,
+				EDD155C026328C45009A0D52 /* List.storyboard in Resources */,
 				EDC3B62526293A89003CA6C0 /* DetailTVC.xib in Resources */,
 				ED29CBFE2622D54E00337960 /* Main.storyboard in Resources */,
 			);
@@ -274,6 +346,7 @@
 			files = (
 				EDC997432628B1CF00993467 /* EditVC.swift in Sources */,
 				ED29CBFB2622D54E00337960 /* ViewController.swift in Sources */,
+				EDD155BA2632819A009A0D52 /* EditBottomTVC.swift in Sources */,
 				EDC9972F2628770F00993467 /* ReminderMainTopTVC.swift in Sources */,
 				EDC99739262892A300993467 /* ListTVC.swift in Sources */,
 				ED29CBF72622D54E00337960 /* AppDelegate.swift in Sources */,
@@ -282,8 +355,11 @@
 				ED29CBF92622D54E00337960 /* SceneDelegate.swift in Sources */,
 				EDC997402628B0E400993467 /* NewListVC.swift in Sources */,
 				EDC9973D2628B05800993467 /* NewAlertVC.swift in Sources */,
+				EDD155C926328F44009A0D52 /* PresentViewDelegate.swift in Sources */,
 				EDC3B61F26292D31003CA6C0 /* NewAlertTVC.swift in Sources */,
 				EDC99726262858AF00993467 /* Extension+UIColor.swift in Sources */,
+				EDD155C526328C78009A0D52 /* TotalListVC.swift in Sources */,
+				EDD155B4263272E4009A0D52 /* EditTopTVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

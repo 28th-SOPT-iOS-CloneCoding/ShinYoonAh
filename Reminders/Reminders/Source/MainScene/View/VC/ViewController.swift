@@ -42,6 +42,7 @@ class ViewController: UIViewController {
         toolbar.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: 0).isActive = true
         toolbar.bottomAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.bottomAnchor, multiplier: 0).isActive = true
         toolbar.trailingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.trailingAnchor, multiplier: 0).isActive = true
+        
         toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         toolbar.isTranslucent = true
         toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
@@ -59,6 +60,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setUI()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navVC = segue.destination as? UINavigationController
+        let dataVC = navVC?.viewControllers.first as! EditVC
+        
+        dataVC.lists = lists
+        print(dataVC.lists)
+    }
 }
 
 extension ViewController: UITableViewDataSource {
@@ -75,6 +84,7 @@ extension ViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReminderMainTopTVC.identifier) as? ReminderMainTopTVC else {
                 return UITableViewCell()
             }
+            cell.delegate = self
             cell.setLists(lists: menus)
             cell.selectionStyle = .none
             return cell
@@ -129,6 +139,7 @@ extension ViewController {
     
     private func setNavigationBar() {
         self.navigationItem.rightBarButtonItem = self.editButton
+        
         navigationItem.searchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController?.searchBar.placeholder = "검색"
         navigationItem.hidesSearchBarWhenScrolling = true
@@ -200,7 +211,10 @@ extension ViewController {
 extension ViewController {
     @objc
     private func touchUpEdit(_ sender: Any) {
-  
+        guard let dvc = storyboard?.instantiateViewController(identifier: "EditNavi") else { return }
+        dvc.modalTransitionStyle = .crossDissolve
+        dvc.modalPresentationStyle = .fullScreen
+        present(dvc, animated: true, completion: nil)
     }
     
     @objc
@@ -212,6 +226,17 @@ extension ViewController {
     @objc
     private func touchUpAddList(_ sender: Any) {
         guard let dvc = storyboard?.instantiateViewController(identifier: "NewListVC") as? NewListVC else { return }
+        dvc.saveList = { title in
+            self.lists.append(title)
+            self.mainTableView.reloadData()
+        }
         present(dvc, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Protocol
+extension ViewController: PresentViewDelegate {
+    func dvcPresentFromFirstView(dvc: TotalListVC) {
+        navigationController?.pushViewController(dvc, animated: true)
     }
 }

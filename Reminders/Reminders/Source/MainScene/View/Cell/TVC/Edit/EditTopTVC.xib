@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditTopTVC" id="KGk-i7-Jjw" customClass="EditTopTVC" customModule="Reminders" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ch-rm-nnB">
+                        <rect key="frame" x="18" y="9.5" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="KFT-uV-j8l"/>
+                            <constraint firstAttribute="width" constant="25" id="bCg-6N-eTU"/>
+                        </constraints>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tNS-fF-irg">
+                        <rect key="frame" x="53" y="6" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="H2T-9H-AfJ"/>
+                            <constraint firstAttribute="height" constant="32" id="Yg1-8I-DsW"/>
+                        </constraints>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dw-Xg-AvZ">
+                        <rect key="frame" x="95" y="11.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="3Ch-rm-nnB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="GnI-mZ-fD2"/>
+                    <constraint firstItem="tNS-fF-irg" firstAttribute="leading" secondItem="3Ch-rm-nnB" secondAttribute="trailing" constant="10" id="Luw-Mt-Hxo"/>
+                    <constraint firstItem="3Ch-rm-nnB" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="RQl-l6-1UW"/>
+                    <constraint firstItem="2dw-Xg-AvZ" firstAttribute="leading" secondItem="tNS-fF-irg" secondAttribute="trailing" constant="10" id="TGy-wr-wEE"/>
+                    <constraint firstItem="2dw-Xg-AvZ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XZ6-O4-D9v"/>
+                    <constraint firstItem="tNS-fF-irg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wh6-hv-hOs"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="checkButton" destination="3Ch-rm-nnB" id="cXA-qL-MHF"/>
+                <outlet property="imageButton" destination="tNS-fF-irg" id="yqR-BZ-56p"/>
+                <outlet property="titleLabel" destination="2dw-Xg-AvZ" id="hZL-0P-zfs"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="82"/>
+        </tableViewCell>
+    </objects>
+</document>

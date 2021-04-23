@@ -29,6 +29,12 @@ class ReminderMainTopTVC: UITableViewCell {
     @IBOutlet weak var secondCountLabel: UILabel!
     @IBOutlet weak var thirdCountLabel: UILabel!
     
+    let firstGesture = UITapGestureRecognizer(target: self, action: #selector(tappedFirstView(_:)))
+    let secondGesture = UITapGestureRecognizer(target: self, action: #selector(tappedSecondView(_:)))
+    let thirdGesture = UITapGestureRecognizer(target: self, action: #selector(tappedThirdView(_:)))
+    
+    var delegate: PresentViewDelegate?
+    
     var lists: [String] = []
 
     override func awakeFromNib() {
@@ -53,8 +59,17 @@ extension ReminderMainTopTVC {
         backgroundColor = .clear
         
         firstView.layer.cornerRadius = 18
+        firstView.addGestureRecognizer(firstGesture)
+        
         secondView.layer.cornerRadius = 18
+        secondView.addGestureRecognizer(secondGesture)
+        
         thirdView.layer.cornerRadius = 18
+        thirdView.addGestureRecognizer(thirdGesture)
+    }
+    
+    private func setGesture() {
+        firstGesture.allowedPressTypes = [NSNumber(value: UIPress.PressType.menu.rawValue)]
     }
     
     private func setButton() {
@@ -110,5 +125,27 @@ extension ReminderMainTopTVC {
             configureView(list: lists[1], button: secondButton, label: secondLabel)
             configureView(list: lists[2], button: thirdButton, label: thirdLabel)
         }
+    }
+}
+
+// MARK: - Action
+extension ReminderMainTopTVC {
+    @objc
+    func tappedFirstView(_ gesture: UITapGestureRecognizer) {
+        print("FirstView Tapped")
+        guard let dvc = UIStoryboard(name: "List", bundle: nil).instantiateViewController(identifier: "TotalListVC") as? TotalListVC else {
+            return
+        }
+        delegate?.dvcPresentFromFirstView(dvc: dvc)
+    }
+    
+    @objc
+    func tappedSecondView(_ gesture: UITapGestureRecognizer) {
+        print("SecondView Tapped")
+    }
+    
+    @objc
+    func tappedThirdView(_ gesture: UITapGestureRecognizer) {
+        print("ThirdView Tapped")
     }
 }

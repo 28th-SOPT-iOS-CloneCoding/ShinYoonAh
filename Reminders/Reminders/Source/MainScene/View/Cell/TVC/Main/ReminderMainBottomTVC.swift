@@ -39,7 +39,26 @@ extension ReminderMainBottomTVC: UITableViewDataSource {
     }
 }
 
-extension ReminderMainBottomTVC: UITableViewDelegate { }
+extension ReminderMainBottomTVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "",
+            handler: { _,_,_ in
+                self.lists.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+        })
+        delete.image = UIImage(systemName: "trash.fill")
+        
+        let info = UIContextualAction(style: .normal, title: "",
+            handler: { _,_,_ in
+                
+        })
+        info.image = UIImage(systemName: "info.circle.fill")
+        info.backgroundColor = .lightGray
+        
+        let configuration = UISwipeActionsConfiguration(actions: [delete, info])
+        return configuration
+    }
+}
 
 // MARK: - UI
 extension ReminderMainBottomTVC {
@@ -73,6 +92,8 @@ extension ReminderMainBottomTVC {
 // MARK: - Data
 extension ReminderMainBottomTVC {
     func setLists(lists: [String]) {
+        print(lists)
         self.lists = lists
+        listTableView.reloadData()
     }
 }

@@ -47,6 +47,7 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="tqu-fp-nhz" firstAttribute="leading" secondItem="uwR-Jx-LZA" secondAttribute="leading" id="CPk-a5-CYm"/>
                                             <constraint firstAttribute="trailing" secondItem="IZE-No-HIa" secondAttribute="trailing" constant="17" id="NGV-XV-eHP"/>

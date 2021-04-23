@@ -8,11 +8,18 @@
 import UIKit
 
 class NewListVC: UIViewController {
+    var saveList: ((String) -> ())?
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var listImage: UIButton!
+    @IBOutlet var colorButtons: [UIButton]!
     @IBOutlet weak var listTextField: UITextField!
+    
+    var canSaved = false
+    
+    let colors: [UIColor] = [.systemRed, .systemOrange, .systemYellow, .systemGreen, .systemBlue, .systemPurple, .systemGray]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,19 +27,57 @@ class NewListVC: UIViewController {
     }
 }
 
+extension NewListVC: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if textField.text != "" {
+            canSaved = true
+            addButton.isEnabled = true
+        } else {
+            canSaved = false
+            addButton.isEnabled = false
+        }
+    }
+}
+
+extension NewListVC: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        if canSaved {
+            let alert =  UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let dismiss = UIAlertAction(title: "변경 사항 폐기", style: .destructive) { (_) in
+                self.resignFirstResponder()
+                self.dismiss(animated: true, completion: nil)
+            }
+            let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            alert.addAction(dismiss)
+            alert.addAction(cancel)
+            present(alert, animated: true, completion: nil)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+}
+
+// MARK: - UI
 extension NewListVC {
     private func setUI() {
+        setDelegate()
         setButton()
         setLabel()
         setTextField()
-        setColorWell()
+    }
+    
+    private func setDelegate() {
+        presentationController?.delegate = self
+        isModalInPresentation = true
     }
     
     private func setButton() {
         cancelButton.setTitle("취소", for: .normal)
+        cancelButton.addTarget(self, action: #selector(touchUpCancel), for: .touchUpInside)
         
         addButton.setTitle("완료", for: .normal)
         addButton.isEnabled = false
+        addButton.addTarget(self, action: #selector(touchUpSave), for: .touchUpInside)
         
         listImage.backgroundColor = .systemBlue
         listImage.layer.cornerRadius = 45
@@ -44,6 +89,20 @@ extension NewListVC {
         listImage.layer.shadowOpacity = 1
         listImage.layer.shadowOffset = CGSize(width: 0, height: 0)
         listImage.isUserInteractionEnabled = false
+        
+        var index = 0
+        for btn in colorButtons {
+            btn.setTitle("", for: .normal)
+            btn.layer.cornerRadius = 20
+            btn.backgroundColor = colors[index]
+        
+            let action = UIAction { _ in
+                self.listImage.backgroundColor = btn.backgroundColor
+                self.listTextField.textColor = btn.backgroundColor
+            }
+            btn.addAction(action, for: .touchUpInside)
+            index += 1
+        }
     }
     
     private func setLabel() {
@@ -52,6 +111,7 @@ extension NewListVC {
     }
     
     private func setTextField() {
+        listTextField.delegate = self
         listTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
         listTextField.textAlignment = .center
         listTextField.textColor = .systemBlue
@@ -59,9 +119,31 @@ extension NewListVC {
         listTextField.clearButtonMode = .whileEditing
         listTextField.becomeFirstResponder()
     }
-    
-    private func setColorWell() {
-
-    }
 }
 
+// MARK: - Action
+extension NewListVC {
+    @objc
+    func touchUpCancel() {
+        if canSaved {
+            let alert =  UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let dismiss = UIAlertAction(title: "변경 사항 폐기", style: .destructive) { (_) in
+                self.resignFirstResponder()
+                self.dismiss(animated: true, completion: nil)
+            }
+            let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            alert.addAction(dismiss)
+            alert.addAction(cancel)
+            present(alert, animated: true, completion: nil)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    @objc
+    func touchUpSave() {
+        dismiss(animated: true) {
+            self.saveList?(self.listTextField.text!)
+        }
+    }
+}
