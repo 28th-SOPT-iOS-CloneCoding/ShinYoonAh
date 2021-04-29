@@ -17,6 +17,8 @@ class NewListVC: UIViewController {
     @IBOutlet var colorButtons: [UIButton]!
     @IBOutlet weak var listTextField: UITextField!
     
+    var colorLine: UIImageView = UIImageView()
+    
     var canSaved = false
     
     let colors: [UIColor] = [.systemRed, .systemOrange, .systemYellow, .systemGreen, .systemBlue, .systemPurple, .systemGray]
@@ -61,6 +63,7 @@ extension NewListVC: UIAdaptivePresentationControllerDelegate {
 extension NewListVC {
     private func setUI() {
         setDelegate()
+        setView()
         setButton()
         setLabel()
         setTextField()
@@ -69,6 +72,18 @@ extension NewListVC {
     private func setDelegate() {
         presentationController?.delegate = self
         isModalInPresentation = true
+    }
+    
+    private func setView() {
+        colorLine.image = UIImage(systemName: "circle")
+        colorLine.tintColor = .lightGray
+        
+        view.addSubview(colorLine)
+        colorLine.translatesAutoresizingMaskIntoConstraints = false
+        colorLine.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        colorLine.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        colorLine.centerXAnchor.constraint(equalTo: colorButtons[4].centerXAnchor).isActive = true
+        colorLine.centerYAnchor.constraint(equalTo: colorButtons[4].centerYAnchor).isActive = true
     }
     
     private func setButton() {
@@ -98,7 +113,10 @@ extension NewListVC {
         
             let action = UIAction { _ in
                 self.listImage.backgroundColor = btn.backgroundColor
+                self.listImage.layer.shadowColor = btn.backgroundColor?.cgColor
                 self.listTextField.textColor = btn.backgroundColor
+                print(btn.frame.origin.y)
+                self.colorLine.transform = CGAffineTransform(translationX: btn.frame.origin.y == 0 ? btn.frame.origin.x - 240 : -240, y: btn.frame.origin.y != 0 ? 60 : 0)
             }
             btn.addAction(action, for: .touchUpInside)
             index += 1

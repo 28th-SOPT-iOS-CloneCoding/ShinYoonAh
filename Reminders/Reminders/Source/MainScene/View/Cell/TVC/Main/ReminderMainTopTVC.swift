@@ -21,6 +21,10 @@ class ReminderMainTopTVC: UITableViewCell {
     @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var thirdButton: UIButton!
     
+    @IBOutlet weak var firstTouchButton: UIButton!
+    @IBOutlet weak var secondTouchButton: UIButton!
+    @IBOutlet weak var thirdTouchButton: UIButton!
+    
     @IBOutlet weak var firstLabel: UILabel!
     @IBOutlet weak var secondLabel: UILabel!
     @IBOutlet weak var thirdLabel: UILabel!
@@ -28,10 +32,6 @@ class ReminderMainTopTVC: UITableViewCell {
     @IBOutlet weak var firstCountLabel: UILabel!
     @IBOutlet weak var secondCountLabel: UILabel!
     @IBOutlet weak var thirdCountLabel: UILabel!
-    
-    let firstGesture = UITapGestureRecognizer(target: self, action: #selector(tappedFirstView(_:)))
-    let secondGesture = UITapGestureRecognizer(target: self, action: #selector(tappedSecondView(_:)))
-    let thirdGesture = UITapGestureRecognizer(target: self, action: #selector(tappedThirdView(_:)))
     
     var delegate: PresentViewDelegate?
     
@@ -59,25 +59,18 @@ extension ReminderMainTopTVC {
         backgroundColor = .clear
         
         firstView.layer.cornerRadius = 18
-        firstView.addGestureRecognizer(firstGesture)
-        
         secondView.layer.cornerRadius = 18
-        secondView.addGestureRecognizer(secondGesture)
-        
         thirdView.layer.cornerRadius = 18
-        thirdView.addGestureRecognizer(thirdGesture)
-    }
-    
-    private func setGesture() {
-        firstGesture.allowedPressTypes = [NSNumber(value: UIPress.PressType.menu.rawValue)]
     }
     
     private func setButton() {
         firstButton.layer.cornerRadius = 16
-        
         secondButton.layer.cornerRadius = 16
-        
         thirdButton.layer.cornerRadius = 16
+        
+        firstTouchButton.addTarget(self, action: #selector(tappedFirstView), for: .touchUpInside)
+        secondTouchButton.addTarget(self, action: #selector(tappedSecondView), for: .touchUpInside)
+        thirdTouchButton.addTarget(self, action: #selector(tappedThirdView), for: .touchUpInside)
     }
     
     private func setLabel() {
@@ -131,7 +124,7 @@ extension ReminderMainTopTVC {
 // MARK: - Action
 extension ReminderMainTopTVC {
     @objc
-    func tappedFirstView(_ gesture: UITapGestureRecognizer) {
+    func tappedFirstView() {
         print("FirstView Tapped")
         guard let dvc = UIStoryboard(name: "List", bundle: nil).instantiateViewController(identifier: "TotalListVC") as? TotalListVC else {
             return
@@ -140,12 +133,12 @@ extension ReminderMainTopTVC {
     }
     
     @objc
-    func tappedSecondView(_ gesture: UITapGestureRecognizer) {
+    func tappedSecondView() {
         print("SecondView Tapped")
     }
     
     @objc
-    func tappedThirdView(_ gesture: UITapGestureRecognizer) {
+    func tappedThirdView() {
         print("ThirdView Tapped")
     }
 }

@@ -13,6 +13,7 @@
 		ED29CBFE2622D54E00337960 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED29CBFC2622D54E00337960 /* Main.storyboard */; };
 		ED29CC002622D54F00337960 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED29CBFF2622D54F00337960 /* Assets.xcassets */; };
 		ED29CC032622D54F00337960 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED29CC012622D54F00337960 /* LaunchScreen.storyboard */; };
+		ED81D860263A445C00487450 /* Extension+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED81D85F263A445C00487450 /* Extension+UIButton.swift */; };
 		EDC3B61F26292D31003CA6C0 /* NewAlertTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3B61D26292D31003CA6C0 /* NewAlertTVC.swift */; };
 		EDC3B62026292D31003CA6C0 /* NewAlertTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDC3B61E26292D31003CA6C0 /* NewAlertTVC.xib */; };
 		EDC3B62426293A89003CA6C0 /* DetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3B62226293A89003CA6C0 /* DetailTVC.swift */; };
@@ -45,6 +46,7 @@
 		ED29CBFF2622D54F00337960 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED29CC022622D54F00337960 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED29CC042622D54F00337960 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED81D85F263A445C00487450 /* Extension+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIButton.swift"; sourceTree = "<group>"; };
 		EDC3B61D26292D31003CA6C0 /* NewAlertTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAlertTVC.swift; sourceTree = "<group>"; };
 		EDC3B61E26292D31003CA6C0 /* NewAlertTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewAlertTVC.xib; sourceTree = "<group>"; };
 		EDC3B62226293A89003CA6C0 /* DetailTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTVC.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				EDC99725262858AF00993467 /* Extension+UIColor.swift */,
+				ED81D85F263A445C00487450 /* Extension+UIButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				EDC3B61F26292D31003CA6C0 /* NewAlertTVC.swift in Sources */,
 				EDC99726262858AF00993467 /* Extension+UIColor.swift in Sources */,
 				EDD155C526328C78009A0D52 /* TotalListVC.swift in Sources */,
+				ED81D860263A445C00487450 /* Extension+UIButton.swift in Sources */,
 				EDD155B4263272E4009A0D52 /* EditTopTVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
