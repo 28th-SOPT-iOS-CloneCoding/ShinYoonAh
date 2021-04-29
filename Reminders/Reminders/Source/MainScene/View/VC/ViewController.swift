@@ -237,6 +237,7 @@ extension ViewController {
 // MARK: - Protocol
 extension ViewController: PresentViewDelegate {
     func dvcPresentFromFirstView(dvc: TotalListVC) {
+        dvc.sections = lists
         navigationController?.pushViewController(dvc, animated: true)
     }
 }

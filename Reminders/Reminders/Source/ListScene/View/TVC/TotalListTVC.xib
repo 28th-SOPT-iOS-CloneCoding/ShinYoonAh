@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TotalListTVC" id="KGk-i7-Jjw" customClass="TotalListTVC" customModule="Reminders" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JkL-R6-hmz">
+                        <rect key="frame" x="18" y="9.5" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="1G7-Y1-eFq"/>
+                            <constraint firstAttribute="width" constant="25" id="Xo9-Z0-kOs"/>
+                        </constraints>
+                    </button>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fjE-FD-m0R">
+                        <rect key="frame" x="58" y="13" width="4" height="18.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="cPB-J1-xq1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                    </textField>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nCU-28-Ms6">
+                        <rect key="frame" x="285" y="9.5" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="Mfr-2f-7w0"/>
+                            <constraint firstAttribute="width" constant="25" id="ucQ-Up-W20"/>
+                        </constraints>
+                        <state key="normal">
+                            <imageReference key="image" image="info.circle" catalog="system" symbolScale="default"/>
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="18"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="nCU-28-Ms6" secondAttribute="trailing" constant="10" id="EYf-qP-YcH"/>
+                    <constraint firstItem="fjE-FD-m0R" firstAttribute="leading" secondItem="JkL-R6-hmz" secondAttribute="trailing" constant="15" id="ZtD-8h-GBq"/>
+                    <constraint firstItem="nCU-28-Ms6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dOw-xB-8Oq"/>
+                    <constraint firstItem="JkL-R6-hmz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="fEP-rP-pZH"/>
+                    <constraint firstItem="JkL-R6-hmz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hi5-4k-nwt"/>
+                    <constraint firstItem="fjE-FD-m0R" firstAttribute="centerY" secondItem="JkL-R6-hmz" secondAttribute="centerY" id="iwg-3l-Wbz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="checkButton" destination="JkL-R6-hmz" id="76R-su-wTh"/>
+                <outlet property="infoButton" destination="nCU-28-Ms6" id="Mbq-8l-2qF"/>
+                <outlet property="reminderTextField" destination="fjE-FD-m0R" id="Ax6-sC-7Hf"/>
+            </connections>
+            <point key="canvasLocation" x="-16" y="104"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
+    </resources>
+</document>

@@ -129,6 +129,8 @@ extension ReminderMainTopTVC {
         guard let dvc = UIStoryboard(name: "List", bundle: nil).instantiateViewController(identifier: "TotalListVC") as? TotalListVC else {
             return
         }
+        dvc.topTitle = lists[0]
+        dvc.topColor = .darkGray
         delegate?.dvcPresentFromFirstView(dvc: dvc)
     }
     
