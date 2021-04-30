@@ -8,6 +8,15 @@
 import UIKit
 
 class TotalListVC: UIViewController {
+    lazy var saveButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(
+            title: "완료",
+            style: .plain,
+            target: self,
+            action: #selector(touchUpSave(_:)))
+        return button
+    }()
+    
     @IBOutlet weak var listTableView: UITableView!
     
     var topTitle: String?
@@ -21,7 +30,6 @@ class TotalListVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.navigationBar.topItem?.title = ""
     }
 }
 
@@ -78,6 +86,12 @@ extension TotalListVC: UITableViewDelegate {
         }
         currentCell.reminderTextField.becomeFirstResponder()
         currentCell.infoButton.isHidden = false
+        
+        if currentCell.getText {
+            
+        }
+        
+//        navigationItem.rightBarButtonItem = saveButton
     }
 }
 
@@ -91,8 +105,6 @@ extension TotalListVC {
     }
     
     private func setNavigation() {
-        self.navigationController?.navigationBar.topItem?.title = "목록"
-        
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = topTitle
         self.navigationController?.navigationBar.largeTitleTextAttributes = [
@@ -125,5 +137,13 @@ extension TotalListVC {
     private func setTableViewNib() {
         let nib = UINib(nibName: "TotalListTVC", bundle: nil)
         listTableView.register(nib, forCellReuseIdentifier: TotalListTVC.identifier)
+    }
+}
+
+// MARK: - Action
+extension TotalListVC {
+    @objc
+    private func touchUpSave(_ sender: Any) {
+        print("완료")
     }
 }

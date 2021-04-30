@@ -36,6 +36,13 @@ extension TotalListTVC: UITextFieldDelegate {
             infoButton.isHidden = true
         }
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        reminderTextField.resignFirstResponder()
+        infoButton.isHidden = true
+        
+        return true
+    }
 }
 
 // MARK: - UI
@@ -44,6 +51,7 @@ extension TotalListTVC {
         setTextField()
         setCheckBox()
         setButton()
+        setToolbar()
     }
     
     private func setTextField() {
@@ -71,6 +79,25 @@ extension TotalListTVC {
             checkButton.tintColor = .systemBlue
         }
     }
+    
+    private func setToolbar() {
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: contentView.frame.size.width, height: 50))
+        
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        
+        let calendarButton = UIBarButtonItem(image: UIImage(systemName: "calendar.badge.clock"), style: .plain, target: self, action: #selector(tappedCalendar))
+        calendarButton.tintColor = .black
+        let positionButton = UIBarButtonItem(image: UIImage(systemName: "location"), style: .plain, target: self, action: #selector(tappedCalendar))
+        positionButton.tintColor = .black
+        let flagButton = UIBarButtonItem(image: UIImage(systemName: "flag"), style: .plain, target: self, action: #selector(tappedCalendar))
+        flagButton.isEnabled = false
+        let cameraButton = UIBarButtonItem(image: UIImage(systemName: "camera"), style: .plain, target: self, action: #selector(tappedCalendar))
+        cameraButton.isEnabled = false
+        
+        toolBar.items = [flexibleSpace, calendarButton, flexibleSpace, flexibleSpace, positionButton, flexibleSpace,flexibleSpace, flagButton, flexibleSpace, flexibleSpace, cameraButton, flexibleSpace]
+        toolBar.sizeToFit()
+        reminderTextField.inputAccessoryView = toolBar
+    }
 }
 
 // MARK: - Action
@@ -89,6 +116,11 @@ extension TotalListTVC {
     @objc
     func touchUpList() {
         
+    }
+    
+    @objc
+    private func tappedCalendar() {
+        print("캘린더")
     }
 }
 

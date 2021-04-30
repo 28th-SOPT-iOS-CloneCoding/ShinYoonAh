@@ -30,7 +30,9 @@
                             <constraint firstAttribute="bottom" secondItem="twg-A8-rag" secondAttribute="bottom" id="nQF-TF-aNZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="hoN-39-7vm"/>
+                    <navigationItem key="navigationItem" id="hoN-39-7vm">
+                        <barButtonItem key="backBarButtonItem" title="목록" id="lm0-cl-s79"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="mainTableView" destination="twg-A8-rag" id="gYm-EL-dWe"/>
                     </connections>
