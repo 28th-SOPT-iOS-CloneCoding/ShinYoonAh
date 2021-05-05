@@ -137,6 +137,12 @@ extension ReminderMainTopTVC {
     @objc
     func tappedSecondView() {
         print("SecondView Tapped")
+        guard let dvc = UIStoryboard(name: "List", bundle: nil).instantiateViewController(identifier: "TodayListVC") as? TodayListVC else {
+            return
+        }
+        dvc.topTitle = lists[1]
+        dvc.topColor = .systemBlue
+        delegate?.dvcPresentFromSecondView(dvc: dvc)
     }
     
     @objc

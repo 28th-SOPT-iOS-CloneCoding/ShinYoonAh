@@ -22,9 +22,11 @@ class TotalListVC: UIViewController {
     var topTitle: String?
     var topColor: UIColor?
     var sections: [String] = []
+    var cells: [[String]] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setData()
         setUI()
     }
     
@@ -39,7 +41,7 @@ extension TotalListVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return cells[section].count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -47,6 +49,9 @@ extension TotalListVC: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.selectionStyle = .none
+        cell.listTableView = listTableView
+        cell.indexPath = indexPath
+        cell.totalListVC = self
         return cell
     }
 }
@@ -54,6 +59,7 @@ extension TotalListVC: UITableViewDataSource {
 extension TotalListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 40))
+        headerView.backgroundColor = .white
                 
         let label = UILabel()
         label.frame = CGRect.init(x: 15, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
@@ -87,11 +93,26 @@ extension TotalListVC: UITableViewDelegate {
         currentCell.reminderTextField.becomeFirstResponder()
         currentCell.infoButton.isHidden = false
         
-        if currentCell.getText {
-            
-        }
-        
+        createCell(currentCell: currentCell ,indexPath: indexPath)
 //        navigationItem.rightBarButtonItem = saveButton
+    }
+    
+    func createCell(currentCell: TotalListTVC, indexPath: IndexPath) {
+        if currentCell.getText && currentCell.count == 0 {
+            if let text = currentCell.reminderTextField.text {
+                print(text)
+                cells[indexPath.section].append(text)
+                
+                currentCell.isChecked.toggle()
+                currentCell.checkToggle()
+                
+                listTableView.beginUpdates()
+                listTableView.insertRows(at: [IndexPath(row: cells[indexPath.section].count, section: indexPath.section)], with: .automatic)
+                listTableView.endUpdates()
+            }
+            
+            currentCell.count += 1
+        }
     }
 }
 
@@ -132,6 +153,8 @@ extension TotalListVC {
     private func setTableView() {
         listTableView.delegate = self
         listTableView.dataSource = self
+        listTableView.contentInsetAdjustmentBehavior = .never
+        listTableView.separatorInset = UIEdgeInsets(top: 0, left: 58, bottom: 0, right: 0)
     }
     
     private func setTableViewNib() {
@@ -145,5 +168,13 @@ extension TotalListVC {
     @objc
     private func touchUpSave(_ sender: Any) {
         print("완료")
+    }
+}
+
+extension TotalListVC {
+    private func setData() {
+        for _ in sections {
+            cells.append([])
+        }
     }
 }

@@ -236,6 +236,10 @@ extension ViewController {
 
 // MARK: - Protocol
 extension ViewController: PresentViewDelegate {
+    func dvcPresentFromSecondView(dvc: TodayListVC) {
+        navigationController?.pushViewController(dvc, animated: true)
+    }
+    
     func dvcPresentFromFirstView(dvc: TotalListVC) {
         dvc.sections = lists
         navigationController?.pushViewController(dvc, animated: true)

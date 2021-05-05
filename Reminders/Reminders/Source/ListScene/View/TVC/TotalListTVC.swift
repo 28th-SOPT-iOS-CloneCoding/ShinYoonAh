@@ -13,9 +13,15 @@ class TotalListTVC: UITableViewCell {
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var reminderTextField: UITextField!
+    @IBOutlet weak var underLabel: UILabel!
+    
+    var listTableView: UITableView?
+    var indexPath: IndexPath?
+    var totalListVC: TotalListVC?
     
     var isChecked = false
     var getText = false
+    var count = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,13 +40,18 @@ extension TotalListTVC: UITextFieldDelegate {
         if !(textField.text!.isEmpty) {
             getText = true
             infoButton.isHidden = true
+            createCell()
+        } else {
+            getText = false
+            infoButton.isHidden = false
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         reminderTextField.resignFirstResponder()
         infoButton.isHidden = true
-        
+        // MARK: - 이 안에 넣어줘야 함
+        createCell()
         return true
     }
 }
@@ -68,15 +79,17 @@ extension TotalListTVC {
         checkButton.tintColor = .lightGray
     }
     
-    private func checkToggle() {
+    func checkToggle() {
         if isChecked {
             isChecked = false
             checkButton.setImage(UIImage(systemName: "circle"), for: .normal)
             checkButton.tintColor = .lightGray
+            reminderTextField.textColor = .black
         } else {
             isChecked = true
             checkButton.setImage(UIImage(systemName: "largecircle.fill.circle"), for: .normal)
             checkButton.tintColor = .systemBlue
+            reminderTextField.textColor = .lightGray
         }
     }
     
@@ -100,6 +113,27 @@ extension TotalListTVC {
     }
 }
 
+// MARK: - Data
+extension TotalListTVC {
+    func createCell() {
+        if getText && count == 0 {
+            if let text = reminderTextField.text,
+               let section = indexPath?.section {
+                print(text)
+                totalListVC?.cells[section].append(text)
+                
+                isChecked.toggle()
+                checkToggle()
+                
+                listTableView?.beginUpdates()
+                listTableView?.insertRows(at: [IndexPath(row: totalListVC?.cells[section].count ?? 0, section: section)], with: .automatic)
+                listTableView?.endUpdates()
+            }
+            count += 1
+        }
+    }
+}
+
 // MARK: - Action
 extension TotalListTVC {
     @objc
@@ -110,6 +144,8 @@ extension TotalListTVC {
         } else {
             reminderTextField.becomeFirstResponder()
             infoButton.isHidden = false
+            // MARK: - 이 안에 넣어줘야 함
+            createCell()
         }
     }
     
