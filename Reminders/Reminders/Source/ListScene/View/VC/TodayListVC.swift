@@ -64,6 +64,7 @@ extension TodayListVC: UITableViewDataSource {
         cell.selectionStyle = .none
         cell.underLabel.text = "나의 목록"
         cell.isChecked = true
+        cell.getText = true
         cell.checkToggle()
         return cell
     }
