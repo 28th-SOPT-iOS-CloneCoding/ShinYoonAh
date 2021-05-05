@@ -62,6 +62,9 @@ extension TodayListVC: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.selectionStyle = .none
+        cell.underLabel.text = "나의 목록"
+        cell.isChecked = true
+        cell.checkToggle()
         return cell
     }
 }
@@ -154,9 +157,9 @@ extension TodayListVC {
     
     private func hideLabel() {
         if tasks.isEmpty {
-            infoLabel.isHidden = true
-        } else {
             infoLabel.isHidden = false
+        } else {
+            infoLabel.isHidden = true
         }
     }
 }
@@ -166,5 +169,21 @@ extension TodayListVC {
     @objc
     private func touchUpAddNewAlert(_ sender: Any) {
         print("NewAlert!!")
+        print("task.count: \(tasks.count)")
+        
+        let indexPath = IndexPath(row: tasks.count, section: 0)
+
+        tasks.append("1")
+        hideLabel()
+        
+        listTableView.beginUpdates()
+        listTableView.insertRows(at: [indexPath], with: .automatic)
+        listTableView.endUpdates()
+        
+        guard let currentCell = listTableView.cellForRow(at: indexPath) as? TotalListTVC else {
+            return
+        }
+        currentCell.infoButton.isHidden = false
+        currentCell.reminderTextField.becomeFirstResponder()
     }
 }
