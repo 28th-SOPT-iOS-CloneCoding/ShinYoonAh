@@ -13,6 +13,7 @@
 		ED29CBFE2622D54E00337960 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED29CBFC2622D54E00337960 /* Main.storyboard */; };
 		ED29CC002622D54F00337960 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED29CBFF2622D54F00337960 /* Assets.xcassets */; };
 		ED29CC032622D54F00337960 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED29CC012622D54F00337960 /* LaunchScreen.storyboard */; };
+		ED6A8A8926444A7C006DDD6D /* ExpectedListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A8A8826444A7C006DDD6D /* ExpectedListVC.swift */; };
 		ED81D860263A445C00487450 /* Extension+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED81D85F263A445C00487450 /* Extension+UIButton.swift */; };
 		ED81D863263A883500487450 /* TotalListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED81D861263A883500487450 /* TotalListTVC.swift */; };
 		ED81D864263A883500487450 /* TotalListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED81D862263A883500487450 /* TotalListTVC.xib */; };
@@ -50,6 +51,7 @@
 		ED29CBFF2622D54F00337960 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED29CC022622D54F00337960 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED29CC042622D54F00337960 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED6A8A8826444A7C006DDD6D /* ExpectedListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectedListVC.swift; sourceTree = "<group>"; };
 		ED81D85F263A445C00487450 /* Extension+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIButton.swift"; sourceTree = "<group>"; };
 		ED81D861263A883500487450 /* TotalListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalListTVC.swift; sourceTree = "<group>"; };
 		ED81D862263A883500487450 /* TotalListTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TotalListTVC.xib; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 			children = (
 				EDD155C426328C78009A0D52 /* TotalListVC.swift */,
 				EDB990892642F98000669148 /* TodayListVC.swift */,
+				ED6A8A8826444A7C006DDD6D /* ExpectedListVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				EDC99739262892A300993467 /* ListTVC.swift in Sources */,
 				ED29CBF72622D54E00337960 /* AppDelegate.swift in Sources */,
 				EDC997342628871100993467 /* ReminderMainBottomTVC.swift in Sources */,
+				ED6A8A8926444A7C006DDD6D /* ExpectedListVC.swift in Sources */,
 				EDC3B62426293A89003CA6C0 /* DetailTVC.swift in Sources */,
 				ED29CBF92622D54E00337960 /* SceneDelegate.swift in Sources */,
 				EDB9908E2643013300669148 /* Extension+UITableView.swift in Sources */,

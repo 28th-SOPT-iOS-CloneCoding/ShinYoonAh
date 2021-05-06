@@ -148,5 +148,11 @@ extension ReminderMainTopTVC {
     @objc
     func tappedThirdView() {
         print("ThirdView Tapped")
+        guard let dvc = UIStoryboard(name: "List", bundle: nil).instantiateViewController(identifier: "ExpectedListVC") as? ExpectedListVC else {
+            return
+        }
+        dvc.topTitle = lists[2]
+        dvc.topColor = .systemRed
+        delegate?.dvcPresentFromThirdView(dvc: dvc)
     }
 }

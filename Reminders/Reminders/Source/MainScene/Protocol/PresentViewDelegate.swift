@@ -10,4 +10,5 @@ import Foundation
 protocol PresentViewDelegate: class {
     func dvcPresentFromFirstView(dvc: TotalListVC)
     func dvcPresentFromSecondView(dvc: TodayListVC)
+    func dvcPresentFromThirdView(dvc: ExpectedListVC)
 }
