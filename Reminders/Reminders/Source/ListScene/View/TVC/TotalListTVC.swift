@@ -20,7 +20,9 @@ class TotalListTVC: UITableViewCell {
     var listTableView: UITableView?
     var indexPath: IndexPath?
     var totalListVC: TotalListVC?
+    var expectedListVC: ExpectedListVC?
     
+    var isExpected = false
     var isChecked = false
     var isCreated = false
     var getText = false
@@ -44,7 +46,11 @@ extension TotalListTVC: UITextFieldDelegate {
             getText = true
             isCreated = true
             infoButton.isHidden = true
-            createCell()
+            if isExpected {
+                createExpectCell()
+            } else {
+                createCell()
+            }
         } else {
             getText = false
             isCreated = false
@@ -55,7 +61,11 @@ extension TotalListTVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         reminderTextField.resignFirstResponder()
         infoButton.isHidden = true
-        createCell()
+        if isExpected {
+            createExpectCell()
+        } else {
+            createCell()
+        }
         return true
     }
 }
@@ -137,6 +147,23 @@ extension TotalListTVC {
             count += 1
         }
     }
+    
+    func createExpectCell() {
+        if getText && count == 0 {
+            if let text = reminderTextField.text,
+               let count = expectedListVC?.cells.count {
+                print(text)
+                expectedListVC?.cells.append(text)
+                
+                isChecked.toggle()
+                checkToggle()
+                
+                
+                listTableView?.insertRows(at: [IndexPath(row: count, section: 0)], with: .fade)
+            }
+            count += 1
+        }
+    }
 }
 
 // MARK: - Action
@@ -150,7 +177,11 @@ extension TotalListTVC {
             reminderTextField.becomeFirstResponder()
             infoButton.isHidden = false
             // MARK: - 이 안에 넣어줘야 함
-            createCell()
+            if isExpected {
+                createExpectCell()
+            } else {
+                createCell()
+            }
         }
     }
     

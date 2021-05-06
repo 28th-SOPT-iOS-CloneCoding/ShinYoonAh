@@ -12,7 +12,7 @@ class ExpectedListVC: UIViewController {
     
     var topTitle: String?
     var topColor: UIColor?
-    var cells: [String] = []
+    var cells: [String] = ["1"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,10 @@ extension ExpectedListVC: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.selectionStyle = .none
-        cell.underLabel.text = "나의 목록"
+        cell.listTableView = listTableView
+        cell.indexPath = indexPath
+        cell.expectedListVC = self
+        cell.isExpected = true
         cell.infoButton.tintColor = .red
         return cell
     }
@@ -79,9 +82,10 @@ extension ExpectedListVC: UITableViewDelegate {
                 
                 currentCell.isChecked.toggle()
                 currentCell.checkToggle()
+                currentCell.underLabel.text = "나의 목록"
                 
                 listTableView.beginUpdates()
-                listTableView.insertRows(at: [IndexPath(row: cells[indexPath.section].count, section: indexPath.section)], with: .automatic)
+                listTableView.insertRows(at: [IndexPath(row: indexPath.row + 1, section: 0)], with: .automatic)
                 listTableView.endUpdates()
             }
             
@@ -97,6 +101,7 @@ extension ExpectedListVC {
         setMenu()
         setTableView()
         setTableViewNib()
+//        setGesture()
     }
     
     private func setNavigation() {
@@ -129,10 +134,46 @@ extension ExpectedListVC {
         listTableView.dataSource = self
         listTableView.contentInsetAdjustmentBehavior = .never
         listTableView.separatorInset = UIEdgeInsets(top: 0, left: 58, bottom: 0, right: 0)
+        listTableView.removeExtraCellLines()
+        listTableView.tableHeaderView = nil
     }
     
     private func setTableViewNib() {
         let nib = UINib(nibName: "TotalListTVC", bundle: nil)
         listTableView.register(nib, forCellReuseIdentifier: TotalListTVC.identifier)
     }
+    
+//    private func setGesture() {
+//        let dismissTap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+//        view.addGestureRecognizer(dismissTap)
+//    }
+}
+
+// MARK: - Cell
+extension ExpectedListVC {
+//    private func registerTextField() {
+//        var indexPath = IndexPath(row: cells.count, section: 0)
+//        print("task.count: \(cells.count)")
+//
+//        guard let currentCell = listTableView.cellForRow(at: indexPath) as? TotalListTVC else {
+//            return
+//        }
+//
+//        if currentCell.reminderTextField.text?.count == 0 {
+//            currentCell.reminderTextField.becomeFirstResponder()
+//            currentCell.infoButton.isHidden = false
+//        } else {
+//            createCell(currentCell: currentCell, indexPath: indexPath)
+//        }
+//    }
+}
+
+
+// MARK: - Action
+extension ExpectedListVC {
+//    @objc
+//    func handleTap() {
+//        print("touchesBegan")
+//        registerTextField()
+//    }
 }
