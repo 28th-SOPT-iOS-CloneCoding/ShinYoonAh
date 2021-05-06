@@ -12,6 +12,8 @@ class ReminderMainBottomTVC: UITableViewCell {
 
     @IBOutlet weak var listTableView: UITableView!
     
+    var delegate: PresentViewDelegate?
+    
     var lists: [String] = []
     
     override func awakeFromNib() {
@@ -57,6 +59,17 @@ extension ReminderMainBottomTVC: UITableViewDelegate {
         
         let configuration = UISwipeActionsConfiguration(actions: [delete, info])
         return configuration
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Cell Tapped")
+        guard let dvc = UIStoryboard(name: "List", bundle: nil).instantiateViewController(identifier: "TodayListVC") as? TodayListVC else {
+            return
+        }
+        dvc.topTitle = lists[indexPath.row]
+        dvc.topColor = .systemBlue
+        dvc.underText = lists[indexPath.row]
+        delegate?.dvcPresentFromSecondView(dvc: dvc)
     }
 }
 

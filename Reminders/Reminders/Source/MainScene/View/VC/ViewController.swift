@@ -92,6 +92,7 @@ extension ViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ReminderMainBottomTVC.identifier) as? ReminderMainBottomTVC else {
             return UITableViewCell()
         }
+        cell.delegate = self
         cell.selectionStyle = .none
         cell.setLists(lists: lists)
         return cell

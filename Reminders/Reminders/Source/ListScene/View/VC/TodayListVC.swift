@@ -40,6 +40,7 @@ class TodayListVC: UIViewController {
     
     var topTitle: String?
     var topColor: UIColor?
+    var underText: String = "나의 목록"
     var tasks: [String] = []
     
     override func viewDidLoad() {
@@ -62,7 +63,7 @@ extension TodayListVC: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.selectionStyle = .none
-        cell.underLabel.text = "나의 목록"
+        cell.underLabel.text = underText
         cell.isChecked = true
         cell.getText = true
         cell.checkToggle()
@@ -98,6 +99,10 @@ extension TodayListVC {
         setButton()
         setLabel()
         setGesture()
+        
+        if topTitle != "오늘" {
+            setMenu()
+        }
     }
     
     private func setNavigation() {
@@ -182,6 +187,23 @@ extension TodayListVC {
     private func setGesture() {
         let dismissTap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(dismissTap)
+    }
+    
+    private func setMenu() {
+        var menuItems: [UIAction] {
+            return [
+                UIAction(title: "미리 알림 선택...", image: UIImage(systemName: "checkmark.circle"), handler: { (_) in
+                }),
+                UIAction(title: "완료된 항목 가리기", image: UIImage(systemName: "eye.slash"), handler: { (_) in
+                })
+            ]
+        }
+
+        var demoMenu: UIMenu {
+            return UIMenu(title: "", image: nil, identifier: nil, options: [], children: menuItems)
+        }
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: nil, image: UIImage(systemName: "ellipsis.circle"), primaryAction: nil, menu: demoMenu)
     }
 }
 
