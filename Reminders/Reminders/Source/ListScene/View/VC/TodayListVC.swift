@@ -71,7 +71,15 @@ extension TodayListVC: UITableViewDataSource {
 }
 
 extension TodayListVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1
+    }
 }
 
 // MARK: - UI
@@ -84,6 +92,7 @@ extension TodayListVC {
         setView()
         setButton()
         setLabel()
+        setGesture()
     }
     
     private func setNavigation() {
@@ -100,6 +109,7 @@ extension TodayListVC {
         listTableView.contentInsetAdjustmentBehavior = .never
         listTableView.separatorInset = UIEdgeInsets(top: 0, left: 58, bottom: 0, right: 0)
         listTableView.removeExtraCellLines()
+        listTableView.tableHeaderView = nil
     }
     
     private func setTableViewNib() {
@@ -163,28 +173,80 @@ extension TodayListVC {
             infoLabel.isHidden = true
         }
     }
+    
+    private func setGesture() {
+        let dismissTap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(dismissTap)
+    }
 }
 
-// MARK: - Action
+// MARK: - Cell
 extension TodayListVC {
-    @objc
-    private func touchUpAddNewAlert(_ sender: Any) {
+    private func createNewCell() {
         print("NewAlert!!")
-        print("task.count: \(tasks.count)")
         
         let indexPath = IndexPath(row: tasks.count, section: 0)
-
+        
         tasks.append("1")
         hideLabel()
         
-        listTableView.beginUpdates()
         listTableView.insertRows(at: [indexPath], with: .automatic)
-        listTableView.endUpdates()
         
         guard let currentCell = listTableView.cellForRow(at: indexPath) as? TotalListTVC else {
             return
         }
         currentCell.infoButton.isHidden = false
         currentCell.reminderTextField.becomeFirstResponder()
+        
+        currentCell.isCreated = true
+    }
+    
+    private func cellMaker() {
+        var indexPath = IndexPath()
+        print("task.count: \(tasks.count)")
+        
+        // 처음 생성할 때
+        if tasks.count == 0 {
+            createNewCell()
+        } else { // 그 다음부터
+            indexPath = IndexPath(row: tasks.count-1, section: 0)
+            guard let currentCell = listTableView.cellForRow(at: indexPath) as? TotalListTVC else {
+                return
+            }
+            
+            print(currentCell.isCreated)
+            
+            // 전에 셀 안에 Text가 채워져있으면
+            if !(currentCell.isCreated) {
+                createNewCell()
+            } else {
+                if currentCell.reminderTextField.text?.count == 0 {
+                    tasks.removeLast()
+                    currentCell.isCreated = false
+                    
+                    indexPath = IndexPath(row: tasks.count, section: 0)
+                    
+                    listTableView.deleteRows(at: [indexPath], with: .fade)
+                    
+                    hideLabel()
+                } else {
+                    createNewCell()
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Action
+extension TodayListVC {
+    @objc
+    private func touchUpAddNewAlert(_ sender: Any) {
+        cellMaker()
+    }
+    
+    @objc
+    func handleTap() {
+        print("touchesBegan")
+        cellMaker()
     }
 }

@@ -20,6 +20,7 @@ class TotalListTVC: UITableViewCell {
     var totalListVC: TotalListVC?
     
     var isChecked = false
+    var isCreated = false
     var getText = false
     var count = 0
     
@@ -39,10 +40,12 @@ extension TotalListTVC: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if !(textField.text!.isEmpty) {
             getText = true
+            isCreated = true
             infoButton.isHidden = true
             createCell()
         } else {
             getText = false
+            isCreated = false
             infoButton.isHidden = false
         }
     }
@@ -50,7 +53,6 @@ extension TotalListTVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         reminderTextField.resignFirstResponder()
         infoButton.isHidden = true
-        // MARK: - 이 안에 넣어줘야 함
         createCell()
         return true
     }
