@@ -9,6 +9,8 @@ import UIKit
 
 class TotalListTVC: UITableViewCell {
     static let identifier = "TotalListTVC"
+    
+    var pushCheck: (() -> Void)?
 
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
@@ -92,6 +94,7 @@ extension TotalListTVC {
             checkButton.setImage(UIImage(systemName: "largecircle.fill.circle"), for: .normal)
             checkButton.tintColor = .systemBlue
             reminderTextField.textColor = .lightGray
+            pushCheck?()
         }
     }
     

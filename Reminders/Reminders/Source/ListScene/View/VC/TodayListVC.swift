@@ -66,6 +66,11 @@ extension TodayListVC: UITableViewDataSource {
         cell.isChecked = true
         cell.getText = true
         cell.checkToggle()
+        cell.pushCheck = {
+            // 문제 있음
+            self.tasks.remove(at: indexPath.row)
+            self.listTableView.deleteRows(at: [indexPath], with: .fade)
+        }
         return cell
     }
 }
