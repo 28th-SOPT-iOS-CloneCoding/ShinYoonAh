@@ -62,8 +62,14 @@ extension NewAlertVC: UITableViewDataSource {
 }
 
 extension NewAlertVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
+        return 1
     }
 }
 
@@ -89,16 +95,16 @@ extension NewAlertVC {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.presentationController?.delegate = self
         isModalInPresentation = true
-    
-        var frame = CGRect.zero
-        frame.size.height = .leastNormalMagnitude
-        newAlertTableView.tableHeaderView = UIView(frame: frame)
     }
     
     private func setTableView() {
         newAlertTableView.dataSource =  self
         newAlertTableView.delegate = self
         newAlertTableView.backgroundColor = .reminderGray
+        
+        var frame = CGRect.zero
+        frame.size.height = .leastNormalMagnitude
+        newAlertTableView.tableHeaderView = UIView(frame: frame)
     }
     
     private func setTableViewNib() {
