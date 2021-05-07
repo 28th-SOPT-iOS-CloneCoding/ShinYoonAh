@@ -71,6 +71,7 @@ extension TodayListVC: UITableViewDataSource {
             // 문제 있음
             self.tasks.remove(at: indexPath.row)
             self.listTableView.deleteRows(at: [indexPath], with: .fade)
+            self.hideLabel()
         }
         cell.delegate = self
         return cell
