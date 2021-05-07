@@ -21,7 +21,7 @@ class TotalListTVC: UITableViewCell {
     var indexPath: IndexPath?
     var totalListVC: TotalListVC?
     var expectedListVC: ExpectedListVC?
-    
+    var delegate: PresentInfoViewDelegate?
     var isExpected = false
     var isChecked = false
     var isCreated = false
@@ -85,6 +85,7 @@ extension TotalListTVC {
     
     private func setButton() {
         infoButton.isHidden = true
+        infoButton.addTarget(self, action: #selector(touchUpInfo), for: .touchUpInside)
     }
     
     private func setCheckBox() {
@@ -193,6 +194,14 @@ extension TotalListTVC {
     @objc
     private func tappedCalendar() {
         print("캘린더")
+    }
+    
+    @objc
+    private func touchUpInfo() {
+        guard let dvc = UIStoryboard(name: "List", bundle: nil).instantiateViewController(identifier: "InfoNavi") as? UINavigationController else {
+            return
+        }
+        delegate?.dvcPresentInfoView(dvc: dvc)
     }
 }
 

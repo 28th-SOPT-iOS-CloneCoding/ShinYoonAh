@@ -39,6 +39,7 @@ extension ExpectedListVC: UITableViewDataSource {
         cell.expectedListVC = self
         cell.isExpected = true
         cell.infoButton.tintColor = .red
+        cell.delegate = self
         return cell
     }
 }
@@ -176,4 +177,10 @@ extension ExpectedListVC {
 //        print("touchesBegan")
 //        registerTextField()
 //    }
+}
+
+extension ExpectedListVC: PresentInfoViewDelegate {
+    func dvcPresentInfoView(dvc: UINavigationController) {
+        present(dvc, animated: true, completion: nil)
+    }
 }

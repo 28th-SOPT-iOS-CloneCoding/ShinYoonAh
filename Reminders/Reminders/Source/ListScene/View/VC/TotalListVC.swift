@@ -52,6 +52,7 @@ extension TotalListVC: UITableViewDataSource {
         cell.listTableView = listTableView
         cell.indexPath = indexPath
         cell.totalListVC = self
+        cell.delegate = self
         return cell
     }
 }
@@ -176,5 +177,11 @@ extension TotalListVC {
         for _ in sections {
             cells.append([])
         }
+    }
+}
+
+extension TotalListVC: PresentInfoViewDelegate {
+    func dvcPresentInfoView(dvc: UINavigationController) {
+        present(dvc, animated: true, completion: nil)
     }
 }

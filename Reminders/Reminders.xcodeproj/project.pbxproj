@@ -14,6 +14,8 @@
 		ED29CC002622D54F00337960 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED29CBFF2622D54F00337960 /* Assets.xcassets */; };
 		ED29CC032622D54F00337960 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED29CC012622D54F00337960 /* LaunchScreen.storyboard */; };
 		ED6A8A8926444A7C006DDD6D /* ExpectedListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A8A8826444A7C006DDD6D /* ExpectedListVC.swift */; };
+		ED6A8A8B2644DD26006DDD6D /* InfomationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A8A8A2644DD26006DDD6D /* InfomationVC.swift */; };
+		ED6A8A8E2644DE33006DDD6D /* PresentInfoViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A8A8D2644DE33006DDD6D /* PresentInfoViewDelegate.swift */; };
 		ED81D860263A445C00487450 /* Extension+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED81D85F263A445C00487450 /* Extension+UIButton.swift */; };
 		ED81D863263A883500487450 /* TotalListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED81D861263A883500487450 /* TotalListTVC.swift */; };
 		ED81D864263A883500487450 /* TotalListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED81D862263A883500487450 /* TotalListTVC.xib */; };
@@ -52,6 +54,8 @@
 		ED29CC022622D54F00337960 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED29CC042622D54F00337960 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED6A8A8826444A7C006DDD6D /* ExpectedListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectedListVC.swift; sourceTree = "<group>"; };
+		ED6A8A8A2644DD26006DDD6D /* InfomationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfomationVC.swift; sourceTree = "<group>"; };
+		ED6A8A8D2644DE33006DDD6D /* PresentInfoViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentInfoViewDelegate.swift; sourceTree = "<group>"; };
 		ED81D85F263A445C00487450 /* Extension+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIButton.swift"; sourceTree = "<group>"; };
 		ED81D861263A883500487450 /* TotalListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalListTVC.swift; sourceTree = "<group>"; };
 		ED81D862263A883500487450 /* TotalListTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TotalListTVC.xib; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 		ED29CC0E2622D58D00337960 /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
+				ED29CBFC2622D54E00337960 /* Main.storyboard */,
 				EDD155C726328E48009A0D52 /* Protocol */,
 				ED29CC0F2622D59C00337960 /* View */,
 			);
@@ -158,7 +163,6 @@
 		ED29CC0F2622D59C00337960 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				ED29CBFC2622D54E00337960 /* Main.storyboard */,
 				ED29CC112622D5A500337960 /* Cell */,
 				ED29CC102622D5A100337960 /* VC */,
 			);
@@ -182,6 +186,14 @@
 				EDC997282628766D00993467 /* TVC */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		ED6A8A8C2644DDF2006DDD6D /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				ED6A8A8D2644DE33006DDD6D /* PresentInfoViewDelegate.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		EDC3B61726292CF7003CA6C0 /* Main */ = {
@@ -243,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				EDD155BF26328C45009A0D52 /* List.storyboard */,
+				ED6A8A8C2644DDF2006DDD6D /* Protocol */,
 				EDD155BE26328C34009A0D52 /* View */,
 			);
 			path = ListScene;
@@ -272,6 +285,7 @@
 				EDD155C426328C78009A0D52 /* TotalListVC.swift */,
 				EDB990892642F98000669148 /* TodayListVC.swift */,
 				ED6A8A8826444A7C006DDD6D /* ExpectedListVC.swift */,
+				ED6A8A8A2644DD26006DDD6D /* InfomationVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -363,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED6A8A8B2644DD26006DDD6D /* InfomationVC.swift in Sources */,
 				ED81D863263A883500487450 /* TotalListTVC.swift in Sources */,
 				EDC997432628B1CF00993467 /* EditVC.swift in Sources */,
 				ED29CBFB2622D54E00337960 /* ViewController.swift in Sources */,
@@ -376,6 +391,7 @@
 				EDC3B62426293A89003CA6C0 /* DetailTVC.swift in Sources */,
 				ED29CBF92622D54E00337960 /* SceneDelegate.swift in Sources */,
 				EDB9908E2643013300669148 /* Extension+UITableView.swift in Sources */,
+				ED6A8A8E2644DE33006DDD6D /* PresentInfoViewDelegate.swift in Sources */,
 				EDC997402628B0E400993467 /* NewListVC.swift in Sources */,
 				EDC9973D2628B05800993467 /* NewAlertVC.swift in Sources */,
 				EDD155C926328F44009A0D52 /* PresentViewDelegate.swift in Sources */,

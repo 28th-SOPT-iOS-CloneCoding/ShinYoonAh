@@ -72,6 +72,7 @@ extension TodayListVC: UITableViewDataSource {
             self.tasks.remove(at: indexPath.row)
             self.listTableView.deleteRows(at: [indexPath], with: .fade)
         }
+        cell.delegate = self
         return cell
     }
 }
@@ -275,5 +276,11 @@ extension TodayListVC {
     func handleTap() {
         print("touchesBegan")
         cellMaker()
+    }
+}
+
+extension TodayListVC: PresentInfoViewDelegate {
+    func dvcPresentInfoView(dvc: UINavigationController) {
+        present(dvc, animated: true, completion: nil)
     }
 }
