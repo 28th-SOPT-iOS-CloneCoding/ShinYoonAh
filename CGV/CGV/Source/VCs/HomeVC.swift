@@ -13,7 +13,6 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
     }
     
-    
     @IBAction func touchUpMore(_ sender: Any) {
         guard let dvc = UIStoryboard(name: "MovieChart", bundle: nil).instantiateViewController(identifier: "MovieChartVC") as? MovieChartVC else {
             return
