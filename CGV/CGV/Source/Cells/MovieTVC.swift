@@ -57,3 +57,19 @@ extension MovieTVC {
         nowBookingButton.layer.cornerRadius = 3
     }
 }
+
+// MARK: - Data
+extension MovieTVC {
+    func setData(posterImage: String,
+                 title: String,
+                 eggRate: Double,
+                 bookingRate: Double,
+                 releaseData: String,
+                 isAdult: Bool) {
+        posterImageView.image = UIImage(named: posterImage)
+        titleLabel.text = title
+        eggRateLabel.text = "\(eggRate)"
+        bookingRateLabel.text = "\(bookingRate)"
+        releaseDateLabel.text = releaseData
+    }
+}

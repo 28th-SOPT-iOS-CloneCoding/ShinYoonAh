@@ -8,12 +8,12 @@
 import Foundation
 
 struct MovieRequest: Codable {
-    var apiKey: String
+    var api_key: String
     var language: String
     var page: Int
     
-    init(_ apiKey: String,_ language: String, _ page: Int) {
-        self.apiKey = apiKey
+    init(_ api_key: String,_ language: String, _ page: Int = 1) {
+        self.api_key = api_key
         self.language = language
         self.page = page
     }

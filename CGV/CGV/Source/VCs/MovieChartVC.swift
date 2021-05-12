@@ -7,8 +7,15 @@
 
 import UIKit
 import SnapKit
+import Moya
 
 class MovieChartVC: UIViewController {
+    private let authProvider = MoyaProvider<MovieServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var movieModel: MovieModel?
+    var param: MovieRequest = MovieRequest.init(GeneralAPI.apiKey, "ko", 1)
+    
+    private var movieData: [MovieResponse] = []
+    
     private let navigationView = UIView()
     private let menuStackView = UIStackView()
     private let movieTableView = UITableView()
@@ -80,19 +87,27 @@ class MovieChartVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getPopularMovie()
         setConfigure()
     }
 }
 
 extension MovieChartVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return movieData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieTVC.identifier) as? MovieTVC else {
             return UITableViewCell()
         }
+        let data = movieData[indexPath.row]
+        cell.setData(posterImage: data.posterPath,
+                     title: data.originalTitle,
+                     eggRate: data.popularity,
+                     bookingRate: data.voteAverage,
+                     releaseData: data.releaseDate,
+                     isAdult: data.adult)
         return cell
     }
 }
@@ -300,6 +315,7 @@ extension MovieChartVC {
                           unselectedButton1: arthouseMenuButton,
                           unselectedButton2: comeoutButton)
         // MARK: - TODO: TableView reload
+        getPopularMovie()
         movieTableView.reloadData()
     }
     
@@ -323,5 +339,28 @@ extension MovieChartVC {
                           unselectedButton2: arthouseMenuButton)
         // MARK: - TODO: TableView reload
         movieTableView.reloadData()
+    }
+}
+
+// MARK: - Networking
+extension MovieChartVC {
+    func getPopularMovie() {
+        print(param)
+        authProvider.request(.popular(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                        self.movieModel = try result.map(MovieModel.self)
+                        self.movieData.removeAll()
+                        self.movieData.append(contentsOf: self.movieModel?.results ?? [])
+                        print("movieData 받아옴")
+                        self.movieTableView.reloadData()
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
     }
 }
