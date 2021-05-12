@@ -11,21 +11,32 @@ import SnapKit
 class MovieChartVC: UIViewController {
     private let navigationView = UIView()
     private let menuStackView = UIStackView()
+    private let movieTableView = UITableView()
     
     private var backButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         button.tintColor = .black
-        button.setPreferredSymbolConfiguration(.init(pointSize: 20, weight: .regular, scale: .large), forImageIn: .normal)
-        button.addTarget(self, action: #selector(touchUpBack), for: .touchUpInside)
+        button.setPreferredSymbolConfiguration(.init(pointSize: 20,
+                                                     weight: .regular,
+                                                     scale: .large),
+                                                forImageIn: .normal)
+        button.addTarget(self,
+                         action: #selector(touchUpBack),
+                         for: .touchUpInside)
         return button
     }()
     private var menuButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "line.horizontal.3"), for: .normal)
         button.tintColor = .black
-        button.setPreferredSymbolConfiguration(.init(pointSize: 20, weight: .regular, scale: .large), forImageIn: .normal)
-        button.addTarget(self, action: #selector(touchUpMenu), for: .touchUpInside)
+        button.setPreferredSymbolConfiguration(.init(pointSize: 20,
+                                                     weight: .regular,
+                                                     scale: .large),
+                                               forImageIn: .normal)
+        button.addTarget(self,
+                         action: #selector(touchUpMenu),
+                         for: .touchUpInside)
         return button
     }()
     private var backLabel: UILabel = {
@@ -40,7 +51,10 @@ class MovieChartVC: UIViewController {
         button.setTitle("무비차트", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(touchUpChartButton), for: .touchUpInside)
+        button.addTarget(self,
+                         action: #selector(touchUpChartButton),
+                         for: .touchUpInside)
+        button.isSelected = true
         return button
     }()
     private var arthouseMenuButton: UIButton = {
@@ -48,7 +62,9 @@ class MovieChartVC: UIViewController {
         button.setTitle("아트하우스", for: .normal)
         button.setTitleColor(.gray, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(touchUpArthouseButton), for: .touchUpInside)
+        button.addTarget(self,
+                         action: #selector(touchUpArthouseButton),
+                         for: .touchUpInside)
         return button
     }()
     private var comeoutButton: UIButton = {
@@ -56,7 +72,9 @@ class MovieChartVC: UIViewController {
         button.setTitle("개봉예정", for: .normal)
         button.setTitleColor(.gray, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(touchUpComeoutButton), for: .touchUpInside)
+        button.addTarget(self,
+                         action: #selector(touchUpComeoutButton),
+                         for: .touchUpInside)
         return button
     }()
 
@@ -66,11 +84,35 @@ class MovieChartVC: UIViewController {
     }
 }
 
+extension MovieChartVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+}
+
+extension MovieChartVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if comeoutButton.isSelected {
+            return comeoutHeader()
+        }
+        return nowPlayingHeader()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+}
+
 // MARK: - UI
 extension MovieChartVC {
     private func setConfigure() {
         setNavigationBarLayout()
         setMenuBarLayout()
+        setTableView()
     }
     
     private func setNavigationBarLayout() {
@@ -116,6 +158,117 @@ extension MovieChartVC {
             make.height.equalTo(44)
         }
     }
+    
+    private func setTableView() {
+        movieTableView.dataSource = self
+        movieTableView.delegate = self
+        movieTableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        
+        view.addSubview(movieTableView)
+        movieTableView.snp.makeConstraints { make in
+            make.top.equalTo(menuStackView.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    // MARK: - Header Setting
+    private func nowPlayingHeader() -> UIView {
+        let headerView = UIView()
+        let bookingRateButton = UIButton()
+        let eggRateButton = UIButton()
+        let nowPlayingButton = UIButton()
+        
+        let bookingRateAction = UIAction { _ in
+            self.changeHeaderButtonColor(selectedButton: bookingRateButton,
+                                    unselectedButton1: eggRateButton,
+                                    unselectedButton2: nowPlayingButton)
+        }
+        let eggRateAction = UIAction { _ in
+            self.changeHeaderButtonColor(selectedButton: eggRateButton,
+                                    unselectedButton1: bookingRateButton,
+                                    unselectedButton2: nowPlayingButton)
+        }
+        let nowPlayingAction = UIAction { _ in
+            self.changeHeaderButtonColor(selectedButton: nowPlayingButton,
+                                    unselectedButton1: bookingRateButton,
+                                    unselectedButton2: eggRateButton)
+        }
+        
+        view.addSubview(headerView)
+        headerView.addSubview(bookingRateButton)
+        headerView.addSubview(eggRateButton)
+        headerView.addSubview(nowPlayingButton)
+        
+        headerView.backgroundColor = .systemGray5
+        
+        bookingRateButton.snp.makeConstraints { make in
+            make.centerY.equalTo(headerView.snp.centerY)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(10)
+        }
+        bookingRateButton.setHeaderButton(title: "예매율순")
+        bookingRateButton.addAction(bookingRateAction, for: .touchUpInside)
+        
+        eggRateButton.snp.makeConstraints { make in
+            make.centerY.equalTo(bookingRateButton)
+            make.leading.equalTo(bookingRateButton.snp.trailing).offset(10)
+        }
+        eggRateButton.setHeaderButton(title: "Egg지수순")
+        eggRateButton.addAction(eggRateAction, for: .touchUpInside)
+        
+        nowPlayingButton.snp.makeConstraints { make in
+            make.centerY.equalTo(bookingRateButton.snp.centerY)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
+        }
+        nowPlayingButton.setHeaderButton(title: "현재상영작보기")
+        nowPlayingButton.addAction(nowPlayingAction, for: .touchUpInside)
+        
+        changeHeaderButtonColor(selectedButton: bookingRateButton,
+                                unselectedButton1: eggRateButton,
+                                unselectedButton2: nowPlayingButton)
+        return headerView
+    }
+    
+    private func comeoutHeader() -> UIView {
+        let headerView = UIView()
+        let comeoutButton = UIButton()
+        let bookingRateButton = UIButton()
+        
+        let comeoutAction = UIAction { _ in
+            self.changeHeaderButtonColor(selectedButton: comeoutButton,
+                                    unselectedButton1: bookingRateButton,
+                                    unselectedButton2: UIButton())
+        }
+        let bookingRateAction = UIAction { _ in
+            self.changeHeaderButtonColor(selectedButton: bookingRateButton,
+                                    unselectedButton1: comeoutButton,
+                                    unselectedButton2: UIButton())
+        }
+        
+        view.addSubview(headerView)
+        headerView.addSubview(comeoutButton)
+        headerView.addSubview(bookingRateButton)
+        
+        headerView.backgroundColor = .systemGray5
+
+        comeoutButton.snp.makeConstraints { make in
+            make.centerY.equalTo(headerView.snp.centerY)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(10)
+        }
+        comeoutButton.setHeaderButton(title: "개봉일순")
+        comeoutButton.addAction(comeoutAction, for: .touchUpInside)
+        
+        bookingRateButton.snp.makeConstraints { make in
+            make.centerY.equalTo(comeoutButton)
+            make.leading.equalTo(comeoutButton.snp.trailing).offset(10)
+        }
+        bookingRateButton.setHeaderButton(title: "예매율순")
+        bookingRateButton.addAction(bookingRateAction, for: .touchUpInside)
+        
+        changeHeaderButtonColor(selectedButton: comeoutButton,
+                                unselectedButton1: bookingRateButton,
+                                unselectedButton2: UIButton())
+        return headerView
+    }
 }
 
 // MARK: - Action
@@ -130,27 +283,36 @@ extension MovieChartVC {
         print("menu open")
     }
     
+    // MARK: - GET Popular
     @objc
     func touchUpChartButton() {
         print("pressed Movie Chart ")
-        changeButtonTextColor(selectedButton: chartMenuButton,
-                              unselectedButton1: arthouseMenuButton,
-                              unselectedButton2: comeoutButton)
+        changeButtonState(selectedButton: chartMenuButton,
+                          unselectedButton1: arthouseMenuButton,
+                          unselectedButton2: comeoutButton)
+        // MARK: - TODO: TableView reload
+        movieTableView.reloadData()
     }
     
+    // MARK: - GET Top Rated
     @objc
     func touchUpArthouseButton() {
         print("pressed Art house ")
-        changeButtonTextColor(selectedButton: arthouseMenuButton,
-                              unselectedButton1: chartMenuButton,
-                              unselectedButton2: comeoutButton)
+        changeButtonState(selectedButton: arthouseMenuButton,
+                          unselectedButton1: chartMenuButton,
+                          unselectedButton2: comeoutButton)
+        // MARK: - TODO: TableView reload
+        movieTableView.reloadData()
     }
     
+    // MARK: - GET Latest
     @objc
     func touchUpComeoutButton() {
         print("pressed Come out ")
-        changeButtonTextColor(selectedButton: comeoutButton,
-                              unselectedButton1: chartMenuButton,
-                              unselectedButton2: arthouseMenuButton)
+        changeButtonState(selectedButton: comeoutButton,
+                          unselectedButton1: chartMenuButton,
+                          unselectedButton2: arthouseMenuButton)
+        // MARK: - TODO: TableView reload
+        movieTableView.reloadData()
     }
 }
