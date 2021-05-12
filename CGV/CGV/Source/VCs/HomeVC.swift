@@ -11,6 +11,7 @@ class HomeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBar()
     }
     
     @IBAction func touchUpMore(_ sender: Any) {
@@ -18,5 +19,12 @@ class HomeVC: UIViewController {
             return
         }
         navigationController?.pushViewController(dvc, animated: true)
+    }
+}
+
+// MARK: - UI
+extension HomeVC {
+    private func setNavigationBar() {
+        navigationController?.isNavigationBarHidden = true
     }
 }
