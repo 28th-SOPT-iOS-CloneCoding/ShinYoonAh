@@ -11,10 +11,10 @@ import Moya
 
 class MovieChartVC: UIViewController {
     private let authProvider = MoyaProvider<MovieServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
-    var movieModel: MovieModel?
-    var param: MovieRequest = MovieRequest.init(GeneralAPI.apiKey, "ko", 1)
+    private var movieModel: MovieModel?
     
     private var movieData: [MovieResponse] = []
+    private var page = 1
     
     private let navigationView = UIView()
     private let menuStackView = UIStackView()
@@ -88,7 +88,7 @@ class MovieChartVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getPopularMovie()
+        getPopularMovie(page: page)
         setConfigure()
     }
 }
@@ -104,7 +104,7 @@ extension MovieChartVC: UITableViewDataSource {
         }
         let data = movieData[indexPath.row]
         cell.setData(posterImage: data.posterPath,
-                     title: data.originalTitle,
+                     title: data.title,
                      eggRate: data.popularity,
                      bookingRate: data.voteAverage,
                      releaseData: data.releaseDate,
@@ -209,11 +209,16 @@ extension MovieChartVC {
             self.changeHeaderButtonColor(selectedButton: bookingRateButton,
                                     unselectedButton1: eggRateButton,
                                     unselectedButton2: nowPlayingButton)
+            self.movieData = self.movieData.sorted(by: {$0.voteAverage > $1.voteAverage})
+            self.movieTableView.reloadData()
         }
         let eggRateAction = UIAction { _ in
             self.changeHeaderButtonColor(selectedButton: eggRateButton,
                                     unselectedButton1: bookingRateButton,
                                     unselectedButton2: nowPlayingButton)
+            
+            self.movieData = self.movieData.sorted(by: {$0.popularity > $1.popularity})
+            self.movieTableView.reloadRows(at: self.movieTableView.indexPathsForVisibleRows ?? [], with: .none)
         }
         let nowPlayingAction = UIAction { _ in
             self.changeHeaderButtonColor(selectedButton: nowPlayingButton,
@@ -318,7 +323,7 @@ extension MovieChartVC {
                           unselectedButton1: arthouseMenuButton,
                           unselectedButton2: comeoutButton)
         // MARK: - TODO: TableView reload
-        getPopularMovie()
+        getPopularMovie(page: page)
         movieTableView.reloadData()
     }
     
@@ -347,9 +352,12 @@ extension MovieChartVC {
 
 // MARK: - Networking
 extension MovieChartVC {
-    func getPopularMovie() {
+    func getPopularMovie(page: Int) {
         loadingIndicator.startAnimating()
+        
+        let param: MovieRequest = MovieRequest.init(GeneralAPI.apiKey, "ko", page)
         print(param)
+        
         authProvider.request(.popular(param: param)) { response in
             self.loadingIndicator.stopAnimating()
             switch response {
@@ -358,6 +366,7 @@ extension MovieChartVC {
                         self.movieModel = try result.map(MovieModel.self)
                         self.movieData.removeAll()
                         self.movieData.append(contentsOf: self.movieModel?.results ?? [])
+                        self.movieData = self.movieData.sorted(by: {$0.voteAverage > $1.voteAverage})
                         print("movieData 받아옴")
                         self.movieTableView.reloadData()
                     } catch(let err) {
