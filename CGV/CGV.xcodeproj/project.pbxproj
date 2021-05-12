@@ -12,6 +12,12 @@
 		ED3EFA3A264BA1C30041DFF1 /* UIButton+SetHeaderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA39264BA1C30041DFF1 /* UIButton+SetHeaderButton.swift */; };
 		ED3EFA3D264BB0410041DFF1 /* MovieTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA3B264BB0410041DFF1 /* MovieTVC.swift */; };
 		ED3EFA3E264BB0410041DFF1 /* MovieTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED3EFA3C264BB0410041DFF1 /* MovieTVC.xib */; };
+		ED3EFA41264BBB5C0041DFF1 /* Extension+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA40264BBB5C0041DFF1 /* Extension+Encodable.swift */; };
+		ED3EFA43264BBBB40041DFF1 /* GeneralAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA42264BBBB40041DFF1 /* GeneralAPI.swift */; };
+		ED3EFA45264BBBF30041DFF1 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA44264BBBF30041DFF1 /* NetworkLoggerPlugin.swift */; };
+		ED3EFA47264BBC420041DFF1 /* MovieServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA46264BBC420041DFF1 /* MovieServices.swift */; };
+		ED3EFA4B264BC01B0041DFF1 /* MovieRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA4A264BC01B0041DFF1 /* MovieRequest.swift */; };
+		ED3EFA4D264BC1520041DFF1 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA4C264BC1520041DFF1 /* MovieModel.swift */; };
 		EDD2122D264A6BC70073CEDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122C264A6BC70073CEDD /* AppDelegate.swift */; };
 		EDD2122F264A6BC70073CEDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */; };
 		EDD21236264A6BC80073CEDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDD21235264A6BC80073CEDD /* Assets.xcassets */; };
@@ -30,6 +36,12 @@
 		ED3EFA39264BA1C30041DFF1 /* UIButton+SetHeaderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+SetHeaderButton.swift"; sourceTree = "<group>"; };
 		ED3EFA3B264BB0410041DFF1 /* MovieTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTVC.swift; sourceTree = "<group>"; };
 		ED3EFA3C264BB0410041DFF1 /* MovieTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTVC.xib; sourceTree = "<group>"; };
+		ED3EFA40264BBB5C0041DFF1 /* Extension+Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Encodable.swift"; sourceTree = "<group>"; };
+		ED3EFA42264BBBB40041DFF1 /* GeneralAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPI.swift; sourceTree = "<group>"; };
+		ED3EFA44264BBBF30041DFF1 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
+		ED3EFA46264BBC420041DFF1 /* MovieServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieServices.swift; sourceTree = "<group>"; };
+		ED3EFA4A264BC01B0041DFF1 /* MovieRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRequest.swift; sourceTree = "<group>"; };
+		ED3EFA4C264BC1520041DFF1 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		EDD21229264A6BC70073CEDD /* CGV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD2122C264A6BC70073CEDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +81,22 @@
 				28EEA82D885E47BB6EC9C512 /* Pods-CGV.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		ED3EFA48264BBFEF0041DFF1 /* RequestModels */ = {
+			isa = PBXGroup;
+			children = (
+				ED3EFA4A264BC01B0041DFF1 /* MovieRequest.swift */,
+			);
+			path = RequestModels;
+			sourceTree = "<group>";
+		};
+		ED3EFA49264BBFF50041DFF1 /* ResponseModels */ = {
+			isa = PBXGroup;
+			children = (
+				ED3EFA4C264BC1520041DFF1 /* MovieModel.swift */,
+			);
+			path = ResponseModels;
 			sourceTree = "<group>";
 		};
 		EDD21220264A6BC70073CEDD = {
@@ -135,6 +163,7 @@
 			children = (
 				ED3EFA37264B96E70041DFF1 /* UIViewController+ChangeButtonColor.swift */,
 				ED3EFA39264BA1C30041DFF1 /* UIButton+SetHeaderButton.swift */,
+				ED3EFA40264BBB5C0041DFF1 /* Extension+Encodable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -186,6 +215,8 @@
 		EDD21249264A6C4E0073CEDD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				ED3EFA49264BBFF50041DFF1 /* ResponseModels */,
+				ED3EFA48264BBFEF0041DFF1 /* RequestModels */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -193,6 +224,9 @@
 		EDD2124A264A6C510073CEDD /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				ED3EFA42264BBBB40041DFF1 /* GeneralAPI.swift */,
+				ED3EFA44264BBBF30041DFF1 /* NetworkLoggerPlugin.swift */,
+				ED3EFA46264BBC420041DFF1 /* MovieServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -314,10 +348,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDD2124E264A6D110073CEDD /* MovieChartVC.swift in Sources */,
+				ED3EFA41264BBB5C0041DFF1 /* Extension+Encodable.swift in Sources */,
+				ED3EFA4B264BC01B0041DFF1 /* MovieRequest.swift in Sources */,
+				ED3EFA47264BBC420041DFF1 /* MovieServices.swift in Sources */,
 				ED3EFA38264B96E70041DFF1 /* UIViewController+ChangeButtonColor.swift in Sources */,
+				ED3EFA43264BBBB40041DFF1 /* GeneralAPI.swift in Sources */,
+				ED3EFA4D264BC1520041DFF1 /* MovieModel.swift in Sources */,
 				ED3EFA3D264BB0410041DFF1 /* MovieTVC.swift in Sources */,
 				EDD21254264A733F0073CEDD /* HomeVC.swift in Sources */,
 				ED3EFA3A264BA1C30041DFF1 /* UIButton+SetHeaderButton.swift in Sources */,
+				ED3EFA45264BBBF30041DFF1 /* NetworkLoggerPlugin.swift in Sources */,
 				EDD2122D264A6BC70073CEDD /* AppDelegate.swift in Sources */,
 				EDD2122F264A6BC70073CEDD /* SceneDelegate.swift in Sources */,
 			);

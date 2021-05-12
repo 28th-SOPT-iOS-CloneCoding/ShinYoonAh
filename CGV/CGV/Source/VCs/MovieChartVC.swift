@@ -314,7 +314,7 @@ extension MovieChartVC {
         movieTableView.reloadData()
     }
     
-    // MARK: - GET Latest
+    // MARK: - GET Upcoming
     @objc
     func touchUpComeoutButton() {
         print("pressed Come out ")
