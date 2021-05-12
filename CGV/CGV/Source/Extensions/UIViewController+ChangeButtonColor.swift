@@ -12,8 +12,8 @@ extension UIViewController {
                                      unselectedButton1: UIButton,
                                      unselectedButton2: UIButton) {
         selectedButton.setTitleColor(.black, for: .normal)
-        unselectedButton1.setTitleColor(.gray, for: .normal)
-        unselectedButton2.setTitleColor(.gray, for: .normal)
+        unselectedButton1.setTitleColor(.lightGray, for: .normal)
+        unselectedButton2.setTitleColor(.lightGray, for: .normal)
         
         selectedButton.isSelected = true
         unselectedButton1.isSelected = false

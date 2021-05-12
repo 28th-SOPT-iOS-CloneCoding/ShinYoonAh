@@ -18,7 +18,7 @@ class MovieChartVC: UIViewController {
         button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         button.tintColor = .black
         button.setPreferredSymbolConfiguration(.init(pointSize: 20,
-                                                     weight: .regular,
+                                                     weight: .light,
                                                      scale: .large),
                                                 forImageIn: .normal)
         button.addTarget(self,
@@ -31,7 +31,7 @@ class MovieChartVC: UIViewController {
         button.setImage(UIImage(systemName: "line.horizontal.3"), for: .normal)
         button.tintColor = .black
         button.setPreferredSymbolConfiguration(.init(pointSize: 20,
-                                                     weight: .regular,
+                                                     weight: .light,
                                                      scale: .large),
                                                forImageIn: .normal)
         button.addTarget(self,
@@ -60,7 +60,7 @@ class MovieChartVC: UIViewController {
     private var arthouseMenuButton: UIButton = {
         let button = UIButton()
         button.setTitle("아트하우스", for: .normal)
-        button.setTitleColor(.gray, for: .normal)
+        button.setTitleColor(.lightGray, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16)
         button.addTarget(self,
                          action: #selector(touchUpArthouseButton),
@@ -70,7 +70,7 @@ class MovieChartVC: UIViewController {
     private var comeoutButton: UIButton = {
         let button = UIButton()
         button.setTitle("개봉예정", for: .normal)
-        button.setTitleColor(.gray, for: .normal)
+        button.setTitleColor(.lightGray, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16)
         button.addTarget(self,
                          action: #selector(touchUpComeoutButton),
@@ -90,7 +90,10 @@ extension MovieChartVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieTVC.identifier) as? MovieTVC else {
+            return UITableViewCell()
+        }
+        return cell
     }
 }
 
@@ -103,7 +106,7 @@ extension MovieChartVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 45
     }
 }
 
@@ -113,6 +116,7 @@ extension MovieChartVC {
         setNavigationBarLayout()
         setMenuBarLayout()
         setTableView()
+        setTableViewNib()
     }
     
     private func setNavigationBarLayout() {
@@ -171,6 +175,11 @@ extension MovieChartVC {
         }
     }
     
+    private func setTableViewNib() {
+        let nib = UINib(nibName: "MovieTVC", bundle: nil)
+        movieTableView.register(nib, forCellReuseIdentifier: MovieTVC.identifier)
+    }
+    
     // MARK: - Header Setting
     private func nowPlayingHeader() -> UIView {
         let headerView = UIView()
@@ -199,7 +208,7 @@ extension MovieChartVC {
         headerView.addSubview(eggRateButton)
         headerView.addSubview(nowPlayingButton)
         
-        headerView.backgroundColor = .systemGray5
+        headerView.backgroundColor = .systemGray6
         
         bookingRateButton.snp.makeConstraints { make in
             make.centerY.equalTo(headerView.snp.centerY)
@@ -248,7 +257,7 @@ extension MovieChartVC {
         headerView.addSubview(comeoutButton)
         headerView.addSubview(bookingRateButton)
         
-        headerView.backgroundColor = .systemGray5
+        headerView.backgroundColor = .systemGray6
 
         comeoutButton.snp.makeConstraints { make in
             make.centerY.equalTo(headerView.snp.centerY)

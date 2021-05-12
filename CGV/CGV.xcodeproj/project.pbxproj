@@ -10,6 +10,8 @@
 		44AB5187E82C8FA06A8DC071 /* Pods_CGV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB1AE21C3C4868FAF75B2ECF /* Pods_CGV.framework */; };
 		ED3EFA38264B96E70041DFF1 /* UIViewController+ChangeButtonColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA37264B96E70041DFF1 /* UIViewController+ChangeButtonColor.swift */; };
 		ED3EFA3A264BA1C30041DFF1 /* UIButton+SetHeaderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA39264BA1C30041DFF1 /* UIButton+SetHeaderButton.swift */; };
+		ED3EFA3D264BB0410041DFF1 /* MovieTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA3B264BB0410041DFF1 /* MovieTVC.swift */; };
+		ED3EFA3E264BB0410041DFF1 /* MovieTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED3EFA3C264BB0410041DFF1 /* MovieTVC.xib */; };
 		EDD2122D264A6BC70073CEDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122C264A6BC70073CEDD /* AppDelegate.swift */; };
 		EDD2122F264A6BC70073CEDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */; };
 		EDD21236264A6BC80073CEDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDD21235264A6BC80073CEDD /* Assets.xcassets */; };
@@ -26,6 +28,8 @@
 		DB1AE21C3C4868FAF75B2ECF /* Pods_CGV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CGV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED3EFA37264B96E70041DFF1 /* UIViewController+ChangeButtonColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChangeButtonColor.swift"; sourceTree = "<group>"; };
 		ED3EFA39264BA1C30041DFF1 /* UIButton+SetHeaderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+SetHeaderButton.swift"; sourceTree = "<group>"; };
+		ED3EFA3B264BB0410041DFF1 /* MovieTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTVC.swift; sourceTree = "<group>"; };
+		ED3EFA3C264BB0410041DFF1 /* MovieTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTVC.xib; sourceTree = "<group>"; };
 		EDD21229264A6BC70073CEDD /* CGV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD2122C264A6BC70073CEDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 		EDD21247264A6C230073CEDD /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				ED3EFA3C264BB0410041DFF1 /* MovieTVC.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 		EDD21248264A6C3E0073CEDD /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				ED3EFA3B264BB0410041DFF1 /* MovieTVC.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -253,6 +259,7 @@
 				EDD2124C264A6D030073CEDD /* MovieChart.storyboard in Resources */,
 				EDD21239264A6BC80073CEDD /* LaunchScreen.storyboard in Resources */,
 				EDD21236264A6BC80073CEDD /* Assets.xcassets in Resources */,
+				ED3EFA3E264BB0410041DFF1 /* MovieTVC.xib in Resources */,
 				EDD21251264A73230073CEDD /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +315,7 @@
 			files = (
 				EDD2124E264A6D110073CEDD /* MovieChartVC.swift in Sources */,
 				ED3EFA38264B96E70041DFF1 /* UIViewController+ChangeButtonColor.swift in Sources */,
+				ED3EFA3D264BB0410041DFF1 /* MovieTVC.swift in Sources */,
 				EDD21254264A733F0073CEDD /* HomeVC.swift in Sources */,
 				ED3EFA3A264BA1C30041DFF1 /* UIButton+SetHeaderButton.swift in Sources */,
 				EDD2122D264A6BC70073CEDD /* AppDelegate.swift in Sources */,
