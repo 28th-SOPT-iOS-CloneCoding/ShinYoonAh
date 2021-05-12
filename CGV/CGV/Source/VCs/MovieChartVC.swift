@@ -10,6 +10,7 @@ import SnapKit
 
 class MovieChartVC: UIViewController {
     private let navigationView = UIView()
+    private let menuStackView = UIStackView()
     
     private var backButton: UIButton = {
         let button = UIButton()
@@ -30,8 +31,33 @@ class MovieChartVC: UIViewController {
     private var backLabel: UILabel = {
         let label = UILabel()
         label.text = "영화"
+        label.font = .boldSystemFont(ofSize: 17)
         label.textColor = .black
         return label
+    }()
+    private var chartMenuButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("무비차트", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16)
+        button.addTarget(self, action: #selector(touchUpChartButton), for: .touchUpInside)
+        return button
+    }()
+    private var arthouseMenuButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("아트하우스", for: .normal)
+        button.setTitleColor(.gray, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16)
+        button.addTarget(self, action: #selector(touchUpArthouseButton), for: .touchUpInside)
+        return button
+    }()
+    private var comeoutButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("개봉예정", for: .normal)
+        button.setTitleColor(.gray, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16)
+        button.addTarget(self, action: #selector(touchUpComeoutButton), for: .touchUpInside)
+        return button
     }()
 
     override func viewDidLoad() {
@@ -43,10 +69,11 @@ class MovieChartVC: UIViewController {
 // MARK: - UI
 extension MovieChartVC {
     private func setConfigure() {
-        setupNavigationBar()
+        setNavigationBarLayout()
+        setMenuBarLayout()
     }
     
-    func setupNavigationBar() {
+    private func setNavigationBarLayout() {
         view.addSubview(navigationView)
         navigationView.addSubview(backButton)
         navigationView.addSubview(backLabel)
@@ -70,7 +97,23 @@ extension MovieChartVC {
         
         menuButton.snp.makeConstraints { make in
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(15)
-            make.centerY.equalTo(backButton)
+            make.top.equalTo(8)
+        }
+    }
+    
+    private func setMenuBarLayout() {
+        view.addSubview(menuStackView)
+        menuStackView.addArrangedSubview(chartMenuButton)
+        menuStackView.addArrangedSubview(arthouseMenuButton)
+        menuStackView.addArrangedSubview(comeoutButton)
+        
+        menuStackView.axis = .horizontal
+        menuStackView.distribution = .fillEqually
+        menuStackView.alignment = .center
+        menuStackView.snp.makeConstraints { make in
+            make.top.equalTo(navigationView.snp.bottom)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(44)
         }
     }
 }
@@ -85,5 +128,29 @@ extension MovieChartVC {
     @objc
     func touchUpMenu(){
         print("menu open")
+    }
+    
+    @objc
+    func touchUpChartButton() {
+        print("pressed Movie Chart ")
+        changeButtonTextColor(selectedButton: chartMenuButton,
+                              unselectedButton1: arthouseMenuButton,
+                              unselectedButton2: comeoutButton)
+    }
+    
+    @objc
+    func touchUpArthouseButton() {
+        print("pressed Art house ")
+        changeButtonTextColor(selectedButton: arthouseMenuButton,
+                              unselectedButton1: chartMenuButton,
+                              unselectedButton2: comeoutButton)
+    }
+    
+    @objc
+    func touchUpComeoutButton() {
+        print("pressed Come out ")
+        changeButtonTextColor(selectedButton: comeoutButton,
+                              unselectedButton1: chartMenuButton,
+                              unselectedButton2: arthouseMenuButton)
     }
 }

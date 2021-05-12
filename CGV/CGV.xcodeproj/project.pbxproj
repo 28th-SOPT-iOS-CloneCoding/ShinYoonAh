@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		44AB5187E82C8FA06A8DC071 /* Pods_CGV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB1AE21C3C4868FAF75B2ECF /* Pods_CGV.framework */; };
+		ED3EFA38264B96E70041DFF1 /* UIViewController+ChangeButtonColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA37264B96E70041DFF1 /* UIViewController+ChangeButtonColor.swift */; };
 		EDD2122D264A6BC70073CEDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122C264A6BC70073CEDD /* AppDelegate.swift */; };
 		EDD2122F264A6BC70073CEDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */; };
 		EDD21236264A6BC80073CEDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDD21235264A6BC80073CEDD /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 		28EEA82D885E47BB6EC9C512 /* Pods-CGV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CGV.release.xcconfig"; path = "Target Support Files/Pods-CGV/Pods-CGV.release.xcconfig"; sourceTree = "<group>"; };
 		47B9A1C4599F41E7C9B188F9 /* Pods-CGV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CGV.debug.xcconfig"; path = "Target Support Files/Pods-CGV/Pods-CGV.debug.xcconfig"; sourceTree = "<group>"; };
 		DB1AE21C3C4868FAF75B2ECF /* Pods_CGV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CGV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED3EFA37264B96E70041DFF1 /* UIViewController+ChangeButtonColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChangeButtonColor.swift"; sourceTree = "<group>"; };
 		EDD21229264A6BC70073CEDD /* CGV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD2122C264A6BC70073CEDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,7 +62,6 @@
 				47B9A1C4599F41E7C9B188F9 /* Pods-CGV.debug.xcconfig */,
 				28EEA82D885E47BB6EC9C512 /* Pods-CGV.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -126,6 +127,7 @@
 		EDD21243264A6BF50073CEDD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				ED3EFA37264B96E70041DFF1 /* UIViewController+ChangeButtonColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -302,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDD2124E264A6D110073CEDD /* MovieChartVC.swift in Sources */,
+				ED3EFA38264B96E70041DFF1 /* UIViewController+ChangeButtonColor.swift in Sources */,
 				EDD21254264A733F0073CEDD /* HomeVC.swift in Sources */,
 				EDD2122D264A6BC70073CEDD /* AppDelegate.swift in Sources */,
 				EDD2122F264A6BC70073CEDD /* SceneDelegate.swift in Sources */,
