@@ -123,7 +123,7 @@ extension MovieChartVC: UITableViewDataSource {
         if comeoutButton.isSelected {
             if indexPath.section != 0 {
                 let data: MovieResponse = movieData.filter { $0.releaseDate == releaseDate[indexPath.section - 1] }[indexPath.row]
-                cell.setData(posterImage: data.posterPath,
+                cell.setData(posterImage: data.posterPath ?? "",
                              title: data.title,
                              eggRate: data.popularity,
                              bookingRate: data.voteAverage,
@@ -132,7 +132,7 @@ extension MovieChartVC: UITableViewDataSource {
             }
         } else {
             let data = movieData[indexPath.row]
-            cell.setData(posterImage: data.posterPath,
+            cell.setData(posterImage: data.posterPath ?? "",
                          title: data.title,
                          eggRate: data.popularity,
                          bookingRate: data.voteAverage,
