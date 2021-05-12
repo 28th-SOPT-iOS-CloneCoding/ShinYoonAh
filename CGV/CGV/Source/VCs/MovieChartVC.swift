@@ -19,7 +19,7 @@ class MovieChartVC: UIViewController {
     
     private let navigationView = UIView()
     private let menuStackView = UIStackView()
-    private let movieTableView = UITableView()
+    private let movieTableView = UITableView.init(frame: CGRect.zero, style: .grouped)
     private let loadingIndicator = UIActivityIndicatorView()
     
     private var backButton: UIButton = {
@@ -248,12 +248,18 @@ extension MovieChartVC {
                                     unselectedButton2: nowPlayingButton)
             
             self.movieData = self.movieData.sorted(by: {$0.popularity > $1.popularity})
-            self.movieTableView.reloadRows(at: self.movieTableView.indexPathsForVisibleRows ?? [], with: .none)
+            self.movieTableView.reloadRows(
+                at: self.movieTableView.indexPathsForVisibleRows ?? [],
+                with: .none)
         }
         let nowPlayingAction = UIAction { _ in
             self.changeHeaderButtonColor(selectedButton: nowPlayingButton,
                                     unselectedButton1: bookingRateButton,
                                     unselectedButton2: eggRateButton)
+            self.page = 1
+            self.movieData.removeAll()
+            self.getNowPlaying(page: self.page)
+
         }
         
         view.addSubview(headerView)
@@ -387,7 +393,7 @@ extension MovieChartVC {
 
 // MARK: - Networking
 extension MovieChartVC {
-    func getPopularMovie(page: Int) {
+    private func getPopularMovie(page: Int) {
         loadingIndicator.startAnimating()
         
         let param: MovieRequest = MovieRequest.init(GeneralAPI.apiKey, "ko", page)
@@ -401,8 +407,34 @@ extension MovieChartVC {
                         self.movieModel = try result.map(MovieModel.self)
                         self.movieData.append(contentsOf: self.movieModel?.results ?? [])
                         self.movieData = self.movieData.sorted(by: {$0.voteAverage > $1.voteAverage})
-                        print("movieData 받아옴")
+                        print("popular movieData 받아옴")
                         self.movieTableView.reloadData()
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
+    }
+    
+    private func getNowPlaying(page: Int) {
+        loadingIndicator.startAnimating()
+        
+        let param: MovieRequest = MovieRequest.init(GeneralAPI.apiKey, "ko", page)
+        print(param)
+        
+        authProvider.request(.nowPlaying(param: param)) { response in
+            self.loadingIndicator.stopAnimating()
+            switch response {
+                case .success(let result):
+                    do {
+                        self.movieModel = try result.map(MovieModel.self)
+                        self.movieData.append(contentsOf: self.movieModel?.results ?? [])
+                        print("now playing movieData 받아옴")
+                        self.movieTableView.reloadRows(
+                            at: self.movieTableView.indexPathsForVisibleRows ?? [],
+                            with: .none)
                     } catch(let err) {
                         print(err.localizedDescription)
                     }
