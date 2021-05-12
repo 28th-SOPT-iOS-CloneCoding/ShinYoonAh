@@ -310,11 +310,17 @@ extension MovieChartVC {
             self.changeHeaderButtonColor(selectedButton: comeoutButton,
                                     unselectedButton1: bookingRateButton,
                                     unselectedButton2: UIButton())
+            self.movieData = self.movieData.sorted(by: {$0.releaseDate > $1.releaseDate})
+            self.movieTableView.reloadData()
         }
         let bookingRateAction = UIAction { _ in
             self.changeHeaderButtonColor(selectedButton: bookingRateButton,
                                     unselectedButton1: comeoutButton,
                                     unselectedButton2: UIButton())
+            self.movieData = self.movieData.sorted(by: {$0.voteAverage > $1.voteAverage})
+            self.movieTableView.reloadRows(
+                at: self.movieTableView.indexPathsForVisibleRows ?? [],
+                with: .none)
         }
         
         view.addSubview(headerView)
@@ -392,6 +398,7 @@ extension MovieChartVC {
         // MARK: - TODO: TableView reload
         page = 1
         movieData.removeAll()
+        getUpComing(page: page)
         movieTableView.reloadData()
     }
 }
@@ -438,7 +445,7 @@ extension MovieChartVC {
                         self.movieData.append(contentsOf: self.movieModel?.results ?? [])
                         print("now playing movieData 받아옴")
                         self.movieTableView.reloadRows(
-                            at: self.movieTableView.indexPathsForVisibleRows ?? [IndexPath.init(indexes: [0, 1, 2, 3, 4, 5, 6, 7])],
+                            at: self.movieTableView.indexPathsForVisibleRows ?? [],
                             with: .none)
                     } catch(let err) {
                         print(err.localizedDescription)
@@ -463,6 +470,31 @@ extension MovieChartVC {
                         self.movieModel = try result.map(MovieModel.self)
                         self.movieData.append(contentsOf: self.movieModel?.results ?? [])
                         print("Top rated movieData 받아옴")
+                        self.movieTableView.reloadData()
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
+    }
+    
+    private func getUpComing(page: Int) {
+        loadingIndicator.startAnimating()
+        
+        let param: MovieRequest = MovieRequest.init(GeneralAPI.apiKey, "ko", page)
+        print(param)
+        
+        authProvider.request(.upcoming(param: param)) { response in
+            self.loadingIndicator.stopAnimating()
+            switch response {
+                case .success(let result):
+                    do {
+                        self.movieModel = try result.map(MovieModel.self)
+                        self.movieData.append(contentsOf: self.movieModel?.results ?? [])
+                        self.movieData = self.movieData.sorted(by: {$0.releaseDate > $1.releaseDate})
+                        print("upcoming movieData 받아옴")
                         self.movieTableView.reloadData()
                     } catch(let err) {
                         print(err.localizedDescription)
