@@ -15,6 +15,7 @@ class MovieChartVC: UIViewController {
     
     private var movieData: [MovieResponse] = []
     private var page = 1
+    private var fetchingMore = false
     
     private let navigationView = UIView()
     private let menuStackView = UIStackView()
@@ -88,6 +89,8 @@ class MovieChartVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        movieData.removeAll()
         getPopularMovie(page: page)
         setConfigure()
     }
@@ -124,6 +127,33 @@ extension MovieChartVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 45
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if movieTableView.contentOffset.y > (movieTableView.contentSize.height - movieTableView.bounds.size.height) {
+            print("끝에 도달")
+            if !fetchingMore {
+                beginBatchFetch()
+            }
+        }
+    }
+    
+    private func beginBatchFetch() {
+        fetchingMore = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: {
+            self.page += 1
+            
+            if self.chartMenuButton.isSelected {
+                self.getPopularMovie(page: self.page)
+            } else if self.arthouseMenuButton.isSelected {
+                
+            } else if self.comeoutButton.isSelected {
+                
+            }
+            
+            self.fetchingMore = false
+            self.movieTableView.reloadData()
+        })
     }
 }
 
@@ -322,7 +352,8 @@ extension MovieChartVC {
         changeButtonState(selectedButton: chartMenuButton,
                           unselectedButton1: arthouseMenuButton,
                           unselectedButton2: comeoutButton)
-        // MARK: - TODO: TableView reload
+        page = 1
+        movieData.removeAll()
         getPopularMovie(page: page)
         movieTableView.reloadData()
     }
@@ -335,6 +366,8 @@ extension MovieChartVC {
                           unselectedButton1: chartMenuButton,
                           unselectedButton2: comeoutButton)
         // MARK: - TODO: TableView reload
+        page = 1
+        movieData.removeAll()
         movieTableView.reloadData()
     }
     
@@ -346,6 +379,8 @@ extension MovieChartVC {
                           unselectedButton1: chartMenuButton,
                           unselectedButton2: arthouseMenuButton)
         // MARK: - TODO: TableView reload
+        page = 1
+        movieData.removeAll()
         movieTableView.reloadData()
     }
 }
@@ -364,7 +399,6 @@ extension MovieChartVC {
                 case .success(let result):
                     do {
                         self.movieModel = try result.map(MovieModel.self)
-                        self.movieData.removeAll()
                         self.movieData.append(contentsOf: self.movieModel?.results ?? [])
                         self.movieData = self.movieData.sorted(by: {$0.voteAverage > $1.voteAverage})
                         print("movieData 받아옴")
