@@ -22,6 +22,7 @@ class MovieChartVC: UIViewController {
     private let menuStackView = UIStackView()
     private let movieTableView = UITableView.init(frame: CGRect.zero, style: .grouped)
     private let loadingIndicator = UIActivityIndicatorView()
+    private let myRefreshControl = UIRefreshControl()
     
     private var backButton: UIButton = {
         let button = UIButton()
@@ -222,6 +223,7 @@ extension MovieChartVC {
         setMenuBarLayout()
         setTableView()
         setTableViewNib()
+        setRefreshControl()
     }
     
     private func setNavigationBarLayout() {
@@ -286,7 +288,19 @@ extension MovieChartVC {
         movieTableView.register(nib, forCellReuseIdentifier: MovieTVC.identifier)
     }
     
-    // MARK: - Header Setting
+    private func setRefreshControl() {
+        myRefreshControl.addTarget(self, action: #selector(updateUI(refresh:)), for: .valueChanged)
+        
+        if #available(iOS 10.0, *) {
+            movieTableView.refreshControl = myRefreshControl
+        } else {
+            movieTableView.addSubview(myRefreshControl)
+        }
+    }
+}
+
+// MARK: - Header Setting
+extension MovieChartVC {
     private func nowPlayingHeader() -> UIView {
         let headerView = UIView()
         let bookingRateButton = UIButton()
@@ -399,6 +413,7 @@ extension MovieChartVC {
     }
 }
 
+
 // MARK: - Action
 extension MovieChartVC {
     @objc
@@ -409,6 +424,17 @@ extension MovieChartVC {
     @objc
     func touchUpMenu(){
         print("menu open")
+    }
+    
+    @objc
+    func updateUI(refresh: UIRefreshControl) {
+        refresh.endRefreshing()
+        
+        page = 0
+        movieData.removeAll()
+        releaseDate.removeAll()
+        
+        movieTableView.reloadData()
     }
     
     // MARK: - GET Popular
