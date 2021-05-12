@@ -112,7 +112,13 @@ extension MovieChartVC: UITableViewDataSource {
                      bookingRate: data.voteAverage,
                      releaseData: data.releaseDate,
                      isAdult: data.adult)
-        cell.selectionStyle = .gray
+        
+        if arthouseMenuButton.isSelected {
+            cell.setFormat(isArthouse: true)
+        } else {
+            cell.setFormat(isArthouse: false)
+        }
+        
         return cell
     }
 }
@@ -146,7 +152,7 @@ extension MovieChartVC: UITableViewDelegate {
             if self.chartMenuButton.isSelected {
                 self.getPopularMovie(page: self.page)
             } else if self.arthouseMenuButton.isSelected {
-                
+                self.getTopRated(page: self.page)
             } else if self.comeoutButton.isSelected {
                 
             }
@@ -259,7 +265,6 @@ extension MovieChartVC {
             self.page = 1
             self.movieData.removeAll()
             self.getNowPlaying(page: self.page)
-
         }
         
         view.addSubview(headerView)
@@ -371,9 +376,9 @@ extension MovieChartVC {
         changeButtonState(selectedButton: arthouseMenuButton,
                           unselectedButton1: chartMenuButton,
                           unselectedButton2: comeoutButton)
-        // MARK: - TODO: TableView reload
         page = 1
         movieData.removeAll()
+        getTopRated(page: page)
         movieTableView.reloadData()
     }
     
@@ -433,8 +438,32 @@ extension MovieChartVC {
                         self.movieData.append(contentsOf: self.movieModel?.results ?? [])
                         print("now playing movieData 받아옴")
                         self.movieTableView.reloadRows(
-                            at: self.movieTableView.indexPathsForVisibleRows ?? [],
+                            at: self.movieTableView.indexPathsForVisibleRows ?? [IndexPath.init(indexes: [0, 1, 2, 3, 4, 5, 6, 7])],
                             with: .none)
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
+    }
+    
+    private func getTopRated(page: Int) {
+        loadingIndicator.startAnimating()
+        
+        let param: MovieRequest = MovieRequest.init(GeneralAPI.apiKey, "ko", page)
+        print(param)
+        
+        authProvider.request(.topRate(param: param)) { response in
+            self.loadingIndicator.stopAnimating()
+            switch response {
+                case .success(let result):
+                    do {
+                        self.movieModel = try result.map(MovieModel.self)
+                        self.movieData.append(contentsOf: self.movieModel?.results ?? [])
+                        print("Top rated movieData 받아옴")
+                        self.movieTableView.reloadData()
                     } catch(let err) {
                         print(err.localizedDescription)
                     }

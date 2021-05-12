@@ -46,7 +46,6 @@ extension MovieTVC {
     private func setConfigure() {
         setLabel()
         setButton()
-        setFormat()
     }
     
     private func setLabel() {
@@ -70,8 +69,12 @@ extension MovieTVC {
         nowBookingButton.layer.cornerRadius = 3
     }
     
-    private func setFormat() {
-        movieFormatImageView.image = UIImage(named: randomFormat.rawValue)
+    func setFormat(isArthouse: Bool) {
+        if isArthouse {
+            movieFormatImageView.image = UIImage(named: "arthouse")
+        } else {
+            movieFormatImageView.image = UIImage(named: randomFormat.rawValue)
+        }
     }
 }
 
