@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MovieTVC: UITableViewCell {
     static let identifier = "MovieTVC"
@@ -66,7 +67,9 @@ extension MovieTVC {
                  bookingRate: Double,
                  releaseData: String,
                  isAdult: Bool) {
-        posterImageView.image = UIImage(named: posterImage)
+        let string = "https://image.tmdb.org/t/p/w500/\(posterImage)"
+        let url = URL(string: string)!
+        posterImageView.kf.setImage(with: url)
         titleLabel.text = title
         eggRateLabel.text = "\(eggRate)"
         bookingRateLabel.text = "\(bookingRate)"
