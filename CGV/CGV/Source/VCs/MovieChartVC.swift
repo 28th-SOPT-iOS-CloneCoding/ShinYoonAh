@@ -119,13 +119,26 @@ extension MovieChartVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieTVC.identifier) as? MovieTVC else {
             return UITableViewCell()
         }
-        let data = movieData[indexPath.row]
-        cell.setData(posterImage: data.posterPath,
-                     title: data.title,
-                     eggRate: data.popularity,
-                     bookingRate: data.voteAverage,
-                     releaseData: data.releaseDate,
-                     isAdult: data.adult)
+        
+        if comeoutButton.isSelected {
+            if indexPath.section != 0 {
+                let data: MovieResponse = movieData.filter { $0.releaseDate == releaseDate[indexPath.section - 1] }[indexPath.row]
+                cell.setData(posterImage: data.posterPath,
+                             title: data.title,
+                             eggRate: data.popularity,
+                             bookingRate: data.voteAverage,
+                             releaseData: data.releaseDate,
+                             isAdult: data.adult)
+            }
+        } else {
+            let data = movieData[indexPath.row]
+            cell.setData(posterImage: data.posterPath,
+                         title: data.title,
+                         eggRate: data.popularity,
+                         bookingRate: data.voteAverage,
+                         releaseData: data.releaseDate,
+                         isAdult: data.adult)
+        }
         
         if arthouseMenuButton.isSelected {
             cell.setFormat(isArthouse: true)
@@ -356,10 +369,7 @@ extension MovieChartVC {
             self.changeHeaderButtonColor(selectedButton: bookingRateButton,
                                     unselectedButton1: comeoutButton,
                                     unselectedButton2: UIButton())
-            self.movieData = self.movieData.sorted(by: {$0.voteAverage > $1.voteAverage})
-            self.movieTableView.reloadRows(
-                at: self.movieTableView.indexPathsForVisibleRows ?? [],
-                with: .none)
+            print("도대체 이걸 어찌 구현..")
         }
         
         view.addSubview(headerView)
@@ -434,9 +444,9 @@ extension MovieChartVC {
         changeButtonState(selectedButton: comeoutButton,
                           unselectedButton1: chartMenuButton,
                           unselectedButton2: arthouseMenuButton)
-        // MARK: - TODO: TableView reload
         page = 1
         movieData.removeAll()
+        releaseDate.removeAll()
         getUpComing(page: page)
         movieTableView.reloadData()
     }
