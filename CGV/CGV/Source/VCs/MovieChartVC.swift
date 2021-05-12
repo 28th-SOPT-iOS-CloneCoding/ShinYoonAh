@@ -14,6 +14,7 @@ class MovieChartVC: UIViewController {
     private var movieModel: MovieModel?
     
     private var movieData: [MovieResponse] = []
+    private var releaseDate: [String] = []
     private var page = 1
     private var fetchingMore = false
     
@@ -97,7 +98,20 @@ class MovieChartVC: UIViewController {
 }
 
 extension MovieChartVC: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if comeoutButton.isSelected {
+            return releaseDate.count + 1
+        }
+        return 1
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if comeoutButton.isSelected {
+            if section == 0 {
+                return 0
+            }
+            let date = releaseDate[section - 1]
+            return self.movieData.filter{ $0.releaseDate == date }.count
+        }
         return movieData.count
     }
     
@@ -125,14 +139,39 @@ extension MovieChartVC: UITableViewDataSource {
 
 extension MovieChartVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if comeoutButton.isSelected {
+        if comeoutButton.isSelected && section == 0 {
             return comeoutHeader()
+        } else if comeoutButton.isSelected && section != 0 {
+            let headerView = UIView()
+            let headerLabel = UILabel()
+            
+            headerView.backgroundColor = .white
+            headerLabel.font = .systemFont(ofSize: 15)
+            headerLabel.text = releaseDate[section - 1].replacingOccurrences(of: "-", with: ".")
+            
+            headerView.addSubview(headerLabel)
+            headerLabel.snp.makeConstraints { make in
+                make.bottom.equalTo(headerView.snp.bottom).inset(5)
+                make.leading.equalTo(headerView.snp.leading).inset(10)
+            }
+            return headerView
         }
         return nowPlayingHeader()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 45
+        if section == 0 {
+            return 45
+        }
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNormalMagnitude
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -154,7 +193,7 @@ extension MovieChartVC: UITableViewDelegate {
             } else if self.arthouseMenuButton.isSelected {
                 self.getTopRated(page: self.page)
             } else if self.comeoutButton.isSelected {
-                
+                self.getUpComing(page: self.page)
             }
             
             self.fetchingMore = false
@@ -333,7 +372,7 @@ extension MovieChartVC {
             make.centerY.equalTo(headerView.snp.centerY)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(10)
         }
-        comeoutButton.setHeaderButton(title: "개봉일순")
+        comeoutButton.setHeaderButton(title: "개봉순")
         comeoutButton.addAction(comeoutAction, for: .touchUpInside)
         
         bookingRateButton.snp.makeConstraints { make in
@@ -494,6 +533,14 @@ extension MovieChartVC {
                         self.movieModel = try result.map(MovieModel.self)
                         self.movieData.append(contentsOf: self.movieModel?.results ?? [])
                         self.movieData = self.movieData.sorted(by: {$0.releaseDate > $1.releaseDate})
+                        
+                        for i in self.movieData {
+                            self.releaseDate += [i.releaseDate]
+                        }
+                        let removedDuplicate: Set = Set(self.releaseDate)
+                        self.releaseDate = removedDuplicate.sorted().reversed()
+                        print(self.releaseDate.count)
+                        
                         print("upcoming movieData 받아옴")
                         self.movieTableView.reloadData()
                     } catch(let err) {
