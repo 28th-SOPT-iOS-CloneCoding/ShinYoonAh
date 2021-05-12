@@ -85,12 +85,11 @@
                             <constraint firstAttribute="width" constant="17" id="lP4-Hv-DtJ"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="euL-Ki-hZ8">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="euL-Ki-hZ8">
                         <rect key="frame" x="110" y="115" width="50" height="15"/>
-                        <color key="backgroundColor" red="0.52941176469999995" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="DSn-du-aJN"/>
                             <constraint firstAttribute="height" constant="15" id="Lfe-qu-mWw"/>
+                            <constraint firstAttribute="width" constant="50" id="P1d-pv-cHb"/>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -120,10 +119,12 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="ageImageView" destination="r5I-om-Hx8" id="W20-qh-AEm"/>
                 <outlet property="bookingRateLabel" destination="6fk-kC-SZF" id="ZKT-cC-5LT"/>
                 <outlet property="bookingTitleLabel" destination="cno-yg-2zZ" id="Cqs-c4-kIU"/>
                 <outlet property="eggImageView" destination="XRM-4Q-vAQ" id="Xjk-S7-QX3"/>
                 <outlet property="eggRateLabel" destination="Cf4-kT-DE9" id="8qr-S1-Djx"/>
+                <outlet property="movieFormatImageView" destination="euL-Ki-hZ8" id="nLW-h3-gLx"/>
                 <outlet property="nowBookingButton" destination="ngC-Mf-uGW" id="ZHe-Da-4mc"/>
                 <outlet property="posterImageView" destination="Jpe-T0-dgp" id="lev-kU-2zK"/>
                 <outlet property="releaseDateLabel" destination="7Br-Cv-rzQ" id="xnk-DV-exA"/>

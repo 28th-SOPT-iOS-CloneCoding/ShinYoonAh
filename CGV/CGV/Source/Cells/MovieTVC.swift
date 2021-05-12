@@ -8,11 +8,22 @@
 import UIKit
 import Kingfisher
 
+enum MovieFormat: String, CaseIterable {
+    case iMax = "imax"
+    case arthouse = "arthouse"
+    case fourDX = "4dx"
+    case none
+}
+
 class MovieTVC: UITableViewCell {
     static let identifier = "MovieTVC"
     
+    private let randomFormat = MovieFormat.allCases.randomElement()!
+    
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var eggImageView: UIImageView!
+    @IBOutlet weak var ageImageView: UIImageView!
+    @IBOutlet weak var movieFormatImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var eggRateLabel: UILabel!
     @IBOutlet weak var bookingTitleLabel: UILabel!
@@ -35,6 +46,7 @@ extension MovieTVC {
     private func setConfigure() {
         setLabel()
         setButton()
+        setFormat()
     }
     
     private func setLabel() {
@@ -57,6 +69,10 @@ extension MovieTVC {
     private func setButton() {
         nowBookingButton.layer.cornerRadius = 3
     }
+    
+    private func setFormat() {
+        movieFormatImageView.image = UIImage(named: randomFormat.rawValue)
+    }
 }
 
 // MARK: - Data
@@ -70,9 +86,29 @@ extension MovieTVC {
         let string = "https://image.tmdb.org/t/p/w500/\(posterImage)"
         let url = URL(string: string)!
         posterImageView.kf.setImage(with: url)
+        
         titleLabel.text = title
-        eggRateLabel.text = "\(eggRate)"
-        bookingRateLabel.text = "\(bookingRate)"
-        releaseDateLabel.text = releaseData
+        
+        let eRate: Int = Int(round(eggRate / 100))
+        eggRateLabel.text = "\(eRate)%"
+        
+        let bRate = bookingRate * 10
+        bookingRateLabel.text = "\(bRate)%"
+        
+        let date = releaseData.replacingOccurrences(of: "-", with: ".")
+        releaseDateLabel.text = "\(date) 개봉"
+        
+        if eRate >= 50 {
+            eggImageView.image = UIImage(named: "goldEgg")
+        } else {
+            eggImageView.image = UIImage(named: "egg")
+        }
+        
+        if isAdult {
+            ageImageView.image = UIImage(named: "adult")
+        } else {
+            ageImageView.image = UIImage(named: "12")
+        }
     }
 }
+

@@ -109,6 +109,7 @@ extension MovieChartVC: UITableViewDataSource {
                      bookingRate: data.voteAverage,
                      releaseData: data.releaseDate,
                      isAdult: data.adult)
+        cell.selectionStyle = .gray
         return cell
     }
 }
