@@ -19,6 +19,7 @@ class MovieChartVC: UIViewController {
     private let navigationView = UIView()
     private let menuStackView = UIStackView()
     private let movieTableView = UITableView()
+    private let loadingIndicator = UIActivityIndicatorView()
     
     private var backButton: UIButton = {
         let button = UIButton()
@@ -182,6 +183,7 @@ extension MovieChartVC {
         movieTableView.dataSource = self
         movieTableView.delegate = self
         movieTableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        movieTableView.backgroundColor = .systemGray6
         
         view.addSubview(movieTableView)
         movieTableView.snp.makeConstraints { make in
@@ -345,8 +347,10 @@ extension MovieChartVC {
 // MARK: - Networking
 extension MovieChartVC {
     func getPopularMovie() {
+        loadingIndicator.startAnimating()
         print(param)
         authProvider.request(.popular(param: param)) { response in
+            self.loadingIndicator.stopAnimating()
             switch response {
                 case .success(let result):
                     do {

@@ -38,7 +38,7 @@ extension MovieTVC {
     }
     
     private func setLabel() {
-        titleLabel.font = .boldSystemFont(ofSize: 20)
+        titleLabel.font = .boldSystemFont(ofSize: 18)
         
         eggRateLabel.font = .systemFont(ofSize: 12)
         eggRateLabel.textColor = .darkGray
