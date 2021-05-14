@@ -88,6 +88,7 @@ extension MovieTVC {
                  isAdult: Bool) {
         let string = "https://image.tmdb.org/t/p/w500/\(posterImage)"
         let url = URL(string: string)!
+        posterImageView.kf.indicatorType = .activity
         posterImageView.kf.setImage(with: url)
         
         titleLabel.text = title

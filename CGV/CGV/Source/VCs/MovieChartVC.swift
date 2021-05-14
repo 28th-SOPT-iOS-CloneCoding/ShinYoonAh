@@ -93,7 +93,7 @@ class MovieChartVC: UIViewController {
         super.viewDidLoad()
         
         movieData.removeAll()
-        getPopularMovie(page: page)
+        fetchPopularMovie(page: page)
         setConfigure()
     }
 }
@@ -203,11 +203,11 @@ extension MovieChartVC: UITableViewDelegate {
             self.page += 1
             
             if self.chartMenuButton.isSelected {
-                self.getPopularMovie(page: self.page)
+                self.fetchPopularMovie(page: self.page)
             } else if self.arthouseMenuButton.isSelected {
-                self.getTopRated(page: self.page)
+                self.fetchTopRated(page: self.page)
             } else if self.comeoutButton.isSelected {
-                self.getUpComing(page: self.page)
+                self.fetchUpComing(page: self.page)
             }
             
             self.fetchingMore = false
@@ -330,7 +330,7 @@ extension MovieChartVC {
                                     unselectedButton2: eggRateButton)
             self.page = 1
             self.movieData.removeAll()
-            self.getNowPlaying(page: self.page)
+            self.fetchNowPlaying(page: self.page)
         }
         
         view.addSubview(headerView)
@@ -446,7 +446,7 @@ extension MovieChartVC {
                           unselectedButton2: comeoutButton)
         page = 1
         movieData.removeAll()
-        getPopularMovie(page: page)
+        fetchPopularMovie(page: page)
         movieTableView.reloadData()
     }
     
@@ -459,7 +459,7 @@ extension MovieChartVC {
                           unselectedButton2: comeoutButton)
         page = 1
         movieData.removeAll()
-        getTopRated(page: page)
+        fetchTopRated(page: page)
         movieTableView.reloadData()
     }
     
@@ -473,14 +473,15 @@ extension MovieChartVC {
         page = 1
         movieData.removeAll()
         releaseDate.removeAll()
-        getUpComing(page: page)
+        fetchUpComing(page: page)
         movieTableView.reloadData()
     }
 }
 
 // MARK: - Networking
 extension MovieChartVC {
-    private func getPopularMovie(page: Int) {
+    // MARK: - GET Popular
+    private func fetchPopularMovie(page: Int) {
         loadingIndicator.startAnimating()
         
         let param: MovieRequest = MovieRequest.init(GeneralAPI.apiKey, "ko", page)
@@ -504,8 +505,8 @@ extension MovieChartVC {
             }
         }
     }
-    
-    private func getNowPlaying(page: Int) {
+    // MARK: - GET NowPlaying
+    private func fetchNowPlaying(page: Int) {
         loadingIndicator.startAnimating()
         
         let param: MovieRequest = MovieRequest.init(GeneralAPI.apiKey, "ko", page)
@@ -531,7 +532,8 @@ extension MovieChartVC {
         }
     }
     
-    private func getTopRated(page: Int) {
+    // MARK: - GET TopRated
+    private func fetchTopRated(page: Int) {
         loadingIndicator.startAnimating()
         
         let param: MovieRequest = MovieRequest.init(GeneralAPI.apiKey, "ko", page)
@@ -555,7 +557,8 @@ extension MovieChartVC {
         }
     }
     
-    private func getUpComing(page: Int) {
+    // MARK: - GET UpComing
+    private func fetchUpComing(page: Int) {
         loadingIndicator.startAnimating()
         
         let param: MovieRequest = MovieRequest.init(GeneralAPI.apiKey, "ko", page)
