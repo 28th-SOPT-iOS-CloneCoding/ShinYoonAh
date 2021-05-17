@@ -23,6 +23,60 @@
             </objects>
             <point key="canvasLocation" x="132" y="116"/>
         </scene>
+        <!--OverlayVC-->
+        <scene sceneID="ns2-04-nQM">
+            <objects>
+                <viewController storyboardIdentifier="OverlayVC" id="gP1-21-E9R" customClass="OverlayVC" customModule="CGV" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jck-UX-Klh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g1z-fo-1XE">
+                                <rect key="frame" x="167" y="416" width="80" height="5"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="GW9-yL-etL"/>
+                                    <constraint firstAttribute="height" constant="5" id="IGU-Xb-pdL"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XtX-0k-FLe">
+                                <rect key="frame" x="0.0" y="436" width="414" height="460"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SbJ-bm-flE">
+                                        <rect key="frame" x="0.0" y="44" width="414" height="416"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="SbJ-bm-flE" secondAttribute="trailing" id="8fi-Qh-X77"/>
+                                    <constraint firstItem="SbJ-bm-flE" firstAttribute="top" secondItem="XtX-0k-FLe" secondAttribute="top" constant="44" id="NY9-mP-5hp"/>
+                                    <constraint firstAttribute="bottom" secondItem="SbJ-bm-flE" secondAttribute="bottom" id="OPe-qt-aBS"/>
+                                    <constraint firstItem="SbJ-bm-flE" firstAttribute="leading" secondItem="XtX-0k-FLe" secondAttribute="leading" id="iO6-Xh-2oO"/>
+                                    <constraint firstAttribute="height" constant="460" id="vjz-rL-L9Q"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rqt-1N-d9A"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="XtX-0k-FLe" secondAttribute="bottom" id="7J9-pP-uNH"/>
+                            <constraint firstItem="XtX-0k-FLe" firstAttribute="trailing" secondItem="rqt-1N-d9A" secondAttribute="trailing" id="T77-9R-94F"/>
+                            <constraint firstItem="XtX-0k-FLe" firstAttribute="leading" secondItem="rqt-1N-d9A" secondAttribute="leading" id="WYH-KW-LTk"/>
+                            <constraint firstItem="XtX-0k-FLe" firstAttribute="top" secondItem="g1z-fo-1XE" secondAttribute="bottom" constant="15" id="b1f-Wp-Os9"/>
+                            <constraint firstItem="g1z-fo-1XE" firstAttribute="centerX" secondItem="jck-UX-Klh" secondAttribute="centerX" id="zcW-80-ggG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backView" destination="XtX-0k-FLe" id="aqK-Vi-rNw"/>
+                        <outlet property="bookingTableView" destination="SbJ-bm-flE" id="yN9-2R-Zs3"/>
+                        <outlet property="swipeButton" destination="g1z-fo-1XE" id="DM9-6v-wRG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BmF-zh-VU3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="912" y="116"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">

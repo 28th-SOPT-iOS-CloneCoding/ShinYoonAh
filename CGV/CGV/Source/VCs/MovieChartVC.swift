@@ -17,6 +17,7 @@ class MovieChartVC: UIViewController {
     private var releaseDate: [String] = []
     private var page = 1
     private var fetchingMore = false
+    private var isScrolled = false
     
     private let navigationView = UIView()
     private let menuStackView = UIStackView()
@@ -86,6 +87,29 @@ class MovieChartVC: UIViewController {
         button.addTarget(self,
                          action: #selector(touchUpComeoutButton),
                          for: .touchUpInside)
+        return button
+    }()
+    private var bookingButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("", for: .normal)
+        button.addTarget(self, action: #selector(touchUpBooking), for: .touchUpInside)
+        return button
+    }()
+    private lazy var topButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white.withAlphaComponent(0.8)
+        button.layer.cornerRadius = 27
+        button.layer.shadowColor  = UIColor.gray.cgColor
+        button.layer.shadowOpacity = 1.0
+        button.layer.shadowOffset = CGSize(width: 0, height: 3)
+        button.layer.shadowRadius = 3
+        button.setImage(UIImage(systemName: "arrow.up"), for: .normal)
+        button.setPreferredSymbolConfiguration(.init(pointSize: 20,
+                                                      weight: .light,
+                                                      scale: .large),
+                                                 forImageIn: .normal)
+        button.tintColor = .gray
+        button.addTarget(self, action: #selector(touchUpTop), for: .touchUpInside)
         return button
     }()
 
@@ -195,6 +219,22 @@ extension MovieChartVC: UITableViewDelegate {
                 beginBatchFetch()
             }
         }
+        
+        if movieTableView.contentOffset.y > 150 {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.bookingButton.transform = CGAffineTransform(translationX: 0, y: -100)
+                self.topButton.transform = CGAffineTransform(translationX: 0, y: -120)
+                self.isScrolled = true
+            })
+        }
+        
+        if movieTableView.contentOffset.y <= 0 && isScrolled {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.bookingButton.transform = .identity
+                self.topButton.transform = .identity
+                self.isScrolled = false
+            })
+        }
     }
     
     private func beginBatchFetch() {
@@ -224,6 +264,7 @@ extension MovieChartVC {
         setTableView()
         setTableViewNib()
         setRefreshControl()
+        setScrollButtons()
     }
     
     private func setNavigationBarLayout() {
@@ -296,6 +337,58 @@ extension MovieChartVC {
         } else {
             movieTableView.addSubview(myRefreshControl)
         }
+    }
+    
+    private func setScrollButtons() {
+        let smallTitleLabel = UILabel()
+        let largeTitleLabel = UILabel()
+        let imageView = UIImageView()
+        
+        view.addSubview(bookingButton)
+        view.addSubview(topButton)
+        bookingButton.addSubview(smallTitleLabel)
+        bookingButton.addSubview(largeTitleLabel)
+        bookingButton.addSubview(imageView)
+        
+        bookingButton.snp.makeConstraints { make in
+            make.width.equalTo(180)
+            make.height.equalTo(60)
+            make.trailing.equalToSuperview().offset(40)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        topButton.snp.makeConstraints { make in
+            make.width.height.equalTo(55)
+            make.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().offset(55)
+        }
+        smallTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(bookingButton.snp.top).offset(13)
+            make.leading.equalTo(bookingButton.snp.leading).offset(25)
+        }
+        largeTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(smallTitleLabel.snp.bottom).offset(1)
+            make.leading.equalTo(smallTitleLabel.snp.leading)
+        }
+        imageView.snp.makeConstraints { make in
+            make.centerY.equalTo(bookingButton.snp.centerY)
+            make.leading.equalTo(largeTitleLabel.snp.trailing).offset(5)
+            make.height.equalTo(24)
+            make.width.equalTo(35)
+        }
+        
+        bookingButton.backgroundColor = UIColor.systemPink.withAlphaComponent(0.7)
+        bookingButton.layer.cornerRadius = 30
+        
+        smallTitleLabel.text = "빠르고 쉽게"
+        smallTitleLabel.font = .boldSystemFont(ofSize: 10)
+        smallTitleLabel.textColor = .white
+        
+        largeTitleLabel.text = "지금예매"
+        largeTitleLabel.font = .boldSystemFont(ofSize: 16)
+        largeTitleLabel.textColor = .white
+        
+        imageView.image = UIImage(systemName: "ticket")
+        imageView.tintColor = .white
     }
 }
 
@@ -419,6 +512,19 @@ extension MovieChartVC {
     @objc
     func touchUpBack(){
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    func touchUpBooking() {
+        guard let dvc = storyboard?.instantiateViewController(withIdentifier: "OverlayVC") as? OverlayVC else { return }
+        dvc.modalPresentationStyle = .overFullScreen
+        present(dvc, animated: true, completion: nil)
+    }
+    
+    @objc
+    func touchUpTop() {
+        movieTableView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
+        self.isScrolled = false
     }
     
     @objc
