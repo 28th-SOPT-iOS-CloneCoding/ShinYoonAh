@@ -45,5 +45,6 @@ extension OverlayVC {
     
     private func setView() {
         backView.layer.cornerRadius = 20
+        swipeButton.layer.cornerRadius = 3
     }
 }
