@@ -47,11 +47,11 @@
                             </label>
                         </subviews>
                     </stackView>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vro-TP-elu">
-                        <rect key="frame" x="0.0" y="36.5" width="320" height="105"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vro-TP-elu">
+                        <rect key="frame" x="0.0" y="36.5" width="320" height="90"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="105" id="aev-xj-qny"/>
+                            <constraint firstAttribute="height" constant="90" id="aev-xj-qny"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1Fq-9a-7a0">
                             <size key="itemSize" width="128" height="128"/>
@@ -60,11 +60,11 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="sLx-if-uPh">
-                        <rect key="frame" x="0.0" y="141.5" width="320" height="40"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="sLx-if-uPh">
+                        <rect key="frame" x="0.0" y="126.5" width="320" height="65"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="rKM-5q-QRB"/>
+                            <constraint firstAttribute="height" constant="65" id="rKM-5q-QRB"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XD5-Nh-aAr">
                             <size key="itemSize" width="128" height="128"/>
@@ -74,7 +74,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8XA-E1-WLA">
-                        <rect key="frame" x="15" y="181.5" width="290" height="83.5"/>
+                        <rect key="frame" x="15" y="191.5" width="290" height="73.5"/>
                         <state key="normal" title="Button"/>
                     </button>
                 </subviews>
@@ -103,6 +103,7 @@
                 <outlet property="dateCollectionView" destination="vro-TP-elu" id="aav-Hi-orI"/>
                 <outlet property="dateLabel" destination="NAL-o0-EPq" id="aKk-3S-ofa"/>
                 <outlet property="headerLabel" destination="v8h-yL-m2O" id="B63-60-hdk"/>
+                <outlet property="timeCollectionView" destination="sLx-if-uPh" id="CFH-f8-8W6"/>
                 <outlet property="todayLabel" destination="JOf-EA-NkC" id="iSl-eo-oUM"/>
             </connections>
             <point key="canvasLocation" x="-23.188405797101453" y="167.74553571428569"/>
