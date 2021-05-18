@@ -37,6 +37,7 @@ extension OverlayVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DateTheaterTVC.identifier) as? DateTheaterTVC else {
             return UITableViewCell()
         }
+        cell.selectionStyle = .none
         cell.delegate = self
         return cell
     }

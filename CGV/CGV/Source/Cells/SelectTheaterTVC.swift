@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class SelectTheaterTVC: UITableViewCell {
     static let identifier = "SelectTheaterTVC"
@@ -13,8 +14,28 @@ class SelectTheaterTVC: UITableViewCell {
     @IBOutlet weak var areaCollectionView: UICollectionView!
     @IBOutlet weak var positionCollectionView: UICollectionView!
     
+    private var downButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        button.tintColor = .gray
+        button.backgroundColor = .white
+        button.setPreferredSymbolConfiguration(.init(pointSize: 15,
+                                                     weight: .regular,
+                                                     scale: .small),
+                                                forImageIn: .normal)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.gray.cgColor
+        button.layer.cornerRadius = 15
+        button.layer.shadowColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+        button.layer.shadowOpacity = 0.8
+        button.layer.shadowOffset = CGSize(width: -2, height: 2)
+        button.layer.shadowRadius = 3
+        return button
+    }()
+    
     private let flowLayout = UICollectionViewFlowLayout()
     private var isFirst = true
+    private var isClicked = false
     
     private let areas: [String] = ["추천 CGV", "서울", "경기", "인천", "강원", "대전/충청", "대구", "부산/울산", "경상", "광주/전라/제주"]
     private var positions: [String] = ["강변", "건대입구", "용산아이파크몰", "왕십리", "송파", "스타필드시티위례", "성남모란", "야탑"]
@@ -136,6 +157,7 @@ extension SelectTheaterTVC: UICollectionViewDelegate {
 extension SelectTheaterTVC {
     private func setUI() {
         setCollectionView()
+        setButton()
     }
     
     private func setCollectionView() {
@@ -152,6 +174,33 @@ extension SelectTheaterTVC {
         
         flowLayout.scrollDirection = .horizontal
         positionCollectionView.collectionViewLayout = flowLayout
+    }
+    
+    private func setButton() {
+        self.addSubview(downButton)
+        downButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(10)
+            make.centerY.equalTo(positionCollectionView.snp.centerY)
+            make.width.height.equalTo(30)
+        }
+        downButton.addTarget(self,
+                         action: #selector(touchUpDown),
+                         for: .touchUpInside)
+    }
+}
+
+// MARK: - Action
+extension SelectTheaterTVC {
+    @objc
+    func touchUpDown() {
+        print("눌렀다")
+        if !isClicked {
+            downButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
+            isClicked = true
+        } else {
+            downButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+            isClicked = false
+        }
     }
 }
 
