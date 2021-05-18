@@ -48,10 +48,10 @@
                         </subviews>
                     </stackView>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vro-TP-elu">
-                        <rect key="frame" x="0.0" y="36.5" width="320" height="115"/>
+                        <rect key="frame" x="0.0" y="36.5" width="320" height="105"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="115" id="aev-xj-qny"/>
+                            <constraint firstAttribute="height" constant="105" id="aev-xj-qny"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1Fq-9a-7a0">
                             <size key="itemSize" width="128" height="128"/>
@@ -61,7 +61,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="sLx-if-uPh">
-                        <rect key="frame" x="0.0" y="151.5" width="320" height="40"/>
+                        <rect key="frame" x="0.0" y="141.5" width="320" height="40"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="rKM-5q-QRB"/>
@@ -74,7 +74,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8XA-E1-WLA">
-                        <rect key="frame" x="15" y="191.5" width="290" height="73.5"/>
+                        <rect key="frame" x="15" y="181.5" width="290" height="83.5"/>
                         <state key="normal" title="Button"/>
                     </button>
                 </subviews>

@@ -19,6 +19,7 @@ class DateTheaterTVC: UITableViewCell {
     
     private var dates: [String] = []
     private var days: [String] = []
+    private var realDate: [Date] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -66,13 +67,23 @@ extension DateTheaterTVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: 15, bottom: 15, right: 15)
+        return UIEdgeInsets(top: 20, left: 15, bottom: 5, right: 15)
     }
 }
 
 extension DateTheaterTVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         dateCollectionView.scrollToItem(at: IndexPath(item: indexPath.row, section: 0), at: .centeredHorizontally, animated: true)
+        
+        dateLabel.text = formatter.string(from: realDate[indexPath.item])
+        
+        if indexPath.item == 0 {
+            todayLabel.text = "오늘"
+        } else if indexPath.item == 1 {
+            todayLabel.text = "내일"
+        } else {
+            todayLabel.text = ""
+        }
     }
 }
 
@@ -123,8 +134,15 @@ extension DateTheaterTVC {
         dayFormat.dateFormat = "EEEEE"
         for i in 0..<14 {
             let day = calendar.date(byAdding: .day, value: i, to: todayDate)!
+            if i == 0 {
+                days.append("오늘")
+            } else if i == 1 {
+                days.append("내일")
+            } else {
+                days.append(dayFormat.string(from: day))
+            }
             dates.append(format.string(from: day))
-            days.append(dayFormat.string(from: day))
+            realDate.append(day)
         }
     }
 }
