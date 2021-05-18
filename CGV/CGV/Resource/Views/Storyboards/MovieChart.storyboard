@@ -102,6 +102,7 @@
                         <outlet property="backView" destination="XtX-0k-FLe" id="aqK-Vi-rNw"/>
                         <outlet property="bookingTableView" destination="SbJ-bm-flE" id="yN9-2R-Zs3"/>
                         <outlet property="swipeButton" destination="g1z-fo-1XE" id="DM9-6v-wRG"/>
+                        <outlet property="xmarkButton" destination="vL0-X4-TFs" id="Sef-Ya-aeu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BmF-zh-VU3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

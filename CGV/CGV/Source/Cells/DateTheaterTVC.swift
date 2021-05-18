@@ -19,7 +19,7 @@ class DateTheaterTVC: UITableViewCell {
     
     private var formatter = DateFormatter()
     private var isButtonActive = true
-    private var position = ""
+    private var position = "강변"
     
     var delegate: showupAlertDeleagate?
     

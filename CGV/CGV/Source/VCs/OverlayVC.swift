@@ -11,10 +11,15 @@ class OverlayVC: UIViewController {
     @IBOutlet weak var swipeButton: UIView!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var bookingTableView: UITableView!
+    @IBOutlet weak var xmarkButton: UIButton!
+    
+    private var isClicked = false
+    private var positionCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        setNotification()
     }
 }
 
@@ -59,7 +64,23 @@ extension OverlayVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
+        if indexPath.section == 0 && isClicked {
+            let count = positionCount / 3
+            
+            if positionCount == 20 {
+                return 483
+            }
+            
+            if count == 1 {
+                return 133
+            } else if count == 3 {
+                return 233
+            } else if count == 4 {
+                return 300
+            }
+            
+            return CGFloat(133 + 50 * count)
+        } else if indexPath.section == 0 && !isClicked {
             return 133
         }
         return 280
@@ -78,6 +99,7 @@ extension OverlayVC {
     private func setUI() {
         setTableView()
         setView()
+        setButton()
     }
     
     private func setTableView() {
@@ -93,6 +115,10 @@ extension OverlayVC {
     private func setView() {
         backView.layer.cornerRadius = 20
         swipeButton.layer.cornerRadius = 3
+    }
+    
+    private func setButton() {
+        xmarkButton.addTarget(self, action: #selector(touchUpDismiss), for: .touchUpInside)
     }
     
     // MARK: - HeaderView Setting
@@ -113,10 +139,45 @@ extension OverlayVC {
     }
 }
 
+// MARK: - Action
+extension OverlayVC {
+    @objc
+    func touchUpDismiss() {
+        print("dismiss")
+        
+    }
+}
+
 extension OverlayVC: showupAlertDeleagate {
     func showupAlertToLookup(title: String?, content: String) {
         if let title = title {
             makeAlert(title: title, message: content)
         }
+    }
+}
+
+// MARK: Notification
+extension OverlayVC {
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(cellIncrease), name: NSNotification.Name("increaseCell"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(cellDecrease), name: NSNotification.Name("decreaseCell"), object: nil)
+    }
+    
+    @objc
+    func cellIncrease(_ notification: Notification) {
+        print("increase")
+        isClicked = true
+        positionCount = notification.object as! Int
+        bookingTableView.beginUpdates()
+        bookingTableView.endUpdates()
+    }
+    
+    @objc
+    func cellDecrease() {
+        print("decrease")
+        isClicked = false
+        bookingTableView.beginUpdates()
+        bookingTableView.endUpdates()
     }
 }

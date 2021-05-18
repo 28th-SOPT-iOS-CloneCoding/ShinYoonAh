@@ -145,11 +145,14 @@ extension SelectTheaterTVC: UICollectionViewDelegate {
             areaCollectionView.scrollToItem(at: IndexPath(item: indexPath.row, section: 0), at: .centeredHorizontally, animated: true)
             setPositionData(index: indexPath.row)
             NotificationCenter.default.post(name: NSNotification.Name("buttonInActive"), object: nil)
+            
+            if isClicked {
+                NotificationCenter.default.post(name: NSNotification.Name("increaseCell"), object: positions.count)
+            }
         } else if collectionView == positionCollectionView {
             positionCollectionView.scrollToItem(at: IndexPath(item: indexPath.row, section: 0), at: .centeredHorizontally, animated: true)
             NotificationCenter.default.post(name: NSNotification.Name("buttonActive"), object: positions[indexPath.item])
         }
-        
     }
 }
 
@@ -180,7 +183,7 @@ extension SelectTheaterTVC {
         self.addSubview(downButton)
         downButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(10)
-            make.centerY.equalTo(positionCollectionView.snp.centerY)
+            make.top.equalTo(positionCollectionView.snp.top).offset(20)
             make.width.height.equalTo(30)
         }
         downButton.addTarget(self,
@@ -197,9 +200,17 @@ extension SelectTheaterTVC {
         if !isClicked {
             downButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
             isClicked = true
+            flowLayout.scrollDirection = .vertical
+            positionCollectionView.collectionViewLayout = flowLayout
+            positionCollectionView.isScrollEnabled = false
+            NotificationCenter.default.post(name: NSNotification.Name("increaseCell"), object: positions.count)
         } else {
             downButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
             isClicked = false
+            flowLayout.scrollDirection = .horizontal
+            positionCollectionView.collectionViewLayout = flowLayout
+            positionCollectionView.isScrollEnabled = true
+            NotificationCenter.default.post(name: NSNotification.Name("decreaseCell"), object: nil)
         }
     }
 }
