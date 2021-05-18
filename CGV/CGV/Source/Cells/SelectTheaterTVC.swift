@@ -14,6 +14,7 @@ class SelectTheaterTVC: UITableViewCell {
     @IBOutlet weak var positionCollectionView: UICollectionView!
     
     private let flowLayout = UICollectionViewFlowLayout()
+    private var isFirst = true
     
     private let areas: [String] = ["추천 CGV", "서울", "경기", "인천", "강원", "대전/충청", "대구", "부산/울산", "경상", "광주/전라/제주"]
     private var positions: [String] = ["강변", "건대입구", "용산아이파크몰", "왕십리", "송파", "스타필드시티위례", "성남모란", "야탑"]
@@ -41,8 +42,9 @@ extension SelectTheaterTVC: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TheaterCVC.identifier, for: indexPath) as? TheaterCVC else {
                 return UICollectionViewCell()
             }
-            if indexPath.row == 0 {
+            if indexPath.item == 0 {
                 cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
             } else  {
                 cell.isSelected = false
             }
@@ -52,7 +54,13 @@ extension SelectTheaterTVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TheaterDetailCVC.identifier, for: indexPath) as? TheaterDetailCVC else {
             return UICollectionViewCell()
         }
-        cell.isSelected = false
+        if indexPath.row == 0 && isFirst {
+            cell.isSelected = true
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+            isFirst = false
+        } else  {
+            cell.isSelected = false
+        }
         cell.labelConfigure(position: positions[indexPath.row])
         return cell
     }
@@ -115,8 +123,10 @@ extension SelectTheaterTVC: UICollectionViewDelegate {
         if collectionView == areaCollectionView {
             areaCollectionView.scrollToItem(at: IndexPath(item: indexPath.row, section: 0), at: .centeredHorizontally, animated: true)
             setPositionData(index: indexPath.row)
+            NotificationCenter.default.post(name: NSNotification.Name("buttonInActive"), object: nil)
         } else if collectionView == positionCollectionView {
             positionCollectionView.scrollToItem(at: IndexPath(item: indexPath.row, section: 0), at: .centeredHorizontally, animated: true)
+            NotificationCenter.default.post(name: NSNotification.Name("buttonActive"), object: positions[indexPath.item])
         }
         
     }

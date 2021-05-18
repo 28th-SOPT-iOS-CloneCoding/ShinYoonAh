@@ -61,10 +61,10 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="sLx-if-uPh">
-                        <rect key="frame" x="0.0" y="126.5" width="320" height="65"/>
+                        <rect key="frame" x="0.0" y="126.5" width="320" height="75"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="65" id="rKM-5q-QRB"/>
+                            <constraint firstAttribute="height" constant="75" id="rKM-5q-QRB"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XD5-Nh-aAr">
                             <size key="itemSize" width="128" height="128"/>
@@ -74,7 +74,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8XA-E1-WLA">
-                        <rect key="frame" x="15" y="191.5" width="290" height="73.5"/>
+                        <rect key="frame" x="15" y="201.5" width="290" height="53.5"/>
                         <state key="normal" title="Button"/>
                     </button>
                 </subviews>
@@ -95,7 +95,7 @@
                     <constraint firstAttribute="trailing" secondItem="sLx-if-uPh" secondAttribute="trailing" id="leI-MO-0BP"/>
                     <constraint firstItem="8XA-E1-WLA" firstAttribute="top" secondItem="sLx-if-uPh" secondAttribute="bottom" id="ndg-oo-YlI"/>
                     <constraint firstItem="2uF-hZ-mZt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="oUa-hG-Tfh"/>
-                    <constraint firstAttribute="bottom" secondItem="8XA-E1-WLA" secondAttribute="bottom" constant="15" id="qgx-Na-8CV"/>
+                    <constraint firstAttribute="bottom" secondItem="8XA-E1-WLA" secondAttribute="bottom" constant="25" id="qgx-Na-8CV"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -103,6 +103,7 @@
                 <outlet property="dateCollectionView" destination="vro-TP-elu" id="aav-Hi-orI"/>
                 <outlet property="dateLabel" destination="NAL-o0-EPq" id="aKk-3S-ofa"/>
                 <outlet property="headerLabel" destination="v8h-yL-m2O" id="B63-60-hdk"/>
+                <outlet property="lookUpButton" destination="8XA-E1-WLA" id="RPS-r0-ifk"/>
                 <outlet property="timeCollectionView" destination="sLx-if-uPh" id="CFH-f8-8W6"/>
                 <outlet property="todayLabel" destination="JOf-EA-NkC" id="iSl-eo-oUM"/>
             </connections>

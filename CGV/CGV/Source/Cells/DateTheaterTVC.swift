@@ -15,8 +15,13 @@ class DateTheaterTVC: UITableViewCell {
     @IBOutlet weak var todayLabel: UILabel!
     @IBOutlet weak var dateCollectionView: UICollectionView!
     @IBOutlet weak var timeCollectionView: UICollectionView!
+    @IBOutlet weak var lookUpButton: UIButton!
     
     private var formatter = DateFormatter()
+    private var isButtonActive = true
+    private var position = ""
+    
+    var delegate: showupAlertDeleagate?
     
     private var dates: [String] = []
     private var days: [String] = []
@@ -27,6 +32,7 @@ class DateTheaterTVC: UITableViewCell {
         super.awakeFromNib()
         setDate()
         setUI()
+        setNotification()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -49,6 +55,7 @@ extension DateTheaterTVC: UICollectionViewDataSource {
             }
             if indexPath.item == 0 {
                 cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
             } else {
                 cell.isSelected = false
             }
@@ -60,6 +67,7 @@ extension DateTheaterTVC: UICollectionViewDataSource {
         }
         if indexPath.item == 0 {
             cell.isSelected = true
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
         } else {
             cell.isSelected = false
         }
@@ -101,7 +109,7 @@ extension DateTheaterTVC: UICollectionViewDelegateFlowLayout {
         if collectionView == dateCollectionView {
             return UIEdgeInsets(top: 20, left: 15, bottom: 0, right: 15)
         }
-        return UIEdgeInsets(top: 5, left: 20, bottom: 20, right: 20)
+        return UIEdgeInsets(top: 5, left: 20, bottom: 30, right: 20)
     }
 }
 
@@ -130,6 +138,7 @@ extension DateTheaterTVC {
         setCollectionView()
         setFormatter()
         setLabel()
+        setButton()
     }
     
     private func setCollectionView() {
@@ -161,6 +170,15 @@ extension DateTheaterTVC {
         todayLabel.text = "오늘"
         todayLabel.textColor = .systemBlue
     }
+    
+    private func setButton() {
+        lookUpButton.setTitle("조회하기", for: .normal)
+        lookUpButton.setTitleColor(.white, for: .normal)
+        lookUpButton.titleLabel?.font = .boldSystemFont(ofSize: 17)
+        lookUpButton.layer.cornerRadius = 10
+        lookUpButton.backgroundColor = .systemRed
+        lookUpButton.addTarget(self, action: #selector(touchUpLookupButton), for: .touchUpInside)
+    }
 }
 
 // MARK: - Data
@@ -184,6 +202,42 @@ extension DateTheaterTVC {
             }
             dates.append(format.string(from: day))
             realDate.append(day)
+        }
+    }
+}
+
+// MARK: Notification
+extension DateTheaterTVC {
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(buttonInActive), name: NSNotification.Name("buttonInActive"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(buttonActive), name: NSNotification.Name("buttonActive"), object: nil)
+    }
+    
+    @objc
+    func buttonInActive() {
+        print("inactive")
+        isButtonActive = false
+        lookUpButton.backgroundColor = .darkGray
+    }
+    
+    @objc
+    func buttonActive(_ notification: Notification) {
+        print("active")
+        isButtonActive = true
+        lookUpButton.backgroundColor = .systemRed
+        
+        position = notification.object as! String
+    }
+    
+    @objc
+    func touchUpLookupButton() {
+        if isButtonActive {
+            print("complete")
+            delegate?.showupAlertToLookup(title: "조회 완료", content: "CGV \(position) 점\n정보를 가져옵니다")
+        } else {
+            print("nope")
+            delegate?.showupAlertToLookup(title: "경고", content: "극장을 선택해주세요.")
         }
     }
 }

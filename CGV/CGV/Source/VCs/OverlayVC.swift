@@ -37,10 +37,9 @@ extension OverlayVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DateTheaterTVC.identifier) as? DateTheaterTVC else {
             return UITableViewCell()
         }
+        cell.delegate = self
         return cell
     }
-    
-    
 }
 
 extension OverlayVC: UITableViewDelegate {
@@ -110,5 +109,13 @@ extension OverlayVC {
             make.leading.equalTo(headerView.snp.leading).inset(15)
         }
         return headerView
+    }
+}
+
+extension OverlayVC: showupAlertDeleagate {
+    func showupAlertToLookup(title: String?, content: String) {
+        if let title = title {
+            makeAlert(title: title, message: content)
+        }
     }
 }
