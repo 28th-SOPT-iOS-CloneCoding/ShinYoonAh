@@ -62,7 +62,7 @@ extension OverlayVC: UITableViewDelegate {
         if indexPath.section == 0 {
             return 133
         }
-        return 200
+        return 280
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
