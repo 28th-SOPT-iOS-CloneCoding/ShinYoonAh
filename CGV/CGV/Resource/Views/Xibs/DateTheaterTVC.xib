@@ -9,15 +9,61 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateTheaterTVC" id="KGk-i7-Jjw" customClass="DateTheaterTVC" customModule="CGV" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateTheaterTVC" rowHeight="229" id="KGk-i7-Jjw" customClass="DateTheaterTVC" customModule="CGV" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="229"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="229"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2uF-hZ-mZt">
+                        <rect key="frame" x="15" y="0.0" width="290" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.20351283597630382" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="ux5-LP-VtZ"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8h-yL-m2O">
+                        <rect key="frame" x="15" y="16" width="41.5" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="oor-cj-fPt">
+                        <rect key="frame" x="212" y="16" width="91" height="20.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAL-o0-EPq">
+                                <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOf-EA-NkC">
+                                <rect key="frame" x="49.5" y="0.0" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="v8h-yL-m2O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="48Z-UV-TZh"/>
+                    <constraint firstItem="2uF-hZ-mZt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="50O-EE-Hwv"/>
+                    <constraint firstAttribute="trailing" secondItem="oor-cj-fPt" secondAttribute="trailing" constant="17" id="DEi-fe-rAh"/>
+                    <constraint firstItem="oor-cj-fPt" firstAttribute="centerY" secondItem="v8h-yL-m2O" secondAttribute="centerY" id="S5P-Gw-1Ne"/>
+                    <constraint firstAttribute="trailing" secondItem="2uF-hZ-mZt" secondAttribute="trailing" constant="15" id="cG2-De-ZQ9"/>
+                    <constraint firstItem="v8h-yL-m2O" firstAttribute="top" secondItem="2uF-hZ-mZt" secondAttribute="bottom" constant="15" id="eXS-bl-ZpT"/>
+                    <constraint firstItem="2uF-hZ-mZt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="oUa-hG-Tfh"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="-23" y="106"/>
+            <connections>
+                <outlet property="dateLabel" destination="NAL-o0-EPq" id="aKk-3S-ofa"/>
+                <outlet property="headerLabel" destination="v8h-yL-m2O" id="B63-60-hdk"/>
+                <outlet property="todayLabel" destination="JOf-EA-NkC" id="iSl-eo-oUM"/>
+            </connections>
+            <point key="canvasLocation" x="-23.188405797101453" y="167.74553571428569"/>
         </tableViewCell>
     </objects>
 </document>

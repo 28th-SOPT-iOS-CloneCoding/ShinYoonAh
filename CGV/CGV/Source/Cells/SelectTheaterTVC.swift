@@ -106,7 +106,7 @@ extension SelectTheaterTVC: UICollectionViewDelegateFlowLayout {
         if collectionView == areaCollectionView {
             return UIEdgeInsets(top: 13, left: 15, bottom: 5, right: 15)
         }
-        return UIEdgeInsets(top: 10, left: 15, bottom: 20, right: 15)
+        return UIEdgeInsets(top: 10, left: 15, bottom: 15, right: 15)
     }
 }
 

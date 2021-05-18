@@ -34,10 +34,10 @@ extension OverlayVC: UITableViewDataSource {
             }
             return cell
         }
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectTheaterTVC.identifier) as? SelectTheaterTVC else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DateTheaterTVC.identifier) as? DateTheaterTVC else {
             return UITableViewCell()
         }
-        return UITableViewCell()
+        return cell
     }
     
     
@@ -48,21 +48,29 @@ extension OverlayVC: UITableViewDelegate {
         if section == 0 {
             return setSelectTheaterHeader()
         }
-        return UIView.init(frame: CGRect.zero)
+        return UIView()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 45
         }
-        return 0
+        return .leastNormalMagnitude
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 130
+            return 133
         }
         return 200
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNormalMagnitude
     }
 }
 
@@ -76,8 +84,10 @@ extension OverlayVC {
         bookingTableView.delegate = self
         bookingTableView.dataSource = self
         
-        let nib = UINib(nibName: "SelectTheaterTVC", bundle: nil)
-        bookingTableView.register(nib, forCellReuseIdentifier: SelectTheaterTVC.identifier)
+        let selectNib = UINib(nibName: "SelectTheaterTVC", bundle: nil)
+        let dateNib = UINib(nibName: "DateTheaterTVC", bundle: nil)
+        bookingTableView.register(selectNib, forCellReuseIdentifier: SelectTheaterTVC.identifier)
+        bookingTableView.register(dateNib, forCellReuseIdentifier: DateTheaterTVC.identifier)
     }
     
     private func setView() {
