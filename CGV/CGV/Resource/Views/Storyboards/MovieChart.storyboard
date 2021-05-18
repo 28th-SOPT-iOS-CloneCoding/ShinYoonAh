@@ -33,7 +33,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g1z-fo-1XE">
                                 <rect key="frame" x="177" y="361" width="60" height="5"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.81061538384885201" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="GW9-yL-etL"/>
                                     <constraint firstAttribute="height" constant="5" id="IGU-Xb-pdL"/>

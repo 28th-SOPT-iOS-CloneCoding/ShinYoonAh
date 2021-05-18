@@ -15,10 +15,11 @@ class OverlayVC: UIViewController {
     
     private var isClicked = false
     private var positionCount = 0
+    private var viewTranslation = CGPoint(x: 0, y: 0)
     
     override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
-            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.45, execute: {
+            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         })
     }
     
@@ -106,6 +107,7 @@ extension OverlayVC {
         setTableView()
         setView()
         setButton()
+        setGesture()
     }
     
     private func setTableView() {
@@ -121,6 +123,10 @@ extension OverlayVC {
     private func setView() {
         backView.layer.cornerRadius = 20
         swipeButton.layer.cornerRadius = 3
+    }
+    
+    private func setGesture() {
+        view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismiss)))
     }
     
     private func setButton() {
@@ -153,6 +159,41 @@ extension OverlayVC {
         
         self.view.backgroundColor = UIColor.clear
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc
+    func handleDismiss(sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .changed:
+            viewTranslation = sender.translation(in: view)
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                if self.viewTranslation.y >= 0 {
+                    var colorAlpha = 0.3 - (self.viewTranslation.y / 1000)
+                    
+                    if colorAlpha < 0.1 {
+                        colorAlpha = 0.1
+                    }
+                    self.view.backgroundColor = UIColor.black.withAlphaComponent(colorAlpha
+                    )
+                    
+                    self.swipeButton.transform = CGAffineTransform(translationX: 0, y: self.viewTranslation.y)
+                    self.backView.transform = CGAffineTransform(translationX: 0, y: self.viewTranslation.y)
+                }
+            })
+        case .ended:
+            if viewTranslation.y < 200 {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                    self.view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+                    self.swipeButton.transform = .identity
+                    self.backView.transform = .identity
+                })
+            } else {
+                self.view.backgroundColor = UIColor.clear
+                dismiss(animated: true, completion: nil)
+            }
+        default:
+            break
+        }
     }
 }
 
