@@ -21,6 +21,10 @@
 		EDC9C4042650FEF300249628 /* OverlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC9C4022650FEF300249628 /* OverlayVC.swift */; };
 		EDCB26C026536B0B00BF41D6 /* SelectTheaterTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB26BE26536B0B00BF41D6 /* SelectTheaterTVC.swift */; };
 		EDCB26C126536B0B00BF41D6 /* SelectTheaterTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCB26BF26536B0B00BF41D6 /* SelectTheaterTVC.xib */; };
+		EDCB26C4265375D300BF41D6 /* TheaterCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB26C2265375D300BF41D6 /* TheaterCVC.swift */; };
+		EDCB26C5265375D300BF41D6 /* TheaterCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCB26C3265375D300BF41D6 /* TheaterCVC.xib */; };
+		EDCB26C826537C7100BF41D6 /* TheaterDetailCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB26C626537C7100BF41D6 /* TheaterDetailCVC.swift */; };
+		EDCB26C926537C7100BF41D6 /* TheaterDetailCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCB26C726537C7100BF41D6 /* TheaterDetailCVC.xib */; };
 		EDD2122D264A6BC70073CEDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122C264A6BC70073CEDD /* AppDelegate.swift */; };
 		EDD2122F264A6BC70073CEDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */; };
 		EDD21236264A6BC80073CEDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDD21235264A6BC80073CEDD /* Assets.xcassets */; };
@@ -48,6 +52,10 @@
 		EDC9C4022650FEF300249628 /* OverlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayVC.swift; sourceTree = "<group>"; };
 		EDCB26BE26536B0B00BF41D6 /* SelectTheaterTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTheaterTVC.swift; sourceTree = "<group>"; };
 		EDCB26BF26536B0B00BF41D6 /* SelectTheaterTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectTheaterTVC.xib; sourceTree = "<group>"; };
+		EDCB26C2265375D300BF41D6 /* TheaterCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterCVC.swift; sourceTree = "<group>"; };
+		EDCB26C3265375D300BF41D6 /* TheaterCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TheaterCVC.xib; sourceTree = "<group>"; };
+		EDCB26C626537C7100BF41D6 /* TheaterDetailCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterDetailCVC.swift; sourceTree = "<group>"; };
+		EDCB26C726537C7100BF41D6 /* TheaterDetailCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TheaterDetailCVC.xib; sourceTree = "<group>"; };
 		EDD21229264A6BC70073CEDD /* CGV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD2122C264A6BC70073CEDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -208,6 +216,8 @@
 			children = (
 				ED3EFA3C264BB0410041DFF1 /* MovieTVC.xib */,
 				EDCB26BF26536B0B00BF41D6 /* SelectTheaterTVC.xib */,
+				EDCB26C3265375D300BF41D6 /* TheaterCVC.xib */,
+				EDCB26C726537C7100BF41D6 /* TheaterDetailCVC.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -217,6 +227,8 @@
 			children = (
 				ED3EFA3B264BB0410041DFF1 /* MovieTVC.swift */,
 				EDCB26BE26536B0B00BF41D6 /* SelectTheaterTVC.swift */,
+				EDCB26C2265375D300BF41D6 /* TheaterCVC.swift */,
+				EDCB26C626537C7100BF41D6 /* TheaterDetailCVC.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -300,7 +312,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDD2124C264A6D030073CEDD /* MovieChart.storyboard in Resources */,
+				EDCB26C926537C7100BF41D6 /* TheaterDetailCVC.xib in Resources */,
 				EDCB26C126536B0B00BF41D6 /* SelectTheaterTVC.xib in Resources */,
+				EDCB26C5265375D300BF41D6 /* TheaterCVC.xib in Resources */,
 				EDD21239264A6BC80073CEDD /* LaunchScreen.storyboard in Resources */,
 				EDD21236264A6BC80073CEDD /* Assets.xcassets in Resources */,
 				ED3EFA3E264BB0410041DFF1 /* MovieTVC.xib in Resources */,
@@ -361,9 +375,11 @@
 				EDCB26C026536B0B00BF41D6 /* SelectTheaterTVC.swift in Sources */,
 				ED3EFA41264BBB5C0041DFF1 /* Extension+Encodable.swift in Sources */,
 				ED3EFA4B264BC01B0041DFF1 /* MovieRequest.swift in Sources */,
+				EDCB26C4265375D300BF41D6 /* TheaterCVC.swift in Sources */,
 				ED3EFA47264BBC420041DFF1 /* MovieServices.swift in Sources */,
 				ED3EFA38264B96E70041DFF1 /* UIViewController+ChangeButtonColor.swift in Sources */,
 				ED3EFA43264BBBB40041DFF1 /* GeneralAPI.swift in Sources */,
+				EDCB26C826537C7100BF41D6 /* TheaterDetailCVC.swift in Sources */,
 				ED3EFA4D264BC1520041DFF1 /* MovieModel.swift in Sources */,
 				EDC9C4042650FEF300249628 /* OverlayVC.swift in Sources */,
 				ED3EFA3D264BB0410041DFF1 /* MovieTVC.swift in Sources */,
