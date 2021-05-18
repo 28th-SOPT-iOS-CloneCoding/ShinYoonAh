@@ -16,6 +16,12 @@ class OverlayVC: UIViewController {
     private var isClicked = false
     private var positionCount = 0
     
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
+            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -145,6 +151,8 @@ extension OverlayVC {
     func touchUpDismiss() {
         print("dismiss")
         
+        self.view.backgroundColor = UIColor.clear
+        dismiss(animated: true, completion: nil)
     }
 }
 
