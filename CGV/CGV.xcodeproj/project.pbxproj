@@ -25,6 +25,9 @@
 		EDCB26C5265375D300BF41D6 /* TheaterCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCB26C3265375D300BF41D6 /* TheaterCVC.xib */; };
 		EDCB26C826537C7100BF41D6 /* TheaterDetailCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB26C626537C7100BF41D6 /* TheaterDetailCVC.swift */; };
 		EDCB26C926537C7100BF41D6 /* TheaterDetailCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCB26C726537C7100BF41D6 /* TheaterDetailCVC.xib */; };
+		EDCB26CB26538AB900BF41D6 /* UIView+SetViewShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB26CA26538AB900BF41D6 /* UIView+SetViewShadow.swift */; };
+		EDCB26CE26538BA900BF41D6 /* DateTheaterTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB26CC26538BA900BF41D6 /* DateTheaterTVC.swift */; };
+		EDCB26CF26538BA900BF41D6 /* DateTheaterTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCB26CD26538BA900BF41D6 /* DateTheaterTVC.xib */; };
 		EDD2122D264A6BC70073CEDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122C264A6BC70073CEDD /* AppDelegate.swift */; };
 		EDD2122F264A6BC70073CEDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */; };
 		EDD21236264A6BC80073CEDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDD21235264A6BC80073CEDD /* Assets.xcassets */; };
@@ -56,6 +59,9 @@
 		EDCB26C3265375D300BF41D6 /* TheaterCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TheaterCVC.xib; sourceTree = "<group>"; };
 		EDCB26C626537C7100BF41D6 /* TheaterDetailCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterDetailCVC.swift; sourceTree = "<group>"; };
 		EDCB26C726537C7100BF41D6 /* TheaterDetailCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TheaterDetailCVC.xib; sourceTree = "<group>"; };
+		EDCB26CA26538AB900BF41D6 /* UIView+SetViewShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SetViewShadow.swift"; sourceTree = "<group>"; };
+		EDCB26CC26538BA900BF41D6 /* DateTheaterTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTheaterTVC.swift; sourceTree = "<group>"; };
+		EDCB26CD26538BA900BF41D6 /* DateTheaterTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateTheaterTVC.xib; sourceTree = "<group>"; };
 		EDD21229264A6BC70073CEDD /* CGV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD2122C264A6BC70073CEDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -178,6 +184,7 @@
 				ED3EFA37264B96E70041DFF1 /* UIViewController+ChangeButtonColor.swift */,
 				ED3EFA39264BA1C30041DFF1 /* UIButton+SetHeaderButton.swift */,
 				ED3EFA40264BBB5C0041DFF1 /* Extension+Encodable.swift */,
+				EDCB26CA26538AB900BF41D6 /* UIView+SetViewShadow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -218,6 +225,7 @@
 				EDCB26BF26536B0B00BF41D6 /* SelectTheaterTVC.xib */,
 				EDCB26C3265375D300BF41D6 /* TheaterCVC.xib */,
 				EDCB26C726537C7100BF41D6 /* TheaterDetailCVC.xib */,
+				EDCB26CD26538BA900BF41D6 /* DateTheaterTVC.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -227,6 +235,7 @@
 			children = (
 				ED3EFA3B264BB0410041DFF1 /* MovieTVC.swift */,
 				EDCB26BE26536B0B00BF41D6 /* SelectTheaterTVC.swift */,
+				EDCB26CC26538BA900BF41D6 /* DateTheaterTVC.swift */,
 				EDCB26C2265375D300BF41D6 /* TheaterCVC.swift */,
 				EDCB26C626537C7100BF41D6 /* TheaterDetailCVC.swift */,
 			);
@@ -312,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDD2124C264A6D030073CEDD /* MovieChart.storyboard in Resources */,
+				EDCB26CF26538BA900BF41D6 /* DateTheaterTVC.xib in Resources */,
 				EDCB26C926537C7100BF41D6 /* TheaterDetailCVC.xib in Resources */,
 				EDCB26C126536B0B00BF41D6 /* SelectTheaterTVC.xib in Resources */,
 				EDCB26C5265375D300BF41D6 /* TheaterCVC.xib in Resources */,
@@ -373,11 +383,13 @@
 			files = (
 				EDD2124E264A6D110073CEDD /* MovieChartVC.swift in Sources */,
 				EDCB26C026536B0B00BF41D6 /* SelectTheaterTVC.swift in Sources */,
+				EDCB26CB26538AB900BF41D6 /* UIView+SetViewShadow.swift in Sources */,
 				ED3EFA41264BBB5C0041DFF1 /* Extension+Encodable.swift in Sources */,
 				ED3EFA4B264BC01B0041DFF1 /* MovieRequest.swift in Sources */,
 				EDCB26C4265375D300BF41D6 /* TheaterCVC.swift in Sources */,
 				ED3EFA47264BBC420041DFF1 /* MovieServices.swift in Sources */,
 				ED3EFA38264B96E70041DFF1 /* UIViewController+ChangeButtonColor.swift in Sources */,
+				EDCB26CE26538BA900BF41D6 /* DateTheaterTVC.swift in Sources */,
 				ED3EFA43264BBBB40041DFF1 /* GeneralAPI.swift in Sources */,
 				EDCB26C826537C7100BF41D6 /* TheaterDetailCVC.swift in Sources */,
 				ED3EFA4D264BC1520041DFF1 /* MovieModel.swift in Sources */,
