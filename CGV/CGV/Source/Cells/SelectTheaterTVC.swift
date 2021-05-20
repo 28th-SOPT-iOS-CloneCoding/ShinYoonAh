@@ -34,6 +34,7 @@ class SelectTheaterTVC: UITableViewCell {
     }()
     
     private let flowLayout = UICollectionViewFlowLayout()
+    private let customFlowLayout = LeftAlignedCollectionViewFlowLayout()
     private var isFirst = true
     private var isClicked = false
     
@@ -200,8 +201,7 @@ extension SelectTheaterTVC {
         if !isClicked {
             downButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
             isClicked = true
-            flowLayout.scrollDirection = .vertical
-            positionCollectionView.collectionViewLayout = flowLayout
+            positionCollectionView.collectionViewLayout = customFlowLayout
             positionCollectionView.isScrollEnabled = false
             NotificationCenter.default.post(name: NSNotification.Name("increaseCell"), object: positions.count)
         } else {

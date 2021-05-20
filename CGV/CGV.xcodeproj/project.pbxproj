@@ -18,6 +18,7 @@
 		ED3EFA47264BBC420041DFF1 /* MovieServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA46264BBC420041DFF1 /* MovieServices.swift */; };
 		ED3EFA4B264BC01B0041DFF1 /* MovieRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA4A264BC01B0041DFF1 /* MovieRequest.swift */; };
 		ED3EFA4D264BC1520041DFF1 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA4C264BC1520041DFF1 /* MovieModel.swift */; };
+		EDC67EEE2656769E00580E15 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC67EED2656769E00580E15 /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		EDC9C4042650FEF300249628 /* OverlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC9C4022650FEF300249628 /* OverlayVC.swift */; };
 		EDCB26C026536B0B00BF41D6 /* SelectTheaterTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB26BE26536B0B00BF41D6 /* SelectTheaterTVC.swift */; };
 		EDCB26C126536B0B00BF41D6 /* SelectTheaterTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCB26BF26536B0B00BF41D6 /* SelectTheaterTVC.xib */; };
@@ -56,6 +57,7 @@
 		ED3EFA46264BBC420041DFF1 /* MovieServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieServices.swift; sourceTree = "<group>"; };
 		ED3EFA4A264BC01B0041DFF1 /* MovieRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRequest.swift; sourceTree = "<group>"; };
 		ED3EFA4C264BC1520041DFF1 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
+		EDC67EED2656769E00580E15 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		EDC9C4022650FEF300249628 /* OverlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayVC.swift; sourceTree = "<group>"; };
 		EDCB26BE26536B0B00BF41D6 /* SelectTheaterTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTheaterTVC.swift; sourceTree = "<group>"; };
 		EDCB26BF26536B0B00BF41D6 /* SelectTheaterTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectTheaterTVC.xib; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				ED3EFA40264BBB5C0041DFF1 /* Extension+Encodable.swift */,
 				EDCB26CA26538AB900BF41D6 /* UIView+SetViewShadow.swift */,
 				EDCB26D42653D09300BF41D6 /* UIViewController+MakeAlert.swift */,
+				EDC67EED2656769E00580E15 /* LeftAlignedCollectionViewFlowLayout.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 			files = (
 				EDD2124E264A6D110073CEDD /* MovieChartVC.swift in Sources */,
 				EDCB26C026536B0B00BF41D6 /* SelectTheaterTVC.swift in Sources */,
+				EDC67EEE2656769E00580E15 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				EDCB26CB26538AB900BF41D6 /* UIView+SetViewShadow.swift in Sources */,
 				ED3EFA41264BBB5C0041DFF1 /* Extension+Encodable.swift in Sources */,
 				ED3EFA4B264BC01B0041DFF1 /* MovieRequest.swift in Sources */,
