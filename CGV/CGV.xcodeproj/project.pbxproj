@@ -171,6 +171,7 @@
 				EDD2124A264A6C510073CEDD /* Services */,
 				EDD21249264A6C4E0073CEDD /* Models */,
 				EDD21248264A6C3E0073CEDD /* Cells */,
+				EDF5856A266145C9007C14AC /* Components */,
 				EDD21244264A6C070073CEDD /* VCs */,
 				EDD21243264A6BF50073CEDD /* Extensions */,
 				EDD21242264A6BEF0073CEDD /* Supports */,
@@ -255,12 +256,8 @@
 		EDD21248264A6C3E0073CEDD /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				ED3EFA3B264BB0410041DFF1 /* MovieTVC.swift */,
-				EDCB26BE26536B0B00BF41D6 /* SelectTheaterTVC.swift */,
-				EDCB26CC26538BA900BF41D6 /* DateTheaterTVC.swift */,
-				EDCB26C2265375D300BF41D6 /* TheaterCVC.swift */,
-				EDCB26C626537C7100BF41D6 /* TheaterDetailCVC.swift */,
-				EDCB26D02653938B00BF41D6 /* DateCVC.swift */,
+				EDF5856D26614629007C14AC /* OverlayScene */,
+				EDF5856C2661461F007C14AC /* MovieChartScene */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -282,6 +279,41 @@
 				ED3EFA46264BBC420041DFF1 /* MovieServices.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		EDF5856A266145C9007C14AC /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				EDF5856B266145EE007C14AC /* MovieChartScene */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		EDF5856B266145EE007C14AC /* MovieChartScene */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MovieChartScene;
+			sourceTree = "<group>";
+		};
+		EDF5856C2661461F007C14AC /* MovieChartScene */ = {
+			isa = PBXGroup;
+			children = (
+				ED3EFA3B264BB0410041DFF1 /* MovieTVC.swift */,
+			);
+			path = MovieChartScene;
+			sourceTree = "<group>";
+		};
+		EDF5856D26614629007C14AC /* OverlayScene */ = {
+			isa = PBXGroup;
+			children = (
+				EDCB26BE26536B0B00BF41D6 /* SelectTheaterTVC.swift */,
+				EDCB26CC26538BA900BF41D6 /* DateTheaterTVC.swift */,
+				EDCB26C2265375D300BF41D6 /* TheaterCVC.swift */,
+				EDCB26C626537C7100BF41D6 /* TheaterDetailCVC.swift */,
+				EDCB26D02653938B00BF41D6 /* DateCVC.swift */,
+			);
+			path = OverlayScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
