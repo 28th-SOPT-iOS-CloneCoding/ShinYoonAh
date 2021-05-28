@@ -41,6 +41,8 @@
 		EDD2124E264A6D110073CEDD /* MovieChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2124D264A6D110073CEDD /* MovieChartVC.swift */; };
 		EDD21251264A73230073CEDD /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDD21250264A73230073CEDD /* Home.storyboard */; };
 		EDD21254264A733F0073CEDD /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD21253264A733F0073CEDD /* HomeVC.swift */; };
+		EDF5856F2661479F007C14AC /* MovieTableMainHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF5856E2661479F007C14AC /* MovieTableMainHeader.swift */; };
+		EDF58571266147C7007C14AC /* MovieTableSubHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF58570266147C7007C14AC /* MovieTableSubHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,8 @@
 		EDD2124D264A6D110073CEDD /* MovieChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieChartVC.swift; sourceTree = "<group>"; };
 		EDD21250264A73230073CEDD /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		EDD21253264A733F0073CEDD /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		EDF5856E2661479F007C14AC /* MovieTableMainHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableMainHeader.swift; sourceTree = "<group>"; };
+		EDF58570266147C7007C14AC /* MovieTableSubHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableSubHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +296,8 @@
 		EDF5856B266145EE007C14AC /* MovieChartScene */ = {
 			isa = PBXGroup;
 			children = (
+				EDF5856E2661479F007C14AC /* MovieTableMainHeader.swift */,
+				EDF58570266147C7007C14AC /* MovieTableSubHeader.swift */,
 			);
 			path = MovieChartScene;
 			sourceTree = "<group>";
@@ -448,8 +454,10 @@
 				ED3EFA47264BBC420041DFF1 /* MovieServices.swift in Sources */,
 				ED3EFA38264B96E70041DFF1 /* UIViewController+ChangeButtonColor.swift in Sources */,
 				EDCB26CE26538BA900BF41D6 /* DateTheaterTVC.swift in Sources */,
+				EDF5856F2661479F007C14AC /* MovieTableMainHeader.swift in Sources */,
 				ED3EFA43264BBBB40041DFF1 /* GeneralAPI.swift in Sources */,
 				EDCB26C826537C7100BF41D6 /* TheaterDetailCVC.swift in Sources */,
+				EDF58571266147C7007C14AC /* MovieTableSubHeader.swift in Sources */,
 				ED3EFA4D264BC1520041DFF1 /* MovieModel.swift in Sources */,
 				EDC9C4042650FEF300249628 /* OverlayVC.swift in Sources */,
 				EDCB26D52653D09300BF41D6 /* UIViewController+MakeAlert.swift in Sources */,
