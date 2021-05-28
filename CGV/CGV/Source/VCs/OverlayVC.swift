@@ -197,7 +197,7 @@ extension OverlayVC {
     }
 }
 
-extension OverlayVC: showupAlertDeleagate {
+extension OverlayVC: showupAlertDelegate {
     func showupAlertToLookup(title: String?, content: String) {
         if let title = title {
             makeAlert(title: title, message: content)

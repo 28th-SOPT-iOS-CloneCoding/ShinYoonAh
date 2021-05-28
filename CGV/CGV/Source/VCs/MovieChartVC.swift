@@ -267,6 +267,7 @@ extension MovieChartVC {
         setScrollButtons()
     }
     
+    // MARK: - NavigationBar UIView custom
     private func setNavigationBarLayout() {
         view.addSubview(navigationView)
         navigationView.addSubview(backButton)
@@ -295,6 +296,7 @@ extension MovieChartVC {
         }
     }
     
+    // MARK: - MenuBar UIView custom
     private func setMenuBarLayout() {
         view.addSubview(menuStackView)
         menuStackView.addArrangedSubview(chartMenuButton)
@@ -339,6 +341,7 @@ extension MovieChartVC {
         }
     }
     
+    // MARK: - UIButton custom
     private func setScrollButtons() {
         let smallTitleLabel = UILabel()
         let largeTitleLabel = UILabel()
@@ -392,7 +395,7 @@ extension MovieChartVC {
     }
 }
 
-// MARK: - Header Setting
+// MARK: - Header Setting(UIView Header custom)
 extension MovieChartVC {
     private func nowPlayingHeader() -> UIView {
         let headerView = UIView()
@@ -543,6 +546,7 @@ extension MovieChartVC {
         movieTableView.reloadData()
     }
     
+    // MARK: - objc가 UIView로 들어갈 수 있나? -> ViewModel같은걸 써서 제대로 관리해야할 듯
     // MARK: - GET Popular
     @objc
     func touchUpChartButton() {

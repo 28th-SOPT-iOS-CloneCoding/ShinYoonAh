@@ -32,7 +32,7 @@
 		EDCB26D22653938B00BF41D6 /* DateCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB26D02653938B00BF41D6 /* DateCVC.swift */; };
 		EDCB26D32653938B00BF41D6 /* DateCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCB26D12653938B00BF41D6 /* DateCVC.xib */; };
 		EDCB26D52653D09300BF41D6 /* UIViewController+MakeAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB26D42653D09300BF41D6 /* UIViewController+MakeAlert.swift */; };
-		EDCB26D82653D1D900BF41D6 /* showupAlertDeleagate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB26D72653D1D900BF41D6 /* showupAlertDeleagate.swift */; };
+		EDCB26D82653D1D900BF41D6 /* showupAlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB26D72653D1D900BF41D6 /* showupAlertDelegate.swift */; };
 		EDD2122D264A6BC70073CEDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122C264A6BC70073CEDD /* AppDelegate.swift */; };
 		EDD2122F264A6BC70073CEDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */; };
 		EDD21236264A6BC80073CEDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDD21235264A6BC80073CEDD /* Assets.xcassets */; };
@@ -71,7 +71,7 @@
 		EDCB26D02653938B00BF41D6 /* DateCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCVC.swift; sourceTree = "<group>"; };
 		EDCB26D12653938B00BF41D6 /* DateCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateCVC.xib; sourceTree = "<group>"; };
 		EDCB26D42653D09300BF41D6 /* UIViewController+MakeAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MakeAlert.swift"; sourceTree = "<group>"; };
-		EDCB26D72653D1D900BF41D6 /* showupAlertDeleagate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showupAlertDeleagate.swift; sourceTree = "<group>"; };
+		EDCB26D72653D1D900BF41D6 /* showupAlertDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showupAlertDelegate.swift; sourceTree = "<group>"; };
 		EDD21229264A6BC70073CEDD /* CGV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD2122C264A6BC70073CEDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 		EDCB26D62653D1B800BF41D6 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				EDCB26D72653D1D900BF41D6 /* showupAlertDeleagate.swift */,
+				EDCB26D72653D1D900BF41D6 /* showupAlertDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -421,7 +421,7 @@
 				ED3EFA4D264BC1520041DFF1 /* MovieModel.swift in Sources */,
 				EDC9C4042650FEF300249628 /* OverlayVC.swift in Sources */,
 				EDCB26D52653D09300BF41D6 /* UIViewController+MakeAlert.swift in Sources */,
-				EDCB26D82653D1D900BF41D6 /* showupAlertDeleagate.swift in Sources */,
+				EDCB26D82653D1D900BF41D6 /* showupAlertDelegate.swift in Sources */,
 				ED3EFA3D264BB0410041DFF1 /* MovieTVC.swift in Sources */,
 				EDD21254264A733F0073CEDD /* HomeVC.swift in Sources */,
 				ED3EFA3A264BA1C30041DFF1 /* UIButton+SetHeaderButton.swift in Sources */,
