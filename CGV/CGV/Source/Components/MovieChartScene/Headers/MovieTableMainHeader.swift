@@ -9,9 +9,12 @@ import UIKit
 import SnapKit
 
 class MovieTableMainHeader: UIView {
-    let bookingRateButton = UIButton()
-    let eggRateButton = UIButton()
-    let nowPlayingButton = UIButton()
+    private let bookingRateButton = UIButton()
+    private let eggRateButton = UIButton()
+    private let nowPlayingButton = UIButton()
+    
+    private var movieTableView: UITableView?
+    private var movieViewModel: MovieChartViewModel?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,6 +23,13 @@ class MovieTableMainHeader: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(with tableView: UITableView, model viewModel: MovieChartViewModel) {
+        super.init(frame: .zero)
+        movieTableView = tableView
+        movieViewModel = viewModel
+        setupConfigure()
     }
     
     override func layoutSubviews() {
@@ -65,8 +75,9 @@ class MovieTableMainHeader: UIView {
             self.changeHeaderButtonColor(selectedButton: self.bookingRateButton,
                                          unselectedButton1: self.eggRateButton,
                                          unselectedButton2: self.nowPlayingButton)
-//            self.movieData = self.movieData.sorted(by: {$0.voteAverage > $1.voteAverage})
-//            self.movieTableView.reloadData()
+            print(self.movieTableView)
+            self.movieViewModel?.movieData = (self.movieViewModel?.movieData.sorted(by: {$0.voteAverage > $1.voteAverage})) ?? []
+            self.movieTableView?.reloadData()
         }
         bookingRateButton.addAction(bookingRateAction, for: .touchUpInside)
         
@@ -75,10 +86,10 @@ class MovieTableMainHeader: UIView {
                                          unselectedButton1: self.bookingRateButton,
                                          unselectedButton2: self.nowPlayingButton)
             
-//            self.movieData = self.movieData.sorted(by: {$0.popularity > $1.popularity})
-//            self.movieTableView.reloadRows(
-//                at: self.movieTableView.indexPathsForVisibleRows ?? [],
-//                with: .none)
+            self.movieViewModel?.movieData = self.movieViewModel?.movieData.sorted(by: {$0.popularity > $1.popularity}) ?? []
+            self.movieTableView?.reloadRows(
+                at: self.movieTableView?.indexPathsForVisibleRows ?? [],
+                with: .none)
         }
         eggRateButton.addAction(eggRateAction, for: .touchUpInside)
         
@@ -86,9 +97,9 @@ class MovieTableMainHeader: UIView {
             self.changeHeaderButtonColor(selectedButton: self.nowPlayingButton,
                                          unselectedButton1: self.bookingRateButton,
                                          unselectedButton2: self.eggRateButton)
-//            self.page = 1
-//            self.movieData.removeAll()
-//            self.fetchNowPlaying(page: self.page)
+            self.movieViewModel?.page = 1
+            self.movieViewModel?.movieData.removeAll()
+            self.movieViewModel?.fetchNowPlaying(page: self.movieViewModel?.page ?? 1)
         }
         nowPlayingButton.addAction(nowPlayingAction, for: .touchUpInside)
     }
