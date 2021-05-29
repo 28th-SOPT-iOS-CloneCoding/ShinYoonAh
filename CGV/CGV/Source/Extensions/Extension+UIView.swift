@@ -34,4 +34,16 @@ extension UIView {
         unselectedButton2.setTitleColor(.systemGray2, for: .normal)
         unselectedButton2.tintColor = .lightGray
     }
+    
+    func changeButtonState(selectedButton: UIButton,
+                                     unselectedButton1: UIButton,
+                                     unselectedButton2: UIButton) {
+        selectedButton.setTitleColor(.black, for: .normal)
+        unselectedButton1.setTitleColor(.lightGray, for: .normal)
+        unselectedButton2.setTitleColor(.lightGray, for: .normal)
+        
+        selectedButton.isSelected = true
+        unselectedButton1.isSelected = false
+        unselectedButton2.isSelected = false
+    }
 }

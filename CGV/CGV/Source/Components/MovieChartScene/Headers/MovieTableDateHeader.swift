@@ -33,6 +33,5 @@ class MovieTableDateHeader: UIView {
 //        headerLabel.text = releaseDate[section - 1].replacingOccurrences(of: "-", with: ".")
         
         addSubview(headerLabel)
-        
     }
 }

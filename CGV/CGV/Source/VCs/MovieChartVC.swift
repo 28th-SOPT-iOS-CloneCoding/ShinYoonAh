@@ -19,70 +19,16 @@ class MovieChartVC: UIViewController {
     private var fetchingMore = false
     private var isScrolled = false
     
-    private let menuStackView = UIStackView()
-    private let movieTableView = UITableView.init(frame: CGRect.zero, style: .grouped)
-    private let loadingIndicator = UIActivityIndicatorView()
-    private let myRefreshControl = UIRefreshControl()
-    
     lazy private var customNavigationBar = MovieChartCustomNavigationBar(navigationController: navigationController!)
+    lazy private var bookingButton = EarlyReservationButton(storyboard: storyboard!, rootController: self)
+    lazy private var topButton = ScrollToTopButton(tableView: movieTableView)
+    private let menuBar = MovieChartMenuBar()
     private let movieTableMainHeader = MovieTableMainHeader()
     private let movieTableSubHeader = MovieTableSubHeader()
     private let movieTableDateHeader = MovieTableDateHeader()
-    
-    private var chartMenuButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("무비차트", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16)
-        button.addTarget(self,
-                         action: #selector(touchUpChartButton),
-                         for: .touchUpInside)
-        button.isSelected = true
-        return button
-    }()
-    private var arthouseMenuButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("아트하우스", for: .normal)
-        button.setTitleColor(.lightGray, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16)
-        button.addTarget(self,
-                         action: #selector(touchUpArthouseButton),
-                         for: .touchUpInside)
-        return button
-    }()
-    private var comeoutButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("개봉예정", for: .normal)
-        button.setTitleColor(.lightGray, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16)
-        button.addTarget(self,
-                         action: #selector(touchUpComeoutButton),
-                         for: .touchUpInside)
-        return button
-    }()
-    private var bookingButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("", for: .normal)
-        button.addTarget(self, action: #selector(touchUpBooking), for: .touchUpInside)
-        return button
-    }()
-    private lazy var topButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .white.withAlphaComponent(0.8)
-        button.layer.cornerRadius = 27
-        button.layer.shadowColor  = UIColor.gray.cgColor
-        button.layer.shadowOpacity = 1.0
-        button.layer.shadowOffset = CGSize(width: 0, height: 3)
-        button.layer.shadowRadius = 3
-        button.setImage(UIImage(systemName: "arrow.up"), for: .normal)
-        button.setPreferredSymbolConfiguration(.init(pointSize: 20,
-                                                      weight: .light,
-                                                      scale: .large),
-                                                 forImageIn: .normal)
-        button.tintColor = .gray
-        button.addTarget(self, action: #selector(touchUpTop), for: .touchUpInside)
-        return button
-    }()
+    private let movieTableView = UITableView.init(frame: CGRect.zero, style: .grouped)
+    private let loadingIndicator = UIActivityIndicatorView()
+    private let myRefreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,18 +36,85 @@ class MovieChartVC: UIViewController {
         movieData.removeAll()
         fetchPopularMovie(page: page)
         setupConfigure()
+        tableViewSetting()
+    }
+    
+    private func setupConfigure() {
+        view.addSubview(customNavigationBar)
+        view.addSubview(menuBar)
+        view.addSubview(movieTableView)
+        view.addSubview(bookingButton)
+        view.addSubview(topButton)
+        
+        customNavigationBar.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(44)
+        }
+        
+        menuBar.snp.makeConstraints { make in
+            make.top.equalTo(customNavigationBar.snp.bottom)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(44)
+        }
+        
+        movieTableView.snp.makeConstraints { make in
+            make.top.equalTo(menuBar.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        bookingButton.snp.makeConstraints { make in
+            make.width.equalTo(180)
+            make.height.equalTo(60)
+            make.trailing.equalToSuperview().offset(40)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        topButton.snp.makeConstraints { make in
+            make.width.height.equalTo(55)
+            make.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().offset(55)
+        }
+
+        setRefreshControl()
+    }
+    
+    private func tableViewSetting() {
+        movieTableView.dataSource = self
+        movieTableView.delegate = self
+        movieTableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        movieTableView.backgroundColor = .systemGray6
+
+        let nib = UINib(nibName: "MovieTVC", bundle: nil)
+        movieTableView.register(nib, forCellReuseIdentifier: MovieTVC.identifier)
+    }
+    
+    private func setRefreshControl() {
+        let refreshAction = UIAction { _ in
+            self.myRefreshControl.endRefreshing()
+            self.page = 0
+            self.movieData.removeAll()
+            self.releaseDate.removeAll()
+            self.movieTableView.reloadData()
+        }
+        myRefreshControl.addAction(refreshAction, for: .touchUpInside)
+        
+        if #available(iOS 10.0, *) {
+            movieTableView.refreshControl = myRefreshControl
+        } else {
+            movieTableView.addSubview(myRefreshControl)
+        }
     }
 }
 
 extension MovieChartVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        if comeoutButton.isSelected {
+        if menuBar.comeoutButton.isSelected {
             return releaseDate.count + 1
         }
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if comeoutButton.isSelected {
+        if menuBar.comeoutButton.isSelected {
             if section == 0 {
                 return 0
             }
@@ -116,7 +129,7 @@ extension MovieChartVC: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        if comeoutButton.isSelected {
+        if menuBar.comeoutButton.isSelected {
             if indexPath.section != 0 {
                 let data: MovieResponse = movieData.filter { $0.releaseDate == releaseDate[indexPath.section - 1] }[indexPath.row]
                 cell.setData(posterImage: data.posterPath ?? "",
@@ -136,7 +149,7 @@ extension MovieChartVC: UITableViewDataSource {
                          isAdult: data.adult)
         }
         
-        if arthouseMenuButton.isSelected {
+        if menuBar.arthouseMenuButton.isSelected {
             cell.setFormat(isArthouse: true)
         } else {
             cell.setFormat(isArthouse: false)
@@ -148,9 +161,9 @@ extension MovieChartVC: UITableViewDataSource {
 
 extension MovieChartVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if comeoutButton.isSelected && section == 0 {
+        if menuBar.comeoutButton.isSelected && section == 0 {
             return MovieTableSubHeader()
-        } else if comeoutButton.isSelected && section != 0 {
+        } else if menuBar.comeoutButton.isSelected && section != 0 {
             return MovieTableDateHeader()
         }
         return MovieTableMainHeader()
@@ -201,201 +214,17 @@ extension MovieChartVC: UITableViewDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: {
             self.page += 1
             
-            if self.chartMenuButton.isSelected {
+            if self.menuBar.chartMenuButton.isSelected {
                 self.fetchPopularMovie(page: self.page)
-            } else if self.arthouseMenuButton.isSelected {
+            } else if self.menuBar.arthouseMenuButton.isSelected {
                 self.fetchTopRated(page: self.page)
-            } else if self.comeoutButton.isSelected {
+            } else if self.menuBar.comeoutButton.isSelected {
                 self.fetchUpComing(page: self.page)
             }
             
             self.fetchingMore = false
             self.movieTableView.reloadData()
         })
-    }
-}
-
-// MARK: - UI
-extension MovieChartVC {
-    private func setupConfigure() {
-        view.addSubview(customNavigationBar)
-        
-        customNavigationBar.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(44)
-        }
-        
-        setMenuBarLayout()
-        setTableView()
-        setTableViewNib()
-        setRefreshControl()
-        setScrollButtons()
-    }
-    
-    // MARK: - MenuBar UIView custom
-    private func setMenuBarLayout() {
-        view.addSubview(menuStackView)
-        menuStackView.addArrangedSubview(chartMenuButton)
-        menuStackView.addArrangedSubview(arthouseMenuButton)
-        menuStackView.addArrangedSubview(comeoutButton)
-        
-        menuStackView.axis = .horizontal
-        menuStackView.distribution = .fillEqually
-        menuStackView.alignment = .center
-        menuStackView.snp.makeConstraints { make in
-            make.top.equalTo(customNavigationBar.snp.bottom)
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(44)
-        }
-    }
-    
-    private func setTableView() {
-        movieTableView.dataSource = self
-        movieTableView.delegate = self
-        movieTableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-        movieTableView.backgroundColor = .systemGray6
-        
-        view.addSubview(movieTableView)
-        movieTableView.snp.makeConstraints { make in
-            make.top.equalTo(menuStackView.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
-    }
-    
-    private func setTableViewNib() {
-        let nib = UINib(nibName: "MovieTVC", bundle: nil)
-        movieTableView.register(nib, forCellReuseIdentifier: MovieTVC.identifier)
-    }
-    
-    private func setRefreshControl() {
-        myRefreshControl.addTarget(self, action: #selector(updateUI(refresh:)), for: .valueChanged)
-        
-        if #available(iOS 10.0, *) {
-            movieTableView.refreshControl = myRefreshControl
-        } else {
-            movieTableView.addSubview(myRefreshControl)
-        }
-    }
-    
-    // MARK: - UIButton custom
-    private func setScrollButtons() {
-        let smallTitleLabel = UILabel()
-        let largeTitleLabel = UILabel()
-        let imageView = UIImageView()
-        
-        view.addSubview(bookingButton)
-        view.addSubview(topButton)
-        bookingButton.addSubview(smallTitleLabel)
-        bookingButton.addSubview(largeTitleLabel)
-        bookingButton.addSubview(imageView)
-        
-        bookingButton.snp.makeConstraints { make in
-            make.width.equalTo(180)
-            make.height.equalTo(60)
-            make.trailing.equalToSuperview().offset(40)
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
-        }
-        topButton.snp.makeConstraints { make in
-            make.width.height.equalTo(55)
-            make.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().offset(55)
-        }
-        smallTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(bookingButton.snp.top).offset(13)
-            make.leading.equalTo(bookingButton.snp.leading).offset(25)
-        }
-        largeTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(smallTitleLabel.snp.bottom).offset(1)
-            make.leading.equalTo(smallTitleLabel.snp.leading)
-        }
-        imageView.snp.makeConstraints { make in
-            make.centerY.equalTo(bookingButton.snp.centerY)
-            make.leading.equalTo(largeTitleLabel.snp.trailing).offset(5)
-            make.height.equalTo(24)
-            make.width.equalTo(35)
-        }
-        
-        bookingButton.backgroundColor = UIColor.systemPink.withAlphaComponent(0.7)
-        bookingButton.layer.cornerRadius = 30
-        
-        smallTitleLabel.text = "빠르고 쉽게"
-        smallTitleLabel.font = .boldSystemFont(ofSize: 10)
-        smallTitleLabel.textColor = .white
-        
-        largeTitleLabel.text = "지금예매"
-        largeTitleLabel.font = .boldSystemFont(ofSize: 16)
-        largeTitleLabel.textColor = .white
-        
-        imageView.image = UIImage(systemName: "ticket")
-        imageView.tintColor = .white
-    }
-}
-
-// MARK: - Action
-extension MovieChartVC {
-    @objc
-    func touchUpBooking() {
-        guard let dvc = storyboard?.instantiateViewController(withIdentifier: "OverlayVC") as? OverlayVC else { return }
-        dvc.modalPresentationStyle = .overFullScreen
-        present(dvc, animated: true, completion: nil)
-    }
-    
-    @objc
-    func touchUpTop() {
-        movieTableView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
-        self.isScrolled = false
-    }
-    
-    @objc
-    func updateUI(refresh: UIRefreshControl) {
-        refresh.endRefreshing()
-        
-        page = 0
-        movieData.removeAll()
-        releaseDate.removeAll()
-        
-        movieTableView.reloadData()
-    }
-    
-    // MARK: - objc가 UIView로 들어갈 수 있나? -> ViewModel같은걸 써서 제대로 관리해야할 듯
-    // MARK: - GET Popular
-    @objc
-    func touchUpChartButton() {
-        print("pressed Movie Chart ")
-        changeButtonState(selectedButton: chartMenuButton,
-                          unselectedButton1: arthouseMenuButton,
-                          unselectedButton2: comeoutButton)
-        page = 1
-        movieData.removeAll()
-        fetchPopularMovie(page: page)
-        movieTableView.reloadData()
-    }
-    
-    // MARK: - GET Top Rated
-    @objc
-    func touchUpArthouseButton() {
-        print("pressed Art house ")
-        changeButtonState(selectedButton: arthouseMenuButton,
-                          unselectedButton1: chartMenuButton,
-                          unselectedButton2: comeoutButton)
-        page = 1
-        movieData.removeAll()
-        fetchTopRated(page: page)
-        movieTableView.reloadData()
-    }
-    
-    // MARK: - GET Upcoming
-    @objc
-    func touchUpComeoutButton() {
-        print("pressed Come out ")
-        changeButtonState(selectedButton: comeoutButton,
-                          unselectedButton1: chartMenuButton,
-                          unselectedButton2: arthouseMenuButton)
-        page = 1
-        movieData.removeAll()
-        releaseDate.removeAll()
-        fetchUpComing(page: page)
-        movieTableView.reloadData()
     }
 }
 
