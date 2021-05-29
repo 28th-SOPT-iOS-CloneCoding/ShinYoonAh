@@ -25,6 +25,8 @@ class MovieChartVC: UIViewController {
     private let loadingIndicator = UIActivityIndicatorView()
     private let myRefreshControl = UIRefreshControl()
     private let movieTableMainHeader = MovieTableMainHeader()
+    private let movieTableSubHeader = MovieTableSubHeader()
+    private let movieTableDateHeader = MovieTableDateHeader()
     
     private var backButton: UIButton = {
         let button = UIButton()
@@ -179,21 +181,9 @@ extension MovieChartVC: UITableViewDataSource {
 extension MovieChartVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if comeoutButton.isSelected && section == 0 {
-            return comeoutHeader()
+            return MovieTableSubHeader()
         } else if comeoutButton.isSelected && section != 0 {
-            let headerView = UIView()
-            let headerLabel = UILabel()
-            
-            headerView.backgroundColor = .white
-            headerLabel.font = .systemFont(ofSize: 15)
-            headerLabel.text = releaseDate[section - 1].replacingOccurrences(of: "-", with: ".")
-            
-            headerView.addSubview(headerLabel)
-            headerLabel.snp.makeConstraints { make in
-                make.bottom.equalTo(headerView.snp.bottom).inset(5)
-                make.leading.equalTo(headerView.snp.leading).inset(10)
-            }
-            return headerView
+            return MovieTableDateHeader()
         }
         return MovieTableMainHeader()
     }
@@ -395,55 +385,6 @@ extension MovieChartVC {
         imageView.tintColor = .white
     }
 }
-
-// MARK: - Header Setting(UIView Header custom)
-extension MovieChartVC {
-    private func comeoutHeader() -> UIView {
-        let headerView = UIView()
-        let comeoutButton = UIButton()
-        let bookingRateButton = UIButton()
-        
-        let comeoutAction = UIAction { _ in
-//            self.changeHeaderButtonColor(selectedButton: comeoutButton,
-//                                    unselectedButton1: bookingRateButton,
-//                                    unselectedButton2: UIButton())
-            self.movieData = self.movieData.sorted(by: {$0.releaseDate > $1.releaseDate})
-            self.movieTableView.reloadData()
-        }
-        let bookingRateAction = UIAction { _ in
-//            self.changeHeaderButtonColor(selectedButton: bookingRateButton,
-//                                    unselectedButton1: comeoutButton,
-//                                    unselectedButton2: UIButton())
-            print("도대체 이걸 어찌 구현..")
-        }
-        
-        view.addSubview(headerView)
-        headerView.addSubview(comeoutButton)
-        headerView.addSubview(bookingRateButton)
-        
-        headerView.backgroundColor = .systemGray6
-
-        comeoutButton.snp.makeConstraints { make in
-            make.centerY.equalTo(headerView.snp.centerY)
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(10)
-        }
-        comeoutButton.setHeaderButton(title: "개봉순")
-        comeoutButton.addAction(comeoutAction, for: .touchUpInside)
-        
-        bookingRateButton.snp.makeConstraints { make in
-            make.centerY.equalTo(comeoutButton)
-            make.leading.equalTo(comeoutButton.snp.trailing).offset(10)
-        }
-        bookingRateButton.setHeaderButton(title: "예매율순")
-        bookingRateButton.addAction(bookingRateAction, for: .touchUpInside)
-        
-//        changeHeaderButtonColor(selectedButton: comeoutButton,
-//                                unselectedButton1: bookingRateButton,
-//                                unselectedButton2: UIButton())
-        return headerView
-    }
-}
-
 
 // MARK: - Action
 extension MovieChartVC {
