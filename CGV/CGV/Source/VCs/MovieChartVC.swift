@@ -15,7 +15,6 @@ class MovieChartVC: UIViewController {
     lazy private var topButton = ScrollToTopButton(tableView: movieTableView)
     lazy private var movieTableMainHeader = MovieTableMainHeader(with: movieTableView, model: movieViewModel)
     
-    
     private let menuBar = MovieChartMenuBar()
     private let movieTableSubHeader = MovieTableSubHeader()
     private let movieTableDateHeader = MovieTableDateHeader()
@@ -82,13 +81,15 @@ class MovieChartVC: UIViewController {
     
     private func setRefreshControl() {
         let refreshAction = UIAction { _ in
-            self.myRefreshControl.endRefreshing()
-            self.movieViewModel.page = 1
-            self.movieViewModel.movieData.removeAll()
-            self.movieViewModel.releaseDate.removeAll()
-            self.movieTableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.movieViewModel.page = 0
+                self.movieViewModel.movieData.removeAll()
+                self.movieViewModel.releaseDate.removeAll()
+                self.movieTableView.reloadData()
+                self.myRefreshControl.endRefreshing()
+            }
         }
-        myRefreshControl.addAction(refreshAction, for: .touchUpInside)
+        myRefreshControl.addAction(refreshAction, for: .valueChanged)
         
         if #available(iOS 10.0, *) {
             movieTableView.refreshControl = myRefreshControl
@@ -157,9 +158,9 @@ extension MovieChartVC: UITableViewDataSource {
 extension MovieChartVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if menuBar.comeoutButton.isSelected && section == 0 {
-            return MovieTableSubHeader()
+            return movieTableSubHeader
         } else if menuBar.comeoutButton.isSelected && section != 0 {
-            return MovieTableDateHeader()
+            return movieTableDateHeader
         }
         return movieTableMainHeader
     }

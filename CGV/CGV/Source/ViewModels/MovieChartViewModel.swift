@@ -26,10 +26,6 @@ class MovieChartViewModel {
         fetchPopularMovie(page: page)
     }
     
-    init() {
-        
-    }
-    
     // MARK: - GET Popular
     func fetchPopularMovie(page: Int) {
         loadingIndicator.startAnimating()
