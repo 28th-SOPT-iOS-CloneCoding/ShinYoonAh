@@ -19,48 +19,16 @@ class MovieChartVC: UIViewController {
     private var fetchingMore = false
     private var isScrolled = false
     
-    private let navigationView = UIView()
     private let menuStackView = UIStackView()
     private let movieTableView = UITableView.init(frame: CGRect.zero, style: .grouped)
     private let loadingIndicator = UIActivityIndicatorView()
     private let myRefreshControl = UIRefreshControl()
+    
+    lazy private var customNavigationBar = MovieChartCustomNavigationBar(navigationController: navigationController!)
     private let movieTableMainHeader = MovieTableMainHeader()
     private let movieTableSubHeader = MovieTableSubHeader()
     private let movieTableDateHeader = MovieTableDateHeader()
     
-    private var backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        button.tintColor = .black
-        button.setPreferredSymbolConfiguration(.init(pointSize: 20,
-                                                     weight: .light,
-                                                     scale: .large),
-                                                forImageIn: .normal)
-        button.addTarget(self,
-                         action: #selector(touchUpBack),
-                         for: .touchUpInside)
-        return button
-    }()
-    private var menuButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "line.horizontal.3"), for: .normal)
-        button.tintColor = .black
-        button.setPreferredSymbolConfiguration(.init(pointSize: 20,
-                                                     weight: .light,
-                                                     scale: .large),
-                                               forImageIn: .normal)
-        button.addTarget(self,
-                         action: #selector(touchUpMenu),
-                         for: .touchUpInside)
-        return button
-    }()
-    private var backLabel: UILabel = {
-        let label = UILabel()
-        label.text = "영화"
-        label.font = .boldSystemFont(ofSize: 17)
-        label.textColor = .black
-        return label
-    }()
     private var chartMenuButton: UIButton = {
         let button = UIButton()
         button.setTitle("무비차트", for: .normal)
@@ -121,7 +89,7 @@ class MovieChartVC: UIViewController {
         
         movieData.removeAll()
         fetchPopularMovie(page: page)
-        setConfigure()
+        setupConfigure()
     }
 }
 
@@ -249,42 +217,19 @@ extension MovieChartVC: UITableViewDelegate {
 
 // MARK: - UI
 extension MovieChartVC {
-    private func setConfigure() {
-        setNavigationBarLayout()
+    private func setupConfigure() {
+        view.addSubview(customNavigationBar)
+        
+        customNavigationBar.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(44)
+        }
+        
         setMenuBarLayout()
         setTableView()
         setTableViewNib()
         setRefreshControl()
         setScrollButtons()
-    }
-    
-    // MARK: - NavigationBar UIView custom
-    private func setNavigationBarLayout() {
-        view.addSubview(navigationView)
-        navigationView.addSubview(backButton)
-        navigationView.addSubview(backLabel)
-        navigationView.addSubview(menuButton)
-        
-        navigationView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(44)
-        }
-        
-        backButton.snp.makeConstraints { make in
-            make.leading.equalTo(view.safeAreaLayoutGuide).inset(15)
-            make.centerY.equalTo(navigationView.snp.centerY)
-            make.width.height.equalTo(30)
-        }
-        
-        backLabel.snp.makeConstraints { make in
-            make.leading.equalTo(backButton.snp.trailing).offset(10)
-            make.centerY.equalTo(backButton)
-        }
-        
-        menuButton.snp.makeConstraints { make in
-            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(15)
-            make.top.equalTo(8)
-        }
     }
     
     // MARK: - MenuBar UIView custom
@@ -298,7 +243,7 @@ extension MovieChartVC {
         menuStackView.distribution = .fillEqually
         menuStackView.alignment = .center
         menuStackView.snp.makeConstraints { make in
-            make.top.equalTo(navigationView.snp.bottom)
+            make.top.equalTo(customNavigationBar.snp.bottom)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(44)
         }
@@ -389,11 +334,6 @@ extension MovieChartVC {
 // MARK: - Action
 extension MovieChartVC {
     @objc
-    func touchUpBack(){
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @objc
     func touchUpBooking() {
         guard let dvc = storyboard?.instantiateViewController(withIdentifier: "OverlayVC") as? OverlayVC else { return }
         dvc.modalPresentationStyle = .overFullScreen
@@ -404,11 +344,6 @@ extension MovieChartVC {
     func touchUpTop() {
         movieTableView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
         self.isScrolled = false
-    }
-    
-    @objc
-    func touchUpMenu(){
-        print("menu open")
     }
     
     @objc

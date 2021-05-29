@@ -19,6 +19,7 @@
 		ED3EFA4B264BC01B0041DFF1 /* MovieRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA4A264BC01B0041DFF1 /* MovieRequest.swift */; };
 		ED3EFA4D264BC1520041DFF1 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA4C264BC1520041DFF1 /* MovieModel.swift */; };
 		ED9B7A0A2661E73D008C40F1 /* MovieTableDateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B7A092661E73D008C40F1 /* MovieTableDateHeader.swift */; };
+		ED9B7A0C2661EB85008C40F1 /* MovieChartCustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B7A0B2661EB85008C40F1 /* MovieChartCustomNavigationBar.swift */; };
 		EDC67EEE2656769E00580E15 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC67EED2656769E00580E15 /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		EDC9C4042650FEF300249628 /* OverlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC9C4022650FEF300249628 /* OverlayVC.swift */; };
 		EDCB26C026536B0B00BF41D6 /* SelectTheaterTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB26BE26536B0B00BF41D6 /* SelectTheaterTVC.swift */; };
@@ -61,6 +62,7 @@
 		ED3EFA4A264BC01B0041DFF1 /* MovieRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRequest.swift; sourceTree = "<group>"; };
 		ED3EFA4C264BC1520041DFF1 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		ED9B7A092661E73D008C40F1 /* MovieTableDateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableDateHeader.swift; sourceTree = "<group>"; };
+		ED9B7A0B2661EB85008C40F1 /* MovieChartCustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieChartCustomNavigationBar.swift; sourceTree = "<group>"; };
 		EDC67EED2656769E00580E15 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		EDC9C4022650FEF300249628 /* OverlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayVC.swift; sourceTree = "<group>"; };
 		EDCB26BE26536B0B00BF41D6 /* SelectTheaterTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTheaterTVC.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				EDF5856E2661479F007C14AC /* MovieTableMainHeader.swift */,
 				EDF58570266147C7007C14AC /* MovieTableSubHeader.swift */,
 				ED9B7A092661E73D008C40F1 /* MovieTableDateHeader.swift */,
+				ED9B7A0B2661EB85008C40F1 /* MovieChartCustomNavigationBar.swift */,
 			);
 			path = MovieChartScene;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				EDD2124E264A6D110073CEDD /* MovieChartVC.swift in Sources */,
 				EDCB26C026536B0B00BF41D6 /* SelectTheaterTVC.swift in Sources */,
 				EDC67EEE2656769E00580E15 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
+				ED9B7A0C2661EB85008C40F1 /* MovieChartCustomNavigationBar.swift in Sources */,
 				EDCB26CB26538AB900BF41D6 /* UIView+SetViewShadow.swift in Sources */,
 				ED3EFA41264BBB5C0041DFF1 /* Extension+Encodable.swift in Sources */,
 				ED3EFA4B264BC01B0041DFF1 /* MovieRequest.swift in Sources */,

@@ -25,6 +25,7 @@ class MovieTableDateHeader: UIView {
         }
     }
     
+    // MARK: - MovieData 관련 ViewModel 생성
     private func setupConfigure() {
         backgroundColor = .white
         
