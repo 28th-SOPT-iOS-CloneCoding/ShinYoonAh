@@ -18,4 +18,20 @@ extension UIView {
         layer.shadowOffset = CGSize(width: -2, height: 2)
         layer.shadowRadius = 3
     }
+    
+    func changeHeaderButtonColor(selectedButton: UIButton,
+                                 unselectedButton1: UIButton,
+                                 unselectedButton2: UIButton) {
+        if selectedButton.titleLabel?.text == "현재상영작보기" {
+            selectedButton.setTitleColor(.systemRed, for: .normal)
+            selectedButton.tintColor = .systemRed
+        } else {
+            selectedButton.setTitleColor(.black, for: .normal)
+            selectedButton.tintColor = .darkGray
+        }
+        unselectedButton1.setTitleColor(.systemGray2, for: .normal)
+        unselectedButton1.tintColor = .lightGray
+        unselectedButton2.setTitleColor(.systemGray2, for: .normal)
+        unselectedButton2.tintColor = .lightGray
+    }
 }

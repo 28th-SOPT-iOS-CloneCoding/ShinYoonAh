@@ -24,6 +24,7 @@ class MovieChartVC: UIViewController {
     private let movieTableView = UITableView.init(frame: CGRect.zero, style: .grouped)
     private let loadingIndicator = UIActivityIndicatorView()
     private let myRefreshControl = UIRefreshControl()
+    private let movieTableMainHeader = MovieTableMainHeader()
     
     private var backButton: UIButton = {
         let button = UIButton()
@@ -194,7 +195,7 @@ extension MovieChartVC: UITableViewDelegate {
             }
             return headerView
         }
-        return nowPlayingHeader()
+        return MovieTableMainHeader()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -397,88 +398,22 @@ extension MovieChartVC {
 
 // MARK: - Header Setting(UIView Header custom)
 extension MovieChartVC {
-    private func nowPlayingHeader() -> UIView {
-        let headerView = UIView()
-        let bookingRateButton = UIButton()
-        let eggRateButton = UIButton()
-        let nowPlayingButton = UIButton()
-        
-        let bookingRateAction = UIAction { _ in
-            self.changeHeaderButtonColor(selectedButton: bookingRateButton,
-                                    unselectedButton1: eggRateButton,
-                                    unselectedButton2: nowPlayingButton)
-            self.movieData = self.movieData.sorted(by: {$0.voteAverage > $1.voteAverage})
-            self.movieTableView.reloadData()
-        }
-        let eggRateAction = UIAction { _ in
-            self.changeHeaderButtonColor(selectedButton: eggRateButton,
-                                    unselectedButton1: bookingRateButton,
-                                    unselectedButton2: nowPlayingButton)
-            
-            self.movieData = self.movieData.sorted(by: {$0.popularity > $1.popularity})
-            self.movieTableView.reloadRows(
-                at: self.movieTableView.indexPathsForVisibleRows ?? [],
-                with: .none)
-        }
-        let nowPlayingAction = UIAction { _ in
-            self.changeHeaderButtonColor(selectedButton: nowPlayingButton,
-                                    unselectedButton1: bookingRateButton,
-                                    unselectedButton2: eggRateButton)
-            self.page = 1
-            self.movieData.removeAll()
-            self.fetchNowPlaying(page: self.page)
-        }
-        
-        view.addSubview(headerView)
-        headerView.addSubview(bookingRateButton)
-        headerView.addSubview(eggRateButton)
-        headerView.addSubview(nowPlayingButton)
-        
-        headerView.backgroundColor = .systemGray6
-        
-        bookingRateButton.snp.makeConstraints { make in
-            make.centerY.equalTo(headerView.snp.centerY)
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(10)
-        }
-        bookingRateButton.setHeaderButton(title: "예매율순")
-        bookingRateButton.addAction(bookingRateAction, for: .touchUpInside)
-        
-        eggRateButton.snp.makeConstraints { make in
-            make.centerY.equalTo(bookingRateButton)
-            make.leading.equalTo(bookingRateButton.snp.trailing).offset(10)
-        }
-        eggRateButton.setHeaderButton(title: "Egg지수순")
-        eggRateButton.addAction(eggRateAction, for: .touchUpInside)
-        
-        nowPlayingButton.snp.makeConstraints { make in
-            make.centerY.equalTo(bookingRateButton.snp.centerY)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
-        }
-        nowPlayingButton.setHeaderButton(title: "현재상영작보기")
-        nowPlayingButton.addAction(nowPlayingAction, for: .touchUpInside)
-        
-        changeHeaderButtonColor(selectedButton: bookingRateButton,
-                                unselectedButton1: eggRateButton,
-                                unselectedButton2: nowPlayingButton)
-        return headerView
-    }
-    
     private func comeoutHeader() -> UIView {
         let headerView = UIView()
         let comeoutButton = UIButton()
         let bookingRateButton = UIButton()
         
         let comeoutAction = UIAction { _ in
-            self.changeHeaderButtonColor(selectedButton: comeoutButton,
-                                    unselectedButton1: bookingRateButton,
-                                    unselectedButton2: UIButton())
+//            self.changeHeaderButtonColor(selectedButton: comeoutButton,
+//                                    unselectedButton1: bookingRateButton,
+//                                    unselectedButton2: UIButton())
             self.movieData = self.movieData.sorted(by: {$0.releaseDate > $1.releaseDate})
             self.movieTableView.reloadData()
         }
         let bookingRateAction = UIAction { _ in
-            self.changeHeaderButtonColor(selectedButton: bookingRateButton,
-                                    unselectedButton1: comeoutButton,
-                                    unselectedButton2: UIButton())
+//            self.changeHeaderButtonColor(selectedButton: bookingRateButton,
+//                                    unselectedButton1: comeoutButton,
+//                                    unselectedButton2: UIButton())
             print("도대체 이걸 어찌 구현..")
         }
         
@@ -502,9 +437,9 @@ extension MovieChartVC {
         bookingRateButton.setHeaderButton(title: "예매율순")
         bookingRateButton.addAction(bookingRateAction, for: .touchUpInside)
         
-        changeHeaderButtonColor(selectedButton: comeoutButton,
-                                unselectedButton1: bookingRateButton,
-                                unselectedButton2: UIButton())
+//        changeHeaderButtonColor(selectedButton: comeoutButton,
+//                                unselectedButton1: bookingRateButton,
+//                                unselectedButton2: UIButton())
         return headerView
     }
 }
