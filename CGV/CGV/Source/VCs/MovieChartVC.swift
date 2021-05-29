@@ -7,34 +7,25 @@
 
 import UIKit
 import SnapKit
-import Moya
 
 class MovieChartVC: UIViewController {
-    private let authProvider = MoyaProvider<MovieServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
-    private var movieModel: MovieModel?
-    
-    private var movieData: [MovieResponse] = []
-    private var releaseDate: [String] = []
-    private var page = 1
-    private var fetchingMore = false
-    private var isScrolled = false
-    
+    lazy private var movieViewModel = MovieChartViewModel(tableView: movieTableView)
     lazy private var customNavigationBar = MovieChartCustomNavigationBar(navigationController: navigationController!)
     lazy private var bookingButton = EarlyReservationButton(storyboard: storyboard!, rootController: self)
     lazy private var topButton = ScrollToTopButton(tableView: movieTableView)
+    lazy private var movieTableMainHeader = MovieTableMainHeader(with: movieTableView, model: movieViewModel)
+    
     private let menuBar = MovieChartMenuBar()
-    private let movieTableMainHeader = MovieTableMainHeader()
     private let movieTableSubHeader = MovieTableSubHeader()
     private let movieTableDateHeader = MovieTableDateHeader()
     private let movieTableView = UITableView.init(frame: CGRect.zero, style: .grouped)
-    private let loadingIndicator = UIActivityIndicatorView()
     private let myRefreshControl = UIRefreshControl()
+    
+    private var isScrolled = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        movieData.removeAll()
-        fetchPopularMovie(page: page)
         setupConfigure()
         tableViewSetting()
     }
@@ -90,13 +81,15 @@ class MovieChartVC: UIViewController {
     
     private func setRefreshControl() {
         let refreshAction = UIAction { _ in
-            self.myRefreshControl.endRefreshing()
-            self.page = 0
-            self.movieData.removeAll()
-            self.releaseDate.removeAll()
-            self.movieTableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.movieViewModel.page = 0
+                self.movieViewModel.movieData.removeAll()
+                self.movieViewModel.releaseDate.removeAll()
+                self.movieTableView.reloadData()
+                self.myRefreshControl.endRefreshing()
+            }
         }
-        myRefreshControl.addAction(refreshAction, for: .touchUpInside)
+        myRefreshControl.addAction(refreshAction, for: .valueChanged)
         
         if #available(iOS 10.0, *) {
             movieTableView.refreshControl = myRefreshControl
@@ -106,22 +99,24 @@ class MovieChartVC: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension MovieChartVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         if menuBar.comeoutButton.isSelected {
-            return releaseDate.count + 1
+            return movieViewModel.releaseDate.count + 1
         }
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if menuBar.comeoutButton.isSelected {
             if section == 0 {
                 return 0
             }
-            let date = releaseDate[section - 1]
-            return self.movieData.filter{ $0.releaseDate == date }.count
+            let date = movieViewModel.releaseDate[section - 1]
+            return self.movieViewModel.movieData.filter{ $0.releaseDate == date }.count
         }
-        return movieData.count
+        return movieViewModel.movieData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -131,7 +126,7 @@ extension MovieChartVC: UITableViewDataSource {
         
         if menuBar.comeoutButton.isSelected {
             if indexPath.section != 0 {
-                let data: MovieResponse = movieData.filter { $0.releaseDate == releaseDate[indexPath.section - 1] }[indexPath.row]
+                let data: MovieResponse = movieViewModel.movieData.filter { $0.releaseDate == movieViewModel.releaseDate[indexPath.section - 1] }[indexPath.row]
                 cell.setData(posterImage: data.posterPath ?? "",
                              title: data.title,
                              eggRate: data.popularity,
@@ -140,7 +135,7 @@ extension MovieChartVC: UITableViewDataSource {
                              isAdult: data.adult)
             }
         } else {
-            let data = movieData[indexPath.row]
+            let data = movieViewModel.movieData[indexPath.row]
             cell.setData(posterImage: data.posterPath ?? "",
                          title: data.title,
                          eggRate: data.popularity,
@@ -159,14 +154,15 @@ extension MovieChartVC: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension MovieChartVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if menuBar.comeoutButton.isSelected && section == 0 {
-            return MovieTableSubHeader()
+            return movieTableSubHeader
         } else if menuBar.comeoutButton.isSelected && section != 0 {
-            return MovieTableDateHeader()
+            return movieTableDateHeader
         }
-        return MovieTableMainHeader()
+        return movieTableMainHeader
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -187,7 +183,7 @@ extension MovieChartVC: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if movieTableView.contentOffset.y > (movieTableView.contentSize.height - movieTableView.bounds.size.height) {
             print("끝에 도달")
-            if !fetchingMore {
+            if !movieViewModel.fetchingMore {
                 beginBatchFetch()
             }
         }
@@ -210,134 +206,20 @@ extension MovieChartVC: UITableViewDelegate {
     }
     
     private func beginBatchFetch() {
-        fetchingMore = true
+        movieViewModel.fetchingMore = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: {
-            self.page += 1
+            self.movieViewModel.page += 1
             
             if self.menuBar.chartMenuButton.isSelected {
-                self.fetchPopularMovie(page: self.page)
+                self.movieViewModel.fetchPopularMovie(page: self.movieViewModel.page)
             } else if self.menuBar.arthouseMenuButton.isSelected {
-                self.fetchTopRated(page: self.page)
+                self.movieViewModel.fetchTopRated(page: self.movieViewModel.page)
             } else if self.menuBar.comeoutButton.isSelected {
-                self.fetchUpComing(page: self.page)
+                self.movieViewModel.fetchUpComing(page: self.movieViewModel.page)
             }
             
-            self.fetchingMore = false
+            self.movieViewModel.fetchingMore = false
             self.movieTableView.reloadData()
         })
-    }
-}
-
-// MARK: - Networking
-extension MovieChartVC {
-    // MARK: - GET Popular
-    private func fetchPopularMovie(page: Int) {
-        loadingIndicator.startAnimating()
-        
-        let param: MovieRequest = MovieRequest.init(GeneralAPI.apiKey, "ko", page)
-        print(param)
-        
-        authProvider.request(.popular(param: param)) { response in
-            self.loadingIndicator.stopAnimating()
-            switch response {
-                case .success(let result):
-                    do {
-                        self.movieModel = try result.map(MovieModel.self)
-                        self.movieData.append(contentsOf: self.movieModel?.results ?? [])
-                        self.movieData = self.movieData.sorted(by: {$0.voteAverage > $1.voteAverage})
-                        print("popular movieData 받아옴")
-                        self.movieTableView.reloadData()
-                    } catch(let err) {
-                        print(err.localizedDescription)
-                    }
-                case .failure(let err):
-                    print(err.localizedDescription)
-            }
-        }
-    }
-    // MARK: - GET NowPlaying
-    private func fetchNowPlaying(page: Int) {
-        loadingIndicator.startAnimating()
-        
-        let param: MovieRequest = MovieRequest.init(GeneralAPI.apiKey, "ko", page)
-        print(param)
-        
-        authProvider.request(.nowPlaying(param: param)) { response in
-            self.loadingIndicator.stopAnimating()
-            switch response {
-                case .success(let result):
-                    do {
-                        self.movieModel = try result.map(MovieModel.self)
-                        self.movieData.append(contentsOf: self.movieModel?.results ?? [])
-                        print("now playing movieData 받아옴")
-                        self.movieTableView.reloadRows(
-                            at: self.movieTableView.indexPathsForVisibleRows ?? [],
-                            with: .none)
-                    } catch(let err) {
-                        print(err.localizedDescription)
-                    }
-                case .failure(let err):
-                    print(err.localizedDescription)
-            }
-        }
-    }
-    
-    // MARK: - GET TopRated
-    private func fetchTopRated(page: Int) {
-        loadingIndicator.startAnimating()
-        
-        let param: MovieRequest = MovieRequest.init(GeneralAPI.apiKey, "ko", page)
-        print(param)
-        
-        authProvider.request(.topRate(param: param)) { response in
-            self.loadingIndicator.stopAnimating()
-            switch response {
-                case .success(let result):
-                    do {
-                        self.movieModel = try result.map(MovieModel.self)
-                        self.movieData.append(contentsOf: self.movieModel?.results ?? [])
-                        print("Top rated movieData 받아옴")
-                        self.movieTableView.reloadData()
-                    } catch(let err) {
-                        print(err.localizedDescription)
-                    }
-                case .failure(let err):
-                    print(err.localizedDescription)
-            }
-        }
-    }
-    
-    // MARK: - GET UpComing
-    private func fetchUpComing(page: Int) {
-        loadingIndicator.startAnimating()
-        
-        let param: MovieRequest = MovieRequest.init(GeneralAPI.apiKey, "ko", page)
-        print(param)
-        
-        authProvider.request(.upcoming(param: param)) { response in
-            self.loadingIndicator.stopAnimating()
-            switch response {
-                case .success(let result):
-                    do {
-                        self.movieModel = try result.map(MovieModel.self)
-                        self.movieData.append(contentsOf: self.movieModel?.results ?? [])
-                        self.movieData = self.movieData.sorted(by: {$0.releaseDate > $1.releaseDate})
-                        
-                        for i in self.movieData {
-                            self.releaseDate += [i.releaseDate]
-                        }
-                        let removedDuplicate: Set = Set(self.releaseDate)
-                        self.releaseDate = removedDuplicate.sorted().reversed()
-                        print(self.releaseDate.count)
-                        
-                        print("upcoming movieData 받아옴")
-                        self.movieTableView.reloadData()
-                    } catch(let err) {
-                        print(err.localizedDescription)
-                    }
-                case .failure(let err):
-                    print(err.localizedDescription)
-            }
-        }
     }
 }

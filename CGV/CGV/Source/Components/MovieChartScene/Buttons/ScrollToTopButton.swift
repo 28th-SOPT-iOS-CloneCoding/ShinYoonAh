@@ -22,6 +22,7 @@ class ScrollToTopButton: UIButton {
         super.init(frame: .zero)
         movieTableView = tableView
         setupConfigure()
+        print(tableView)
     }
     
     private func setupConfigure() {
@@ -43,7 +44,6 @@ class ScrollToTopButton: UIButton {
     private func setupButtonAction() {
         let scrollToTopAction = UIAction { _ in
             self.movieTableView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
-//            self.isScrolled = false
         }
         self.addAction(scrollToTopAction, for: .touchUpInside)
     }
