@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol showupAlertDeleagate: AnyObject {
+protocol showupAlertDelegate: AnyObject {
     func showupAlertToLookup(title: String?, content: String)
 }

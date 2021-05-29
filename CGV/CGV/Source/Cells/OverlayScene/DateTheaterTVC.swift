@@ -21,7 +21,7 @@ class DateTheaterTVC: UITableViewCell {
     private var isButtonActive = true
     private var position = "강변"
     
-    var delegate: showupAlertDeleagate?
+    var delegate: showupAlertDelegate?
     
     private var dates: [String] = []
     private var days: [String] = []
