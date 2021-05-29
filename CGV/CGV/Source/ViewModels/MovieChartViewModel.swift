@@ -13,7 +13,7 @@ class MovieChartViewModel {
     private var movieModel: MovieModel?
 
     private let loadingIndicator = UIActivityIndicatorView()
-    private var movieTableView: UITableView?
+    private var movieTableView = UITableView()
     
     var movieData: [MovieResponse] = []
     var releaseDate: [String] = []
@@ -24,6 +24,10 @@ class MovieChartViewModel {
         movieTableView = tableView
         movieData.removeAll()
         fetchPopularMovie(page: page)
+    }
+    
+    init() {
+        
     }
     
     // MARK: - GET Popular
@@ -42,7 +46,7 @@ class MovieChartViewModel {
                         self.movieData.append(contentsOf: self.movieModel?.results ?? [])
                         self.movieData = self.movieData.sorted(by: {$0.voteAverage > $1.voteAverage})
                         print("popular movieData 받아옴")
-                        self.movieTableView?.reloadData()
+                        self.movieTableView.reloadData()
                     } catch(let err) {
                         print(err.localizedDescription)
                     }
@@ -67,8 +71,8 @@ class MovieChartViewModel {
                         self.movieModel = try result.map(MovieModel.self)
                         self.movieData.append(contentsOf: self.movieModel?.results ?? [])
                         print("now playing movieData 받아옴")
-                        self.movieTableView?.reloadRows(
-                            at: self.movieTableView?.indexPathsForVisibleRows ?? [],
+                        self.movieTableView.reloadRows(
+                            at: self.movieTableView.indexPathsForVisibleRows ?? [],
                             with: .none)
                     } catch(let err) {
                         print(err.localizedDescription)
@@ -94,7 +98,7 @@ class MovieChartViewModel {
                         self.movieModel = try result.map(MovieModel.self)
                         self.movieData.append(contentsOf: self.movieModel?.results ?? [])
                         print("Top rated movieData 받아옴")
-                        self.movieTableView?.reloadData()
+                        self.movieTableView.reloadData()
                     } catch(let err) {
                         print(err.localizedDescription)
                     }
@@ -128,7 +132,7 @@ class MovieChartViewModel {
                         print(self.releaseDate.count)
                         
                         print("upcoming movieData 받아옴")
-                        self.movieTableView?.reloadData()
+                        self.movieTableView.reloadData()
                     } catch(let err) {
                         print(err.localizedDescription)
                     }

@@ -22,6 +22,7 @@ class ScrollToTopButton: UIButton {
         super.init(frame: .zero)
         movieTableView = tableView
         setupConfigure()
+        print(tableView)
     }
     
     private func setupConfigure() {

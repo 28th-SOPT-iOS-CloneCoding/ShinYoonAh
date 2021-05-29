@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import Moya
 
 class MovieChartVC: UIViewController {
     lazy private var movieViewModel = MovieChartViewModel(tableView: movieTableView)
@@ -15,6 +14,7 @@ class MovieChartVC: UIViewController {
     lazy private var bookingButton = EarlyReservationButton(storyboard: storyboard!, rootController: self)
     lazy private var topButton = ScrollToTopButton(tableView: movieTableView)
     lazy private var movieTableMainHeader = MovieTableMainHeader(with: movieTableView, model: movieViewModel)
+    
     
     private let menuBar = MovieChartMenuBar()
     private let movieTableSubHeader = MovieTableSubHeader()
@@ -161,7 +161,7 @@ extension MovieChartVC: UITableViewDelegate {
         } else if menuBar.comeoutButton.isSelected && section != 0 {
             return MovieTableDateHeader()
         }
-        return MovieTableMainHeader()
+        return movieTableMainHeader
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
