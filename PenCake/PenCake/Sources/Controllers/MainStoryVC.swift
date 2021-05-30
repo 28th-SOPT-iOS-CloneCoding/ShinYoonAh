@@ -8,22 +8,33 @@
 import UIKit
 
 class MainStoryVC: UIViewController {
-
+    @IBOutlet weak var storyTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupConfigure()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupConfigure() {
+        storyTableView.dataSource = self
+        
+        storyTableView.backgroundColor = .secondarySystemBackground
+        storyTableView.separatorStyle = .none
+        
+        let nib = UINib(nibName: StoryListTVC.identifier, bundle: nil)
+        storyTableView.register(nib, forCellReuseIdentifier: StoryListTVC.identifier)
     }
-    */
+}
 
+extension MainStoryVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: StoryListTVC.identifier) as? StoryListTVC else {
+            return UITableViewCell()
+        }
+        return cell
+    }
 }

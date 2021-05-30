@@ -38,6 +38,8 @@ class StoryPageVC: UIPageViewController {
                                     animated: true,
                                     completion: nil)
         }
+        
+        view.backgroundColor = .secondarySystemBackground
     }
     
     func setViewControllersFromIndex(index: Int) {
