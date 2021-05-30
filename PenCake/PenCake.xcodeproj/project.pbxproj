@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,7 @@
 		EDCE0D3D2663CBD300A19B10 /* NanumMyeongjo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDCE0D3C2663CBD100A19B10 /* NanumMyeongjo.ttf */; };
 		EDCE0D402663CBE000A19B10 /* NanumMyeongjoBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDCE0D3E2663CBDC00A19B10 /* NanumMyeongjoBold.ttf */; };
 		EDCE0D412663CBE200A19B10 /* NanumMyeongjoExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDCE0D3F2663CBDF00A19B10 /* NanumMyeongjoExtraBold.ttf */; };
+		EDCE0D452663EA4800A19B10 /* Extension+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCE0D442663EA4800A19B10 /* Extension+UIDevice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		EDCE0D3C2663CBD100A19B10 /* NanumMyeongjo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumMyeongjo.ttf; sourceTree = "<group>"; };
 		EDCE0D3E2663CBDC00A19B10 /* NanumMyeongjoBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumMyeongjoBold.ttf; sourceTree = "<group>"; };
 		EDCE0D3F2663CBDF00A19B10 /* NanumMyeongjoExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumMyeongjoExtraBold.ttf; sourceTree = "<group>"; };
+		EDCE0D442663EA4800A19B10 /* Extension+UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIDevice.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +68,6 @@
 				E286D95901088B3AE28A4324 /* Pods-PenCake.debug.xcconfig */,
 				A4EFC73E455019FAC0EA6D30 /* Pods-PenCake.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -193,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				EDCE0D332663C6EB00A19B10 /* Extension+Font.swift */,
+				EDCE0D442663EA4800A19B10 /* Extension+UIDevice.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -335,6 +337,7 @@
 			files = (
 				EDCE0D282663B3F100A19B10 /* CreateStoryVC.swift in Sources */,
 				EDCE0D2C2663BE6500A19B10 /* StoryListTVC.swift in Sources */,
+				EDCE0D452663EA4800A19B10 /* Extension+UIDevice.swift in Sources */,
 				EDCE0D2F2663C33400A19B10 /* StoryTitleHeader.swift in Sources */,
 				ED9B7A4C2662A789008C40F1 /* AppDelegate.swift in Sources */,
 				ED9B7A4E2662A789008C40F1 /* SceneDelegate.swift in Sources */,

@@ -18,13 +18,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4h-TC-9BR">
-                        <rect key="frame" x="20" y="18" width="223.5" height="51"/>
+                        <rect key="frame" x="20" y="50" width="223.5" height="37"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ql6-GX-aMc">
-                        <rect key="frame" x="258.5" y="33" width="41.5" height="21"/>
+                        <rect key="frame" x="258.5" y="58" width="41.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -32,12 +32,12 @@
                 </subviews>
                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                 <constraints>
-                    <constraint firstItem="y4h-TC-9BR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="7z3-Zj-NGE"/>
+                    <constraint firstItem="y4h-TC-9BR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="50" id="7z3-Zj-NGE"/>
                     <constraint firstItem="Ql6-GX-aMc" firstAttribute="leading" secondItem="y4h-TC-9BR" secondAttribute="trailing" constant="15" id="9JQ-ox-1bK"/>
-                    <constraint firstItem="Ql6-GX-aMc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="GU5-qh-dpx"/>
                     <constraint firstAttribute="trailing" secondItem="Ql6-GX-aMc" secondAttribute="trailing" constant="20" id="ORu-Z0-eLA"/>
                     <constraint firstItem="y4h-TC-9BR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="klh-gL-zYw"/>
-                    <constraint firstAttribute="bottom" secondItem="y4h-TC-9BR" secondAttribute="bottom" constant="18" id="qNr-vx-tro"/>
+                    <constraint firstItem="Ql6-GX-aMc" firstAttribute="centerY" secondItem="y4h-TC-9BR" secondAttribute="centerY" id="prx-ap-hOO"/>
+                    <constraint firstAttribute="bottom" secondItem="y4h-TC-9BR" secondAttribute="bottom" id="qNr-vx-tro"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

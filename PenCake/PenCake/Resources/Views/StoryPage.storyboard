@@ -23,24 +23,9 @@
                     <view key="view" contentMode="scaleToFill" id="C6z-cU-j39">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="brA-pa-u8u">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="9Sd-NS-cfF"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="brA-pa-u8u" firstAttribute="leading" secondItem="9Sd-NS-cfF" secondAttribute="leading" id="COW-is-1uS"/>
-                            <constraint firstItem="9Sd-NS-cfF" firstAttribute="trailing" secondItem="brA-pa-u8u" secondAttribute="trailing" id="Tmu-Db-EfZ"/>
-                            <constraint firstItem="brA-pa-u8u" firstAttribute="top" secondItem="C6z-cU-j39" secondAttribute="top" id="WN3-6Q-3j1"/>
-                            <constraint firstAttribute="bottom" secondItem="brA-pa-u8u" secondAttribute="bottom" id="a9s-7g-vQT"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="storyTableView" destination="brA-pa-u8u" id="m5X-gC-kKc"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cru-o6-cEK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -65,9 +50,6 @@
     <resources>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

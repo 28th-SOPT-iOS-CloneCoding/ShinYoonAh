@@ -8,27 +8,42 @@
 import UIKit
 
 class MainStoryVC: UIViewController {
-    @IBOutlet weak var storyTableView: UITableView!
-    
+    private var storyTableView = UITableView()
     private let titleHeader = StoryTitleHeader()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
         setupConfigure()
     }
     
-    private func setupConfigure() {
+    private func setupTableView() {
         storyTableView.dataSource = self
-        storyTableView.delegate = self
-        
-        storyTableView.sectionHeaderHeight = UITableView.automaticDimension
-        storyTableView.rowHeight = UITableView.automaticDimension
         
         storyTableView.backgroundColor = .secondarySystemBackground
         storyTableView.separatorStyle = .none
         
         let nib = UINib(nibName: StoryListTVC.identifier, bundle: nil)
         storyTableView.register(nib, forCellReuseIdentifier: StoryListTVC.identifier)
+    }
+    
+    private func setupConfigure() {
+        view.addSubview(titleHeader)
+        view.addSubview(storyTableView)
+        
+        titleHeader.snp.makeConstraints { make in
+            if UIDevice.current.hasNotch {
+                make.top.equalToSuperview().inset(44)
+            } else {
+                make.top.equalToSuperview()
+            }
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        storyTableView.snp.makeConstraints { make in
+            make.top.equalTo(titleHeader.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
     }
 }
 
@@ -42,15 +57,5 @@ extension MainStoryVC: UITableViewDataSource {
             return UITableViewCell()
         }
         return cell
-    }
-}
-
-extension MainStoryVC: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return titleHeader
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return 200
     }
 }
