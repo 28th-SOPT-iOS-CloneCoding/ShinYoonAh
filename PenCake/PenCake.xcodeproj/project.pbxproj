@@ -17,6 +17,11 @@
 		EDCE0D282663B3F100A19B10 /* CreateStoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCE0D272663B3F100A19B10 /* CreateStoryVC.swift */; };
 		EDCE0D2C2663BE6500A19B10 /* StoryListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCE0D2A2663BE6500A19B10 /* StoryListTVC.swift */; };
 		EDCE0D2D2663BE6500A19B10 /* StoryListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCE0D2B2663BE6500A19B10 /* StoryListTVC.xib */; };
+		EDCE0D2F2663C33400A19B10 /* StoryTitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCE0D2E2663C33400A19B10 /* StoryTitleHeader.swift */; };
+		EDCE0D342663C6EB00A19B10 /* Extension+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCE0D332663C6EB00A19B10 /* Extension+Font.swift */; };
+		EDCE0D3D2663CBD300A19B10 /* NanumMyeongjo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDCE0D3C2663CBD100A19B10 /* NanumMyeongjo.ttf */; };
+		EDCE0D402663CBE000A19B10 /* NanumMyeongjoBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDCE0D3E2663CBDC00A19B10 /* NanumMyeongjoBold.ttf */; };
+		EDCE0D412663CBE200A19B10 /* NanumMyeongjoExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDCE0D3F2663CBDF00A19B10 /* NanumMyeongjoExtraBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +37,11 @@
 		EDCE0D272663B3F100A19B10 /* CreateStoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStoryVC.swift; sourceTree = "<group>"; };
 		EDCE0D2A2663BE6500A19B10 /* StoryListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListTVC.swift; sourceTree = "<group>"; };
 		EDCE0D2B2663BE6500A19B10 /* StoryListTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoryListTVC.xib; sourceTree = "<group>"; };
+		EDCE0D2E2663C33400A19B10 /* StoryTitleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTitleHeader.swift; sourceTree = "<group>"; };
+		EDCE0D332663C6EB00A19B10 /* Extension+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Font.swift"; sourceTree = "<group>"; };
+		EDCE0D3C2663CBD100A19B10 /* NanumMyeongjo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumMyeongjo.ttf; sourceTree = "<group>"; };
+		EDCE0D3E2663CBDC00A19B10 /* NanumMyeongjoBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumMyeongjoBold.ttf; sourceTree = "<group>"; };
+		EDCE0D3F2663CBDF00A19B10 /* NanumMyeongjoExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumMyeongjoExtraBold.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				ED9B7A542662A78A008C40F1 /* Assets.xcassets */,
+				EDCE0D422663CBED00A19B10 /* Fonts */,
 				EDCE0D1D2663A5D400A19B10 /* Views */,
 			);
 			path = Resources;
@@ -83,6 +94,7 @@
 		EDCE0D172663A58E00A19B10 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				EDCE0D322663C6E000A19B10 /* Extensions */,
 				EDCE0D1C2663A5B900A19B10 /* Models */,
 				EDCE0D1B2663A5B200A19B10 /* ViewModels */,
 				EDCE0D1A2663A5A200A19B10 /* Components */,
@@ -115,6 +127,7 @@
 		EDCE0D1A2663A5A200A19B10 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				EDCE0D2E2663C33400A19B10 /* StoryTitleHeader.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -157,6 +170,24 @@
 				EDCE0D2A2663BE6500A19B10 /* StoryListTVC.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		EDCE0D322663C6E000A19B10 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EDCE0D332663C6EB00A19B10 /* Extension+Font.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EDCE0D422663CBED00A19B10 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				EDCE0D3C2663CBD100A19B10 /* NanumMyeongjo.ttf */,
+				EDCE0D3E2663CBDC00A19B10 /* NanumMyeongjoBold.ttf */,
+				EDCE0D3F2663CBDF00A19B10 /* NanumMyeongjoExtraBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +247,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDCE0D3D2663CBD300A19B10 /* NanumMyeongjo.ttf in Resources */,
+				EDCE0D412663CBE200A19B10 /* NanumMyeongjoExtraBold.ttf in Resources */,
+				EDCE0D402663CBE000A19B10 /* NanumMyeongjoBold.ttf in Resources */,
 				EDCE0D202663A6B500A19B10 /* StoryPage.storyboard in Resources */,
 				ED9B7A582662A78A008C40F1 /* LaunchScreen.storyboard in Resources */,
 				ED9B7A552662A78A008C40F1 /* Assets.xcassets in Resources */,
@@ -232,9 +266,11 @@
 			files = (
 				EDCE0D282663B3F100A19B10 /* CreateStoryVC.swift in Sources */,
 				EDCE0D2C2663BE6500A19B10 /* StoryListTVC.swift in Sources */,
+				EDCE0D2F2663C33400A19B10 /* StoryTitleHeader.swift in Sources */,
 				ED9B7A4C2662A789008C40F1 /* AppDelegate.swift in Sources */,
 				ED9B7A4E2662A789008C40F1 /* SceneDelegate.swift in Sources */,
 				EDCE0D222663A6D400A19B10 /* StoryPageVC.swift in Sources */,
+				EDCE0D342663C6EB00A19B10 /* Extension+Font.swift in Sources */,
 				EDCE0D262663B3CC00A19B10 /* MainStoryVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

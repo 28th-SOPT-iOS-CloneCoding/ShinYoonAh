@@ -17,6 +17,7 @@ class MainStoryVC: UIViewController {
     
     private func setupConfigure() {
         storyTableView.dataSource = self
+        storyTableView.delegate = self
         
         storyTableView.backgroundColor = .secondarySystemBackground
         storyTableView.separatorStyle = .none
@@ -36,5 +37,15 @@ extension MainStoryVC: UITableViewDataSource {
             return UITableViewCell()
         }
         return cell
+    }
+}
+
+extension MainStoryVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
     }
 }

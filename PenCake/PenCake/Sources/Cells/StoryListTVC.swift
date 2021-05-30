@@ -24,5 +24,8 @@ class StoryListTVC: UITableViewCell {
     
     private func setupConfigure() {
         backgroundColor = .clear
+        
+        titleLabel.font = .myRegularSystemFont(ofSize: 15)
+        dateLabel.font = .myRegularSystemFont(ofSize: 10)
     }
 }
