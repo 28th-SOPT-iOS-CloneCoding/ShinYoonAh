@@ -10,6 +10,8 @@ import UIKit
 class MainStoryVC: UIViewController {
     @IBOutlet weak var storyTableView: UITableView!
     
+    private let titleHeader = StoryTitleHeader()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConfigure()
@@ -18,6 +20,9 @@ class MainStoryVC: UIViewController {
     private func setupConfigure() {
         storyTableView.dataSource = self
         storyTableView.delegate = self
+        
+        storyTableView.sectionHeaderHeight = UITableView.automaticDimension
+        storyTableView.rowHeight = UITableView.automaticDimension
         
         storyTableView.backgroundColor = .secondarySystemBackground
         storyTableView.separatorStyle = .none
@@ -42,10 +47,10 @@ extension MainStoryVC: UITableViewDataSource {
 
 extension MainStoryVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView()
+        return titleHeader
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 200
     }
 }
