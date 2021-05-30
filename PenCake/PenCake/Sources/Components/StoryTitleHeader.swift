@@ -54,7 +54,7 @@ class StoryTitleHeader: UIView {
         }
         
         bottomLine.snp.makeConstraints { make in
-            make.top.equalTo(subTitleButton.snp.bottom).offset(40)
+            make.top.equalTo(titleButton.snp.bottom).offset(85)
             make.bottom.equalTo(self.snp.bottom)
             make.leading.equalTo(titleButton.snp.leading)
             make.trailing.equalTo(titleButton.snp.trailing)
@@ -73,5 +73,35 @@ class StoryTitleHeader: UIView {
         addSubview(titleButton)
         addSubview(subTitleButton)
         addSubview(bottomLine)
+    }
+    
+    func updateHeaderLayout(offset: CGFloat) {
+        if offset > 46 {
+            titleButton.transform = CGAffineTransform(translationX: 0, y: -46)
+        } else {
+            titleButton.transform = CGAffineTransform(translationX: 0, y: -offset)
+            titleButton.titleLabel?.font = .myBoldSystemFont(ofSize: 19 - offset/20)
+            
+            subTitleButton.transform = CGAffineTransform(translationX: 0, y: -offset)
+            subTitleButton.titleLabel?.font = .myRegularSystemFont(ofSize: 15 - offset/20)
+        }
+        
+        if offset > 35 {
+            bottomLine.transform = CGAffineTransform(translationX: 0, y: -115)
+        } else {
+            bottomLine.transform = CGAffineTransform(translationX: 0, y: -offset*2.6)
+        }
+        
+        if offset > 30 {
+            subTitleButton.isHidden = true
+        } else {
+            subTitleButton.isHidden = false
+        }
+    }
+    
+    func originHeaderLayout() {
+        titleButton.transform = .identity
+        bottomLine.transform = .identity
+        subTitleButton.transform = .identity
     }
 }

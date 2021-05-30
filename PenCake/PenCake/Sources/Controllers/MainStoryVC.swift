@@ -11,6 +11,8 @@ class MainStoryVC: UIViewController {
     private var storyTableView = UITableView()
     private let titleHeader = StoryTitleHeader()
     
+    private var originalTableViewHeight: CGFloat = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -19,6 +21,7 @@ class MainStoryVC: UIViewController {
     
     private func setupTableView() {
         storyTableView.dataSource = self
+        storyTableView.delegate = self
         
         storyTableView.backgroundColor = .secondarySystemBackground
         storyTableView.separatorStyle = .none
@@ -44,12 +47,14 @@ class MainStoryVC: UIViewController {
             make.top.equalTo(titleHeader.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
+        
+        originalTableViewHeight = storyTableView.frame.size.height
     }
 }
 
 extension MainStoryVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 20
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,5 +62,23 @@ extension MainStoryVC: UITableViewDataSource {
             return UITableViewCell()
         }
         return cell
+    }
+}
+
+extension MainStoryVC: UITableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if storyTableView.contentOffset.y > 0 {
+            print(storyTableView.contentOffset.y)
+            titleHeader.updateHeaderLayout(offset: storyTableView.contentOffset.y)
+            
+            if storyTableView.contentOffset.y > 46 {
+                storyTableView.transform = CGAffineTransform(translationX: 0, y: -110)
+            } else {
+                storyTableView.transform = CGAffineTransform(translationX: 0, y: -storyTableView.contentOffset.y*2.5)
+            }
+        } else {
+            titleHeader.originHeaderLayout()
+            storyTableView.transform = .identity
+        }
     }
 }
