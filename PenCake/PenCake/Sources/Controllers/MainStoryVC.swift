@@ -79,7 +79,7 @@ extension MainStoryVC: UITableViewDelegate {
                 storyTableView.transform = CGAffineTransform(translationX: 0, y: -offset*2.5)
             }
         } else if offset == 0 {
-            titleHeader.originHeaderLayout()
+            titleHeader.backToOriginalHeaderLayout()
             storyTableView.transform = .identity
         }
     }

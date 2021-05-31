@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class CreateContentTextView: UIView {
-    lazy private var contentTextView: UITextView = {
+    lazy var contentTextView: UITextView = {
         let textView = UITextView()
         textView.font = .myRegularSystemFont(ofSize: 14)
         textView.textColor = .systemGray2
@@ -24,7 +24,7 @@ class CreateContentTextView: UIView {
         return textView
     }()
     
-    private var titleTextField: UITextField = {
+    var titleTextField: UITextField = {
         let textField = UITextField()
         textField.font = .myBoldSystemFont(ofSize: 19)
         textField.borderStyle = .none
@@ -44,6 +44,8 @@ class CreateContentTextView: UIView {
         return view
     }()
     
+    private var viewController: CreateContentVC?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupConfigure()
@@ -51,6 +53,12 @@ class CreateContentTextView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(root viewController: CreateContentVC) {
+        super.init(frame: .zero)
+        self.viewController = viewController
+        setupConfigure()
     }
     
     override func layoutSubviews() {
@@ -92,6 +100,8 @@ extension CreateContentTextView: UITextViewDelegate {
             textView.text = nil
             textView.textColor = UIColor.black
         }
+        titleTextField.isHidden = true
+        viewController?.didSelectTextView()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {

@@ -25,15 +25,14 @@ class StorySubViewHeader: UIView {
         return button
     }()
     
-    private var titleButton: UIButton = {
+    var titleButton: UIButton = {
         let button = UIButton()
-        button.setTitle("제목", for: .normal)
-        button.setTitleColor(.systemGray, for: .normal)
         button.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
         return button
     }()
     
     private var viewController: UIViewController?
+    private var createContentVC: CreateContentVC?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,11 +43,11 @@ class StorySubViewHeader: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(root viewController: UIViewController) {
+    init(root viewController: UIViewController, embed createContentVC: CreateContentVC) {
         super.init(frame: .zero)
         self.viewController = viewController
-        addSubviews()
-        setupButtonAction()
+        self.createContentVC = createContentVC
+        setupConfigure()
     }
     
     override func layoutSubviews() {
@@ -68,6 +67,13 @@ class StorySubViewHeader: UIView {
         }
     }
     
+    private func setupConfigure() {
+        titleButton.isHidden = true
+        
+        addSubviews()
+        setupButtonAction()
+    }
+    
     private func addSubviews() {
         addSubview(cancelButton)
         addSubview(titleButton)
@@ -84,5 +90,10 @@ class StorySubViewHeader: UIView {
             self.viewController?.dismiss(animated: true, completion: nil)
         }
         saveButton.addAction(saveAction, for: .touchUpInside)
+        
+        let titleAction = UIAction { _ in
+            self.createContentVC?.backToOriginalPosition()
+        }
+        titleButton.addAction(titleAction, for: .touchUpInside)
     }
 }

@@ -99,7 +99,7 @@ class StoryTitleHeader: UIView {
         }
     }
     
-    func originHeaderLayout() {
+    func backToOriginalHeaderLayout() {
         titleButton.transform = .identity
         bottomLine.transform = .identity
         subTitleButton.transform = .identity
