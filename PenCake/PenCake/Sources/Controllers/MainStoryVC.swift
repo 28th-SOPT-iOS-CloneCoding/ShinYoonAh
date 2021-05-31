@@ -67,18 +67,29 @@ extension MainStoryVC: UITableViewDataSource {
 
 extension MainStoryVC: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if storyTableView.contentOffset.y > 0 {
-            print(storyTableView.contentOffset.y)
-            titleHeader.updateHeaderLayout(offset: storyTableView.contentOffset.y)
+        let offset = storyTableView.contentOffset.y
+        
+        if offset > 0 {
+            print(offset)
+            titleHeader.updateHeaderLayout(offset: offset)
             
-            if storyTableView.contentOffset.y > 46 {
+            if offset > 46 {
                 storyTableView.transform = CGAffineTransform(translationX: 0, y: -110)
             } else {
-                storyTableView.transform = CGAffineTransform(translationX: 0, y: -storyTableView.contentOffset.y*2.5)
+                storyTableView.transform = CGAffineTransform(translationX: 0, y: -offset*2.5)
             }
-        } else {
+        } else if offset == 0 {
             titleHeader.originHeaderLayout()
             storyTableView.transform = .identity
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offset = storyTableView.contentOffset.y
+        
+        if offset < -100 {
+            guard let vc = storyboard?.instantiateViewController(withIdentifier: "CreateContentVC") as? CreateContentVC else { return }
+            present(vc, animated: true, completion: nil)
         }
     }
 }

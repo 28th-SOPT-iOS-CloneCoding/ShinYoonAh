@@ -31,6 +31,21 @@
             </objects>
             <point key="canvasLocation" x="818.84057971014499" y="-2.0089285714285712"/>
         </scene>
+        <!--Create ContentVC-->
+        <scene sceneID="znq-6b-YTq">
+            <objects>
+                <viewController storyboardIdentifier="CreateContentVC" id="aya-I9-wpk" customClass="CreateContentVC" customModule="PenCake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aVm-cm-jlL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Xii-eI-efT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cPU-mS-TEf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="819" y="664"/>
+        </scene>
         <!--Create StoryVC-->
         <scene sceneID="fel-XK-7M9">
             <objects>
@@ -50,6 +65,9 @@
     <resources>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>
