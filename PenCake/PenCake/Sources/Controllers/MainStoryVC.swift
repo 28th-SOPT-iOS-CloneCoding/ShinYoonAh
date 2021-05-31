@@ -89,6 +89,7 @@ extension MainStoryVC: UITableViewDelegate {
         
         if offset < -100 {
             guard let vc = storyboard?.instantiateViewController(withIdentifier: "CreateContentVC") as? CreateContentVC else { return }
+            vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true, completion: nil)
         }
     }

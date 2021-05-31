@@ -26,6 +26,7 @@
 		EDCE0D452663EA4800A19B10 /* Extension+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCE0D442663EA4800A19B10 /* Extension+UIDevice.swift */; };
 		EDD17F7A2664BCDE003062F7 /* CreateContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F792664BCDE003062F7 /* CreateContentVC.swift */; };
 		EDD17F7C2664C36D003062F7 /* StorySubViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F7B2664C36D003062F7 /* StorySubViewHeader.swift */; };
+		EDD17F7E2664D53B003062F7 /* CreateContentTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F7D2664D53B003062F7 /* CreateContentTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		EDCE0D442663EA4800A19B10 /* Extension+UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIDevice.swift"; sourceTree = "<group>"; };
 		EDD17F792664BCDE003062F7 /* CreateContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContentVC.swift; sourceTree = "<group>"; };
 		EDD17F7B2664C36D003062F7 /* StorySubViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorySubViewHeader.swift; sourceTree = "<group>"; };
+		EDD17F7D2664D53B003062F7 /* CreateContentTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContentTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 			children = (
 				EDCE0D2E2663C33400A19B10 /* StoryTitleHeader.swift */,
 				EDD17F7B2664C36D003062F7 /* StorySubViewHeader.swift */,
+				EDD17F7D2664D53B003062F7 /* CreateContentTextView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				EDD17F7A2664BCDE003062F7 /* CreateContentVC.swift in Sources */,
 				EDCE0D452663EA4800A19B10 /* Extension+UIDevice.swift in Sources */,
 				EDCE0D2F2663C33400A19B10 /* StoryTitleHeader.swift in Sources */,
+				EDD17F7E2664D53B003062F7 /* CreateContentTextView.swift in Sources */,
 				ED9B7A4C2662A789008C40F1 /* AppDelegate.swift in Sources */,
 				ED9B7A4E2662A789008C40F1 /* SceneDelegate.swift in Sources */,
 				EDCE0D222663A6D400A19B10 /* StoryPageVC.swift in Sources */,

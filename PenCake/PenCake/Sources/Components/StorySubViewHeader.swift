@@ -12,7 +12,7 @@ class StorySubViewHeader: UIView {
     private var cancelButton: UIButton = {
         let button = UIButton()
         button.setTitle("취소", for: .normal)
-        button.setTitleColor(.systemGray4, for: .normal)
+        button.setTitleColor(.systemGray, for: .normal)
         button.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
         return button
     }()
@@ -28,10 +28,12 @@ class StorySubViewHeader: UIView {
     private var titleButton: UIButton = {
         let button = UIButton()
         button.setTitle("제목", for: .normal)
-        button.setTitleColor(.systemGray4, for: .normal)
+        button.setTitleColor(.systemGray, for: .normal)
         button.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
         return button
     }()
+    
+    private var viewController: UIViewController?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,15 +44,22 @@ class StorySubViewHeader: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    init(root viewController: UIViewController) {
+        super.init(frame: .zero)
+        self.viewController = viewController
+        addSubviews()
+        setupButtonAction()
+    }
+    
     override func layoutSubviews() {
         cancelButton.snp.makeConstraints { make in
             make.centerY.equalTo(self.snp.centerY)
-            make.leading.equalToSuperview().inset(15)
+            make.leading.equalToSuperview().inset(18)
         }
         
         saveButton.snp.makeConstraints { make in
             make.centerY.equalTo(self.snp.centerY)
-            make.trailing.equalToSuperview().inset(15)
+            make.trailing.equalToSuperview().inset(18)
         }
         
         titleButton.snp.makeConstraints { make in
@@ -63,5 +72,17 @@ class StorySubViewHeader: UIView {
         addSubview(cancelButton)
         addSubview(titleButton)
         addSubview(saveButton)
+    }
+    
+    private func setupButtonAction() {
+        let cancelAction = UIAction { _ in
+            self.viewController?.dismiss(animated: true, completion: nil)
+        }
+        cancelButton.addAction(cancelAction, for: .touchUpInside)
+        
+        let saveAction = UIAction { _ in
+            self.viewController?.dismiss(animated: true, completion: nil)
+        }
+        saveButton.addAction(saveAction, for: .touchUpInside)
     }
 }
