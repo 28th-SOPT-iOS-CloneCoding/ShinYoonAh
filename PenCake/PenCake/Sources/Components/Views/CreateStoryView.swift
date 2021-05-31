@@ -42,12 +42,14 @@ class CreateStoryView: UIView {
         super.init(frame: .zero)
         self.viewController = viewController
         addSubviews()
+        setupButtonAction()
     }
     
     override func layoutSubviews() {
         plusButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().inset(10)
+            make.height.width.equalTo(80)
         }
         
         startLabel.snp.makeConstraints { make in
@@ -60,5 +62,14 @@ class CreateStoryView: UIView {
     private func addSubviews() {
         addSubview(plusButton)
         addSubview(startLabel)
+    }
+    
+    private func setupButtonAction() {
+        let plusAction = UIAction { _ in
+            guard let vc = self.viewController?.storyboard?.instantiateViewController(withIdentifier: "NewStoryVC") as? NewStoryVC else { return }
+            vc.modalPresentationStyle = .fullScreen
+            self.viewController?.present(vc, animated: true, completion: nil)
+        }
+        plusButton.addAction(plusAction, for: .touchUpInside)
     }
 }

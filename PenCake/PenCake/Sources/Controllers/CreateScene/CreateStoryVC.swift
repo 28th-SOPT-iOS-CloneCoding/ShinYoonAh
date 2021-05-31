@@ -14,17 +14,18 @@ class CreateStoryVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupConfigure()
+        addSubviews()
     }
     
     override func viewWillLayoutSubviews() {
         plusView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
+            make.width.height.equalTo(180)
         }
     }
     
-    private func setupConfigure() {
+    private func addSubviews() {
         view.addSubview(plusView)
     }
 }
