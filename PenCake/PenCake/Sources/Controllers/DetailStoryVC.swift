@@ -16,6 +16,9 @@ class DetailStoryVC: UIViewController {
     }
     
     private func setupConfigure() {
-        
+        view.layer.masksToBounds = false
+        view.layer.shadowOpacity = 0.8
+        view.layer.shadowOffset = CGSize(width: 0, height: 0)
+        view.layer.shadowRadius = 8
     }
 }
