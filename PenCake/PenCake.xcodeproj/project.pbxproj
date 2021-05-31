@@ -31,6 +31,9 @@
 		EDD17F85266501F3003062F7 /* DetailStoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F84266501F3003062F7 /* DetailStoryVC.swift */; };
 		EDD17F872665086D003062F7 /* CreateStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F862665086D003062F7 /* CreateStoryView.swift */; };
 		EDD17F8B26650ED5003062F7 /* NewStoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F8A26650ED5003062F7 /* NewStoryVC.swift */; };
+		EDD17F8F26653EA5003062F7 /* NewStoryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F8E26653EA5003062F7 /* NewStoryHeader.swift */; };
+		EDD17F9126654386003062F7 /* StoryTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F9026654386003062F7 /* StoryTitleView.swift */; };
+		EDD17F93266548FE003062F7 /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F92266548FE003062F7 /* Extension+UITextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +65,9 @@
 		EDD17F84266501F3003062F7 /* DetailStoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStoryVC.swift; sourceTree = "<group>"; };
 		EDD17F862665086D003062F7 /* CreateStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStoryView.swift; sourceTree = "<group>"; };
 		EDD17F8A26650ED5003062F7 /* NewStoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewStoryVC.swift; sourceTree = "<group>"; };
+		EDD17F8E26653EA5003062F7 /* NewStoryHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewStoryHeader.swift; sourceTree = "<group>"; };
+		EDD17F9026654386003062F7 /* StoryTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTitleView.swift; sourceTree = "<group>"; };
+		EDD17F92266548FE003062F7 /* Extension+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +217,7 @@
 				EDCE0D332663C6EB00A19B10 /* Extension+Font.swift */,
 				EDCE0D442663EA4800A19B10 /* Extension+UIDevice.swift */,
 				EDD17F822664FAFA003062F7 /* Extension+UIViewController.swift */,
+				EDD17F92266548FE003062F7 /* Extension+UITextField.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -230,6 +237,7 @@
 			children = (
 				EDCE0D2E2663C33400A19B10 /* StoryTitleHeader.swift */,
 				EDD17F7B2664C36D003062F7 /* StorySubViewHeader.swift */,
+				EDD17F8E26653EA5003062F7 /* NewStoryHeader.swift */,
 			);
 			path = Headers;
 			sourceTree = "<group>";
@@ -239,6 +247,7 @@
 			children = (
 				EDD17F7D2664D53B003062F7 /* CreateContentTextView.swift */,
 				EDD17F862665086D003062F7 /* CreateStoryView.swift */,
+				EDD17F9026654386003062F7 /* StoryTitleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -392,12 +401,15 @@
 				EDCE0D2C2663BE6500A19B10 /* StoryListTVC.swift in Sources */,
 				EDD17F7A2664BCDE003062F7 /* CreateContentVC.swift in Sources */,
 				EDCE0D452663EA4800A19B10 /* Extension+UIDevice.swift in Sources */,
+				EDD17F8F26653EA5003062F7 /* NewStoryHeader.swift in Sources */,
+				EDD17F93266548FE003062F7 /* Extension+UITextField.swift in Sources */,
 				EDCE0D2F2663C33400A19B10 /* StoryTitleHeader.swift in Sources */,
 				EDD17F7E2664D53B003062F7 /* CreateContentTextView.swift in Sources */,
 				ED9B7A4C2662A789008C40F1 /* AppDelegate.swift in Sources */,
 				ED9B7A4E2662A789008C40F1 /* SceneDelegate.swift in Sources */,
 				EDD17F832664FAFA003062F7 /* Extension+UIViewController.swift in Sources */,
 				EDD17F872665086D003062F7 /* CreateStoryView.swift in Sources */,
+				EDD17F9126654386003062F7 /* StoryTitleView.swift in Sources */,
 				EDCE0D222663A6D400A19B10 /* StoryPageVC.swift in Sources */,
 				EDCE0D342663C6EB00A19B10 /* Extension+Font.swift in Sources */,
 				EDD17F85266501F3003062F7 /* DetailStoryVC.swift in Sources */,
