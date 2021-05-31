@@ -23,6 +23,7 @@ class StoryTitleView: UIView {
         textField.textAlignment = .center
         textField.attributedPlaceholder = NSAttributedString(string: "예) 일기, 일상을 끄적이다", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray2])
         textField.font = .myRegularSystemFont(ofSize: 15)
+        textField.removeAuto()
         return textField
     }()
 

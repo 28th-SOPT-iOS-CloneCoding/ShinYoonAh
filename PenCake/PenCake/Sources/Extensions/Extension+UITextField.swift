@@ -15,4 +15,11 @@ extension UITextField {
         self.layer.addSublayer(border)
         self.borderStyle = .none
     }
+    
+    func removeAuto() {
+        self.autocorrectionType = .no
+        self.autocapitalizationType = .none
+        self.spellCheckingType = .no
+        self.textContentType = .none
+    }
 }

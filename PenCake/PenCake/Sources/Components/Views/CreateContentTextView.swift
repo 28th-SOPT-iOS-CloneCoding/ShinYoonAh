@@ -31,10 +31,7 @@ class CreateContentTextView: UIView {
         textField.backgroundColor = .clear
         textField.attributedPlaceholder = NSAttributedString(string: "제목", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         
-        textField.autocorrectionType = .no
-        textField.autocapitalizationType = .none
-        textField.spellCheckingType = .no
-        textField.textContentType = .none
+        textField.removeAuto()
         return textField
     }()
     
