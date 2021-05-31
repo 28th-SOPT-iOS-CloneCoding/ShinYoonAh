@@ -28,6 +28,7 @@ class StorySubViewHeader: UIView {
     var titleButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
+        button.titleLabel?.lineBreakMode = .byTruncatingTail
         return button
     }()
     
@@ -64,6 +65,7 @@ class StorySubViewHeader: UIView {
         titleButton.snp.makeConstraints { make in
             make.centerY.equalTo(self.snp.centerY)
             make.centerX.equalTo(self.snp.centerX)
+            make.width.lessThanOrEqualTo(UIScreen.main.bounds.size.width - 100)
         }
     }
     

@@ -31,6 +31,10 @@ class MainStoryVC: UIViewController {
     }
     
     private func setupConfigure() {
+        navigationController?.isNavigationBarHidden = true
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
         view.addSubview(titleHeader)
         view.addSubview(storyTableView)
         
@@ -52,6 +56,12 @@ class MainStoryVC: UIViewController {
     }
 }
 
+extension MainStoryVC: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+}
+
 extension MainStoryVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
@@ -61,6 +71,7 @@ extension MainStoryVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StoryListTVC.identifier) as? StoryListTVC else {
             return UITableViewCell()
         }
+        cell.selectionStyle = .none
         return cell
     }
 }
@@ -70,7 +81,6 @@ extension MainStoryVC: UITableViewDelegate {
         let offset = storyTableView.contentOffset.y
         
         if offset > 0 {
-            print(offset)
             titleHeader.updateHeaderLayout(offset: offset)
             
             if offset > 46 {
@@ -92,5 +102,10 @@ extension MainStoryVC: UITableViewDelegate {
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true, completion: nil)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let pvc = storyboard?.instantiateViewController(withIdentifier: "DetailStoryVC") as? DetailStoryVC else { return }
+        navigationController?.pushViewController(pvc, animated: true)
     }
 }

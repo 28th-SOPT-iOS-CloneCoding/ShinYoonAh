@@ -28,6 +28,7 @@
 		EDD17F7C2664C36D003062F7 /* StorySubViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F7B2664C36D003062F7 /* StorySubViewHeader.swift */; };
 		EDD17F7E2664D53B003062F7 /* CreateContentTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F7D2664D53B003062F7 /* CreateContentTextView.swift */; };
 		EDD17F832664FAFA003062F7 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F822664FAFA003062F7 /* Extension+UIViewController.swift */; };
+		EDD17F85266501F3003062F7 /* DetailStoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F84266501F3003062F7 /* DetailStoryVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		EDD17F7B2664C36D003062F7 /* StorySubViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorySubViewHeader.swift; sourceTree = "<group>"; };
 		EDD17F7D2664D53B003062F7 /* CreateContentTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContentTextView.swift; sourceTree = "<group>"; };
 		EDD17F822664FAFA003062F7 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
+		EDD17F84266501F3003062F7 /* DetailStoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStoryVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				EDCE0D252663B3CC00A19B10 /* MainStoryVC.swift */,
 				EDCE0D272663B3F100A19B10 /* CreateStoryVC.swift */,
 				EDD17F792664BCDE003062F7 /* CreateContentVC.swift */,
+				EDD17F84266501F3003062F7 /* DetailStoryVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				EDD17F832664FAFA003062F7 /* Extension+UIViewController.swift in Sources */,
 				EDCE0D222663A6D400A19B10 /* StoryPageVC.swift in Sources */,
 				EDCE0D342663C6EB00A19B10 /* Extension+Font.swift in Sources */,
+				EDD17F85266501F3003062F7 /* DetailStoryVC.swift in Sources */,
 				EDD17F7C2664C36D003062F7 /* StorySubViewHeader.swift in Sources */,
 				EDCE0D262663B3CC00A19B10 /* MainStoryVC.swift in Sources */,
 			);

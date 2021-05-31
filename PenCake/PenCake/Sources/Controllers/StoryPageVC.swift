@@ -12,7 +12,7 @@ class StoryPageVC: UIPageViewController {
     
     var viewsList: [UIViewController] = {
         let storyboard = UIStoryboard(name: "StoryPage", bundle: nil)
-        let mainVC = storyboard.instantiateViewController(withIdentifier: "MainStoryVC")
+        let mainVC = storyboard.instantiateViewController(withIdentifier: "MainStoryNavi")
         let createVC = storyboard.instantiateViewController(withIdentifier: "CreateStoryVC")
         
         return [mainVC, createVC]
