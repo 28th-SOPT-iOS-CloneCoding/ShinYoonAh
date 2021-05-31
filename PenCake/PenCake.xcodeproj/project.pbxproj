@@ -29,6 +29,7 @@
 		EDD17F7E2664D53B003062F7 /* CreateContentTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F7D2664D53B003062F7 /* CreateContentTextView.swift */; };
 		EDD17F832664FAFA003062F7 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F822664FAFA003062F7 /* Extension+UIViewController.swift */; };
 		EDD17F85266501F3003062F7 /* DetailStoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F84266501F3003062F7 /* DetailStoryVC.swift */; };
+		EDD17F872665086D003062F7 /* CreateStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F862665086D003062F7 /* CreateStoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		EDD17F7D2664D53B003062F7 /* CreateContentTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContentTextView.swift; sourceTree = "<group>"; };
 		EDD17F822664FAFA003062F7 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		EDD17F84266501F3003062F7 /* DetailStoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStoryVC.swift; sourceTree = "<group>"; };
+		EDD17F862665086D003062F7 /* CreateStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,9 +159,8 @@
 		EDCE0D1A2663A5A200A19B10 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				EDCE0D2E2663C33400A19B10 /* StoryTitleHeader.swift */,
-				EDD17F7B2664C36D003062F7 /* StorySubViewHeader.swift */,
-				EDD17F7D2664D53B003062F7 /* CreateContentTextView.swift */,
+				EDD17F8926650874003062F7 /* Views */,
+				EDD17F882665086F003062F7 /* Headers */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -222,6 +223,24 @@
 				EDCE0D3F2663CBDF00A19B10 /* NanumMyeongjoExtraBold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		EDD17F882665086F003062F7 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				EDCE0D2E2663C33400A19B10 /* StoryTitleHeader.swift */,
+				EDD17F7B2664C36D003062F7 /* StorySubViewHeader.swift */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		EDD17F8926650874003062F7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EDD17F7D2664D53B003062F7 /* CreateContentTextView.swift */,
+				EDD17F862665086D003062F7 /* CreateStoryView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F52A36233DC45618E3842601 /* Frameworks */ = {
@@ -359,6 +378,7 @@
 				ED9B7A4C2662A789008C40F1 /* AppDelegate.swift in Sources */,
 				ED9B7A4E2662A789008C40F1 /* SceneDelegate.swift in Sources */,
 				EDD17F832664FAFA003062F7 /* Extension+UIViewController.swift in Sources */,
+				EDD17F872665086D003062F7 /* CreateStoryView.swift in Sources */,
 				EDCE0D222663A6D400A19B10 /* StoryPageVC.swift in Sources */,
 				EDCE0D342663C6EB00A19B10 /* Extension+Font.swift in Sources */,
 				EDD17F85266501F3003062F7 /* DetailStoryVC.swift in Sources */,

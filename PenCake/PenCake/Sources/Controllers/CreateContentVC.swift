@@ -17,12 +17,7 @@ class CreateContentVC: UIViewController {
         setupConfigure()
     }
     
-    private func setupConfigure() {
-        view.backgroundColor = .secondarySystemBackground
-        
-        view.addSubview(header)
-        view.addSubview(contentView)
-        
+    override func viewWillLayoutSubviews() {
         header.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(44)
@@ -32,6 +27,13 @@ class CreateContentVC: UIViewController {
             make.top.equalTo(header.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
+    }
+    
+    private func setupConfigure() {
+        view.backgroundColor = .secondarySystemBackground
+        
+        view.addSubview(header)
+        view.addSubview(contentView)
     }
     
     func didSelectTextView() {

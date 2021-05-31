@@ -19,6 +19,22 @@ class MainStoryVC: UIViewController {
         setupConfigure()
     }
     
+    override func viewWillLayoutSubviews() {
+        titleHeader.snp.makeConstraints { make in
+            if UIDevice.current.hasNotch {
+                make.top.equalToSuperview().inset(44)
+            } else {
+                make.top.equalToSuperview()
+            }
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        storyTableView.snp.makeConstraints { make in
+            make.top.equalTo(titleHeader.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
     private func setupTableView() {
         storyTableView.dataSource = self
         storyTableView.delegate = self
@@ -37,20 +53,6 @@ class MainStoryVC: UIViewController {
         
         view.addSubview(titleHeader)
         view.addSubview(storyTableView)
-        
-        titleHeader.snp.makeConstraints { make in
-            if UIDevice.current.hasNotch {
-                make.top.equalToSuperview().inset(44)
-            } else {
-                make.top.equalToSuperview()
-            }
-            make.leading.trailing.equalToSuperview()
-        }
-        
-        storyTableView.snp.makeConstraints { make in
-            make.top.equalTo(titleHeader.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
         
         originalTableViewHeight = storyTableView.frame.size.height
     }
