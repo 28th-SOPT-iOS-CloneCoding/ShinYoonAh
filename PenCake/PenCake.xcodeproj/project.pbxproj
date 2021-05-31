@@ -27,6 +27,7 @@
 		EDD17F7A2664BCDE003062F7 /* CreateContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F792664BCDE003062F7 /* CreateContentVC.swift */; };
 		EDD17F7C2664C36D003062F7 /* StorySubViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F7B2664C36D003062F7 /* StorySubViewHeader.swift */; };
 		EDD17F7E2664D53B003062F7 /* CreateContentTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F7D2664D53B003062F7 /* CreateContentTextView.swift */; };
+		EDD17F832664FAFA003062F7 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD17F822664FAFA003062F7 /* Extension+UIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		EDD17F792664BCDE003062F7 /* CreateContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContentVC.swift; sourceTree = "<group>"; };
 		EDD17F7B2664C36D003062F7 /* StorySubViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorySubViewHeader.swift; sourceTree = "<group>"; };
 		EDD17F7D2664D53B003062F7 /* CreateContentTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContentTextView.swift; sourceTree = "<group>"; };
+		EDD17F822664FAFA003062F7 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +206,7 @@
 			children = (
 				EDCE0D332663C6EB00A19B10 /* Extension+Font.swift */,
 				EDCE0D442663EA4800A19B10 /* Extension+UIDevice.swift */,
+				EDD17F822664FAFA003062F7 /* Extension+UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				EDD17F7E2664D53B003062F7 /* CreateContentTextView.swift in Sources */,
 				ED9B7A4C2662A789008C40F1 /* AppDelegate.swift in Sources */,
 				ED9B7A4E2662A789008C40F1 /* SceneDelegate.swift in Sources */,
+				EDD17F832664FAFA003062F7 /* Extension+UIViewController.swift in Sources */,
 				EDCE0D222663A6D400A19B10 /* StoryPageVC.swift in Sources */,
 				EDCE0D342663C6EB00A19B10 /* Extension+Font.swift in Sources */,
 				EDD17F7C2664C36D003062F7 /* StorySubViewHeader.swift in Sources */,

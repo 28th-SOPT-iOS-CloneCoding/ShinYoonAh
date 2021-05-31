@@ -62,4 +62,16 @@ class CreateContentVC: UIViewController {
             self.contentView.titleTextField.becomeFirstResponder()
         }
     }
+    
+    func didClickCancel() {
+        if let hasTextfield = contentView.titleTextField.text,
+           let hasTextView = contentView.contentTextView.text {
+            if hasTextfield.isEmpty && (hasTextView.isEmpty || hasTextView == "내용을 입력하세요"){
+                dismiss(animated: true, completion: nil)
+            } else {
+                print(hasTextView.isEmpty)
+                makeActionSheet(message: "작성중인 글이 있습니다.")
+            }
+        }
+    }
 }

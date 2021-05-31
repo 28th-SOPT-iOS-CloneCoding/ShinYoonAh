@@ -82,7 +82,7 @@ class StorySubViewHeader: UIView {
     
     private func setupButtonAction() {
         let cancelAction = UIAction { _ in
-            self.viewController?.dismiss(animated: true, completion: nil)
+            self.createContentVC?.didClickCancel()
         }
         cancelButton.addAction(cancelAction, for: .touchUpInside)
         
