@@ -12,6 +12,7 @@
 		ED9B7A4E2662A789008C40F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B7A4D2662A789008C40F1 /* SceneDelegate.swift */; };
 		ED9B7A552662A78A008C40F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED9B7A542662A78A008C40F1 /* Assets.xcassets */; };
 		ED9B7A582662A78A008C40F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED9B7A562662A78A008C40F1 /* LaunchScreen.storyboard */; };
+		EDB3EA17266697690070B9F0 /* PlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB3EA16266697690070B9F0 /* PlusButton.swift */; };
 		EDCE0D202663A6B500A19B10 /* StoryPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDCE0D1F2663A6B500A19B10 /* StoryPage.storyboard */; };
 		EDCE0D222663A6D400A19B10 /* StoryPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCE0D212663A6D400A19B10 /* StoryPageVC.swift */; };
 		EDCE0D262663B3CC00A19B10 /* MainStoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCE0D252663B3CC00A19B10 /* MainStoryVC.swift */; };
@@ -46,6 +47,7 @@
 		ED9B7A542662A78A008C40F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED9B7A572662A78A008C40F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED9B7A592662A78A008C40F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDB3EA16266697690070B9F0 /* PlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButton.swift; sourceTree = "<group>"; };
 		EDCE0D1F2663A6B500A19B10 /* StoryPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StoryPage.storyboard; sourceTree = "<group>"; };
 		EDCE0D212663A6D400A19B10 /* StoryPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPageVC.swift; sourceTree = "<group>"; };
 		EDCE0D252663B3CC00A19B10 /* MainStoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStoryVC.swift; sourceTree = "<group>"; };
@@ -119,6 +121,14 @@
 			path = PenCake;
 			sourceTree = "<group>";
 		};
+		EDB3EA15266697200070B9F0 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				EDB3EA16266697690070B9F0 /* PlusButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
 		EDCE0D162663A56700A19B10 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +175,7 @@
 		EDCE0D1A2663A5A200A19B10 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				EDB3EA15266697200070B9F0 /* Buttons */,
 				EDD17F8926650874003062F7 /* Views */,
 				EDD17F882665086F003062F7 /* Headers */,
 			);
@@ -400,6 +411,7 @@
 				EDCE0D282663B3F100A19B10 /* CreateStoryVC.swift in Sources */,
 				EDCE0D2C2663BE6500A19B10 /* StoryListTVC.swift in Sources */,
 				EDD17F7A2664BCDE003062F7 /* CreateContentVC.swift in Sources */,
+				EDB3EA17266697690070B9F0 /* PlusButton.swift in Sources */,
 				EDCE0D452663EA4800A19B10 /* Extension+UIDevice.swift in Sources */,
 				EDD17F8F26653EA5003062F7 /* NewStoryHeader.swift in Sources */,
 				EDD17F93266548FE003062F7 /* Extension+UITextField.swift in Sources */,

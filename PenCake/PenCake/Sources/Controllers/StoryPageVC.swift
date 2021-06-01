@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class StoryPageVC: UIPageViewController {
     var completeHandler: ((Int) -> ())?
@@ -18,6 +19,7 @@ class StoryPageVC: UIPageViewController {
         
         return [mainVC, createVC]
     }()
+    private var plusButton = PlusButton()
     
     var currentIndex: Int {
         guard let vc = viewControllers?.first else { return 0 }
@@ -26,12 +28,20 @@ class StoryPageVC: UIPageViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         pageInit()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        plusButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(60)
+            make.trailing.equalToSuperview().inset(20)
+            make.height.width.equalTo(55)
+        }
     }
     
     private func pageInit() {
@@ -48,6 +58,10 @@ class StoryPageVC: UIPageViewController {
         view.backgroundColor = .secondarySystemBackground
     }
     
+    private func setupButton() {
+        view.addSubview(plusButton)
+    }
+    
     func setViewControllersFromIndex(index: Int) {
         if index < 0 && index >= viewsList.count { return }
         self.setViewControllers([viewsList[index]], direction: .forward, animated: true, completion: nil)
@@ -57,6 +71,7 @@ class StoryPageVC: UIPageViewController {
     func makeNewViewController(title: String, subTitle: String) {
         let storyboard = UIStoryboard(name: "StoryPage", bundle: nil)
         let newVC = storyboard.instantiateViewController(withIdentifier: "MainStoryNavi")
+        
         guard let embedVC = newVC.children.first as? MainStoryVC else { return }
         embedVC.titleHeader = StoryTitleHeader(title: title, subTitle: subTitle)
         viewsList.insert(newVC, at: 0)
