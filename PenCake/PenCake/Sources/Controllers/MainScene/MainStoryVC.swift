@@ -9,7 +9,7 @@ import UIKit
 
 class MainStoryVC: UIViewController {
     private var storyTableView = UITableView()
-    private let titleHeader = StoryTitleHeader()
+    var titleHeader = StoryTitleHeader()
     
     private var originalTableViewHeight: CGFloat = 0.0
     

@@ -54,12 +54,12 @@ class StoryPageVC: UIPageViewController {
         completeHandler?(currentIndex)
     }
     
-    func makeNewViewController() {
+    func makeNewViewController(title: String, subTitle: String) {
         let storyboard = UIStoryboard(name: "StoryPage", bundle: nil)
         let newVC = storyboard.instantiateViewController(withIdentifier: "MainStoryNavi")
+        guard let embedVC = newVC.children.first as? MainStoryVC else { return }
+        embedVC.titleHeader = StoryTitleHeader(title: title, subTitle: subTitle)
         viewsList.insert(newVC, at: 0)
-
-        print(viewsList)
     }
 }
 

@@ -31,11 +31,20 @@ class StoryTitleHeader: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupConfigure()
+        titleButton.setTitle("이야기1", for: .normal)
+        subTitleButton.setTitle("부제목", for: .normal)
+        addSubviews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(title: String, subTitle: String) {
+        super.init(frame: .zero)
+        titleButton.setTitle(title, for: .normal)
+        subTitleButton.setTitle(subTitle, for: .normal)
+        addSubviews()
     }
     
     override func layoutSubviews() {
@@ -60,13 +69,6 @@ class StoryTitleHeader: UIView {
             make.trailing.equalTo(titleButton.snp.trailing)
             make.height.equalTo(1)
         }
-    }
-    
-    private func setupConfigure() {
-        titleButton.setTitle("제목", for: .normal)
-        subTitleButton.setTitle("부제목", for: .normal)
-        
-        addSubviews()
     }
     
     private func addSubviews() {

@@ -97,7 +97,7 @@ class NewStoryVC: UIViewController {
                 makeAlert(message: "소제목을 입력하세요")
             } else {
                 print("저장!")
-                storyPageVC?.makeNewViewController()
+                storyPageVC?.makeNewViewController(title: storyTitleView.titleTextField.text ?? "이야기2", subTitle: storySubTitleView.titleTextField.text ?? "부제목")
                 dismiss(animated: true, completion: nil)
             }
         }
