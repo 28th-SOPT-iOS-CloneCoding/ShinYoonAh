@@ -29,6 +29,7 @@ class CreateStoryView: UIView {
     }()
     
     private var viewController: UIViewController?
+    private var storypage: StoryPageVC?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,9 +39,10 @@ class CreateStoryView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(root viewController: UIViewController) {
+    init(root viewController: UIViewController, page pageController: StoryPageVC) {
         super.init(frame: .zero)
         self.viewController = viewController
+        self.storypage = pageController
         addSubviews()
         setupButtonAction()
     }
@@ -68,6 +70,7 @@ class CreateStoryView: UIView {
         let plusAction = UIAction { _ in
             guard let vc = self.viewController?.storyboard?.instantiateViewController(withIdentifier: "NewStoryVC") as? NewStoryVC else { return }
             vc.modalPresentationStyle = .fullScreen
+            vc.storyPageVC = self.storypage
             self.viewController?.present(vc, animated: true, completion: nil)
         }
         plusButton.addAction(plusAction, for: .touchUpInside)

@@ -108,7 +108,7 @@ class NewStoryHeader: UIView {
         previousButton.addAction(previousAction, for: .touchUpInside)
         
         let saveAction = UIAction { _ in
-            self.viewController?.dismiss(animated: true, completion: nil)
+            self.newStoryVC?.saveStoryView()
         }
         saveButton.addAction(saveAction, for: .touchUpInside)
     }

@@ -10,10 +10,11 @@ import UIKit
 class StoryPageVC: UIPageViewController {
     var completeHandler: ((Int) -> ())?
     
-    var viewsList: [UIViewController] = {
+    lazy var viewsList: [UIViewController] = {
         let storyboard = UIStoryboard(name: "StoryPage", bundle: nil)
         let mainVC = storyboard.instantiateViewController(withIdentifier: "MainStoryNavi")
-        let createVC = storyboard.instantiateViewController(withIdentifier: "CreateStoryVC")
+        let createVC = storyboard.instantiateViewController(withIdentifier: "CreateStoryVC") as! CreateStoryVC
+        createVC.pageController = self
         
         return [mainVC, createVC]
     }()
@@ -25,6 +26,11 @@ class StoryPageVC: UIPageViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         pageInit()
     }
     
@@ -46,6 +52,14 @@ class StoryPageVC: UIPageViewController {
         if index < 0 && index >= viewsList.count { return }
         self.setViewControllers([viewsList[index]], direction: .forward, animated: true, completion: nil)
         completeHandler?(currentIndex)
+    }
+    
+    func makeNewViewController() {
+        let storyboard = UIStoryboard(name: "StoryPage", bundle: nil)
+        let newVC = storyboard.instantiateViewController(withIdentifier: "MainStoryNavi")
+        viewsList.insert(newVC, at: 0)
+
+        print(viewsList)
     }
 }
 

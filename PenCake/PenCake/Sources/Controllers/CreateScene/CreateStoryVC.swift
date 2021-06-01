@@ -9,8 +9,9 @@ import UIKit
 import SnapKit
 
 class CreateStoryVC: UIViewController {
-    lazy private var plusView = CreateStoryView(root: self)
-
+    lazy private var plusView = CreateStoryView(root: self, page: pageController ?? UIPageViewController() as! StoryPageVC)
+    var pageController: StoryPageVC?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

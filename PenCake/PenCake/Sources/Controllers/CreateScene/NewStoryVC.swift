@@ -12,6 +12,8 @@ class NewStoryVC: UIViewController {
     lazy private var header = NewStoryHeader(root: self, with: self)
     private var storyTitleView = StoryTitleView(content: "새 이야기를 추가합니다.\n이야기의 제목을 입력해주세요.", placeholder: "예) 일기, 일상을 끄적이다")
     private var storySubTitleView = StoryTitleView(content: "이야기의 소제목을 입력해주세요.\n다짐말을 써도 좋아요.", placeholder: "예) 오늘도 수고했어!")
+    var storyPageVC: StoryPageVC?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +66,7 @@ class NewStoryVC: UIViewController {
                         self.storyTitleView.backgroundColor = .none?.withAlphaComponent(0.5)
                         self.storyTitleView.isHidden = true
                         self.storySubTitleView.isHidden = false
+                        self.storySubTitleView.titleTextField.becomeFirstResponder()
                     }
                 })
                 
@@ -81,10 +84,23 @@ class NewStoryVC: UIViewController {
                 self.storyTitleView.backgroundColor = .none?.withAlphaComponent(1)
                 self.storyTitleView.isHidden = false
                 self.storySubTitleView.isHidden = true
+                self.storyTitleView.titleTextField.becomeFirstResponder()
             }
         })
         
         hiddenToggle()
+    }
+    
+    func saveStoryView() {
+        if let isEmpty = storySubTitleView.titleTextField.text?.isEmpty {
+            if isEmpty {
+                makeAlert(message: "소제목을 입력하세요")
+            } else {
+                print("저장!")
+                storyPageVC?.makeNewViewController()
+                dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     private func hiddenToggle() {
