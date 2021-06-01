@@ -16,7 +16,7 @@ class NewStoryHeader: UIView {
         return button
     }()
     
-    private var nextButton: UIButton = {
+    var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("다음", for: .normal)
         button.setTitleColor(.systemTeal, for: .normal)
@@ -25,6 +25,7 @@ class NewStoryHeader: UIView {
     }()
     
     private var viewController: UIViewController?
+    private var newStoryVC: NewStoryVC?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,9 +35,10 @@ class NewStoryHeader: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(root viewController: UIViewController) {
+    init(root viewController: UIViewController, with newStoryVC: NewStoryVC) {
         super.init(frame: .zero)
         self.viewController = viewController
+        self.newStoryVC = newStoryVC
         addSubviews()
         setupButtonAction()
     }
@@ -66,6 +68,7 @@ class NewStoryHeader: UIView {
         
         let nextAction = UIAction { _ in
             print("next")
+            self.newStoryVC?.moveStoryView()
         }
         nextButton.addAction(nextAction, for: .touchUpInside)
     }

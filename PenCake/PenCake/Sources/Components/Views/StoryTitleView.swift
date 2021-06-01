@@ -11,7 +11,7 @@ import SnapKit
 class StoryTitleView: UIView {
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "새 이야기를 추가합니다.\n이야기의 제목을 입력해주세요."
+        label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .myRegularSystemFont(ofSize: 15)
         return label
@@ -19,9 +19,8 @@ class StoryTitleView: UIView {
     
     private var titleTextField: UITextField = {
         let textField = UITextField()
-        textField.setTextFieldUnderLine(width: UIScreen.main.bounds.size.width - 100)
+        textField.setTextFieldUnderLine(width: UIScreen.main.bounds.size.width - 120)
         textField.textAlignment = .center
-        textField.attributedPlaceholder = NSAttributedString(string: "예) 일기, 일상을 끄적이다", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray2])
         textField.font = .myRegularSystemFont(ofSize: 15)
         textField.removeAuto()
         return textField
@@ -34,6 +33,13 @@ class StoryTitleView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(content: String, placeholder: String) {
+        super.init(frame: .zero)
+        titleLabel.text = content
+        titleTextField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray2])
+        addSubviews()
     }
     
     override func layoutSubviews() {

@@ -76,8 +76,8 @@ class StoryTitleHeader: UIView {
     }
     
     func updateHeaderLayout(offset: CGFloat) {
-        if offset > 46 {
-            titleButton.transform = CGAffineTransform(translationX: 0, y: -46)
+        if offset > 44 {
+            titleButton.transform = CGAffineTransform(translationX: 0, y: -44)
         } else {
             titleButton.transform = CGAffineTransform(translationX: 0, y: -offset)
             titleButton.titleLabel?.font = .myBoldSystemFont(ofSize: 19 - offset/20)
