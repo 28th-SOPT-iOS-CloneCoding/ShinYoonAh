@@ -17,7 +17,7 @@ class StoryTitleView: UIView {
         return label
     }()
     
-    private var titleTextField: UITextField = {
+    var titleTextField: UITextField = {
         let textField = UITextField()
         textField.setTextFieldUnderLine(width: UIScreen.main.bounds.size.width - 120)
         textField.textAlignment = .center

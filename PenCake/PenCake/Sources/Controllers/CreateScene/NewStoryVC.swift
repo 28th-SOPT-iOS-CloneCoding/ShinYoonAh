@@ -52,15 +52,45 @@ class NewStoryVC: UIViewController {
     }
     
     func moveStoryView() {
+        if let isEmpty = storyTitleView.titleTextField.text?.isEmpty {
+            if isEmpty {
+                makeAlert(message: "제목을 입력하세요")
+            } else {
+                UIView.animate(withDuration: 0.4, animations: {
+                    self.storyTitleView.transform = CGAffineTransform(translationX: 0, y: -500)
+                    self.storySubTitleView.transform = CGAffineTransform(translationX: 0, y: -450)
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                        self.storyTitleView.backgroundColor = .none?.withAlphaComponent(0.5)
+                        self.storyTitleView.isHidden = true
+                        self.storySubTitleView.isHidden = false
+                    }
+                })
+                
+                hiddenToggle()
+            }
+        }
+    }
+    
+    func undoStoryView() {
         UIView.animate(withDuration: 0.4, animations: {
-            self.storyTitleView.transform = CGAffineTransform(translationX: 0, y: -500)
-            self.storySubTitleView.transform = CGAffineTransform(translationX: 0, y: -500)
+            self.storyTitleView.transform = .identity
+            self.storySubTitleView.transform = .identity
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-                self.storyTitleView.backgroundColor = .none?.withAlphaComponent(0.5)
-                self.storyTitleView.isHidden = true
-                self.storySubTitleView.isHidden = false
+                self.storyTitleView.backgroundColor = .none?.withAlphaComponent(1)
+                self.storyTitleView.isHidden = false
+                self.storySubTitleView.isHidden = true
             }
         })
+        
+        hiddenToggle()
+    }
+    
+    private func hiddenToggle() {
+        header.previousButton.isHidden.toggle()
+        header.saveButton.isHidden.toggle()
+        header.cancelButton.isHidden.toggle()
+        header.nextButton.isHidden.toggle()
     }
 }

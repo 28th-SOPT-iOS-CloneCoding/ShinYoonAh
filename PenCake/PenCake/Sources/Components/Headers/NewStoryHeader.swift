@@ -8,7 +8,8 @@
 import UIKit
 
 class NewStoryHeader: UIView {
-    private var cancelButton: UIButton = {
+    // MARK: - TODO: button 중복되는 부분 extension UIButton, then 써보기
+    var cancelButton: UIButton = {
         let button = UIButton()
         button.setTitle("닫기", for: .normal)
         button.setTitleColor(.systemGray, for: .normal)
@@ -21,6 +22,24 @@ class NewStoryHeader: UIView {
         button.setTitle("다음", for: .normal)
         button.setTitleColor(.systemTeal, for: .normal)
         button.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
+        return button
+    }()
+    
+    var previousButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("이전", for: .normal)
+        button.setTitleColor(.systemGray, for: .normal)
+        button.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
+        button.isHidden = true
+        return button
+    }()
+    
+    var saveButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("완료", for: .normal)
+        button.setTitleColor(.systemTeal, for: .normal)
+        button.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
+        button.isHidden = true
         return button
     }()
     
@@ -53,11 +72,23 @@ class NewStoryHeader: UIView {
             make.centerY.equalTo(self.snp.centerY)
             make.trailing.equalToSuperview().inset(18)
         }
+        
+        previousButton.snp.makeConstraints { make in
+            make.centerY.equalTo(self.snp.centerY)
+            make.leading.equalToSuperview().inset(18)
+        }
+        
+        saveButton.snp.makeConstraints { make in
+            make.centerY.equalTo(self.snp.centerY)
+            make.trailing.equalToSuperview().inset(18)
+        }
     }
     
     private func addSubviews() {
         addSubview(cancelButton)
         addSubview(nextButton)
+        addSubview(previousButton)
+        addSubview(saveButton)
     }
     
     private func setupButtonAction() {
@@ -67,9 +98,18 @@ class NewStoryHeader: UIView {
         cancelButton.addAction(cancelAction, for: .touchUpInside)
         
         let nextAction = UIAction { _ in
-            print("next")
             self.newStoryVC?.moveStoryView()
         }
         nextButton.addAction(nextAction, for: .touchUpInside)
+        
+        let previousAction = UIAction { _ in
+            self.newStoryVC?.undoStoryView()
+        }
+        previousButton.addAction(previousAction, for: .touchUpInside)
+        
+        let saveAction = UIAction { _ in
+            self.viewController?.dismiss(animated: true, completion: nil)
+        }
+        saveButton.addAction(saveAction, for: .touchUpInside)
     }
 }
