@@ -59,11 +59,13 @@ class StoryPageVC: UIPageViewController {
         view.addSubview(plusButton)
         
         let plusAction = UIAction { _ in
+            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingVC") as? SettingVC else { return }
             if self.currentIndex == self.viewsList.count - 1 {
-                print("createPageAction")
-            } else {
-                print("plusAction!!")
+                vc.isCreateView = true
             }
+            vc.modalTransitionStyle = .crossDissolve
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
         }
         plusButton.addAction(plusAction, for: .touchUpInside)
     }

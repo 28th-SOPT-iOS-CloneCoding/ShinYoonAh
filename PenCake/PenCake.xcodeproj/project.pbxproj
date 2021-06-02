@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5BC89BF678642C0C3B9C4C55 /* Pods_PenCake.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 608537D69568D497C6F9BC82 /* Pods_PenCake.framework */; };
+		ED7BC7CF2667AEC20033BB17 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BC7CE2667AEC20033BB17 /* SettingVC.swift */; };
+		ED7BC7D12667B5F10033BB17 /* ExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BC7D02667B5F10033BB17 /* ExitButton.swift */; };
 		ED9B7A4C2662A789008C40F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B7A4B2662A789008C40F1 /* AppDelegate.swift */; };
 		ED9B7A4E2662A789008C40F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B7A4D2662A789008C40F1 /* SceneDelegate.swift */; };
 		ED9B7A552662A78A008C40F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED9B7A542662A78A008C40F1 /* Assets.xcassets */; };
@@ -41,6 +43,8 @@
 		608537D69568D497C6F9BC82 /* Pods_PenCake.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PenCake.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4EFC73E455019FAC0EA6D30 /* Pods-PenCake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PenCake.release.xcconfig"; path = "Target Support Files/Pods-PenCake/Pods-PenCake.release.xcconfig"; sourceTree = "<group>"; };
 		E286D95901088B3AE28A4324 /* Pods-PenCake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PenCake.debug.xcconfig"; path = "Target Support Files/Pods-PenCake/Pods-PenCake.debug.xcconfig"; sourceTree = "<group>"; };
+		ED7BC7CE2667AEC20033BB17 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		ED7BC7D02667B5F10033BB17 /* ExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitButton.swift; sourceTree = "<group>"; };
 		ED9B7A482662A789008C40F1 /* PenCake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PenCake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED9B7A4B2662A789008C40F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED9B7A4D2662A789008C40F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +97,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		ED7BC7CD2667AEA10033BB17 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				EDCE0D212663A6D400A19B10 /* StoryPageVC.swift */,
+				ED7BC7CE2667AEC20033BB17 /* SettingVC.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		ED9B7A3F2662A789008C40F1 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				EDB3EA16266697690070B9F0 /* PlusButton.swift */,
+				ED7BC7D02667B5F10033BB17 /* ExitButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -165,7 +179,7 @@
 		EDCE0D192663A59700A19B10 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EDCE0D212663A6D400A19B10 /* StoryPageVC.swift */,
+				ED7BC7CD2667AEA10033BB17 /* Shared */,
 				EDD17F8C26650EFE003062F7 /* MainScene */,
 				EDD17F8D26650F19003062F7 /* CreateScene */,
 			);
@@ -409,9 +423,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDCE0D282663B3F100A19B10 /* CreateStoryVC.swift in Sources */,
+				ED7BC7CF2667AEC20033BB17 /* SettingVC.swift in Sources */,
 				EDCE0D2C2663BE6500A19B10 /* StoryListTVC.swift in Sources */,
 				EDD17F7A2664BCDE003062F7 /* CreateContentVC.swift in Sources */,
 				EDB3EA17266697690070B9F0 /* PlusButton.swift in Sources */,
+				ED7BC7D12667B5F10033BB17 /* ExitButton.swift in Sources */,
 				EDCE0D452663EA4800A19B10 /* Extension+UIDevice.swift in Sources */,
 				EDD17F8F26653EA5003062F7 /* NewStoryHeader.swift in Sources */,
 				EDD17F93266548FE003062F7 /* Extension+UITextField.swift in Sources */,

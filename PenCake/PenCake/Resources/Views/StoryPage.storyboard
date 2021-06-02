@@ -92,6 +92,21 @@
             </objects>
             <point key="canvasLocation" x="2639" y="-2"/>
         </scene>
+        <!--SettingVC-->
+        <scene sceneID="xnK-Xq-kCF">
+            <objects>
+                <viewController storyboardIdentifier="SettingVC" id="Wdp-45-qg8" customClass="SettingVC" customModule="PenCake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KRs-uL-0Cj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="2GE-o3-xuw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t7l-Cj-eo0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-39" y="673"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ou0-2r-sA5">
             <objects>
