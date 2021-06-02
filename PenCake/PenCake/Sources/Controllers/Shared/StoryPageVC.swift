@@ -15,11 +15,14 @@ class StoryPageVC: UIPageViewController {
         let storyboard = UIStoryboard(name: "StoryPage", bundle: nil)
         let mainVC = storyboard.instantiateViewController(withIdentifier: "MainStoryNavi")
         let createVC = storyboard.instantiateViewController(withIdentifier: "CreateStoryVC") as! CreateStoryVC
+        if let vc = mainVC.children.first as? MainStoryVC {
+            vc.pageVC = self
+        }
         createVC.pageController = self
         
         return [mainVC, createVC]
     }()
-    private var plusButton = PlusButton()
+    var plusButton = PlusButton()
     
     private var canReload = true
     private var currentPage = 0
@@ -90,6 +93,7 @@ class StoryPageVC: UIPageViewController {
         
         guard let embedVC = newVC.children.first as? MainStoryVC else { return }
         embedVC.titleHeader = StoryTitleHeader(title: title, subTitle: subTitle)
+        embedVC.pageVC = self
         viewsList.insert(newVC, at: 0)
         
         canReload = true

@@ -12,6 +12,11 @@ class MainStoryVC: UIViewController {
     var titleHeader = StoryTitleHeader()
     
     private var originalTableViewHeight: CGFloat = 0.0
+    var pageVC: StoryPageVC?
+    
+    override func viewDidAppear(_ animated: Bool) {
+        pageVC?.plusButton.isHidden = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,6 +113,7 @@ extension MainStoryVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let pvc = storyboard?.instantiateViewController(withIdentifier: "DetailStoryVC") as? DetailStoryVC else { return }
+        pageVC?.plusButton.isHidden = true
         navigationController?.pushViewController(pvc, animated: true)
     }
 }
