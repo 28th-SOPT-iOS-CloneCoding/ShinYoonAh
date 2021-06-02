@@ -89,7 +89,12 @@ class StoryTitleHeader: UIView {
                 dvc.titleData = title
                 dvc.subTitleData = subTitle
             }
-
+           
+            dvc.changeTitle = { title, subTitle in
+                self.titleButton.setTitle(title, for: .normal)
+                self.subTitleButton.setTitle(subTitle, for: .normal)
+            }
+            
             dvc.modalPresentationStyle = .fullScreen
             self.vc?.present(dvc, animated: true, completion: nil)
         }

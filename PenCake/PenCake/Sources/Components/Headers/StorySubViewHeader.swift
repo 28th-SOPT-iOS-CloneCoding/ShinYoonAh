@@ -35,6 +35,7 @@ class StorySubViewHeader: UIView {
     private var isTitleView = false
     private var viewController: UIViewController?
     private var createContentVC: CreateContentVC?
+    private var changeTitleVC: ChangeTitleVC?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,9 +46,9 @@ class StorySubViewHeader: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(root viewController: UIViewController) {
+    init(root viewController: ChangeTitleVC) {
         super.init(frame: .zero)
-        self.viewController = viewController
+        self.changeTitleVC = viewController
         setupConfigure()
         isTitleView = true
     }
@@ -93,7 +94,7 @@ class StorySubViewHeader: UIView {
     private func setupButtonAction() {
         let cancelAction = UIAction { _ in
             if self.isTitleView {
-                self.viewController?.dismiss(animated: true, completion: nil)
+                self.changeTitleVC?.dismiss(animated: true, completion: nil)
             } else {
                 self.createContentVC?.didClickCancel()
             }
@@ -101,7 +102,11 @@ class StorySubViewHeader: UIView {
         cancelButton.addAction(cancelAction, for: .touchUpInside)
         
         let saveAction = UIAction { _ in
-            self.viewController?.dismiss(animated: true, completion: nil)
+            if self.isTitleView {
+                self.changeTitleVC?.saveTitle()
+            } else {
+                self.viewController?.dismiss(animated: true, completion: nil)
+            }
         }
         saveButton.addAction(saveAction, for: .touchUpInside)
         

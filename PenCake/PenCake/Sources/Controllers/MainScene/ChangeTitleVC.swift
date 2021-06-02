@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 class ChangeTitleVC: UIViewController {
+    var changeTitle: ((String, String) -> Void)?
+    
     lazy private var header = StorySubViewHeader(root: self)
     private var titleTextField: UITextField = {
         let textfield = UITextField()
@@ -71,5 +73,21 @@ class ChangeTitleVC: UIViewController {
         
         titleTextField.text = titleData
         subTitleTextField.text = subTitleData
+    }
+    
+    func saveTitle() {
+        if let titleEmpty = titleTextField.text?.isEmpty,
+           let subEmpty = subTitleTextField.text?.isEmpty {
+            if titleEmpty {
+                makeAlert(message: "제목을 입력해주세요")
+                return
+            } else if subEmpty {
+                makeAlert(message: "소제목을 입력해주세요")
+                return
+            }
+            
+            changeTitle?(titleTextField.text!, subTitleTextField.text!)
+            dismiss(animated: true, completion: nil)
+        }
     }
 }
