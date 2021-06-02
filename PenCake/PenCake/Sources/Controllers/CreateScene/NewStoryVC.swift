@@ -31,14 +31,14 @@ class NewStoryVC: UIViewController {
         storyTitleView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(header.snp.bottom).offset(130)
-            make.width.equalTo(UIScreen.main.bounds.size.width - 100)
+            make.width.equalTo(200)
             make.height.equalTo(90)
         }
         
         storySubTitleView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().inset(100)
-            make.width.equalTo(UIScreen.main.bounds.size.width - 100)
+            make.width.equalTo(200)
             make.height.equalTo(90)
         }
     }

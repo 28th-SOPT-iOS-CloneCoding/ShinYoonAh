@@ -19,7 +19,7 @@ class StoryTitleView: UIView {
     
     var titleTextField: UITextField = {
         let textField = UITextField()
-        textField.setTextFieldUnderLine(width: UIScreen.main.bounds.size.width - 120)
+        textField.setTextFieldUnderLine()
         textField.textAlignment = .center
         textField.font = .myRegularSystemFont(ofSize: 15)
         textField.removeAuto()
@@ -51,6 +51,7 @@ class StoryTitleView: UIView {
         titleTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(titleLabel.snp.bottom).offset(50)
+            make.width.equalTo(250)
         }
     }
     
