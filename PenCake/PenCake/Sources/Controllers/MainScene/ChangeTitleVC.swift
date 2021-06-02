@@ -10,6 +10,30 @@ import SnapKit
 
 class ChangeTitleVC: UIViewController {
     lazy private var header = StorySubViewHeader(root: self)
+    private var titleTextField: UITextField = {
+        let textfield = UITextField()
+        textfield.placeholder = "제목"
+        textfield.font = .myBoldSystemFont(ofSize: 19)
+        textfield.borderStyle = .none
+        textfield.textAlignment = .center
+        
+        textfield.removeAuto()
+        return textfield
+    }()
+    
+    private var subTitleTextField: UITextField = {
+        let textfield = UITextField()
+        textfield.placeholder = "소제목"
+        textfield.font = .myRegularSystemFont(ofSize: 15)
+        textfield.borderStyle = .none
+        textfield.textAlignment = .center
+        
+        textfield.removeAuto()
+        return textfield
+    }()
+    
+    var titleData: String?
+    var subTitleData: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,11 +46,30 @@ class ChangeTitleVC: UIViewController {
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(44)
         }
+        
+        titleTextField.snp.makeConstraints { make in
+            make.top.equalTo(header.snp.bottom).offset(150)
+            make.centerX.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(30)
+        }
+        
+        subTitleTextField.snp.makeConstraints { make in
+            make.top.equalTo(titleTextField.snp.bottom).offset(50)
+            make.centerX.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(30)
+        }
     }
     
     private func setupConfigure() {
         view.backgroundColor = .secondarySystemBackground
         
         view.addSubview(header)
+        view.addSubview(titleTextField)
+        view.addSubview(subTitleTextField)
+        
+        titleTextField.becomeFirstResponder()
+        
+        titleTextField.text = titleData
+        subTitleTextField.text = subTitleData
     }
 }

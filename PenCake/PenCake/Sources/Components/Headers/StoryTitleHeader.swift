@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class StoryTitleHeader: UIView {
-    private var titleButton: UIButton = {
+    var titleButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = .myBoldSystemFont(ofSize: 19)
         button.setTitleColor(.black, for: .normal)
@@ -17,7 +17,7 @@ class StoryTitleHeader: UIView {
         return button
     }()
     
-    private var subTitleButton: UIButton = {
+    var subTitleButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = .myRegularSystemFont(ofSize: 15)
         button.setTitleColor(.black, for: .normal)
@@ -83,6 +83,13 @@ class StoryTitleHeader: UIView {
     private func setupButtonAction() {
         let titleAction = UIAction { _ in
             guard let dvc = self.vc?.storyboard?.instantiateViewController(withIdentifier: "ChangeTitleVC") as? ChangeTitleVC else { return }
+            
+            if let title = self.titleButton.titleLabel?.text,
+               let subTitle = self.subTitleButton.titleLabel?.text {
+                dvc.titleData = title
+                dvc.subTitleData = subTitle
+            }
+
             dvc.modalPresentationStyle = .fullScreen
             self.vc?.present(dvc, animated: true, completion: nil)
         }
