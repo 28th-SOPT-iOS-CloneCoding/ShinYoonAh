@@ -77,7 +77,11 @@ class SettingSubView: UIView {
     
     private func setupButtonAction() {
         let storyAction = UIAction { _ in
-            print("제거")
+            self.vc?.makeRemoveAlert(title: "이야기 제거", message: "정말 제거하시겠습니까? 제거를 하면 이야기 내 모든 글도 함께 삭제됩니다.", okAction: { _ in
+                self.vc?.makeRemoveAlert(title: "이야기 제거", message: "다시 확인합니다. 정말 제거하시겠습니까?", okAction: { _ in
+                    self.pageVC?.removeViewController()
+                })
+            })
         }
         storyButton.addAction(storyAction, for: .touchUpInside)
         

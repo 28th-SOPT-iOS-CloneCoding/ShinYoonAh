@@ -46,4 +46,23 @@ extension UIViewController {
         
         self.present(alertViewController, animated: true, completion: completion)
     }
+    
+    func makeRemoveAlert(title : String,
+                   message : String,
+                   okAction : ((UIAlertAction) -> Void)? = nil,
+                   completion : (() -> Void)? = nil) {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        
+        let alertViewController = UIAlertController(title: title, message: message,
+                                                    preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        let removeAction = UIAlertAction(title: "제거", style: .destructive, handler: okAction)
+        
+        alertViewController.addAction(cancelAction)
+        alertViewController.addAction(removeAction)
+        
+        self.present(alertViewController, animated: true, completion: completion)
+    }
 }

@@ -11,17 +11,7 @@ import SnapKit
 class StoryPageVC: UIPageViewController {
     var completeHandler: ((Int) -> ())?
     
-    lazy var viewsList: [UIViewController] = {
-        let storyboard = UIStoryboard(name: "StoryPage", bundle: nil)
-        let mainVC = storyboard.instantiateViewController(withIdentifier: "MainStoryNavi")
-        let createVC = storyboard.instantiateViewController(withIdentifier: "CreateStoryVC") as! CreateStoryVC
-        if let vc = mainVC.children.first as? MainStoryVC {
-            vc.pageVC = self
-        }
-        createVC.pageController = self
-        
-        return [mainVC, createVC]
-    }()
+    var viewsList: [UIViewController] = []
     var plusButton = PlusButton()
     
     private var canReload = true
@@ -56,6 +46,16 @@ class StoryPageVC: UIPageViewController {
         self.delegate = self
         
         view.backgroundColor = .secondarySystemBackground
+        
+        let storyboard = UIStoryboard(name: "StoryPage", bundle: nil)
+        let mainVC = storyboard.instantiateViewController(withIdentifier: "MainStoryNavi")
+        let createVC = storyboard.instantiateViewController(withIdentifier: "CreateStoryVC") as! CreateStoryVC
+        if let vc = mainVC.children.first as? MainStoryVC {
+            vc.pageVC = self
+        }
+        createVC.pageController = self
+        
+        viewsList = [mainVC, createVC]
     }
     
     private func setupButton() {
@@ -80,6 +80,7 @@ class StoryPageVC: UIPageViewController {
             if index < 0 && index >= viewsList.count { return }
             self.setViewControllers([viewsList[index]], direction: .forward, animated: true, completion: nil)
             completeHandler?(currentIndex)
+            print(viewsList)
             
             canReload = false
         } else {
@@ -95,6 +96,15 @@ class StoryPageVC: UIPageViewController {
         embedVC.titleHeader = StoryTitleHeader(title: title, subTitle: subTitle)
         embedVC.pageVC = self
         viewsList.insert(newVC, at: 0)
+        
+        canReload = true
+        currentPage = 0
+    }
+    
+    // MARK: - FIX: 2개만 있을때 remove 안되는 오류
+    func removeViewController() {
+        print(currentIndex)
+        viewsList.remove(at: currentIndex)
         
         canReload = true
         currentPage = 0
