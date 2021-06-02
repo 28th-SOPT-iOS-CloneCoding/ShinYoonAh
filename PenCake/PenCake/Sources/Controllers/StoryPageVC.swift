@@ -20,8 +20,9 @@ class StoryPageVC: UIPageViewController {
         return [mainVC, createVC]
     }()
     private var plusButton = PlusButton()
-    private var targetVC = UIViewController()
+    
     private var canReload = true
+    private var currentPage = 0
     
     var currentIndex: Int {
         guard let vc = viewControllers?.first else { return 0 }
@@ -36,7 +37,7 @@ class StoryPageVC: UIPageViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        setViewController(targetVC: targetVC)
+        setViewControllersFromIndex(index: currentPage)
     }
     
     override func viewWillLayoutSubviews() {
@@ -52,32 +53,31 @@ class StoryPageVC: UIPageViewController {
         self.delegate = self
         
         view.backgroundColor = .secondarySystemBackground
-        
-        if let firstVC = viewsList.first {
-            targetVC = firstVC
-        }
-    }
-    
-    private func setViewController(targetVC: UIViewController) {
-        if canReload {
-            self.setViewControllers([targetVC],
-                                        direction: .forward,
-                                        animated: true,
-                                        completion: nil)
-            canReload = false
-        } else {
-            print("didnt Reload")
-        }
     }
     
     private func setupButton() {
         view.addSubview(plusButton)
+        
+        let plusAction = UIAction { _ in
+            if self.currentIndex == self.viewsList.count - 1 {
+                print("createPageAction")
+            } else {
+                print("plusAction!!")
+            }
+        }
+        plusButton.addAction(plusAction, for: .touchUpInside)
     }
     
     func setViewControllersFromIndex(index: Int) {
-        if index < 0 && index >= viewsList.count { return }
-        self.setViewControllers([viewsList[index]], direction: .forward, animated: true, completion: nil)
-        completeHandler?(currentIndex)
+        if canReload {
+            if index < 0 && index >= viewsList.count { return }
+            self.setViewControllers([viewsList[index]], direction: .forward, animated: true, completion: nil)
+            completeHandler?(currentIndex)
+            
+            canReload = false
+        } else {
+            print("didnt Reload")
+        }
     }
     
     func makeNewViewController(title: String, subTitle: String) {
@@ -89,8 +89,7 @@ class StoryPageVC: UIPageViewController {
         viewsList.insert(newVC, at: 0)
         
         canReload = true
-        
-        targetVC = viewsList[0]
+        currentPage = 0
     }
 }
 
