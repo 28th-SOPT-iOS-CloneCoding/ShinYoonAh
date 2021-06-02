@@ -9,7 +9,7 @@ import UIKit
 
 class MainStoryVC: UIViewController {
     private var storyTableView = UITableView()
-    var titleHeader = StoryTitleHeader()
+    lazy var titleHeader = StoryTitleHeader(title: "이야기1", subTitle: "부제목", root: self)
     
     private var originalTableViewHeight: CGFloat = 0.0
     var pageVC: StoryPageVC?

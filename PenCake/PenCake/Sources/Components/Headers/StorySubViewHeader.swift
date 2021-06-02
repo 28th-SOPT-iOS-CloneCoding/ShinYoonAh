@@ -32,6 +32,7 @@ class StorySubViewHeader: UIView {
         return button
     }()
     
+    private var isTitleView = false
     private var viewController: UIViewController?
     private var createContentVC: CreateContentVC?
     
@@ -42,6 +43,13 @@ class StorySubViewHeader: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(root viewController: UIViewController) {
+        super.init(frame: .zero)
+        self.viewController = viewController
+        setupConfigure()
+        isTitleView = true
     }
     
     init(root viewController: UIViewController, embed createContentVC: CreateContentVC) {
@@ -84,7 +92,11 @@ class StorySubViewHeader: UIView {
     
     private func setupButtonAction() {
         let cancelAction = UIAction { _ in
-            self.createContentVC?.didClickCancel()
+            if self.isTitleView {
+                self.viewController?.dismiss(animated: true, completion: nil)
+            } else {
+                self.createContentVC?.didClickCancel()
+            }
         }
         cancelButton.addAction(cancelAction, for: .touchUpInside)
         

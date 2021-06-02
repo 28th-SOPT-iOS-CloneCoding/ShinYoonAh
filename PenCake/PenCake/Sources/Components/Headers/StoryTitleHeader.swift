@@ -30,23 +30,24 @@ class StoryTitleHeader: UIView {
         view.backgroundColor = .systemGray4
         return view
     }()
+    
+    private var vc: UIViewController?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        titleButton.setTitle("이야기1", for: .normal)
-        subTitleButton.setTitle("부제목", for: .normal)
-        addSubviews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(title: String, subTitle: String) {
+    init(title: String, subTitle: String, root viewController: UIViewController) {
         super.init(frame: .zero)
+        vc = viewController
         titleButton.setTitle(title, for: .normal)
         subTitleButton.setTitle(subTitle, for: .normal)
         addSubviews()
+        setupButtonAction()
     }
     
     override func layoutSubviews() {
@@ -77,6 +78,16 @@ class StoryTitleHeader: UIView {
         addSubview(titleButton)
         addSubview(subTitleButton)
         addSubview(bottomLine)
+    }
+    
+    private func setupButtonAction() {
+        let titleAction = UIAction { _ in
+            guard let dvc = self.vc?.storyboard?.instantiateViewController(withIdentifier: "ChangeTitleVC") as? ChangeTitleVC else { return }
+            dvc.modalPresentationStyle = .fullScreen
+            self.vc?.present(dvc, animated: true, completion: nil)
+        }
+        titleButton.addAction(titleAction, for: .touchUpInside)
+        subTitleButton.addAction(titleAction, for: .touchUpInside)
     }
     
     func updateHeaderLayout(offset: CGFloat) {

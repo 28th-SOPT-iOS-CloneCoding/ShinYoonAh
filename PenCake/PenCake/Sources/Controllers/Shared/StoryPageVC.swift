@@ -93,7 +93,7 @@ class StoryPageVC: UIPageViewController {
         let newVC = storyboard.instantiateViewController(withIdentifier: "MainStoryNavi")
         
         guard let embedVC = newVC.children.first as? MainStoryVC else { return }
-        embedVC.titleHeader = StoryTitleHeader(title: title, subTitle: subTitle)
+        embedVC.titleHeader = StoryTitleHeader(title: title, subTitle: subTitle, root: embedVC)
         embedVC.pageVC = self
         viewsList.insert(newVC, at: 0)
         

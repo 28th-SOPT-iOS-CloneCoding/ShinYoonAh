@@ -12,6 +12,7 @@
 		ED7BC7D12667B5F10033BB17 /* ExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BC7D02667B5F10033BB17 /* ExitButton.swift */; };
 		ED7BC7D32667BDCE0033BB17 /* SettingMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BC7D22667BDCE0033BB17 /* SettingMainView.swift */; };
 		ED7BC7D52667CD280033BB17 /* SettingSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BC7D42667CD280033BB17 /* SettingSubView.swift */; };
+		ED7BC7D72667E3030033BB17 /* ChangeTitleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BC7D62667E3030033BB17 /* ChangeTitleVC.swift */; };
 		ED9B7A4C2662A789008C40F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B7A4B2662A789008C40F1 /* AppDelegate.swift */; };
 		ED9B7A4E2662A789008C40F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B7A4D2662A789008C40F1 /* SceneDelegate.swift */; };
 		ED9B7A552662A78A008C40F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED9B7A542662A78A008C40F1 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		ED7BC7D02667B5F10033BB17 /* ExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitButton.swift; sourceTree = "<group>"; };
 		ED7BC7D22667BDCE0033BB17 /* SettingMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMainView.swift; sourceTree = "<group>"; };
 		ED7BC7D42667CD280033BB17 /* SettingSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSubView.swift; sourceTree = "<group>"; };
+		ED7BC7D62667E3030033BB17 /* ChangeTitleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTitleVC.swift; sourceTree = "<group>"; };
 		ED9B7A482662A789008C40F1 /* PenCake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PenCake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED9B7A4B2662A789008C40F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED9B7A4D2662A789008C40F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				EDCE0D252663B3CC00A19B10 /* MainStoryVC.swift */,
 				EDD17F792664BCDE003062F7 /* CreateContentVC.swift */,
 				EDD17F84266501F3003062F7 /* DetailStoryVC.swift */,
+				ED7BC7D62667E3030033BB17 /* ChangeTitleVC.swift */,
 			);
 			path = MainScene;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				ED7BC7CF2667AEC20033BB17 /* SettingVC.swift in Sources */,
 				EDCE0D2C2663BE6500A19B10 /* StoryListTVC.swift in Sources */,
 				EDD17F7A2664BCDE003062F7 /* CreateContentVC.swift in Sources */,
+				ED7BC7D72667E3030033BB17 /* ChangeTitleVC.swift in Sources */,
 				EDB3EA17266697690070B9F0 /* PlusButton.swift in Sources */,
 				ED7BC7D12667B5F10033BB17 /* ExitButton.swift in Sources */,
 				EDCE0D452663EA4800A19B10 /* Extension+UIDevice.swift in Sources */,
