@@ -52,7 +52,7 @@ class SettingSubView: UIView {
     
     override func layoutSubviews() {
         middleLine.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().inset(20)
             make.centerX.equalToSuperview()
             make.width.equalTo(30)
             make.height.equalTo(1)

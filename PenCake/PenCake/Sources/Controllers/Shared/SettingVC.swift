@@ -10,6 +10,7 @@ import SnapKit
 
 class SettingVC: UIViewController {
     lazy private var settingMainView = SettingMainView(root: self, page: pageController ?? UIPageViewController() as! StoryPageVC)
+    lazy private var settingSubView = SettingSubView(root: self, page: pageController ?? UIPageViewController() as! StoryPageVC)
     var pageController: StoryPageVC?
     
     private var exitButton = ExitButton()
@@ -39,12 +40,17 @@ class SettingVC: UIViewController {
         stackView.snp.makeConstraints { make in
             make.centerY.centerX.equalToSuperview()
             make.width.equalTo(100)
-            make.height.lessThanOrEqualTo(160)
+            make.height.lessThanOrEqualTo(250)
         }
         
         settingMainView.snp.makeConstraints { make in
             make.width.equalTo(100)
             make.height.equalTo(80)
+        }
+
+        settingSubView.snp.makeConstraints { make in
+            make.width.equalTo(100)
+            make.height.equalTo(120)
         }
     }
     
@@ -54,6 +60,11 @@ class SettingVC: UIViewController {
         view.addSubview(exitButton)
         view.addSubview(stackView)
         stackView.addArrangedSubview(settingMainView)
+        stackView.addArrangedSubview(settingSubView)
+        
+        if isCreateView {
+            settingSubView.isHidden = true
+        }
         
         let exitAction = UIAction { _ in
             UIView.animate(withDuration: 0.3, animations: {
