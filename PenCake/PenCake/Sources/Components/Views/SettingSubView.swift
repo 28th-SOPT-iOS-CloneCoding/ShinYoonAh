@@ -83,6 +83,9 @@ class SettingSubView: UIView {
         
         let contentAction = UIAction { _ in
             print("글 생성")
+            guard let dvc = self.vc?.storyboard?.instantiateViewController(withIdentifier: "CreateContentVC") as? CreateContentVC else { return }
+            dvc.modalPresentationStyle = .fullScreen
+            self.vc?.present(dvc, animated: true, completion: nil)
         }
         contentButton.addAction(contentAction, for: .touchUpInside)
     }
