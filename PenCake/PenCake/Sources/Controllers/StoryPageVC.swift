@@ -20,6 +20,8 @@ class StoryPageVC: UIPageViewController {
         return [mainVC, createVC]
     }()
     private var plusButton = PlusButton()
+    private var targetVC = UIViewController()
+    private var canReload = true
     
     var currentIndex: Int {
         guard let vc = viewControllers?.first else { return 0 }
@@ -28,12 +30,13 @@ class StoryPageVC: UIPageViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        pageInit()
         setupButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        pageInit()
+        setViewController(targetVC: targetVC)
     }
     
     override func viewWillLayoutSubviews() {
@@ -48,14 +51,23 @@ class StoryPageVC: UIPageViewController {
         self.dataSource = self
         self.delegate = self
         
-        if let firstVC = viewsList.first {
-            self.setViewControllers([firstVC],
-                                    direction: .forward,
-                                    animated: true,
-                                    completion: nil)
-        }
-        
         view.backgroundColor = .secondarySystemBackground
+        
+        if let firstVC = viewsList.first {
+            targetVC = firstVC
+        }
+    }
+    
+    private func setViewController(targetVC: UIViewController) {
+        if canReload {
+            self.setViewControllers([targetVC],
+                                        direction: .forward,
+                                        animated: true,
+                                        completion: nil)
+            canReload = false
+        } else {
+            print("didnt Reload")
+        }
     }
     
     private func setupButton() {
@@ -75,6 +87,10 @@ class StoryPageVC: UIPageViewController {
         guard let embedVC = newVC.children.first as? MainStoryVC else { return }
         embedVC.titleHeader = StoryTitleHeader(title: title, subTitle: subTitle)
         viewsList.insert(newVC, at: 0)
+        
+        canReload = true
+        
+        targetVC = viewsList[0]
     }
 }
 
