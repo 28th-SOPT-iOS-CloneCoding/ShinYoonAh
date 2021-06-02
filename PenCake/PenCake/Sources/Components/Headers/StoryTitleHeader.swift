@@ -13,6 +13,7 @@ class StoryTitleHeader: UIView {
         let button = UIButton()
         button.titleLabel?.font = .myBoldSystemFont(ofSize: 19)
         button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.lineBreakMode = .byTruncatingTail
         return button
     }()
     
@@ -20,6 +21,7 @@ class StoryTitleHeader: UIView {
         let button = UIButton()
         button.titleLabel?.font = .myRegularSystemFont(ofSize: 15)
         button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.lineBreakMode = .byTruncatingTail
         return button
     }()
     
