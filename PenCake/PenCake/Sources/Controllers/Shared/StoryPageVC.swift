@@ -65,6 +65,7 @@ class StoryPageVC: UIPageViewController {
             }
             vc.modalTransitionStyle = .crossDissolve
             vc.modalPresentationStyle = .fullScreen
+            vc.pageController = self
             self.present(vc, animated: true, completion: nil)
         }
         plusButton.addAction(plusAction, for: .touchUpInside)
@@ -72,6 +73,7 @@ class StoryPageVC: UIPageViewController {
     
     func setViewControllersFromIndex(index: Int) {
         if canReload {
+            print("Reload")
             if index < 0 && index >= viewsList.count { return }
             self.setViewControllers([viewsList[index]], direction: .forward, animated: true, completion: nil)
             completeHandler?(currentIndex)

@@ -9,7 +9,17 @@ import UIKit
 import SnapKit
 
 class SettingVC: UIViewController {
+    lazy private var settingMainView = SettingMainView(root: self, page: pageController ?? UIPageViewController() as! StoryPageVC)
+    var pageController: StoryPageVC?
+    
     private var exitButton = ExitButton()
+    private var stackView: UIStackView = {
+        let stack = UIStackView()
+        stack.alignment = .center
+        stack.axis = .vertical
+        stack.distribution = .fill
+        return stack
+    }()
     
     var isCreateView = false
 
@@ -25,12 +35,25 @@ class SettingVC: UIViewController {
             make.trailing.equalToSuperview().inset(20)
             make.height.width.equalTo(55)
         }
+        
+        stackView.snp.makeConstraints { make in
+            make.centerY.centerX.equalToSuperview()
+            make.width.equalTo(100)
+            make.height.lessThanOrEqualTo(160)
+        }
+        
+        settingMainView.snp.makeConstraints { make in
+            make.width.equalTo(100)
+            make.height.equalTo(80)
+        }
     }
     
     private func setupConfigure() {
         view.backgroundColor = .secondarySystemBackground
         
         view.addSubview(exitButton)
+        view.addSubview(stackView)
+        stackView.addArrangedSubview(settingMainView)
         
         let exitAction = UIAction { _ in
             UIView.animate(withDuration: 0.3, animations: {

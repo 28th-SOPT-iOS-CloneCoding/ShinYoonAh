@@ -10,6 +10,8 @@
 		5BC89BF678642C0C3B9C4C55 /* Pods_PenCake.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 608537D69568D497C6F9BC82 /* Pods_PenCake.framework */; };
 		ED7BC7CF2667AEC20033BB17 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BC7CE2667AEC20033BB17 /* SettingVC.swift */; };
 		ED7BC7D12667B5F10033BB17 /* ExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BC7D02667B5F10033BB17 /* ExitButton.swift */; };
+		ED7BC7D32667BDCE0033BB17 /* SettingMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BC7D22667BDCE0033BB17 /* SettingMainView.swift */; };
+		ED7BC7D52667CD280033BB17 /* SettingSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BC7D42667CD280033BB17 /* SettingSubView.swift */; };
 		ED9B7A4C2662A789008C40F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B7A4B2662A789008C40F1 /* AppDelegate.swift */; };
 		ED9B7A4E2662A789008C40F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B7A4D2662A789008C40F1 /* SceneDelegate.swift */; };
 		ED9B7A552662A78A008C40F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED9B7A542662A78A008C40F1 /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 		E286D95901088B3AE28A4324 /* Pods-PenCake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PenCake.debug.xcconfig"; path = "Target Support Files/Pods-PenCake/Pods-PenCake.debug.xcconfig"; sourceTree = "<group>"; };
 		ED7BC7CE2667AEC20033BB17 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		ED7BC7D02667B5F10033BB17 /* ExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitButton.swift; sourceTree = "<group>"; };
+		ED7BC7D22667BDCE0033BB17 /* SettingMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMainView.swift; sourceTree = "<group>"; };
+		ED7BC7D42667CD280033BB17 /* SettingSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSubView.swift; sourceTree = "<group>"; };
 		ED9B7A482662A789008C40F1 /* PenCake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PenCake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED9B7A4B2662A789008C40F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED9B7A4D2662A789008C40F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -273,6 +277,8 @@
 				EDD17F7D2664D53B003062F7 /* CreateContentTextView.swift */,
 				EDD17F862665086D003062F7 /* CreateStoryView.swift */,
 				EDD17F9026654386003062F7 /* StoryTitleView.swift */,
+				ED7BC7D22667BDCE0033BB17 /* SettingMainView.swift */,
+				ED7BC7D42667CD280033BB17 /* SettingSubView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -432,6 +438,7 @@
 				EDD17F8F26653EA5003062F7 /* NewStoryHeader.swift in Sources */,
 				EDD17F93266548FE003062F7 /* Extension+UITextField.swift in Sources */,
 				EDCE0D2F2663C33400A19B10 /* StoryTitleHeader.swift in Sources */,
+				ED7BC7D52667CD280033BB17 /* SettingSubView.swift in Sources */,
 				EDD17F7E2664D53B003062F7 /* CreateContentTextView.swift in Sources */,
 				ED9B7A4C2662A789008C40F1 /* AppDelegate.swift in Sources */,
 				ED9B7A4E2662A789008C40F1 /* SceneDelegate.swift in Sources */,
@@ -443,6 +450,7 @@
 				EDD17F85266501F3003062F7 /* DetailStoryVC.swift in Sources */,
 				EDD17F7C2664C36D003062F7 /* StorySubViewHeader.swift in Sources */,
 				EDCE0D262663B3CC00A19B10 /* MainStoryVC.swift in Sources */,
+				ED7BC7D32667BDCE0033BB17 /* SettingMainView.swift in Sources */,
 				EDD17F8B26650ED5003062F7 /* NewStoryVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
