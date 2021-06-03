@@ -11,63 +11,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StoryDetailCVC" id="gTV-IL-0wX" customClass="StoryDetailCVC" customModule="PenCake" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="240" height="382"/>
+            <rect key="frame" x="0.0" y="0.0" width="240" height="200"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="240" height="382"/>
+                <rect key="frame" x="0.0" y="0.0" width="240" height="200"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                <subviews>
-                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vyr-Mq-WwW">
-                        <rect key="frame" x="0.0" y="0.0" width="240" height="382"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lOV-zK-pV4">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="382"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-8S-OKD">
-                                        <rect key="frame" x="15" y="25" width="46" height="332"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SWt-NU-94m">
-                                                <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
-                                                <state key="normal" title="Button"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mky-36-S6d">
-                                                <rect key="frame" x="0.0" y="32" width="46" height="30"/>
-                                                <state key="normal" title="Button"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pZ-49-arB">
-                                                <rect key="frame" x="0.0" y="64" width="46" height="268"/>
-                                                <state key="normal" title="Button"/>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="oxH-8S-OKD" firstAttribute="leading" secondItem="lOV-zK-pV4" secondAttribute="leading" constant="15" id="GXb-vf-YOx"/>
-                                    <constraint firstItem="oxH-8S-OKD" firstAttribute="top" secondItem="lOV-zK-pV4" secondAttribute="top" constant="25" id="gAx-DS-24N"/>
-                                    <constraint firstAttribute="bottom" secondItem="oxH-8S-OKD" secondAttribute="bottom" constant="25" id="oRg-Lw-Jbu"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="lOV-zK-pV4" secondAttribute="trailing" id="5Wg-kT-nVJ"/>
-                            <constraint firstAttribute="bottom" secondItem="lOV-zK-pV4" secondAttribute="bottom" id="8DB-Lw-c90"/>
-                            <constraint firstItem="lOV-zK-pV4" firstAttribute="top" secondItem="Vyr-Mq-WwW" secondAttribute="top" id="aU3-VK-wmX"/>
-                            <constraint firstItem="lOV-zK-pV4" firstAttribute="leading" secondItem="Vyr-Mq-WwW" secondAttribute="leading" id="j8s-Rs-7XB"/>
-                        </constraints>
-                    </scrollView>
-                </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-            <constraints>
-                <constraint firstItem="lOV-zK-pV4" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" id="Jb9-tH-Gp9"/>
-                <constraint firstItem="lOV-zK-pV4" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" priority="250" id="R59-2H-V1p"/>
-                <constraint firstAttribute="bottom" secondItem="Vyr-Mq-WwW" secondAttribute="bottom" id="WOh-SM-qEI"/>
-                <constraint firstAttribute="trailing" secondItem="Vyr-Mq-WwW" secondAttribute="trailing" id="Ww4-9x-9Jb"/>
-                <constraint firstItem="Vyr-Mq-WwW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="mz3-RR-eO9"/>
-                <constraint firstItem="Vyr-Mq-WwW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="nSc-46-GHu"/>
-            </constraints>
             <size key="customSize" width="240" height="382"/>
             <point key="canvasLocation" x="244.92753623188409" y="287.94642857142856"/>
         </collectionViewCell>

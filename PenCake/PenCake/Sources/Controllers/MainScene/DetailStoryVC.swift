@@ -26,7 +26,7 @@ class DetailStoryVC: UIViewController {
     private var lineView = DetailSliderLineView()
     private var detailCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
-    var textCount: CGFloat = 2
+    var textCount: CGFloat = 5
     private var currentIndex: CGFloat = 0
     private let flowLayout = UICollectionViewFlowLayout()
 

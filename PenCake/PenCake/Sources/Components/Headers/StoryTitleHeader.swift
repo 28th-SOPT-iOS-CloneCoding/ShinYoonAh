@@ -48,6 +48,7 @@ class StoryTitleHeader: UIView {
         subTitleButton.setTitle(subTitle, for: .normal)
         addSubviews()
         setupButtonAction()
+        self.clipsToBounds = true
     }
     
     override func layoutSubviews() {
