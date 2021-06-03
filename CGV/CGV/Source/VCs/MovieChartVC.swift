@@ -29,13 +29,7 @@ class MovieChartVC: UIViewController {
         tableViewSetting()
     }
     
-    private func setupConfigure() {
-        view.addSubview(customNavigationBar)
-        view.addSubview(menuBar)
-        view.addSubview(movieTableView)
-        view.addSubview(bookingButton)
-        view.addSubview(topButton)
-        
+    override func viewWillLayoutSubviews() {
         customNavigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(44)
@@ -64,7 +58,15 @@ class MovieChartVC: UIViewController {
             make.trailing.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().offset(55)
         }
-
+    }
+    
+    private func setupConfigure() {
+        view.addSubview(customNavigationBar)
+        view.addSubview(menuBar)
+        view.addSubview(movieTableView)
+        view.addSubview(bookingButton)
+        view.addSubview(topButton)
+        
         setRefreshControl()
     }
     
