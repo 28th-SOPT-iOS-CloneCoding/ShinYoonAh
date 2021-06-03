@@ -12,10 +12,17 @@ class MovieTableDateHeader: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupConfigure()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(model: MovieChartViewModel, section: Int) {
+        super.init(frame: .zero)
+        setupConfigure()
+        headerLabel.text = model.releaseDate[section - 1].replacingOccurrences(of: "-", with: ".")
     }
     
     override func layoutSubviews() {
@@ -25,12 +32,10 @@ class MovieTableDateHeader: UIView {
         }
     }
     
-    // MARK: - MovieData 관련 ViewModel 생성
     private func setupConfigure() {
         backgroundColor = .white
         
         headerLabel.font = .systemFont(ofSize: 15)
-//        headerLabel.text = releaseDate[section - 1].replacingOccurrences(of: "-", with: ".")
         
         addSubview(headerLabel)
     }

@@ -14,10 +14,9 @@ class MovieChartVC: UIViewController {
     lazy private var bookingButton = EarlyReservationButton(storyboard: storyboard!, rootController: self)
     lazy private var topButton = ScrollToTopButton(tableView: movieTableView)
     lazy private var movieTableMainHeader = MovieTableMainHeader(with: movieTableView, model: movieViewModel)
+    lazy private var menuBar = MovieChartMenuBar(tableView: movieTableView, model: movieViewModel)
     
-    private let menuBar = MovieChartMenuBar()
     private let movieTableSubHeader = MovieTableSubHeader()
-    private let movieTableDateHeader = MovieTableDateHeader()
     private let movieTableView = UITableView.init(frame: CGRect.zero, style: .grouped)
     private let myRefreshControl = UIRefreshControl()
     
@@ -160,7 +159,7 @@ extension MovieChartVC: UITableViewDelegate {
         if menuBar.comeoutButton.isSelected && section == 0 {
             return movieTableSubHeader
         } else if menuBar.comeoutButton.isSelected && section != 0 {
-            return movieTableDateHeader
+            return MovieTableDateHeader(model: movieViewModel, section: section)
         }
         return movieTableMainHeader
     }

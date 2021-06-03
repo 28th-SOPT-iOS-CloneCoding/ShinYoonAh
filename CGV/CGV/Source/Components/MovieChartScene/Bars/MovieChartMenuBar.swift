@@ -34,6 +34,9 @@ class MovieChartMenuBar: UIView {
     }()
     
     private let menuStackView = UIStackView()
+    
+    var movieViewModel: MovieChartViewModel?
+    var tableView: UITableView?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,6 +52,13 @@ class MovieChartMenuBar: UIView {
             make.edges.equalToSuperview()
             make.height.equalTo(44)
         }
+    }
+    
+    init(tableView: UITableView, model: MovieChartViewModel) {
+        super.init(frame: .zero)
+        self.tableView = tableView
+        self.movieViewModel = model
+        setupConfigure()
     }
     
     private func setupConfigure() {
@@ -74,10 +84,10 @@ class MovieChartMenuBar: UIView {
             self.changeButtonState(selectedButton: self.chartMenuButton,
                                    unselectedButton1: self.arthouseMenuButton,
                                    unselectedButton2: self.comeoutButton)
-//            page = 1
-//            movieData.removeAll()
-//            fetchPopularMovie(page: page)
-//            movieTableView.reloadData()
+            self.movieViewModel?.page = 1
+            self.movieViewModel?.movieData.removeAll()
+            self.movieViewModel?.fetchPopularMovie(page: self.movieViewModel!.page)
+            self.tableView?.reloadData()
         }
         chartMenuButton.addAction(chartAction, for: .touchUpInside)
         
@@ -86,10 +96,10 @@ class MovieChartMenuBar: UIView {
             self.changeButtonState(selectedButton: self.arthouseMenuButton,
                                    unselectedButton1: self.chartMenuButton,
                                    unselectedButton2: self.comeoutButton)
-//            page = 1
-//            movieData.removeAll()
-//            fetchTopRated(page: page)
-//            movieTableView.reloadData()
+            self.movieViewModel?.page = 1
+            self.movieViewModel?.movieData.removeAll()
+            self.movieViewModel?.fetchTopRated(page: self.movieViewModel!.page)
+            self.tableView?.reloadData()
         }
         arthouseMenuButton.addAction(arthouseAction, for: .touchUpInside)
         
@@ -98,11 +108,11 @@ class MovieChartMenuBar: UIView {
             self.changeButtonState(selectedButton: self.comeoutButton,
                                    unselectedButton1: self.chartMenuButton,
                                    unselectedButton2: self.arthouseMenuButton)
-//            page = 1
-//            movieData.removeAll()
-//            releaseDate.removeAll()
-//            fetchUpComing(page: page)
-//            movieTableView.reloadData()
+            self.movieViewModel?.page = 1
+            self.movieViewModel?.movieData.removeAll()
+            self.movieViewModel?.releaseDate.removeAll()
+            self.movieViewModel?.fetchUpComing(page: self.movieViewModel!.page)
+            self.tableView?.reloadData()
         }
         comeoutButton.addAction(comeoutAction, for: .touchUpInside)
     }
