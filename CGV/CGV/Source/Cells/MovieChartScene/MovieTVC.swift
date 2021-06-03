@@ -18,8 +18,6 @@ enum MovieFormat: String, CaseIterable {
 class MovieTVC: UITableViewCell {
     static let identifier = "MovieTVC"
     
-    private let randomFormat = MovieFormat.allCases.randomElement()!
-    
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var eggImageView: UIImageView!
     @IBOutlet weak var ageImageView: UIImageView!
@@ -30,25 +28,19 @@ class MovieTVC: UITableViewCell {
     @IBOutlet weak var bookingRateLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var nowBookingButton: UIButton!
+    
+    private let randomFormat = MovieFormat.allCases.randomElement()!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        setConfigure()
+        setupConfigure()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-}
-
-// MARK: - UI
-extension MovieTVC {
-    private func setConfigure() {
-        setLabel()
-        setButton()
-    }
     
-    private func setLabel() {
+    private func setupConfigure() {
         titleLabel.font = .boldSystemFont(ofSize: 18)
         
         eggRateLabel.font = .systemFont(ofSize: 12)
@@ -63,23 +55,10 @@ extension MovieTVC {
         
         releaseDateLabel.font = .systemFont(ofSize: 12)
         releaseDateLabel.textColor = .darkGray
-    }
-    
-    private func setButton() {
+        
         nowBookingButton.layer.cornerRadius = 3
     }
     
-    func setFormat(isArthouse: Bool) {
-        if isArthouse {
-            movieFormatImageView.image = UIImage(named: "arthouse")
-        } else {
-            movieFormatImageView.image = UIImage(named: randomFormat.rawValue)
-        }
-    }
-}
-
-// MARK: - Data
-extension MovieTVC {
     func setData(posterImage: String,
                  title: String,
                  eggRate: Double,
@@ -114,5 +93,12 @@ extension MovieTVC {
             ageImageView.image = UIImage(named: "12")
         }
     }
+    
+    func setFormat(isArthouse: Bool) {
+        if isArthouse {
+            movieFormatImageView.image = UIImage(named: "arthouse")
+        } else {
+            movieFormatImageView.image = UIImage(named: randomFormat.rawValue)
+        }
+    }
 }
-
