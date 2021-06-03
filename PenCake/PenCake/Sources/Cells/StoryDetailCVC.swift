@@ -12,7 +12,7 @@ class StoryDetailCVC: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .blue
+        backgroundColor = .secondarySystemBackground
     }
 
 }

@@ -26,7 +26,8 @@ class DetailStoryVC: UIViewController {
     private var lineView = DetailSliderLineView()
     private var detailCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
-    var textCount: CGFloat = 10
+    var textCount: CGFloat = 2
+    private var currentIndex: CGFloat = 0
     private let flowLayout = UICollectionViewFlowLayout()
 
     override func viewDidLoad() {
@@ -76,6 +77,10 @@ class DetailStoryVC: UIViewController {
         
         let nib = UINib(nibName: "StoryDetailCVC", bundle: nil)
         detailCollectionView.register(nib, forCellWithReuseIdentifier: StoryDetailCVC.identifier)
+        
+        if textCount == 1 {
+            detailCollectionView.isScrollEnabled = false
+        }
     }
 }
 
@@ -92,7 +97,7 @@ extension DetailStoryVC: UICollectionViewDataSource {
     }
 }
 
-extension DetailStoryVC:  UICollectionViewDelegateFlowLayout {
+extension DetailStoryVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
     }
@@ -107,5 +112,48 @@ extension DetailStoryVC:  UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.zero
+    }
+}
+
+extension DetailStoryVC: UICollectionViewDelegate {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let cellWidthIncludingSpacing = UIScreen.main.bounds.size.width
+        
+        var offset = targetContentOffset.pointee
+        let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
+        var roundedIndex = round(index)
+        
+        if scrollView.contentOffset.x > targetContentOffset.pointee.x {
+            roundedIndex = floor(index)
+        } else if scrollView.contentOffset.x < targetContentOffset.pointee.x {
+            roundedIndex = ceil(index)
+        } else {
+            roundedIndex = round(index)
+        }
+        
+        if currentIndex > roundedIndex {
+            currentIndex -= 1
+            roundedIndex = currentIndex
+            moveNegativeDirection()
+        } else if currentIndex < roundedIndex {
+            currentIndex += 1
+            roundedIndex = currentIndex
+            movePositiveDirection()
+        }
+        
+        offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
+        targetContentOffset.pointee = offset
+    }
+    
+    func movePositiveDirection() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.lineView.transform = CGAffineTransform(translationX: UIScreen.main.bounds.size.width/self.textCount * self.currentIndex, y: 0)
+        })
+    }
+    
+    func moveNegativeDirection() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.lineView.transform = CGAffineTransform(translationX: UIScreen.main.bounds.size.width - UIScreen.main.bounds.size.width/self.textCount * (self.textCount - self.currentIndex), y: 0)
+        })
     }
 }
