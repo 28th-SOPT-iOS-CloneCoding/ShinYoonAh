@@ -77,7 +77,6 @@ class MovieChartMenuBar: UIView {
         menuStackView.addArrangedSubview(comeoutButton)
     }
     
-    // MARK: - MovieData 관련 ViewModel 생성
     private func setupButtonAction() {
         let chartAction = UIAction { _ in
             print("pressed Movie Chart ")

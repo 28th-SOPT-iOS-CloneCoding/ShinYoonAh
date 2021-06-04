@@ -15,8 +15,8 @@ class MovieChartVC: UIViewController {
     lazy private var topButton = ScrollToTopButton(tableView: movieTableView)
     lazy private var movieTableMainHeader = MovieTableMainHeader(with: movieTableView, model: movieViewModel)
     lazy private var menuBar = MovieChartMenuBar(tableView: movieTableView, model: movieViewModel)
+    lazy private var movieTableSubHeader = MovieTableSubHeader(with: movieTableView, model: movieViewModel)
     
-    private let movieTableSubHeader = MovieTableSubHeader()
     private let movieTableView = UITableView.init(frame: CGRect.zero, style: .grouped)
     private let myRefreshControl = UIRefreshControl()
     
