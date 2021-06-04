@@ -145,7 +145,7 @@ extension SelectTheaterTVC: UICollectionViewDelegateFlowLayout {
 }
 
 extension SelectTheaterTVC: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {e
         if collectionView == areaCollectionView {
             areaCollectionView.scrollToItem(at: IndexPath(item: indexPath.row, section: 0), at: .centeredHorizontally, animated: true)
             setPositionData(index: indexPath.row)
