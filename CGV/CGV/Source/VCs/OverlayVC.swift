@@ -8,7 +8,6 @@
 import UIKit
 
 class OverlayVC: UIViewController {
-    // MARK: - Properties
     @IBOutlet weak var swipeButton: UIView!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var bookingTableView: UITableView!
@@ -18,7 +17,6 @@ class OverlayVC: UIViewController {
     private var positionCount = 0
     private var viewTranslation = CGPoint(x: 0, y: 0)
     
-    // MARK: - Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.45, execute: {
             self.view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
@@ -126,7 +124,6 @@ class OverlayVC: UIViewController {
     }
 }
 
-// MARK: - UITableViewDataSource
 extension OverlayVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -152,11 +149,10 @@ extension OverlayVC: UITableViewDataSource {
     }
 }
 
-// MARK: - UITableViewDelegate
 extension OverlayVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            return setSelectTheaterHeader()
+            return SelectTheaterHeaderView()
         }
         return UIView()
     }
@@ -168,6 +164,7 @@ extension OverlayVC: UITableViewDelegate {
         return .leastNormalMagnitude
     }
     
+    // MARK: - TODO: 더 나은 알고리즘으로 만들고 싶다
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 && isClicked {
             let count = positionCount / 3
@@ -200,28 +197,6 @@ extension OverlayVC: UITableViewDelegate {
     }
 }
 
-extension OverlayVC {
-
-    
-    // MARK: - HeaderView Setting
-    private func setSelectTheaterHeader() -> UIView {
-        let headerView = UIView()
-        let headerLabel = UILabel()
-        
-        headerView.backgroundColor = .white
-        headerLabel.font = .systemFont(ofSize: 17, weight: .semibold)
-        headerLabel.text = "극장선택"
-        
-        headerView.addSubview(headerLabel)
-        headerLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(headerView.snp.bottom).inset(3)
-            make.leading.equalTo(headerView.snp.leading).inset(15)
-        }
-        return headerView
-    }
-}
-
-// MARK: - ShowUpAlertDelegate
 extension OverlayVC: showupAlertDelegate {
     func showupAlertToLookup(title: String?, content: String) {
         if let title = title {
