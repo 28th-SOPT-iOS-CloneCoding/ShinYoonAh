@@ -18,6 +18,8 @@
 		ED3EFA4B264BC01B0041DFF1 /* MovieRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA4A264BC01B0041DFF1 /* MovieRequest.swift */; };
 		ED3EFA4D264BC1520041DFF1 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA4C264BC1520041DFF1 /* MovieModel.swift */; };
 		ED5D7BED266A0C7A00E6D3F3 /* SelectTheaterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5D7BEC266A0C7A00E6D3F3 /* SelectTheaterHeaderView.swift */; };
+		ED5D7BEF266A0E7000E6D3F3 /* TheaterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5D7BEE266A0E7000E6D3F3 /* TheaterViewModel.swift */; };
+		ED5D7BF2266A0EB900E6D3F3 /* DownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5D7BF1266A0EB900E6D3F3 /* DownButton.swift */; };
 		ED9B7A0A2661E73D008C40F1 /* MovieTableDateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B7A092661E73D008C40F1 /* MovieTableDateHeader.swift */; };
 		ED9B7A0C2661EB85008C40F1 /* MovieChartCustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B7A0B2661EB85008C40F1 /* MovieChartCustomNavigationBar.swift */; };
 		ED9B7A3226625334008C40F1 /* MovieChartMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B7A3126625334008C40F1 /* MovieChartMenuBar.swift */; };
@@ -65,6 +67,8 @@
 		ED3EFA4A264BC01B0041DFF1 /* MovieRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRequest.swift; sourceTree = "<group>"; };
 		ED3EFA4C264BC1520041DFF1 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		ED5D7BEC266A0C7A00E6D3F3 /* SelectTheaterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTheaterHeaderView.swift; sourceTree = "<group>"; };
+		ED5D7BEE266A0E7000E6D3F3 /* TheaterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterViewModel.swift; sourceTree = "<group>"; };
+		ED5D7BF1266A0EB900E6D3F3 /* DownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownButton.swift; sourceTree = "<group>"; };
 		ED9B7A092661E73D008C40F1 /* MovieTableDateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableDateHeader.swift; sourceTree = "<group>"; };
 		ED9B7A0B2661EB85008C40F1 /* MovieChartCustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieChartCustomNavigationBar.swift; sourceTree = "<group>"; };
 		ED9B7A3126625334008C40F1 /* MovieChartMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieChartMenuBar.swift; sourceTree = "<group>"; };
@@ -153,6 +157,14 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
+		ED5D7BF0266A0EA100E6D3F3 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				ED5D7BF1266A0EB900E6D3F3 /* DownButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
 		ED9B7A3326625885008C40F1 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +196,7 @@
 		ED9B7A3A26625EC9008C40F1 /* OverlayScene */ = {
 			isa = PBXGroup;
 			children = (
+				ED5D7BF0266A0EA100E6D3F3 /* Buttons */,
 				ED5D7BEB266A0C5500E6D3F3 /* Headers */,
 				ED9B7A3B26625ED2008C40F1 /* FlowLayout */,
 			);
@@ -202,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				ED9B7A3D266265E6008C40F1 /* MovieChartViewModel.swift */,
+				ED5D7BEE266A0E7000E6D3F3 /* TheaterViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -524,9 +538,11 @@
 				ED9B7A0C2661EB85008C40F1 /* MovieChartCustomNavigationBar.swift in Sources */,
 				EDCB26CB26538AB900BF41D6 /* Extension+UIView.swift in Sources */,
 				ED3EFA41264BBB5C0041DFF1 /* Extension+Encodable.swift in Sources */,
+				ED5D7BF2266A0EB900E6D3F3 /* DownButton.swift in Sources */,
 				ED3EFA4B264BC01B0041DFF1 /* MovieRequest.swift in Sources */,
 				EDCB26C4265375D300BF41D6 /* TheaterCVC.swift in Sources */,
 				EDCB26D22653938B00BF41D6 /* DateCVC.swift in Sources */,
+				ED5D7BEF266A0E7000E6D3F3 /* TheaterViewModel.swift in Sources */,
 				ED3EFA47264BBC420041DFF1 /* MovieServices.swift in Sources */,
 				ED5D7BED266A0C7A00E6D3F3 /* SelectTheaterHeaderView.swift in Sources */,
 				EDCB26CE26538BA900BF41D6 /* DateTheaterTVC.swift in Sources */,

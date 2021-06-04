@@ -14,32 +14,13 @@ class SelectTheaterTVC: UITableViewCell {
     @IBOutlet weak var areaCollectionView: UICollectionView!
     @IBOutlet weak var positionCollectionView: UICollectionView!
     
-    private var downButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        button.tintColor = .gray
-        button.backgroundColor = .white
-        button.setPreferredSymbolConfiguration(.init(pointSize: 15,
-                                                     weight: .regular,
-                                                     scale: .small),
-                                                forImageIn: .normal)
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.gray.cgColor
-        button.layer.cornerRadius = 15
-        button.layer.shadowColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
-        button.layer.shadowOpacity = 0.8
-        button.layer.shadowOffset = CGSize(width: -2, height: 2)
-        button.layer.shadowRadius = 3
-        return button
-    }()
-    
+    private let downButton = DownButton()
+    private let viewModel = TheaterViewModel()
     private let flowLayout = UICollectionViewFlowLayout()
     private let customFlowLayout = LeftAlignedCollectionViewFlowLayout()
+    
     private var isFirst = true
     private var isClicked = false
-    
-    private let areas: [String] = ["추천 CGV", "서울", "경기", "인천", "강원", "대전/충청", "대구", "부산/울산", "경상", "광주/전라/제주"]
-    private var positions: [String] = ["강변", "건대입구", "용산아이파크몰", "왕십리", "송파", "스타필드시티위례", "성남모란", "야탑"]
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -51,59 +32,73 @@ class SelectTheaterTVC: UITableViewCell {
     }
 }
 
+// MARK: - UICollectionViewDataSource
 extension SelectTheaterTVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == areaCollectionView {
-            return areas.count
+            return viewModel.areas.count
         }
-        return positions.count
+        return viewModel.positions.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == areaCollectionView {
+        switch collectionView {
+        case areaCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TheaterCVC.identifier, for: indexPath) as? TheaterCVC else {
                 return UICollectionViewCell()
             }
+            
             if indexPath.item == 0 {
                 cell.isSelected = true
                 collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
             } else  {
                 cell.isSelected = false
             }
-            cell.areaConfigure(area: areas[indexPath.row])
+
+            cell.areaConfigure(area: viewModel.areas[indexPath.row])
+            
             return cell
-        }
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TheaterDetailCVC.identifier, for: indexPath) as? TheaterDetailCVC else {
+        case positionCollectionView:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TheaterDetailCVC.identifier, for: indexPath) as? TheaterDetailCVC else {
+                return UICollectionViewCell()
+            }
+            
+            if indexPath.row == 0 && isFirst {
+                cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+                isFirst = false
+            } else  {
+                cell.isSelected = false
+            }
+            
+            cell.labelConfigure(position: viewModel.positions[indexPath.row])
+            
+            return cell
+        default:
             return UICollectionViewCell()
         }
-        if indexPath.row == 0 && isFirst {
-            cell.isSelected = true
-            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
-            isFirst = false
-        } else  {
-            cell.isSelected = false
-        }
-        cell.labelConfigure(position: positions[indexPath.row])
-        return cell
     }
     
     
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension SelectTheaterTVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // MARK: - CollectionView 크기 구하는 함수를 따로 빼자
         let label = UILabel()
         var width: CGFloat = 0
         var height: CGFloat = 0
         
-        if collectionView == areaCollectionView {
-            label.text = areas[indexPath.row]
+        switch collectionView {
+        case areaCollectionView:
+            label.text = viewModel.areas[indexPath.row]
             label.sizeToFit()
             
             width = label.frame.width
             height = 30
-        } else if collectionView == positionCollectionView {
-            label.text = positions[indexPath.row]
+        case positionCollectionView:
+            label.text = viewModel.positions[indexPath.row]
             label.sizeToFit()
             
             if label.text?.count ?? 0 < 3 {
@@ -116,8 +111,9 @@ extension SelectTheaterTVC: UICollectionViewDelegateFlowLayout {
                 width = label.frame.width + 20
             }
             height = 50
+        default:
+            return CGSize.zero
         }
-        
         return CGSize(width: width, height: height)
     }
     
@@ -126,17 +122,25 @@ extension SelectTheaterTVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        if collectionView == areaCollectionView {
+        switch collectionView {
+        case areaCollectionView:
             return 10
+        case positionCollectionView:
+            return 5
+        default:
+            return 0
         }
-        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if collectionView == areaCollectionView {
+        switch collectionView {
+        case areaCollectionView:
             return UIEdgeInsets(top: 13, left: 15, bottom: 5, right: 15)
+        case positionCollectionView:
+            return UIEdgeInsets(top: 10, left: 15, bottom: 15, right: 15)
+        default:
+            return UIEdgeInsets.zero
         }
-        return UIEdgeInsets(top: 10, left: 15, bottom: 15, right: 15)
     }
 }
 
