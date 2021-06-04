@@ -11,6 +11,9 @@ import SnapKit
 class MovieTableSubHeader: UIView {
     let comeoutButton = UIButton()
     let bookingRateButton = UIButton()
+    
+    private var movieTableView = UITableView()
+    private var model: MovieChartViewModel?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,6 +22,13 @@ class MovieTableSubHeader: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(with tableView: UITableView, model: MovieChartViewModel) {
+        super.init(frame: .zero)
+        self.model = model
+        movieTableView = tableView
+        setupConfigure()
     }
     
     override func layoutSubviews() {
@@ -51,14 +61,13 @@ class MovieTableSubHeader: UIView {
         addSubview(bookingRateButton)
     }
     
-    // MARK: - MovieData 관련 ViewModel 생성
     private func setupButtonAction() {
         let comeoutAction = UIAction { _ in
             self.changeHeaderButtonColor(selectedButton: self.comeoutButton,
                                          unselectedButton1: self.bookingRateButton,
                                     unselectedButton2: UIButton())
-//            self.movieData = self.movieData.sorted(by: {$0.releaseDate > $1.releaseDate})
-//            self.movieTableView.reloadData()
+            self.model?.movieData = self.model?.movieData.sorted(by: {$0.releaseDate > $1.releaseDate}) ?? []
+            self.movieTableView.reloadData()
         }
         comeoutButton.addAction(comeoutAction, for: .touchUpInside)
         

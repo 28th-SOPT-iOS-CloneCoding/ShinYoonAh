@@ -15,8 +15,8 @@ class MovieChartVC: UIViewController {
     lazy private var topButton = ScrollToTopButton(tableView: movieTableView)
     lazy private var movieTableMainHeader = MovieTableMainHeader(with: movieTableView, model: movieViewModel)
     lazy private var menuBar = MovieChartMenuBar(tableView: movieTableView, model: movieViewModel)
+    lazy private var movieTableSubHeader = MovieTableSubHeader(with: movieTableView, model: movieViewModel)
     
-    private let movieTableSubHeader = MovieTableSubHeader()
     private let movieTableView = UITableView.init(frame: CGRect.zero, style: .grouped)
     private let myRefreshControl = UIRefreshControl()
     
@@ -29,13 +29,7 @@ class MovieChartVC: UIViewController {
         tableViewSetting()
     }
     
-    private func setupConfigure() {
-        view.addSubview(customNavigationBar)
-        view.addSubview(menuBar)
-        view.addSubview(movieTableView)
-        view.addSubview(bookingButton)
-        view.addSubview(topButton)
-        
+    override func viewWillLayoutSubviews() {
         customNavigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(44)
@@ -64,7 +58,15 @@ class MovieChartVC: UIViewController {
             make.trailing.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().offset(55)
         }
-
+    }
+    
+    private func setupConfigure() {
+        view.addSubview(customNavigationBar)
+        view.addSubview(menuBar)
+        view.addSubview(movieTableView)
+        view.addSubview(bookingButton)
+        view.addSubview(topButton)
+        
         setRefreshControl()
     }
     
