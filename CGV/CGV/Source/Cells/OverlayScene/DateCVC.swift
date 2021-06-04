@@ -26,8 +26,7 @@ class DateCVC: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setView()
-        setLabel()
+        setupConfigure()
     }
 
     func labelConfigure(date: String, day: String) {
@@ -35,11 +34,9 @@ class DateCVC: UICollectionViewCell {
         dayLabel.text = day
     }
     
-    private func setView() {
+    private func setupConfigure() {
         self.setViewShadow(backView: backView)
-    }
-    
-    private func setLabel() {
+        
         dayLabel.font = .systemFont(ofSize: 13)
     }
 }
