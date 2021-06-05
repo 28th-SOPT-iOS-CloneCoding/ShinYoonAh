@@ -41,6 +41,7 @@
 		EDCB26D32653938B00BF41D6 /* DateCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDCB26D12653938B00BF41D6 /* DateCVC.xib */; };
 		EDCB26D52653D09300BF41D6 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB26D42653D09300BF41D6 /* Extension+UIViewController.swift */; };
 		EDCB26D82653D1D900BF41D6 /* showupAlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB26D72653D1D900BF41D6 /* showupAlertDelegate.swift */; };
+		EDCD6F05266B898100C4AA94 /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCD6F04266B898100C4AA94 /* DateViewModel.swift */; };
 		EDD2122D264A6BC70073CEDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122C264A6BC70073CEDD /* AppDelegate.swift */; };
 		EDD2122F264A6BC70073CEDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */; };
 		EDD21236264A6BC80073CEDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDD21235264A6BC80073CEDD /* Assets.xcassets */; };
@@ -90,6 +91,7 @@
 		EDCB26D12653938B00BF41D6 /* DateCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateCVC.xib; sourceTree = "<group>"; };
 		EDCB26D42653D09300BF41D6 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		EDCB26D72653D1D900BF41D6 /* showupAlertDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showupAlertDelegate.swift; sourceTree = "<group>"; };
+		EDCD6F04266B898100C4AA94 /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		EDD21229264A6BC70073CEDD /* CGV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD2122C264A6BC70073CEDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			children = (
 				ED9B7A3D266265E6008C40F1 /* MovieChartViewModel.swift */,
 				ED5D7BEE266A0E7000E6D3F3 /* TheaterViewModel.swift */,
+				EDCD6F04266B898100C4AA94 /* DateViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 				ED3EFA45264BBBF30041DFF1 /* NetworkLoggerPlugin.swift in Sources */,
 				EDD2122D264A6BC70073CEDD /* AppDelegate.swift in Sources */,
 				EDD2122F264A6BC70073CEDD /* SceneDelegate.swift in Sources */,
+				EDCD6F05266B898100C4AA94 /* DateViewModel.swift in Sources */,
 				ED9B7A3926625C88008C40F1 /* ScrollToTopButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
