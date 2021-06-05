@@ -36,16 +36,14 @@ class DateTheaterTVC: UITableViewCell {
     }
     
     private func collectionViewSetting() {
-        let dateNib = UINib(nibName: DateCVC.identifier, bundle: nil)
-        let timeNib = UINib(nibName: TheaterDetailCVC.identifier, bundle: nil)
-        
         dateCollectionView.delegate = self
         dateCollectionView.dataSource = self
-        dateCollectionView.register(dateNib, forCellWithReuseIdentifier: DateCVC.identifier)
         
         timeCollectionView.delegate = self
         timeCollectionView.dataSource = self
-        timeCollectionView.register(timeNib, forCellWithReuseIdentifier: TheaterDetailCVC.identifier)
+        
+        dateCollectionView.setupCollectionViewNib(nib: DateCVC.identifier)
+        timeCollectionView.setupCollectionViewNib(nib: TheaterDetailCVC.identifier)
     }
     
     private func setupConfigure() {
@@ -109,14 +107,14 @@ class DateTheaterTVC: UITableViewCell {
     }
     
     @objc
-    func buttonInActive() {
+    private func buttonInActive() {
         print("inactive")
         isButtonActive = false
         lookUpButton.backgroundColor = .darkGray
     }
     
     @objc
-    func buttonActive(_ notification: Notification) {
+    private func buttonActive(_ notification: Notification) {
         print("active")
         isButtonActive = true
         lookUpButton.backgroundColor = .systemRed

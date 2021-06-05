@@ -42,6 +42,7 @@
 		EDCB26D52653D09300BF41D6 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB26D42653D09300BF41D6 /* Extension+UIViewController.swift */; };
 		EDCB26D82653D1D900BF41D6 /* showupAlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB26D72653D1D900BF41D6 /* showupAlertDelegate.swift */; };
 		EDCD6F05266B898100C4AA94 /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCD6F04266B898100C4AA94 /* DateViewModel.swift */; };
+		EDCD6F07266B8F0700C4AA94 /* Extension+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCD6F06266B8F0700C4AA94 /* Extension+UICollectionView.swift */; };
 		EDD2122D264A6BC70073CEDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122C264A6BC70073CEDD /* AppDelegate.swift */; };
 		EDD2122F264A6BC70073CEDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */; };
 		EDD21236264A6BC80073CEDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDD21235264A6BC80073CEDD /* Assets.xcassets */; };
@@ -92,6 +93,7 @@
 		EDCB26D42653D09300BF41D6 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		EDCB26D72653D1D900BF41D6 /* showupAlertDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showupAlertDelegate.swift; sourceTree = "<group>"; };
 		EDCD6F04266B898100C4AA94 /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
+		EDCD6F06266B8F0700C4AA94 /* Extension+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UICollectionView.swift"; sourceTree = "<group>"; };
 		EDD21229264A6BC70073CEDD /* CGV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD2122C264A6BC70073CEDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				ED3EFA39264BA1C30041DFF1 /* Extension+UIButton.swift */,
 				EDCB26CA26538AB900BF41D6 /* Extension+UIView.swift */,
 				EDCB26D42653D09300BF41D6 /* Extension+UIViewController.swift */,
+				EDCD6F06266B8F0700C4AA94 /* Extension+UICollectionView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				EDD2122F264A6BC70073CEDD /* SceneDelegate.swift in Sources */,
 				EDCD6F05266B898100C4AA94 /* DateViewModel.swift in Sources */,
 				ED9B7A3926625C88008C40F1 /* ScrollToTopButton.swift in Sources */,
+				EDCD6F07266B8F0700C4AA94 /* Extension+UICollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
