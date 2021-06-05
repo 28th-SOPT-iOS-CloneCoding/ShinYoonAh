@@ -7,27 +7,25 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class StoryDetailCVC: UICollectionViewCell {
     static let identifier = "StoryDetailCVC"
     
     var delegate: ModalFromCellDelegate?
     
-    private var titleButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("제목", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .myBoldSystemFont(ofSize: 19)
-        return button
-    }()
-    private var contentButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("내용", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .myRegularSystemFont(ofSize: 15)
-        button.titleLabel?.numberOfLines = 0
-        return button
-    }()
+    private var titleButton = UIButton().then {
+        $0.setTitle("제목", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = .myBoldSystemFont(ofSize: 19)
+    }
+    
+    private var contentButton = UIButton().then {
+        $0.setTitle("내용", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = .myRegularSystemFont(ofSize: 15)
+        $0.titleLabel?.numberOfLines = 0
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -7,24 +7,21 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class StoryTitleView: UIView {
-    private var titleLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.font = .myRegularSystemFont(ofSize: 15)
-        return label
-    }()
+    private var titleLabel = UILabel().then {
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
+        $0.font = .myRegularSystemFont(ofSize: 15)
+    }
     
-    var titleTextField: UITextField = {
-        let textField = UITextField()
-        textField.setTextFieldUnderLine()
-        textField.textAlignment = .center
-        textField.font = .myRegularSystemFont(ofSize: 15)
-        textField.removeAuto()
-        return textField
-    }()
+    var titleTextField = UITextField().then {
+        $0.setTextFieldUnderLine()
+        $0.textAlignment = .center
+        $0.font = .myRegularSystemFont(ofSize: 15)
+        $0.removeAuto()
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -7,22 +7,21 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class DetailStoryVC: UIViewController {
-    lazy private var backButton: UIButton = {
-        let button = UIButton()
+    lazy private var backButton = UIButton().then {
         let action = UIAction { _ in
             self.navigationController?.popViewController(animated: true)
         }
-        button.addAction(action, for: .touchUpInside)
-        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        button.setPreferredSymbolConfiguration(.init(pointSize: 18,
+        $0.addAction(action, for: .touchUpInside)
+        $0.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        $0.setPreferredSymbolConfiguration(.init(pointSize: 18,
                                                     weight: .light,
                                                     scale: .large),
                                                forImageIn: .normal)
-        button.tintColor = .lightGray
-        return button
-    }()
+        $0.tintColor = .lightGray
+    }
     private var lineView = DetailSliderLineView()
     private var detailCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     

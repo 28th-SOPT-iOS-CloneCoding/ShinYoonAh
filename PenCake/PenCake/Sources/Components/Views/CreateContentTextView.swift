@@ -7,39 +7,33 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class CreateContentTextView: UIView {
-    lazy var contentTextView: UITextView = {
-        let textView = UITextView()
-        textView.font = .myRegularSystemFont(ofSize: 14)
-        textView.textColor = .systemGray2
-        textView.text = "내용을 입력하세요"
-        textView.backgroundColor = .clear
-        
-        textView.delegate = self
-        textView.autocorrectionType = .no
-        textView.autocapitalizationType = .none
-        textView.spellCheckingType = .no
-        textView.textContentType = .none
-        return textView
-    }()
+    lazy var contentTextView = UITextView().then {
+        $0.font = .myRegularSystemFont(ofSize: 14)
+        $0.textColor = .systemGray2
+        $0.text = "내용을 입력하세요"
+        $0.backgroundColor = .clear
+        $0.delegate = self
+        $0.autocorrectionType = .no
+        $0.autocapitalizationType = .none
+        $0.spellCheckingType = .no
+        $0.textContentType = .none
+    }
     
-    var titleTextField: UITextField = {
-        let textField = UITextField()
-        textField.font = .myBoldSystemFont(ofSize: 19)
-        textField.borderStyle = .none
-        textField.backgroundColor = .clear
-        textField.attributedPlaceholder = NSAttributedString(string: "제목", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
+    var titleTextField = UITextField().then {
+        $0.font = .myBoldSystemFont(ofSize: 19)
+        $0.borderStyle = .none
+        $0.backgroundColor = .clear
+        $0.attributedPlaceholder = NSAttributedString(string: "제목", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         
-        textField.removeAuto()
-        return textField
-    }()
+        $0.removeAuto()
+    }
     
-    private var bottomLine: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemGray4
-        return view
-    }()
+    private var bottomLine = UIView().then {
+        $0.backgroundColor = .systemGray4
+    }
     
     private var viewController: CreateContentVC?
     private var isEditMode = false

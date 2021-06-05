@@ -7,29 +7,24 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class SettingSubView: UIView {
-    private var contentButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("글 추가", for: .normal)
-        button.titleLabel?.font = .myRegularSystemFont(ofSize: 15)
-        button.setTitleColor(.systemTeal, for: .normal)
-        return button
-    }()
+    private var contentButton = UIButton().then {
+        $0.setTitle("글 추가", for: .normal)
+        $0.titleLabel?.font = .myRegularSystemFont(ofSize: 15)
+        $0.setTitleColor(.systemTeal, for: .normal)
+    }
     
-    private var storyButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("이야기 제거", for: .normal)
-        button.titleLabel?.font = .myRegularSystemFont(ofSize: 15)
-        button.setTitleColor(.systemRed, for: .normal)
-        return button
-    }()
+    private var storyButton = UIButton().then {
+        $0.setTitle("이야기 제거", for: .normal)
+        $0.titleLabel?.font = .myRegularSystemFont(ofSize: 15)
+        $0.setTitleColor(.systemRed, for: .normal)
+    }
     
-    private var middleLine: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemGray2
-        return view
-    }()
+    private var middleLine = UIView().then {
+        $0.backgroundColor = .systemGray2
+    }
     
     private var vc: SettingVC?
     private var pageVC: StoryPageVC?

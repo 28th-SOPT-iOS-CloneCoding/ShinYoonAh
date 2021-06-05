@@ -7,32 +7,27 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class ChangeTitleVC: UIViewController {
     var changeTitle: ((String, String) -> Void)?
     
     lazy private var header = StorySubViewHeader(root: self)
-    private var titleTextField: UITextField = {
-        let textfield = UITextField()
-        textfield.placeholder = "제목"
-        textfield.font = .myBoldSystemFont(ofSize: 19)
-        textfield.borderStyle = .none
-        textfield.textAlignment = .center
-        
-        textfield.removeAuto()
-        return textfield
-    }()
+    private var titleTextField = UITextField().then {
+        $0.placeholder = "제목"
+        $0.font = .myBoldSystemFont(ofSize: 19)
+        $0.borderStyle = .none
+        $0.textAlignment = .center
+        $0.removeAuto()
+    }
     
-    private var subTitleTextField: UITextField = {
-        let textfield = UITextField()
-        textfield.placeholder = "소제목"
-        textfield.font = .myRegularSystemFont(ofSize: 15)
-        textfield.borderStyle = .none
-        textfield.textAlignment = .center
-        
-        textfield.removeAuto()
-        return textfield
-    }()
+    private var subTitleTextField = UITextField().then {
+        $0.placeholder = "소제목"
+        $0.font = .myRegularSystemFont(ofSize: 15)
+        $0.borderStyle = .none
+        $0.textAlignment = .center
+        $0.removeAuto()
+    }
     
     var titleData: String?
     var subTitleData: String?

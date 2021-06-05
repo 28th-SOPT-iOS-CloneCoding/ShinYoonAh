@@ -7,30 +7,25 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class StorySubViewHeader: UIView {
-    private var cancelButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("취소", for: .normal)
-        button.setTitleColor(.systemGray, for: .normal)
-        button.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
-        return button
-    }()
+    private var cancelButton = UIButton().then {
+        $0.setTitle("취소", for: .normal)
+        $0.setTitleColor(.systemGray, for: .normal)
+        $0.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
+    }
     
-    private var saveButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("완료", for: .normal)
-        button.setTitleColor(.systemTeal, for: .normal)
-        button.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
-        return button
-    }()
+    private var saveButton = UIButton().then {
+        $0.setTitle("완료", for: .normal)
+        $0.setTitleColor(.systemTeal, for: .normal)
+        $0.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
+    }
     
-    var titleButton: UIButton = {
-        let button = UIButton()
-        button.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
-        button.titleLabel?.lineBreakMode = .byTruncatingTail
-        return button
-    }()
+    var titleButton = UIButton().then {
+        $0.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
+        $0.titleLabel?.lineBreakMode = .byTruncatingTail
+    }
     
     private var isTitleView = false
     private var viewController: UIViewController?

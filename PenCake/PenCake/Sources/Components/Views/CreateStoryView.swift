@@ -7,26 +7,23 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class CreateStoryView: UIView {
-    private var plusButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.setPreferredSymbolConfiguration(.init(pointSize: 70,
+    private var plusButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "plus"), for: .normal)
+        $0.setPreferredSymbolConfiguration(.init(pointSize: 70,
                                                      weight: .ultraLight,
                                                      scale: .large),
                                                 forImageIn: .normal)
-        button.tintColor = .systemGray2
-        return button
-    }()
+        $0.tintColor = .systemGray2
+    }
     
-    private var startLabel: UILabel = {
-        let label = UILabel()
-        label.text = "+를 눌러서 새 이야기를 시작하세요"
-        label.font = .myRegularSystemFont(ofSize: 15)
-        label.textColor = .systemGray2
-        return label
-    }()
+    private var startLabel = UILabel().then {
+        $0.text = "+를 눌러서 새 이야기를 시작하세요"
+        $0.font = .myRegularSystemFont(ofSize: 15)
+        $0.textColor = .systemGray2
+    }
     
     private var viewController: UIViewController?
     private var storypage: StoryPageVC?

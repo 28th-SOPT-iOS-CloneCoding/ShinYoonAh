@@ -7,29 +7,24 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class StoryTitleHeader: UIView {
-    var titleButton: UIButton = {
-        let button = UIButton()
-        button.titleLabel?.font = .myBoldSystemFont(ofSize: 19)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.lineBreakMode = .byTruncatingTail
-        return button
-    }()
+    var titleButton = UIButton().then {
+        $0.titleLabel?.font = .myBoldSystemFont(ofSize: 19)
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.lineBreakMode = .byTruncatingTail
+    }
     
-    var subTitleButton: UIButton = {
-        let button = UIButton()
-        button.titleLabel?.font = .myRegularSystemFont(ofSize: 15)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.lineBreakMode = .byTruncatingTail
-        return button
-    }()
+    var subTitleButton = UIButton().then {
+        $0.titleLabel?.font = .myRegularSystemFont(ofSize: 15)
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.lineBreakMode = .byTruncatingTail
+    }
     
-    private var bottomLine: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemGray4
-        return view
-    }()
+    private var bottomLine = UIView().then {
+        $0.backgroundColor = .systemGray4
+    }
     
     private var vc: UIViewController?
 

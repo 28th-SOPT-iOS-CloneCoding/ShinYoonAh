@@ -6,42 +6,35 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
 class NewStoryHeader: UIView {
-    // MARK: - TODO: button 중복되는 부분 extension UIButton, then 써보기
-    var cancelButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("닫기", for: .normal)
-        button.setTitleColor(.systemGray, for: .normal)
-        button.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
-        return button
-    }()
+    var cancelButton = UIButton().then {
+        $0.setTitle("닫기", for: .normal)
+        $0.setTitleColor(.systemGray, for: .normal)
+        $0.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
+    }
     
-    var nextButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("다음", for: .normal)
-        button.setTitleColor(.systemTeal, for: .normal)
-        button.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
-        return button
-    }()
+    var nextButton = UIButton().then {
+        $0.setTitle("다음", for: .normal)
+        $0.setTitleColor(.systemTeal, for: .normal)
+        $0.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
+    }
     
-    var previousButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("이전", for: .normal)
-        button.setTitleColor(.systemGray, for: .normal)
-        button.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
-        button.isHidden = true
-        return button
-    }()
+    var previousButton = UIButton().then {
+        $0.setTitle("이전", for: .normal)
+        $0.setTitleColor(.systemGray, for: .normal)
+        $0.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
+        $0.isHidden = true
+    }
     
-    var saveButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("완료", for: .normal)
-        button.setTitleColor(.systemTeal, for: .normal)
-        button.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
-        button.isHidden = true
-        return button
-    }()
+    var saveButton = UIButton().then {
+        $0.setTitle("완료", for: .normal)
+        $0.setTitleColor(.systemTeal, for: .normal)
+        $0.titleLabel?.font = .myRegularSystemFont(ofSize: 14)
+        $0.isHidden = true
+    }
     
     private var viewController: UIViewController?
     private var newStoryVC: NewStoryVC?

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class SettingVC: UIViewController {
     lazy private var settingMainView = SettingMainView(root: self, page: pageController ?? UIPageViewController() as! StoryPageVC)
@@ -14,13 +15,11 @@ class SettingVC: UIViewController {
     var pageController: StoryPageVC?
     
     private var exitButton = ExitButton()
-    private var stackView: UIStackView = {
-        let stack = UIStackView()
-        stack.alignment = .center
-        stack.axis = .vertical
-        stack.distribution = .fill
-        return stack
-    }()
+    private var stackView = UIStackView().then {
+        $0.alignment = .center
+        $0.axis = .vertical
+        $0.distribution = .fill
+    }
     
     var isCreateView = false
 

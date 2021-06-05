@@ -7,23 +7,20 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class SettingMainView: UIView {
-    private var settingButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("앱 설정", for: .normal)
-        button.titleLabel?.font = .myRegularSystemFont(ofSize: 15)
-        button.setTitleColor(.black, for: .normal)
-        return button
-    }()
+    private var settingButton = UIButton().then {
+        $0.setTitle("앱 설정", for: .normal)
+        $0.titleLabel?.font = .myRegularSystemFont(ofSize: 15)
+        $0.setTitleColor(.black, for: .normal)
+    }
     
-    private var storyButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("이야기 추가", for: .normal)
-        button.titleLabel?.font = .myRegularSystemFont(ofSize: 15)
-        button.setTitleColor(.black, for: .normal)
-        return button
-    }()
+    private var storyButton = UIButton().then {
+        $0.setTitle("이야기 추가", for: .normal)
+        $0.titleLabel?.font = .myRegularSystemFont(ofSize: 15)
+        $0.setTitleColor(.black, for: .normal)
+    }
     
     private var vc: SettingVC?
     private var pageVC: StoryPageVC?
