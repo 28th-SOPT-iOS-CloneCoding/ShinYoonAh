@@ -54,10 +54,26 @@ class StoryDetailCVC: UICollectionViewCell {
     
     private func setupButtonAction() {
         let titleAction = UIAction { _ in
-            let storyboard = UIStoryboard(name: "StoryPage", bundle: nil)
-            guard let vc = storyboard.instantiateViewController(identifier: "CreateContentVC") as? CreateContentVC else { return}
-            self.delegate?.presentViewController(with: vc)
+            self.presentCreateContent(contentMode: false)
         }
         titleButton.addAction(titleAction, for: .touchUpInside)
+        
+        let contentAction = UIAction { _ in
+            print("double tap ! ! !")
+            self.presentCreateContent(contentMode: true)
+        }
+        contentButton.addAction(contentAction, for: .touchDownRepeat)
+    }
+    
+    private func presentCreateContent(contentMode: Bool) {
+        let storyboard = UIStoryboard(name: "StoryPage", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(identifier: "CreateContentVC") as? CreateContentVC else { return}
+        if let title = titleButton.titleLabel?.text,
+           let content = contentButton.titleLabel?.text {
+            vc.contentTitle = title
+            vc.content = content
+        }
+        vc.isContentMode = contentMode
+        delegate?.presentViewController(with: vc)
     }
 }

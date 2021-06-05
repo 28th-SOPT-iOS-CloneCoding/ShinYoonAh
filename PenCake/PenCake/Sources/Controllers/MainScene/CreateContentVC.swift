@@ -10,7 +10,11 @@ import SnapKit
 
 class CreateContentVC: UIViewController {
     lazy private var header = StorySubViewHeader(root: self, embed: self)
-    lazy private var contentView = CreateContentTextView(root: self)
+    lazy private var contentView = CreateContentTextView(root: self, title: contentTitle, content: content)
+    
+    var contentTitle: String = ""
+    var content: String = ""
+    var isContentMode = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +38,13 @@ class CreateContentVC: UIViewController {
         
         view.addSubview(header)
         view.addSubview(contentView)
+        
+        if isContentMode {
+            presentInContentMode()
+            contentView.contentTextView.becomeFirstResponder()
+        } else {
+            contentView.titleTextField.becomeFirstResponder()
+        }
     }
     
     func didSelectTextView() {
@@ -68,12 +79,31 @@ class CreateContentVC: UIViewController {
     func didClickCancel() {
         if let hasTextfield = contentView.titleTextField.text,
            let hasTextView = contentView.contentTextView.text {
-            if hasTextfield.isEmpty && (hasTextView.isEmpty || hasTextView == "내용을 입력하세요"){
+            if hasTextfield.isEmpty && (hasTextView.isEmpty || hasTextView == "내용을 입력하세요" || hasTextView == content){
                 dismiss(animated: true, completion: nil)
             } else {
                 print(hasTextView.isEmpty)
                 makeActionSheet(message: "작성중인 글이 있습니다.")
             }
         }
+    }
+    
+    func presentInContentMode() {
+        UIView.animate(withDuration: 0.1, animations: {
+            self.contentView.transform = CGAffineTransform(translationX: 0, y: -60)
+        })
+        
+        header.titleButton.isHidden = false
+        contentView.titleTextField.isHidden = true
+        
+        if contentTitle.isEmpty {
+            header.titleButton.setTitle("제목", for: .normal)
+            header.titleButton.setTitleColor(.systemGray, for: .normal)
+        } else {
+            header.titleButton.setTitle(contentTitle, for: .normal)
+            header.titleButton.setTitleColor(.black, for: .normal)
+        }
+        
+        view.bringSubviewToFront(header)
     }
 }

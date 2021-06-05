@@ -42,20 +42,32 @@ class CreateContentTextView: UIView {
     }()
     
     private var viewController: CreateContentVC?
+    private var isEditMode = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupConfigure()
+        addSubviews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(root viewController: CreateContentVC) {
+    init(root viewController: CreateContentVC, title: String, content: String) {
         super.init(frame: .zero)
         self.viewController = viewController
-        setupConfigure()
+        addSubviews()
+        
+        if !title.isEmpty {
+            titleTextField.text = title
+            isEditMode = true
+        }
+        
+        if !content.isEmpty {
+            contentTextView.text = content
+            contentTextView.textColor = UIColor.black
+            isEditMode = true
+        }
     }
     
     override func layoutSubviews() {
@@ -78,12 +90,6 @@ class CreateContentTextView: UIView {
         }
     }
     
-    private func setupConfigure() {
-        titleTextField.becomeFirstResponder()
-        
-        addSubviews()
-    }
-    
     private func addSubviews() {
         addSubview(titleTextField)
         addSubview(bottomLine)
@@ -93,9 +99,11 @@ class CreateContentTextView: UIView {
 
 extension CreateContentTextView: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.systemGray2 {
-            textView.text = nil
-            textView.textColor = UIColor.black
+        if !isEditMode {
+            if textView.textColor == UIColor.systemGray2 {
+                textView.text = nil
+                textView.textColor = UIColor.black
+            }
         }
         titleTextField.isHidden = true
         viewController?.didSelectTextView()
