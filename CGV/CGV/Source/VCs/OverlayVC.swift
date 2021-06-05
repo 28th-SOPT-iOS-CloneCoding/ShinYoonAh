@@ -43,10 +43,8 @@ class OverlayVC: UIViewController {
         bookingTableView.delegate = self
         bookingTableView.dataSource = self
         
-        let selectNib = UINib(nibName: "SelectTheaterTVC", bundle: nil)
-        let dateNib = UINib(nibName: "DateTheaterTVC", bundle: nil)
-        bookingTableView.register(selectNib, forCellReuseIdentifier: SelectTheaterTVC.identifier)
-        bookingTableView.register(dateNib, forCellReuseIdentifier: DateTheaterTVC.identifier)
+        bookingTableView.setupTableViewNib(nib: SelectTheaterTVC.identifier)
+        bookingTableView.setupTableViewNib(nib: DateTheaterTVC.identifier)
     }
     
     

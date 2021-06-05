@@ -61,17 +61,14 @@ class SelectTheaterTVC: UITableViewCell {
     }
     
     private func collectionViewSetting() {
-        let theaterNib = UINib(nibName: TheaterCVC.identifier, bundle: nil)
-        areaCollectionView.register(theaterNib, forCellWithReuseIdentifier: TheaterCVC.identifier)
-        
-        let detailNib = UINib(nibName: TheaterDetailCVC.identifier, bundle: nil)
-        positionCollectionView.register(detailNib, forCellWithReuseIdentifier: TheaterDetailCVC.identifier)
-        
         areaCollectionView.delegate =  self
         areaCollectionView.dataSource = self
         
         positionCollectionView.delegate = self
         positionCollectionView.dataSource = self
+        
+        areaCollectionView.setupCollectionViewNib(nib: TheaterCVC.identifier)
+        positionCollectionView.setupCollectionViewNib(nib: TheaterDetailCVC.identifier)
         
         basicFlowLayout.scrollDirection = .horizontal
         positionCollectionView.collectionViewLayout = basicFlowLayout
