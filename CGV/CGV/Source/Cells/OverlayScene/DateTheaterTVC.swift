@@ -30,16 +30,108 @@ class DateTheaterTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setDate()
-        setUI()
+        setupDateArray()
+        collectionViewSetting()
+        setupConfigure()
         setNotification()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    private func setupDateArray() {
+        let todayDate = Date()
+        let calendar = Calendar.current
+        let format = DateFormatter()
+        let dayFormat = DateFormatter()
+        
+        dayFormat.locale = Locale(identifier: "ko_KR")
+        format.dateFormat = "d"
+        dayFormat.dateFormat = "EEEEE"
+        
+        for i in 0..<14 {
+            let day = calendar.date(byAdding: .day, value: i, to: todayDate)!
+            if i == 0 {
+                days.append("오늘")
+            } else if i == 1 {
+                days.append("내일")
+            } else {
+                days.append(dayFormat.string(from: day))
+            }
+            dates.append(format.string(from: day))
+            realDate.append(day)
+        }
+    }
+    
+    private func collectionViewSetting() {
+        let dateNib = UINib(nibName: DateCVC.identifier, bundle: nil)
+        let timeNib = UINib(nibName: TheaterDetailCVC.identifier, bundle: nil)
+        
+        dateCollectionView.delegate = self
+        dateCollectionView.dataSource = self
+        dateCollectionView.register(dateNib, forCellWithReuseIdentifier: DateCVC.identifier)
+        
+        timeCollectionView.delegate = self
+        timeCollectionView.dataSource = self
+        timeCollectionView.register(timeNib, forCellWithReuseIdentifier: TheaterDetailCVC.identifier)
+    }
+    
+    private func setupConfigure() {
+        formatter.locale = Locale(identifier:"ko_KR")
+        formatter.dateFormat = "yyyy.M.dd (EEEEE)"
+        
+        headerLabel.font = .systemFont(ofSize: 17, weight: .semibold)
+        headerLabel.text = "날짜/시간"
+        
+        dateLabel.font = .systemFont(ofSize: 15)
+        dateLabel.text = formatter.string(from: Date())
+        
+        todayLabel.font = .systemFont(ofSize: 15)
+        todayLabel.text = "오늘"
+        todayLabel.textColor = .systemBlue
+        
+        lookUpButton.setTitle("조회하기", for: .normal)
+        lookUpButton.setTitleColor(.white, for: .normal)
+        lookUpButton.titleLabel?.font = .boldSystemFont(ofSize: 17)
+        lookUpButton.layer.cornerRadius = 10
+        lookUpButton.backgroundColor = .systemRed
+        
+        let lookupAction = UIAction { _ in
+            if self.isButtonActive {
+                print("complete")
+                self.delegate?.showupAlertToLookup(title: "조회 완료", content: "CGV \(self.position) 점\n정보를 가져옵니다")
+            } else {
+                print("nope")
+                self.delegate?.showupAlertToLookup(title: "경고", content: "극장을 선택해주세요.")
+            }
+        }
+        lookUpButton.addAction(lookupAction, for: .touchUpInside)
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(buttonInActive), name: NSNotification.Name("buttonInActive"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(buttonActive), name: NSNotification.Name("buttonActive"), object: nil)
+    }
+    
+    @objc
+    func buttonInActive() {
+        print("inactive")
+        isButtonActive = false
+        lookUpButton.backgroundColor = .darkGray
+    }
+    
+    @objc
+    func buttonActive(_ notification: Notification) {
+        print("active")
+        isButtonActive = true
+        lookUpButton.backgroundColor = .systemRed
+        position = notification.object as! String
+    }
 }
 
+// MARK: - UICollectionViewDataSource
 extension DateTheaterTVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == dateCollectionView {
@@ -76,6 +168,7 @@ extension DateTheaterTVC: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension DateTheaterTVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var width: CGFloat = 0
@@ -113,6 +206,7 @@ extension DateTheaterTVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - UICollectionViewDelegate
 extension DateTheaterTVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == dateCollectionView {
@@ -127,117 +221,6 @@ extension DateTheaterTVC: UICollectionViewDelegate {
             } else {
                 todayLabel.text = ""
             }
-        }
-    }
-}
-
-
-// MARK: - UI
-extension DateTheaterTVC {
-    private func setUI() {
-        setCollectionView()
-        setFormatter()
-        setLabel()
-        setButton()
-    }
-    
-    private func setCollectionView() {
-        let dateNib = UINib(nibName: DateCVC.identifier, bundle: nil)
-        let timeNib = UINib(nibName: TheaterDetailCVC.identifier, bundle: nil)
-        
-        dateCollectionView.delegate = self
-        dateCollectionView.dataSource = self
-        dateCollectionView.register(dateNib, forCellWithReuseIdentifier: DateCVC.identifier)
-        
-        timeCollectionView.delegate = self
-        timeCollectionView.dataSource = self
-        timeCollectionView.register(timeNib, forCellWithReuseIdentifier: TheaterDetailCVC.identifier)
-    }
-    
-    private func setFormatter() {
-        formatter.locale = Locale(identifier:"ko_KR")
-        formatter.dateFormat = "yyyy.M.dd (EEEEE)"
-    }
-    
-    private func setLabel() {
-        headerLabel.font = .systemFont(ofSize: 17, weight: .semibold)
-        headerLabel.text = "날짜/시간"
-        
-        dateLabel.font = .systemFont(ofSize: 15)
-        dateLabel.text = formatter.string(from: Date())
-        
-        todayLabel.font = .systemFont(ofSize: 15)
-        todayLabel.text = "오늘"
-        todayLabel.textColor = .systemBlue
-    }
-    
-    private func setButton() {
-        lookUpButton.setTitle("조회하기", for: .normal)
-        lookUpButton.setTitleColor(.white, for: .normal)
-        lookUpButton.titleLabel?.font = .boldSystemFont(ofSize: 17)
-        lookUpButton.layer.cornerRadius = 10
-        lookUpButton.backgroundColor = .systemRed
-        lookUpButton.addTarget(self, action: #selector(touchUpLookupButton), for: .touchUpInside)
-    }
-}
-
-// MARK: - Data
-extension DateTheaterTVC {
-    private func setDate() {
-        let todayDate = Date()
-        let calendar = Calendar.current
-        let format = DateFormatter()
-        let dayFormat = DateFormatter()
-        dayFormat.locale = Locale(identifier: "ko_KR")
-        format.dateFormat = "d"
-        dayFormat.dateFormat = "EEEEE"
-        for i in 0..<14 {
-            let day = calendar.date(byAdding: .day, value: i, to: todayDate)!
-            if i == 0 {
-                days.append("오늘")
-            } else if i == 1 {
-                days.append("내일")
-            } else {
-                days.append(dayFormat.string(from: day))
-            }
-            dates.append(format.string(from: day))
-            realDate.append(day)
-        }
-    }
-}
-
-// MARK: Notification
-extension DateTheaterTVC {
-    private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(buttonInActive), name: NSNotification.Name("buttonInActive"), object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(buttonActive), name: NSNotification.Name("buttonActive"), object: nil)
-    }
-    
-    @objc
-    func buttonInActive() {
-        print("inactive")
-        isButtonActive = false
-        lookUpButton.backgroundColor = .darkGray
-    }
-    
-    @objc
-    func buttonActive(_ notification: Notification) {
-        print("active")
-        isButtonActive = true
-        lookUpButton.backgroundColor = .systemRed
-        
-        position = notification.object as! String
-    }
-    
-    @objc
-    func touchUpLookupButton() {
-        if isButtonActive {
-            print("complete")
-            delegate?.showupAlertToLookup(title: "조회 완료", content: "CGV \(position) 점\n정보를 가져옵니다")
-        } else {
-            print("nope")
-            delegate?.showupAlertToLookup(title: "경고", content: "극장을 선택해주세요.")
         }
     }
 }
