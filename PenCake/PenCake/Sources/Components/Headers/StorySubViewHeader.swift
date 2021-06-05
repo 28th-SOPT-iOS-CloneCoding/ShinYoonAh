@@ -105,6 +105,7 @@ class StorySubViewHeader: UIView {
             if self.isTitleView {
                 self.changeTitleVC?.saveTitle()
             } else {
+                self.createContentVC?.saveEditContent()
                 self.viewController?.dismiss(animated: true, completion: nil)
             }
         }

@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 class CreateContentVC: UIViewController {
+    var saveContent: ((String, String) -> ())?
+    
     lazy private var header = StorySubViewHeader(root: self, embed: self)
     lazy private var contentView = CreateContentTextView(root: self, title: contentTitle, content: content)
     
@@ -105,5 +107,12 @@ class CreateContentVC: UIViewController {
         }
         
         view.bringSubviewToFront(header)
+    }
+    
+    func saveEditContent() {
+        if let text = contentView.titleTextField.text,
+           let content = contentView.contentTextView.text {
+            saveContent?(text, content)
+        }
     }
 }

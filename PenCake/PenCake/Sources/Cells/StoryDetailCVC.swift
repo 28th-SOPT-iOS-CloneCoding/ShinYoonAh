@@ -74,6 +74,10 @@ class StoryDetailCVC: UICollectionViewCell {
             vc.content = content
         }
         vc.isContentMode = contentMode
+        vc.saveContent = { title, content in
+            self.titleButton.setTitle(title, for: .normal)
+            self.contentButton.setTitle(content, for: .normal)
+        }
         delegate?.presentViewController(with: vc)
     }
 }
