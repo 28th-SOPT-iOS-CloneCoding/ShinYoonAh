@@ -25,12 +25,10 @@ class TheaterDetailCVC: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setUI()
+        setupView()
     }
-}
-
-extension TheaterDetailCVC {
-    private func setUI() {
+    
+    private func setupView() {
         self.setViewShadow(backView: backView)
     }
     

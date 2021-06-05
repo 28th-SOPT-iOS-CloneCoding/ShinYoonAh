@@ -61,12 +61,11 @@ class MovieChartVC: UIViewController {
     }
     
     private func setupConfigure() {
-        view.addSubview(customNavigationBar)
-        view.addSubview(menuBar)
-        view.addSubview(movieTableView)
-        view.addSubview(bookingButton)
-        view.addSubview(topButton)
-        
+        view.addSubviews([customNavigationBar,
+                          menuBar,
+                          movieTableView,
+                          bookingButton,
+                          topButton])
         setRefreshControl()
     }
     
@@ -76,8 +75,7 @@ class MovieChartVC: UIViewController {
         movieTableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         movieTableView.backgroundColor = .systemGray6
 
-        let nib = UINib(nibName: "MovieTVC", bundle: nil)
-        movieTableView.register(nib, forCellReuseIdentifier: MovieTVC.identifier)
+        movieTableView.setupTableViewNib(nib: MovieTVC.identifier)
     }
     
     private func setRefreshControl() {

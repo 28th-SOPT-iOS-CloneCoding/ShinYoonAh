@@ -46,4 +46,8 @@ extension UIView {
         unselectedButton1.isSelected = false
         unselectedButton2.isSelected = false
     }
+    
+    func addSubviews(_ views: [UIView]) {
+        views.forEach { self.addSubview($0) }
+    }
 }

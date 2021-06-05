@@ -7,37 +7,32 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class MovieChartCustomNavigationBar: UIView {
-    private var backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        button.tintColor = .black
-        button.setPreferredSymbolConfiguration(.init(pointSize: 20,
+    private var backButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        $0.tintColor = .black
+        $0.setPreferredSymbolConfiguration(.init(pointSize: 20,
                                                      weight: .light,
                                                      scale: .large),
                                                 forImageIn: .normal)
-        return button
-    }()
+    }
     
-    private var menuButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "line.horizontal.3"), for: .normal)
-        button.tintColor = .black
-        button.setPreferredSymbolConfiguration(.init(pointSize: 20,
+    private var menuButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "line.horizontal.3"), for: .normal)
+        $0.tintColor = .black
+        $0.setPreferredSymbolConfiguration(.init(pointSize: 20,
                                                      weight: .light,
                                                      scale: .large),
                                                forImageIn: .normal)
-        return button
-    }()
+    }
     
-    private var backLabel: UILabel = {
-        let label = UILabel()
-        label.text = "영화"
-        label.font = .boldSystemFont(ofSize: 17)
-        label.textColor = .black
-        return label
-    }()
+    private var backLabel = UILabel().then {
+        $0.text = "영화"
+        $0.font = .boldSystemFont(ofSize: 17)
+        $0.textColor = .black
+    }
     
     private var navigationController: UINavigationController?
 
@@ -75,14 +70,10 @@ class MovieChartCustomNavigationBar: UIView {
     }
     
     private func setupConfigure() {
-        addSubviews()
         setupButtonAction()
-    }
-    
-    private func addSubviews() {
-        addSubview(backButton)
-        addSubview(backLabel)
-        addSubview(menuButton)
+        addSubviews([backButton,
+                     backLabel,
+                     menuButton])
     }
     
     private func setupButtonAction() {

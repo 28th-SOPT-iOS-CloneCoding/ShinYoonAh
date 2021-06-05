@@ -21,145 +21,35 @@ class DateTheaterTVC: UITableViewCell {
     private var isButtonActive = true
     private var position = "강변"
     
+    var viewModel = DateViewModel()
     var delegate: showupAlertDelegate?
-    
-    private var dates: [String] = []
-    private var days: [String] = []
-    private var realDate: [Date] = []
-    private var time: [String] = ["전체", "오전", "오후", "18시이후", "심야"]
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setDate()
-        setUI()
+        collectionViewSetting()
+        setupConfigure()
         setNotification()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-}
-
-extension DateTheaterTVC: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == dateCollectionView {
-            return dates.count
-        }
-        return 5
-    }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == dateCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DateCVC.identifier, for: indexPath) as? DateCVC else {
-                return UICollectionViewCell()
-            }
-            if indexPath.item == 0 {
-                cell.isSelected = true
-                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
-            } else {
-                cell.isSelected = false
-            }
-            cell.labelConfigure(date: dates[indexPath.row], day: days[indexPath.row])
-            return cell
-        }
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TheaterDetailCVC.identifier, for: indexPath) as? TheaterDetailCVC else {
-            return UICollectionViewCell()
-        }
-        if indexPath.item == 0 {
-            cell.isSelected = true
-            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
-        } else {
-            cell.isSelected = false
-        }
-        cell.labelConfigure(position: time[indexPath.item])
-        return cell
-    }
-}
-
-extension DateTheaterTVC: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var width: CGFloat = 0
-        var height: CGFloat = 0
-        let label = UILabel()
-        if collectionView == dateCollectionView {
-            width = 40
-            height = 70
-        } else if collectionView == timeCollectionView {
-            label.text = time[indexPath.row]
-            label.sizeToFit()
-            
-            width = label.frame.width + 30
-            height = 40
-        }
-        return CGSize(width: width, height: height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        if collectionView == dateCollectionView {
-            return 15
-        }
-        return 5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if collectionView == dateCollectionView {
-            return UIEdgeInsets(top: 20, left: 15, bottom: 0, right: 15)
-        }
-        return UIEdgeInsets(top: 5, left: 20, bottom: 30, right: 20)
-    }
-}
-
-extension DateTheaterTVC: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == dateCollectionView {
-            dateCollectionView.scrollToItem(at: IndexPath(item: indexPath.row, section: 0), at: .centeredHorizontally, animated: true)
-            
-            dateLabel.text = formatter.string(from: realDate[indexPath.item])
-            
-            if indexPath.item == 0 {
-                todayLabel.text = "오늘"
-            } else if indexPath.item == 1 {
-                todayLabel.text = "내일"
-            } else {
-                todayLabel.text = ""
-            }
-        }
-    }
-}
-
-
-// MARK: - UI
-extension DateTheaterTVC {
-    private func setUI() {
-        setCollectionView()
-        setFormatter()
-        setLabel()
-        setButton()
-    }
-    
-    private func setCollectionView() {
-        let dateNib = UINib(nibName: DateCVC.identifier, bundle: nil)
-        let timeNib = UINib(nibName: TheaterDetailCVC.identifier, bundle: nil)
-        
+    private func collectionViewSetting() {
         dateCollectionView.delegate = self
         dateCollectionView.dataSource = self
-        dateCollectionView.register(dateNib, forCellWithReuseIdentifier: DateCVC.identifier)
         
         timeCollectionView.delegate = self
         timeCollectionView.dataSource = self
-        timeCollectionView.register(timeNib, forCellWithReuseIdentifier: TheaterDetailCVC.identifier)
+        
+        dateCollectionView.setupCollectionViewNib(nib: DateCVC.identifier)
+        timeCollectionView.setupCollectionViewNib(nib: TheaterDetailCVC.identifier)
     }
     
-    private func setFormatter() {
+    private func setupConfigure() {
         formatter.locale = Locale(identifier:"ko_KR")
         formatter.dateFormat = "yyyy.M.dd (EEEEE)"
-    }
-    
-    private func setLabel() {
+        
         headerLabel.font = .systemFont(ofSize: 17, weight: .semibold)
         headerLabel.text = "날짜/시간"
         
@@ -169,45 +59,47 @@ extension DateTheaterTVC {
         todayLabel.font = .systemFont(ofSize: 15)
         todayLabel.text = "오늘"
         todayLabel.textColor = .systemBlue
-    }
-    
-    private func setButton() {
+        
         lookUpButton.setTitle("조회하기", for: .normal)
         lookUpButton.setTitleColor(.white, for: .normal)
         lookUpButton.titleLabel?.font = .boldSystemFont(ofSize: 17)
         lookUpButton.layer.cornerRadius = 10
         lookUpButton.backgroundColor = .systemRed
-        lookUpButton.addTarget(self, action: #selector(touchUpLookupButton), for: .touchUpInside)
-    }
-}
-
-// MARK: - Data
-extension DateTheaterTVC {
-    private func setDate() {
-        let todayDate = Date()
-        let calendar = Calendar.current
-        let format = DateFormatter()
-        let dayFormat = DateFormatter()
-        dayFormat.locale = Locale(identifier: "ko_KR")
-        format.dateFormat = "d"
-        dayFormat.dateFormat = "EEEEE"
-        for i in 0..<14 {
-            let day = calendar.date(byAdding: .day, value: i, to: todayDate)!
-            if i == 0 {
-                days.append("오늘")
-            } else if i == 1 {
-                days.append("내일")
+        
+        let lookupAction = UIAction { _ in
+            if self.isButtonActive {
+                print("complete")
+                self.delegate?.showupAlertToLookup(title: "조회 완료", content: "CGV \(self.position) 점\n정보를 가져옵니다")
             } else {
-                days.append(dayFormat.string(from: day))
+                print("nope")
+                self.delegate?.showupAlertToLookup(title: "경고", content: "극장을 선택해주세요.")
             }
-            dates.append(format.string(from: day))
-            realDate.append(day)
+        }
+        lookUpButton.addAction(lookupAction, for: .touchUpInside)
+    }
+    
+    func calculateCellSize(collectionView: UICollectionView, index: Int) -> CGSize {
+        let label = UILabel()
+        var width: CGFloat = 0
+        var height: CGFloat = 0
+        
+        switch collectionView {
+        case dateCollectionView:
+            width = 40
+            height = 70
+            return CGSize(width: width, height: height)
+        case timeCollectionView:
+            label.text = viewModel.time[index]
+            label.sizeToFit()
+            
+            width = label.frame.width + 30
+            height = 40
+            return CGSize(width: width, height: height)
+        default:
+            return CGSize.zero
         }
     }
-}
-
-// MARK: Notification
-extension DateTheaterTVC {
+    
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(buttonInActive), name: NSNotification.Name("buttonInActive"), object: nil)
         
@@ -215,29 +107,114 @@ extension DateTheaterTVC {
     }
     
     @objc
-    func buttonInActive() {
+    private func buttonInActive() {
         print("inactive")
         isButtonActive = false
         lookUpButton.backgroundColor = .darkGray
     }
     
     @objc
-    func buttonActive(_ notification: Notification) {
+    private func buttonActive(_ notification: Notification) {
         print("active")
         isButtonActive = true
         lookUpButton.backgroundColor = .systemRed
-        
         position = notification.object as! String
     }
+}
+
+// MARK: - UICollectionViewDataSource
+extension DateTheaterTVC: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch collectionView {
+        case dateCollectionView:
+            return viewModel.dates.count
+        case timeCollectionView:
+            return 5
+        default:
+            return 0
+        }
+    }
     
-    @objc
-    func touchUpLookupButton() {
-        if isButtonActive {
-            print("complete")
-            delegate?.showupAlertToLookup(title: "조회 완료", content: "CGV \(position) 점\n정보를 가져옵니다")
-        } else {
-            print("nope")
-            delegate?.showupAlertToLookup(title: "경고", content: "극장을 선택해주세요.")
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch collectionView {
+        case dateCollectionView:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DateCVC.identifier, for: indexPath) as? DateCVC else {
+                return UICollectionViewCell()
+            }
+            if indexPath.item == 0 {
+                cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+            } else {
+                cell.isSelected = false
+            }
+            cell.labelConfigure(date: viewModel.dates[indexPath.row], day: viewModel.days[indexPath.row])
+            return cell
+        case timeCollectionView:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TheaterDetailCVC.identifier, for: indexPath) as? TheaterDetailCVC else {
+                return UICollectionViewCell()
+            }
+            if indexPath.item == 0 {
+                cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+            } else {
+                cell.isSelected = false
+            }
+            cell.labelConfigure(position: viewModel.time[indexPath.item])
+            return cell
+        default:
+            return UICollectionViewCell()
+        }
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension DateTheaterTVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return calculateCellSize(collectionView: collectionView, index: indexPath.row)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        switch collectionView {
+        case dateCollectionView:
+            return 15
+        case timeCollectionView:
+            return 5
+        default:
+            return 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        switch collectionView {
+        case dateCollectionView:
+            return UIEdgeInsets(top: 20, left: 15, bottom: 0, right: 15)
+        case timeCollectionView:
+            return UIEdgeInsets(top: 5, left: 20, bottom: 30, right: 20)
+        default:
+            return UIEdgeInsets.zero
+        }
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension DateTheaterTVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == dateCollectionView {
+            dateCollectionView.scrollToItem(at: IndexPath(item: indexPath.row, section: 0), at: .centeredHorizontally, animated: true)
+            
+            dateLabel.text = formatter.string(from: viewModel.realDate[indexPath.item])
+            
+            if indexPath.item == 0 {
+                todayLabel.text = "오늘"
+            } else if indexPath.item == 1 {
+                todayLabel.text = "내일"
+            } else {
+                todayLabel.text = ""
+            }
         }
     }
 }

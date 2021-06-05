@@ -7,11 +7,25 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class EarlyReservationButton: UIButton {
-    private let smallTitleLabel = UILabel()
-    private let largeTitleLabel = UILabel()
-    private let buttonImageView = UIImageView()
+    private let smallTitleLabel = UILabel().then {
+        $0.text = "빠르고 쉽게"
+        $0.font = .boldSystemFont(ofSize: 10)
+        $0.textColor = .white
+    }
+    
+    private let largeTitleLabel = UILabel().then {
+        $0.text = "지금예매"
+        $0.font = .boldSystemFont(ofSize: 16)
+        $0.textColor = .white
+    }
+    
+    private let buttonImageView = UIImageView().then {
+        $0.image = UIImage(systemName: "ticket")
+        $0.tintColor = .white
+    }
     
     private var storyboard: UIStoryboard?
     private var rootController: UIViewController?
@@ -54,25 +68,10 @@ class EarlyReservationButton: UIButton {
         backgroundColor = UIColor.systemPink.withAlphaComponent(0.7)
         layer.cornerRadius = 30
         
-        smallTitleLabel.text = "빠르고 쉽게"
-        smallTitleLabel.font = .boldSystemFont(ofSize: 10)
-        smallTitleLabel.textColor = .white
-        
-        largeTitleLabel.text = "지금예매"
-        largeTitleLabel.font = .boldSystemFont(ofSize: 16)
-        largeTitleLabel.textColor = .white
-        
-        buttonImageView.image = UIImage(systemName: "ticket")
-        buttonImageView.tintColor = .white
-        
-        addSubviews()
         setupButtonAction()
-    }
-    
-    private func addSubviews() {
-        addSubview(smallTitleLabel)
-        addSubview(largeTitleLabel)
-        addSubview(buttonImageView)
+        addSubviews([smallTitleLabel,
+                     largeTitleLabel,
+                     buttonImageView])
     }
     
     private func setupButtonAction() {

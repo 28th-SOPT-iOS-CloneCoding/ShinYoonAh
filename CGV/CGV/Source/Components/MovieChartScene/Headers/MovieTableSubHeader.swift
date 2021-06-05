@@ -53,12 +53,7 @@ class MovieTableSubHeader: UIView {
                                 unselectedButton1: bookingRateButton,
                                 unselectedButton2: UIButton())
         setupButtonAction()
-        addSubviews()
-    }
-    
-    private func addSubviews() {
-        addSubview(comeoutButton)
-        addSubview(bookingRateButton)
+        addSubviews([comeoutButton, bookingRateButton])
     }
     
     private func setupButtonAction() {
