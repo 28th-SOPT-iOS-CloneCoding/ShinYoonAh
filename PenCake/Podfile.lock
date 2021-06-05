@@ -1,20 +1,20 @@
 PODS:
+  - DuctTape (0.2.0)
   - SnapKit (5.0.1)
-  - Then (2.7.0)
 
 DEPENDENCIES:
+  - DuctTape
   - SnapKit (~> 5.0.0)
-  - Then
 
 SPEC REPOS:
   trunk:
+    - DuctTape
     - SnapKit
-    - Then
 
 SPEC CHECKSUMS:
+  DuctTape: 6bd715ccb50e505540191687277b8df4bdb48dce
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: 6d0032e88866860ac156289460e445629da25c62
+PODFILE CHECKSUM: b363b6a9b7376ec7ee0ea4804a761c824b2a2dd6
 
 COCOAPODS: 1.9.3
