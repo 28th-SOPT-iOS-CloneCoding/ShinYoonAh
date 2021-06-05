@@ -7,14 +7,13 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class SelectTheaterHeaderView: UIView {
-    private let headerLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 17, weight: .semibold)
-        label.text = "극장선택"
-        return label
-    }()
+    private let headerLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 17, weight: .semibold)
+        $0.text = "극장선택"
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

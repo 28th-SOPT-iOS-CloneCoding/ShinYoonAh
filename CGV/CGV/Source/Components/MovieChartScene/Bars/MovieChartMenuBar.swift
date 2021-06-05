@@ -6,41 +6,42 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
 class MovieChartMenuBar: UIView {
-    var chartMenuButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("무비차트", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16)
-        button.isSelected = true
-        return button
-    }()
+    var chartMenuButton = UIButton().then {
+        $0.setTitle("무비차트", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 16)
+        $0.isSelected = true
+    }
     
-    var arthouseMenuButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("아트하우스", for: .normal)
-        button.setTitleColor(.lightGray, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16)
-        return button
-    }()
+    var arthouseMenuButton = UIButton().then {
+        $0.setTitle("아트하우스", for: .normal)
+        $0.setTitleColor(.lightGray, for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 16)
+    }
     
-    var comeoutButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("개봉예정", for: .normal)
-        button.setTitleColor(.lightGray, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16)
-        return button
-    }()
+    var comeoutButton = UIButton().then {
+        $0.setTitle("개봉예정", for: .normal)
+        $0.setTitleColor(.lightGray, for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 16)
+    }
     
-    private let menuStackView = UIStackView()
+    private let menuStackView = UIStackView().then {
+        $0.axis = .horizontal
+        $0.distribution = .fillEqually
+        $0.alignment = .center
+    }
     
     var movieViewModel: MovieChartViewModel?
     var tableView: UITableView?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupConfigure()
+        addSubviews()
+        setupButtonAction()
     }
     
     required init?(coder: NSCoder) {
@@ -58,14 +59,6 @@ class MovieChartMenuBar: UIView {
         super.init(frame: .zero)
         self.tableView = tableView
         self.movieViewModel = model
-        setupConfigure()
-    }
-    
-    private func setupConfigure() {
-        menuStackView.axis = .horizontal
-        menuStackView.distribution = .fillEqually
-        menuStackView.alignment = .center
-        
         addSubviews()
         setupButtonAction()
     }
