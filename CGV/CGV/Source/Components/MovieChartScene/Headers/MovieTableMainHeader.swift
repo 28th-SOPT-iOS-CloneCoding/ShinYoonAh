@@ -60,13 +60,9 @@ class MovieTableMainHeader: UIView {
                                 unselectedButton1: eggRateButton,
                                 unselectedButton2: nowPlayingButton)
         setupButtonActions()
-        addSubviews()
-    }
-    
-    private func addSubviews() {
-        addSubview(bookingRateButton)
-        addSubview(eggRateButton)
-        addSubview(nowPlayingButton)
+        addSubviews([bookingRateButton,
+                     eggRateButton,
+                     nowPlayingButton])
     }
     
     private func setupButtonActions() {

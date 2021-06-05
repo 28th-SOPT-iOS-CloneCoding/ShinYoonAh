@@ -61,12 +61,11 @@ class MovieChartVC: UIViewController {
     }
     
     private func setupConfigure() {
-        view.addSubview(customNavigationBar)
-        view.addSubview(menuBar)
-        view.addSubview(movieTableView)
-        view.addSubview(bookingButton)
-        view.addSubview(topButton)
-        
+        view.addSubviews([customNavigationBar,
+                          menuBar,
+                          movieTableView,
+                          bookingButton,
+                          topButton])
         setRefreshControl()
     }
     

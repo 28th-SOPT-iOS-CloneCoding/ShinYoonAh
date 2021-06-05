@@ -65,14 +65,10 @@ class EarlyReservationButton: UIButton {
         buttonImageView.image = UIImage(systemName: "ticket")
         buttonImageView.tintColor = .white
         
-        addSubviews()
         setupButtonAction()
-    }
-    
-    private func addSubviews() {
-        addSubview(smallTitleLabel)
-        addSubview(largeTitleLabel)
-        addSubview(buttonImageView)
+        addSubviews([smallTitleLabel,
+                     largeTitleLabel,
+                     buttonImageView])
     }
     
     private func setupButtonAction() {

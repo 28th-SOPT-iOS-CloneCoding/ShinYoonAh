@@ -75,14 +75,10 @@ class MovieChartCustomNavigationBar: UIView {
     }
     
     private func setupConfigure() {
-        addSubviews()
         setupButtonAction()
-    }
-    
-    private func addSubviews() {
-        addSubview(backButton)
-        addSubview(backLabel)
-        addSubview(menuButton)
+        addSubviews([backButton,
+                     backLabel,
+                     menuButton])
     }
     
     private func setupButtonAction() {
