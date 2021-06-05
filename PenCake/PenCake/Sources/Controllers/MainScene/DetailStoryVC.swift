@@ -95,6 +95,7 @@ extension DetailStoryVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryDetailCVC.identifier, for: indexPath) as? StoryDetailCVC else {
             return UICollectionViewCell()
         }
+        cell.delegate = self
         return cell
     }
 }
@@ -157,5 +158,13 @@ extension DetailStoryVC: UICollectionViewDelegate {
         UIView.animate(withDuration: 0.3, animations: {
             self.lineView.transform = CGAffineTransform(translationX: UIScreen.main.bounds.size.width - UIScreen.main.bounds.size.width/self.textCount * (self.textCount - self.currentIndex), y: 0)
         })
+    }
+}
+
+extension DetailStoryVC: ModalFromCellDelegate {
+    func presentViewController(with vc: CreateContentVC) {
+        
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
 }

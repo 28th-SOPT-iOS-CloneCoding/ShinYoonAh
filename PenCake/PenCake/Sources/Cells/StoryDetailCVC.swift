@@ -11,6 +11,8 @@ import SnapKit
 class StoryDetailCVC: UICollectionViewCell {
     static let identifier = "StoryDetailCVC"
     
+    var delegate: ModalFromCellDelegate?
+    
     private var titleButton: UIButton = {
         let button = UIButton()
         button.setTitle("제목", for: .normal)
@@ -23,12 +25,14 @@ class StoryDetailCVC: UICollectionViewCell {
         button.setTitle("내용", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .myRegularSystemFont(ofSize: 15)
+        button.titleLabel?.numberOfLines = 0
         return button
     }()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setupConfigure()
+        setupButtonAction()
     }
     
     override func layoutSubviews() {
@@ -46,5 +50,14 @@ class StoryDetailCVC: UICollectionViewCell {
     private func setupConfigure() {
         self.addSubview(titleButton)
         self.addSubview(contentButton)
+    }
+    
+    private func setupButtonAction() {
+        let titleAction = UIAction { _ in
+            let storyboard = UIStoryboard(name: "StoryPage", bundle: nil)
+            guard let vc = storyboard.instantiateViewController(identifier: "CreateContentVC") as? CreateContentVC else { return}
+            self.delegate?.presentViewController(with: vc)
+        }
+        titleButton.addAction(titleAction, for: .touchUpInside)
     }
 }
