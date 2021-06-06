@@ -42,6 +42,7 @@ class StoryDetailCVC: UICollectionViewCell {
         contentButton.snp.makeConstraints { make in
             make.top.equalTo(titleButton.snp.bottom).offset(25)
             make.leading.equalToSuperview().inset(25)
+            make.height.lessThanOrEqualTo(self.frame.size.height - 100)
         }
     }
     

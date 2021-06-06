@@ -80,7 +80,7 @@ class CreateContentTextView: UIView {
         contentTextView.snp.makeConstraints { make in
             make.top.equalTo(bottomLine.snp.bottom).offset(25)
             make.leading.trailing.equalTo(titleTextField)
-            make.height.equalTo(200)
+            make.height.equalTo(UIScreen.main.bounds.size.height/2)
         }
     }
     
