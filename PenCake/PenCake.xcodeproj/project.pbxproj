@@ -13,6 +13,11 @@
 		ED7BC7D32667BDCE0033BB17 /* SettingMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BC7D22667BDCE0033BB17 /* SettingMainView.swift */; };
 		ED7BC7D52667CD280033BB17 /* SettingSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BC7D42667CD280033BB17 /* SettingSubView.swift */; };
 		ED7BC7D72667E3030033BB17 /* ChangeTitleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BC7D62667E3030033BB17 /* ChangeTitleVC.swift */; };
+		ED89B35D2671D49000BD89DB /* StoryStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED89B35B2671D49000BD89DB /* StoryStorage.xcdatamodeld */; };
+		ED89B3802671E74600BD89DB /* StoryPage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED89B37C2671E74600BD89DB /* StoryPage+CoreDataClass.swift */; };
+		ED89B3812671E74600BD89DB /* StoryPage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED89B37D2671E74600BD89DB /* StoryPage+CoreDataProperties.swift */; };
+		ED89B3822671E74600BD89DB /* StoryContent+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED89B37E2671E74600BD89DB /* StoryContent+CoreDataClass.swift */; };
+		ED89B3832671E74600BD89DB /* StoryContent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED89B37F2671E74600BD89DB /* StoryContent+CoreDataProperties.swift */; };
 		ED9B7A4C2662A789008C40F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B7A4B2662A789008C40F1 /* AppDelegate.swift */; };
 		ED9B7A4E2662A789008C40F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B7A4D2662A789008C40F1 /* SceneDelegate.swift */; };
 		ED9B7A552662A78A008C40F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED9B7A542662A78A008C40F1 /* Assets.xcassets */; };
@@ -55,6 +60,11 @@
 		ED7BC7D22667BDCE0033BB17 /* SettingMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMainView.swift; sourceTree = "<group>"; };
 		ED7BC7D42667CD280033BB17 /* SettingSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSubView.swift; sourceTree = "<group>"; };
 		ED7BC7D62667E3030033BB17 /* ChangeTitleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTitleVC.swift; sourceTree = "<group>"; };
+		ED89B35C2671D49000BD89DB /* StoryStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StoryStorage.xcdatamodel; sourceTree = "<group>"; };
+		ED89B37C2671E74600BD89DB /* StoryPage+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoryPage+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		ED89B37D2671E74600BD89DB /* StoryPage+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoryPage+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		ED89B37E2671E74600BD89DB /* StoryContent+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoryContent+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		ED89B37F2671E74600BD89DB /* StoryContent+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoryContent+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		ED9B7A482662A789008C40F1 /* PenCake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PenCake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED9B7A4B2662A789008C40F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED9B7A4D2662A789008C40F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -222,6 +232,10 @@
 		EDCE0D1B2663A5B200A19B10 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				ED89B37C2671E74600BD89DB /* StoryPage+CoreDataClass.swift */,
+				ED89B37D2671E74600BD89DB /* StoryPage+CoreDataProperties.swift */,
+				ED89B37E2671E74600BD89DB /* StoryContent+CoreDataClass.swift */,
+				ED89B37F2671E74600BD89DB /* StoryContent+CoreDataProperties.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -229,6 +243,7 @@
 		EDCE0D1C2663A5B900A19B10 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				ED89B35B2671D49000BD89DB /* StoryStorage.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -462,16 +477,21 @@
 				ED7BC7D12667B5F10033BB17 /* ExitButton.swift in Sources */,
 				EDCE0D452663EA4800A19B10 /* Extension+UIDevice.swift in Sources */,
 				EDD17F8F26653EA5003062F7 /* NewStoryHeader.swift in Sources */,
+				ED89B3832671E74600BD89DB /* StoryContent+CoreDataProperties.swift in Sources */,
 				EDD17F93266548FE003062F7 /* Extension+UITextField.swift in Sources */,
 				EDCE0D2F2663C33400A19B10 /* StoryTitleHeader.swift in Sources */,
 				ED7BC7D52667CD280033BB17 /* SettingSubView.swift in Sources */,
 				EDD17F7E2664D53B003062F7 /* CreateContentTextView.swift in Sources */,
 				ED9B7A4C2662A789008C40F1 /* AppDelegate.swift in Sources */,
+				ED89B35D2671D49000BD89DB /* StoryStorage.xcdatamodeld in Sources */,
 				ED9B7A4E2662A789008C40F1 /* SceneDelegate.swift in Sources */,
 				EDD17F832664FAFA003062F7 /* Extension+UIViewController.swift in Sources */,
 				EDD17F872665086D003062F7 /* CreateStoryView.swift in Sources */,
 				EDD17F9126654386003062F7 /* StoryTitleView.swift in Sources */,
+				ED89B3802671E74600BD89DB /* StoryPage+CoreDataClass.swift in Sources */,
 				EDCE0D222663A6D400A19B10 /* StoryPageVC.swift in Sources */,
+				ED89B3822671E74600BD89DB /* StoryContent+CoreDataClass.swift in Sources */,
+				ED89B3812671E74600BD89DB /* StoryPage+CoreDataProperties.swift in Sources */,
 				EDCE0D342663C6EB00A19B10 /* Extension+Font.swift in Sources */,
 				EDBD0B4C2668C2C600875CAE /* DetailSliderLineView.swift in Sources */,
 				EDCD6F0C266BA4ED00C4AA94 /* ModalFromCellDelegate.swift in Sources */,
@@ -548,7 +568,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -603,7 +623,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -620,6 +640,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y5D3Q95V6F;
 				INFOPLIST_FILE = PenCake/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -639,6 +660,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y5D3Q95V6F;
 				INFOPLIST_FILE = PenCake/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -673,6 +695,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		ED89B35B2671D49000BD89DB /* StoryStorage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				ED89B35C2671D49000BD89DB /* StoryStorage.xcdatamodel */,
+			);
+			currentVersion = ED89B35C2671D49000BD89DB /* StoryStorage.xcdatamodel */;
+			path = StoryStorage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = ED9B7A402662A789008C40F1 /* Project object */;
 }
