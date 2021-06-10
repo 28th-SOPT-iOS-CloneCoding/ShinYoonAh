@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MainStoryVC: UIViewController {
     private var storyTableView = UITableView()
@@ -13,6 +14,10 @@ class MainStoryVC: UIViewController {
     
     private var originalTableViewHeight: CGFloat = 0.0
     var pageVC: StoryPageVC?
+    
+    lazy var list: [NSManagedObject] = {
+        return self.fetch()
+    }()
     
     override func viewDidAppear(_ animated: Bool) {
         pageVC?.plusButton.isHidden = false
@@ -61,6 +66,20 @@ class MainStoryVC: UIViewController {
         
         originalTableViewHeight = storyTableView.frame.size.height
     }
+    
+    // read the data
+    func fetch() -> [NSManagedObject] {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Contents")
+        
+        // sort
+        let sort = NSSortDescriptor(key: "date", ascending: false)
+        fetchRequest.sortDescriptors = [sort]
+        
+        let result = try! context.fetch(fetchRequest)
+        return result
+    }
 }
 
 extension MainStoryVC: UIGestureRecognizerDelegate {
@@ -71,13 +90,18 @@ extension MainStoryVC: UIGestureRecognizerDelegate {
 
 extension MainStoryVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
+        return list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StoryListTVC.identifier) as? StoryListTVC else {
             return UITableViewCell()
         }
+        let record = self.list[indexPath.row]
+        let title = record.value(forKey: "contentTitle") as? String
+        let date = record.value(forKey: "date") as? Date
+        cell.titleLabel?.text = title
+        cell.dateLabel?.text = "\(String(describing: date))"
         cell.selectionStyle = .none
         return cell
     }
