@@ -98,10 +98,15 @@ extension MainStoryVC: UITableViewDataSource {
             return UITableViewCell()
         }
         let record = self.list[indexPath.row]
-        let title = record.value(forKey: "contentTitle") as? String
+        let title = record.value(forKey: "title") as? String
         let date = record.value(forKey: "date") as? Date
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM.dd"
+        let dateString = dateFormatter.string(from: date ?? Date())
+        
         cell.titleLabel?.text = title
-        cell.dateLabel?.text = "\(String(describing: date))"
+        cell.dateLabel?.text = "\(String(describing: dateString))"
         cell.selectionStyle = .none
         return cell
     }
@@ -131,6 +136,11 @@ extension MainStoryVC: UITableViewDelegate {
         if offset < -100 {
             guard let vc = storyboard?.instantiateViewController(withIdentifier: "CreateContentVC") as? CreateContentVC else { return }
             vc.modalPresentationStyle = .fullScreen
+            vc.saveContent = { title, content in
+                print(self.list)
+                self.storyTableView.reloadData()
+                self.pageVC?.reloadInputViews()
+            }
             present(vc, animated: true, completion: nil)
         }
     }

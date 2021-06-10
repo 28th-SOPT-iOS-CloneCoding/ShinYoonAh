@@ -4,16 +4,16 @@
         <attribute name="content" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="page" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Page" inverseName="contents" inverseEntity="Page"/>
+        <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Page" inverseName="newRelationship" inverseEntity="Page"/>
     </entity>
     <entity name="Page" representedClassName="Page" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="subtitle" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="contents" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Contents" inverseName="page" inverseEntity="Contents"/>
+        <relationship name="newRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contents" inverseName="newRelationship" inverseEntity="Contents"/>
     </entity>
     <elements>
-        <element name="Contents" positionX="-54" positionY="-9" width="128" height="89"/>
-        <element name="Page" positionX="-266.7218017578125" positionY="-180.0753173828125" width="128" height="89"/>
+        <element name="Contents" positionX="-54" positionY="-9" width="128" height="103"/>
+        <element name="Page" positionX="-420.3936767578125" positionY="-231.3345336914062" width="128" height="88"/>
     </elements>
 </model>

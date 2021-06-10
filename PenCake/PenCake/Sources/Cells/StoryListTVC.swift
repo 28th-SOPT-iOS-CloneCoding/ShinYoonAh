@@ -27,5 +27,6 @@ class StoryListTVC: UITableViewCell {
         
         titleLabel.font = .myRegularSystemFont(ofSize: 15)
         dateLabel.font = .myRegularSystemFont(ofSize: 10)
+        dateLabel.textColor = .systemGray
     }
 }

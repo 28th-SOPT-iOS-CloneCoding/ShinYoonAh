@@ -63,12 +63,12 @@ class StoryManager {
     // content 저장하는 법
     @discardableResult
     func insertContent(content: Content) -> Bool {
-        let entity = NSEntityDescription.entity(forEntityName: "Content", in: self.context)
+        let entity = NSEntityDescription.entity(forEntityName: "Contents", in: self.context)
         
         if let entity = entity {
             let managedObject = NSManagedObject(entity: entity, insertInto: self.context)
             
-            managedObject.setValue(content.title, forKey: "contentTitle")
+            managedObject.setValue(content.title, forKey: "title")
             managedObject.setValue(content.content, forKey: "content")
             managedObject.setValue(content.date, forKey: "date")
             

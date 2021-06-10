@@ -17,6 +17,8 @@ class CreateContentVC: UIViewController {
     var contentTitle: String = ""
     var content: String = ""
     var isContentMode = false
+    
+    let manager = StoryManager.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,6 +114,7 @@ class CreateContentVC: UIViewController {
     func saveEditContent() {
         if let text = contentView.titleTextField.text,
            let content = contentView.contentTextView.text {
+            manager.insertContent(content: Content(title: text, content: content, date: Date()))
             saveContent?(text, content)
         }
     }
