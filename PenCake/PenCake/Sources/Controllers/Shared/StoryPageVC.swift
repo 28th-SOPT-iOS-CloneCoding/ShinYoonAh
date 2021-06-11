@@ -109,6 +109,11 @@ class StoryPageVC: UIPageViewController {
         canReload = true
         currentPage = 0
     }
+    
+    func makeNewContent() {
+        canReload = true
+        currentPage = 0
+    }
 }
 
 extension StoryPageVC: UIPageViewControllerDataSource {

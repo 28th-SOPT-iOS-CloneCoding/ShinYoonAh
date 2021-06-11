@@ -14,14 +14,12 @@ class StoryDetailCVC: UICollectionViewCell {
     
     var delegate: ModalFromCellDelegate?
     
-    private var titleButton = UIButton().then {
-        $0.setTitle("제목", for: .normal)
+    var titleButton = UIButton().then {
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .myBoldSystemFont(ofSize: 19)
     }
     
-    private var contentButton = UIButton().then {
-        $0.setTitle("내용", for: .normal)
+    var contentButton = UIButton().then {
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .myRegularSystemFont(ofSize: 15)
         $0.titleLabel?.numberOfLines = 0

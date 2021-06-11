@@ -137,9 +137,11 @@ extension MainStoryVC: UITableViewDelegate {
             guard let vc = storyboard?.instantiateViewController(withIdentifier: "CreateContentVC") as? CreateContentVC else { return }
             vc.modalPresentationStyle = .fullScreen
             vc.saveContent = { title, content in
-                print(self.list)
+                let request: NSFetchRequest<Contents> = Contents.fetchRequest()
+                let fetchResult = StoryManager.shared.fetch(request: request)
+                print(fetchResult)
+                self.list = fetchResult.reversed()
                 self.storyTableView.reloadData()
-                self.pageVC?.reloadInputViews()
             }
             present(vc, animated: true, completion: nil)
         }
@@ -148,6 +150,8 @@ extension MainStoryVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let pvc = storyboard?.instantiateViewController(withIdentifier: "DetailStoryVC") as? DetailStoryVC else { return }
         pageVC?.plusButton.isHidden = true
+        pvc.textCount = list.count
+        pvc.currentIndex = CGFloat(indexPath.row)
         navigationController?.pushViewController(pvc, animated: true)
     }
 }

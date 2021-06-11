@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import CoreData
 
 class DetailStoryVC: UIViewController {
     lazy private var backButton = UIButton().then {
@@ -25,8 +26,12 @@ class DetailStoryVC: UIViewController {
     private var lineView = DetailSliderLineView()
     private var detailCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
-    var textCount: CGFloat = 5
-    private var currentIndex: CGFloat = 0
+    lazy var list: [NSManagedObject] = {
+        return self.fetch()
+    }()
+    
+    var textCount: Int = 0
+    var currentIndex: CGFloat = 0
     private let flowLayout = UICollectionViewFlowLayout()
 
     override func viewDidLoad() {
@@ -46,7 +51,7 @@ class DetailStoryVC: UIViewController {
         lineView.snp.makeConstraints { make in
             make.top.equalTo(backButton.snp.bottom).offset(10)
             make.leading.equalToSuperview()
-            make.width.equalTo(UIScreen.main.bounds.size.width/textCount)
+            make.width.equalTo(UIScreen.main.bounds.size.width/CGFloat(textCount))
             make.height.equalTo(1)
         }
         
@@ -67,6 +72,14 @@ class DetailStoryVC: UIViewController {
         view.addSubview(backButton)
         view.addSubview(lineView)
         view.addSubview(detailCollectionView)
+        
+        print(currentIndex)
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.05, execute: {
+            self.detailCollectionView.scrollToItem(at: IndexPath(item: Int(self.currentIndex), section: 0), at: .centeredHorizontally, animated: false)
+        })
+        movePositiveDirection()
+        
+        dump(list)
     }
     
     private func collectionViewSetting() {
@@ -83,6 +96,16 @@ class DetailStoryVC: UIViewController {
             detailCollectionView.isScrollEnabled = false
         }
     }
+    
+    // read the data
+    func fetch() -> [NSManagedObject] {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Contents")
+        
+        let result = try! context.fetch(fetchRequest)
+        return result
+    }
 }
 
 extension DetailStoryVC: UICollectionViewDataSource {
@@ -94,6 +117,13 @@ extension DetailStoryVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryDetailCVC.identifier, for: indexPath) as? StoryDetailCVC else {
             return UICollectionViewCell()
         }
+        let row = Int(textCount - 1) - indexPath.row
+        let record = self.list[row]
+        let title = record.value(forKey: "title") as? String
+        let content = record.value(forKey: "content") as? String
+        
+        cell.titleButton.setTitle(title, for: .normal)
+        cell.contentButton.setTitle(content, for: .normal)
         cell.delegate = self
         return cell
     }
@@ -149,13 +179,13 @@ extension DetailStoryVC: UICollectionViewDelegate {
     
     func movePositiveDirection() {
         UIView.animate(withDuration: 0.3, animations: {
-            self.lineView.transform = CGAffineTransform(translationX: UIScreen.main.bounds.size.width/self.textCount * self.currentIndex, y: 0)
+            self.lineView.transform = CGAffineTransform(translationX: UIScreen.main.bounds.size.width/CGFloat(self.textCount) * self.currentIndex, y: 0)
         })
     }
     
     func moveNegativeDirection() {
         UIView.animate(withDuration: 0.3, animations: {
-            self.lineView.transform = CGAffineTransform(translationX: UIScreen.main.bounds.size.width - UIScreen.main.bounds.size.width/self.textCount * (self.textCount - self.currentIndex), y: 0)
+            self.lineView.transform = CGAffineTransform(translationX: UIScreen.main.bounds.size.width - UIScreen.main.bounds.size.width/CGFloat(self.textCount) * (CGFloat(self.textCount) - self.currentIndex), y: 0)
         })
     }
 }
