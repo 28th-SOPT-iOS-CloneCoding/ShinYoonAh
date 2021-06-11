@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import CoreData
 
 class CreateContentVC: UIViewController {
     var saveContent: ((String, String) -> ())?
@@ -24,6 +25,7 @@ class CreateContentVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConfigure()
+        print(contentTitle)
     }
     
     override func viewWillLayoutSubviews() {
@@ -115,8 +117,35 @@ class CreateContentVC: UIViewController {
     func saveEditContent() {
         if let text = contentView.titleTextField.text,
            let content = contentView.contentTextView.text {
-            manager.insertContent(content: Content(title: text, content: content, date: Date()))
+            if isEditMode {
+                print("수정하기")
+                updateContent(title: text, content: content)
+            } else {
+                manager.insertContent(content: Content(title: text, content: content, date: Date()))
+            }
             saveContent?(text, content)
         }
+    }
+    
+    func updateContent(title: String, content: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Contents")
+        fetchRequest.predicate = NSPredicate(format: "title = %@", contentTitle)
+        
+        do {
+            let test = try managedContext.fetch(fetchRequest)
+            let objectUpdate = test[0] as! NSManagedObject
+            
+            objectUpdate.setValue(title, forKey: "title")
+            objectUpdate.setValue(content, forKey: "content")
+            objectUpdate.setValue(Date(), forKey: "date")
+            
+            do {
+                try managedContext.save()
+            } catch {
+                print(error)
+            }
+        } catch { print(error) }
     }
 }

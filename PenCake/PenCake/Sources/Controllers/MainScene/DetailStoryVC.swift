@@ -78,8 +78,6 @@ class DetailStoryVC: UIViewController {
             self.detailCollectionView.scrollToItem(at: IndexPath(item: Int(self.currentIndex), section: 0), at: .centeredHorizontally, animated: false)
         })
         movePositiveDirection()
-        
-        dump(list)
     }
     
     private func collectionViewSetting() {
@@ -103,6 +101,10 @@ class DetailStoryVC: UIViewController {
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Contents")
         
+        // sort
+        let sort = NSSortDescriptor(key: "date", ascending: false)
+        fetchRequest.sortDescriptors = [sort]
+        
         let result = try! context.fetch(fetchRequest)
         return result
     }
@@ -117,7 +119,7 @@ extension DetailStoryVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryDetailCVC.identifier, for: indexPath) as? StoryDetailCVC else {
             return UICollectionViewCell()
         }
-        let row = Int(textCount - 1) - indexPath.row
+        let row = indexPath.row
         let record = self.list[row]
         let title = record.value(forKey: "title") as? String
         let content = record.value(forKey: "content") as? String
@@ -192,7 +194,7 @@ extension DetailStoryVC: UICollectionViewDelegate {
 
 extension DetailStoryVC: ModalFromCellDelegate {
     func presentViewController(with vc: CreateContentVC) {
-        vc.isEditing = true
+        vc.isEditMode = true
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }

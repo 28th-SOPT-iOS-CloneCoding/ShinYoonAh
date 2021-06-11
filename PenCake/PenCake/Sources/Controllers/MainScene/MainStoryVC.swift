@@ -31,6 +31,11 @@ class MainStoryVC: UIViewController {
         setupLongPressGesture()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        list = fetch()
+        storyTableView.reloadData()
+    }
+    
     override func viewWillLayoutSubviews() {
         titleHeader.snp.makeConstraints { make in
             if UIDevice.current.hasNotch {
@@ -141,7 +146,7 @@ extension MainStoryVC: UITableViewDelegate {
             vc.saveContent = { title, content in
                 let request: NSFetchRequest<Contents> = Contents.fetchRequest()
                 let fetchResult = StoryManager.shared.fetch(request: request)
-                print(fetchResult)
+                
                 self.list = fetchResult.reversed()
                 self.storyTableView.reloadData()
             }
