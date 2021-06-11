@@ -192,7 +192,7 @@ extension DetailStoryVC: UICollectionViewDelegate {
 
 extension DetailStoryVC: ModalFromCellDelegate {
     func presentViewController(with vc: CreateContentVC) {
-        
+        vc.isEditing = true
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }

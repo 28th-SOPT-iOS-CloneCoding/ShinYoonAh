@@ -15,6 +15,7 @@ class MainStoryVC: UIViewController {
     private var originalTableViewHeight: CGFloat = 0.0
     var pageVC: StoryPageVC?
     
+    let manager = StoryManager.shared
     lazy var list: [NSManagedObject] = {
         return self.fetch()
     }()
@@ -27,6 +28,7 @@ class MainStoryVC: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupConfigure()
+        setupLongPressGesture()
     }
     
     override func viewWillLayoutSubviews() {
@@ -153,5 +155,55 @@ extension MainStoryVC: UITableViewDelegate {
         pvc.textCount = list.count
         pvc.currentIndex = CGFloat(indexPath.row)
         navigationController?.pushViewController(pvc, animated: true)
+    }
+    
+    func setupLongPressGesture() {
+        let longPressGesture:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress))
+        longPressGesture.minimumPressDuration = 1.0 // 1 second press
+        longPressGesture.delegate = self
+        self.storyTableView.addGestureRecognizer(longPressGesture)
+    }
+
+    @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer){
+        if gestureRecognizer.state == .began {
+            let touchPoint = gestureRecognizer.location(in: self.storyTableView)
+            if let indexPath = storyTableView.indexPathForRow(at: touchPoint) {
+                let record = self.list[indexPath.row]
+                guard let title = record.value(forKey: "title") as? String else { return }
+                
+                makeTableActionSheet(title: nil, message: title, okAction: { _ in
+                    print(record)
+                    self.makeRemoveAlert(title: nil, message: "정말 삭제하시겠습니까?", okAction: { _ in
+                        self.deleteData(title: title)
+                        
+                        let request: NSFetchRequest<Contents> = Contents.fetchRequest()
+                        let fetchResult = StoryManager.shared.fetch(request: request)
+                        print(fetchResult)
+                        self.list = fetchResult.reversed()
+                        self.storyTableView.reloadData()
+                    })
+                }, completion: nil)
+            }
+        }
+    }
+    
+    func deleteData(title: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Contents")
+        fetchRequest.predicate = NSPredicate(format: "title = %@", title)
+        
+        do {
+            let test = try managedContext.fetch(fetchRequest)
+            let objectToDelete = test[0] as! NSManagedObject
+            managedContext.delete(objectToDelete)
+            do {
+                try managedContext.save()
+            } catch {
+                print(error)
+            }
+        } catch {
+            print(error)
+        }
     }
 }

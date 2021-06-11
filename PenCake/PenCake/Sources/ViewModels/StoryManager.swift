@@ -92,6 +92,7 @@ class StoryManager {
             try context.save()
             return true
         } catch {
+            print("잘못됐어 뭔가 잘못됐어")
             return false
         }
     }

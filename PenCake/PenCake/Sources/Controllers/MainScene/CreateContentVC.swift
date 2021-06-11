@@ -17,6 +17,7 @@ class CreateContentVC: UIViewController {
     var contentTitle: String = ""
     var content: String = ""
     var isContentMode = false
+    var isEditMode = false
     
     let manager = StoryManager.shared
 
@@ -87,7 +88,7 @@ class CreateContentVC: UIViewController {
                 dismiss(animated: true, completion: nil)
             } else {
                 print(hasTextView.isEmpty)
-                makeActionSheet(message: "작성중인 글이 있습니다.")
+                makeContentActionSheet(message: "작성중인 글이 있습니다.")
             }
         }
     }

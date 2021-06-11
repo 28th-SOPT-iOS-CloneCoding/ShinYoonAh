@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIViewController {
-    func makeActionSheet(title : String? = nil,
+    func makeContentActionSheet(title : String? = nil,
                          message : String,
                          okAction : ((UIAlertAction) -> Void)? = nil,
                          completion : (() -> Void)? = nil) {
@@ -22,6 +22,25 @@ extension UIViewController {
             handler: { _ in
                 self.dismiss(animated: true, completion: nil)
             })
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        
+        alertViewController.addAction(noAction)
+        alertViewController.addAction(cancelAction)
+        
+        self.present(alertViewController, animated: true, completion: completion)
+    }
+    
+    func makeTableActionSheet(title : String? = nil,
+                         message : String,
+                         okAction : ((UIAlertAction) -> Void)? = nil,
+                         completion : (() -> Void)? = nil) {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        
+        let alertViewController = UIAlertController(title: title, message: message,
+                                                    preferredStyle: .actionSheet)
+        
+        let noAction = UIAlertAction(title: "글 삭제", style: .destructive, handler: okAction)
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         
         alertViewController.addAction(noAction)
@@ -47,7 +66,7 @@ extension UIViewController {
         self.present(alertViewController, animated: true, completion: completion)
     }
     
-    func makeRemoveAlert(title : String,
+    func makeRemoveAlert(title : String?,
                    message : String,
                    okAction : ((UIAlertAction) -> Void)? = nil,
                    completion : (() -> Void)? = nil) {
