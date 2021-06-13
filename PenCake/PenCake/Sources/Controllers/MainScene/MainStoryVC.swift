@@ -214,7 +214,7 @@ extension MainStoryVC: UITableViewDelegate {
                 makeTableActionSheet(title: nil, message: title, okAction: { _ in
                     print(record)
                     self.makeRemoveAlert(title: nil, message: "정말 삭제하시겠습니까?", okAction: { _ in
-                        self.deleteData(title: title)
+                        self.deleteContent(title: title)
                         
                         let request: NSFetchRequest<Contents> = Contents.fetchRequest()
                         let fetchResult = StoryManager.shared.fetch(request: request)
@@ -227,7 +227,7 @@ extension MainStoryVC: UITableViewDelegate {
         }
     }
     
-    func deleteData(title: String) {
+    func deleteContent(title: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Contents")
