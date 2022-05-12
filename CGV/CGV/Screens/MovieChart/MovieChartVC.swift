@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class MovieChartVC: UIViewController {
-    lazy private var movieViewModel = MovieChartViewModel(tableView: movieTableView)
+    lazy private var movieViewModel = MovieChartService(tableView: movieTableView)
     lazy private var customNavigationBar = MovieChartCustomNavigationBar(navigationController: navigationController!)
     lazy private var bookingButton = EarlyReservationButton(storyboard: storyboard!, rootController: self)
     lazy private var topButton = ScrollToTopButton(tableView: movieTableView)

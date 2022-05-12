@@ -14,7 +14,7 @@ class MovieTableMainHeader: UIView {
     private let nowPlayingButton = UIButton()
     
     private var movieTableView = UITableView()
-    private var movieViewModel: MovieChartViewModel?
+    private var movieViewModel: MovieChartService?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,7 +25,7 @@ class MovieTableMainHeader: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(with tableView: UITableView, model viewModel: MovieChartViewModel) {
+    init(with tableView: UITableView, model viewModel: MovieChartService) {
         movieTableView = tableView
         movieViewModel = viewModel
         super.init(frame: .zero)

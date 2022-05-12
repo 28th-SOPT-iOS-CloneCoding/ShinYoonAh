@@ -1,14 +1,18 @@
 //
-//  MovieChartViewModel.swift
+//  MovieChartService.swift
 //  CGV
 //
 //  Created by SHIN YOON AH on 2021/05/29.
 //
 
 import UIKit
+
 import Moya
 
-class MovieChartViewModel {
+final class MovieChartService {
+    
+    // MARK: - property
+    
     private let authProvider = MoyaProvider<MovieAPI>(plugins: [NetworkLoggerPlugin(verbose: true)])
     private var movieModel: MovieModel?
 

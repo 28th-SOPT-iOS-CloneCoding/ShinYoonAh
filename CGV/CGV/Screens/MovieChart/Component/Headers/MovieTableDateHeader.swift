@@ -19,7 +19,7 @@ class MovieTableDateHeader: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(model: MovieChartViewModel, section: Int) {
+    init(model: MovieChartService, section: Int) {
         super.init(frame: .zero)
         setupConfigure()
         headerLabel.text = model.releaseDate[section - 1].replacingOccurrences(of: "-", with: ".")

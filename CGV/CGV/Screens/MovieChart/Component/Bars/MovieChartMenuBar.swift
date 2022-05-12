@@ -35,7 +35,7 @@ class MovieChartMenuBar: UIView {
         $0.alignment = .center
     }
     
-    var movieViewModel: MovieChartViewModel?
+    var movieViewModel: MovieChartService?
     var tableView: UITableView?
 
     override init(frame: CGRect) {
@@ -55,7 +55,7 @@ class MovieChartMenuBar: UIView {
         }
     }
     
-    init(tableView: UITableView, model: MovieChartViewModel) {
+    init(tableView: UITableView, model: MovieChartService) {
         super.init(frame: .zero)
         self.tableView = tableView
         self.movieViewModel = model
