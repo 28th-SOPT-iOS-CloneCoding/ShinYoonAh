@@ -9,7 +9,7 @@ import UIKit
 import Moya
 
 class MovieChartViewModel {
-    private let authProvider = MoyaProvider<MovieServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    private let authProvider = MoyaProvider<MovieAPI>(plugins: [NetworkLoggerPlugin(verbose: true)])
     private var movieModel: MovieModel?
 
     private let loadingIndicator = UIActivityIndicatorView()

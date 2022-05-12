@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol showupAlertDelegate: AnyObject {
+    func showupAlertToLookup(title: String?, content: String)
+}
+
 class OverlayVC: UIViewController {
     @IBOutlet weak var swipeButton: UIView!
     @IBOutlet weak var backView: UIView!
