@@ -12,8 +12,6 @@
 		ED3EFA3D264BB0410041DFF1 /* MovieTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA3B264BB0410041DFF1 /* MovieTVC.swift */; };
 		ED3EFA3E264BB0410041DFF1 /* MovieTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED3EFA3C264BB0410041DFF1 /* MovieTVC.xib */; };
 		ED3EFA41264BBB5C0041DFF1 /* Extension+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA40264BBB5C0041DFF1 /* Extension+Encodable.swift */; };
-		ED3EFA43264BBBB40041DFF1 /* GeneralAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA42264BBBB40041DFF1 /* GeneralAPI.swift */; };
-		ED3EFA45264BBBF30041DFF1 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA44264BBBF30041DFF1 /* NetworkLoggerPlugin.swift */; };
 		ED3EFA47264BBC420041DFF1 /* MovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA46264BBC420041DFF1 /* MovieAPI.swift */; };
 		ED3EFA4B264BC01B0041DFF1 /* MovieRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA4A264BC01B0041DFF1 /* MovieRequest.swift */; };
 		ED3EFA4D264BC1520041DFF1 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EFA4C264BC1520041DFF1 /* MovieModel.swift */; };
@@ -43,6 +41,14 @@
 		EDCD6F05266B898100C4AA94 /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCD6F04266B898100C4AA94 /* DateViewModel.swift */; };
 		EDCD6F07266B8F0700C4AA94 /* Extension+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCD6F06266B8F0700C4AA94 /* Extension+UICollectionView.swift */; };
 		EDCD6F09266B913F00C4AA94 /* Extension+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCD6F08266B913F00C4AA94 /* Extension+UITableView.swift */; };
+		EDD0A655282CE92F00E0C9E3 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0A654282CE92F00E0C9E3 /* BaseModel.swift */; };
+		EDD0A657282CE94A00E0C9E3 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0A656282CE94A00E0C9E3 /* HTTPMethod.swift */; };
+		EDD0A659282CE96000E0C9E3 /* APIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0A658282CE96000E0C9E3 /* APIEnvironment.swift */; };
+		EDD0A65B282CE9A000E0C9E3 /* APIServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0A65A282CE9A000E0C9E3 /* APIServiceError.swift */; };
+		EDD0A65D282CE9B100E0C9E3 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0A65C282CE9B100E0C9E3 /* NetworkRequest.swift */; };
+		EDD0A65F282CE9CD00E0C9E3 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0A65E282CE9CD00E0C9E3 /* Requestable.swift */; };
+		EDD0A661282CE9E000E0C9E3 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0A660282CE9E000E0C9E3 /* APIService.swift */; };
+		EDD0A663282CE9FB00E0C9E3 /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD0A662282CE9FB00E0C9E3 /* NetworkStatus.swift */; };
 		EDD2122D264A6BC70073CEDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122C264A6BC70073CEDD /* AppDelegate.swift */; };
 		EDD2122F264A6BC70073CEDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */; };
 		EDD21236264A6BC80073CEDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDD21235264A6BC80073CEDD /* Assets.xcassets */; };
@@ -63,8 +69,6 @@
 		ED3EFA3B264BB0410041DFF1 /* MovieTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTVC.swift; sourceTree = "<group>"; };
 		ED3EFA3C264BB0410041DFF1 /* MovieTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTVC.xib; sourceTree = "<group>"; };
 		ED3EFA40264BBB5C0041DFF1 /* Extension+Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Encodable.swift"; sourceTree = "<group>"; };
-		ED3EFA42264BBBB40041DFF1 /* GeneralAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPI.swift; sourceTree = "<group>"; };
-		ED3EFA44264BBBF30041DFF1 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		ED3EFA46264BBC420041DFF1 /* MovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPI.swift; sourceTree = "<group>"; };
 		ED3EFA4A264BC01B0041DFF1 /* MovieRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRequest.swift; sourceTree = "<group>"; };
 		ED3EFA4C264BC1520041DFF1 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
@@ -94,6 +98,14 @@
 		EDCD6F04266B898100C4AA94 /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		EDCD6F06266B8F0700C4AA94 /* Extension+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UICollectionView.swift"; sourceTree = "<group>"; };
 		EDCD6F08266B913F00C4AA94 /* Extension+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITableView.swift"; sourceTree = "<group>"; };
+		EDD0A654282CE92F00E0C9E3 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		EDD0A656282CE94A00E0C9E3 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		EDD0A658282CE96000E0C9E3 /* APIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvironment.swift; sourceTree = "<group>"; };
+		EDD0A65A282CE9A000E0C9E3 /* APIServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceError.swift; sourceTree = "<group>"; };
+		EDD0A65C282CE9B100E0C9E3 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		EDD0A65E282CE9CD00E0C9E3 /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
+		EDD0A660282CE9E000E0C9E3 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		EDD0A662282CE9FB00E0C9E3 /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatus.swift; sourceTree = "<group>"; };
 		EDD21229264A6BC70073CEDD /* CGV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD2122C264A6BC70073CEDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDD2122E264A6BC70073CEDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -308,8 +320,14 @@
 		EDD0A651282CE68400E0C9E3 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				ED3EFA44264BBBF30041DFF1 /* NetworkLoggerPlugin.swift */,
-				ED3EFA42264BBBB40041DFF1 /* GeneralAPI.swift */,
+				EDD0A654282CE92F00E0C9E3 /* BaseModel.swift */,
+				EDD0A656282CE94A00E0C9E3 /* HTTPMethod.swift */,
+				EDD0A658282CE96000E0C9E3 /* APIEnvironment.swift */,
+				EDD0A65A282CE9A000E0C9E3 /* APIServiceError.swift */,
+				EDD0A65C282CE9B100E0C9E3 /* NetworkRequest.swift */,
+				EDD0A65E282CE9CD00E0C9E3 /* Requestable.swift */,
+				EDD0A660282CE9E000E0C9E3 /* APIService.swift */,
+				EDD0A662282CE9FB00E0C9E3 /* NetworkStatus.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -559,9 +577,13 @@
 				EDC67EEE2656769E00580E15 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				ED9B7A0C2661EB85008C40F1 /* MovieChartCustomNavigationBar.swift in Sources */,
 				EDCB26CB26538AB900BF41D6 /* Extension+UIView.swift in Sources */,
+				EDD0A661282CE9E000E0C9E3 /* APIService.swift in Sources */,
 				ED3EFA41264BBB5C0041DFF1 /* Extension+Encodable.swift in Sources */,
+				EDD0A663282CE9FB00E0C9E3 /* NetworkStatus.swift in Sources */,
 				EDCD6F09266B913F00C4AA94 /* Extension+UITableView.swift in Sources */,
 				ED5D7BF2266A0EB900E6D3F3 /* DownButton.swift in Sources */,
+				EDD0A655282CE92F00E0C9E3 /* BaseModel.swift in Sources */,
+				EDD0A65D282CE9B100E0C9E3 /* NetworkRequest.swift in Sources */,
 				ED3EFA4B264BC01B0041DFF1 /* MovieRequest.swift in Sources */,
 				EDCB26C4265375D300BF41D6 /* TheaterCVC.swift in Sources */,
 				EDCB26D22653938B00BF41D6 /* DateCVC.swift in Sources */,
@@ -571,21 +593,23 @@
 				EDCB26CE26538BA900BF41D6 /* DateTheaterTVC.swift in Sources */,
 				ED9B7A3E266265E6008C40F1 /* MovieChartService.swift in Sources */,
 				EDF5856F2661479F007C14AC /* MovieTableMainHeader.swift in Sources */,
-				ED3EFA43264BBBB40041DFF1 /* GeneralAPI.swift in Sources */,
 				EDCB26C826537C7100BF41D6 /* TheaterDetailCVC.swift in Sources */,
 				EDF58571266147C7007C14AC /* MovieTableSubHeader.swift in Sources */,
+				EDD0A65B282CE9A000E0C9E3 /* APIServiceError.swift in Sources */,
 				ED3EFA4D264BC1520041DFF1 /* MovieModel.swift in Sources */,
 				ED9B7A3226625334008C40F1 /* MovieChartMenuBar.swift in Sources */,
 				EDC9C4042650FEF300249628 /* OverlayVC.swift in Sources */,
 				ED9B7A37266258C6008C40F1 /* EarlyReservationButton.swift in Sources */,
+				EDD0A659282CE96000E0C9E3 /* APIEnvironment.swift in Sources */,
 				EDCB26D52653D09300BF41D6 /* Extension+UIViewController.swift in Sources */,
 				ED3EFA3D264BB0410041DFF1 /* MovieTVC.swift in Sources */,
 				EDD21254264A733F0073CEDD /* HomeVC.swift in Sources */,
 				ED3EFA3A264BA1C30041DFF1 /* Extension+UIButton.swift in Sources */,
-				ED3EFA45264BBBF30041DFF1 /* NetworkLoggerPlugin.swift in Sources */,
 				EDD2122D264A6BC70073CEDD /* AppDelegate.swift in Sources */,
 				EDD2122F264A6BC70073CEDD /* SceneDelegate.swift in Sources */,
+				EDD0A657282CE94A00E0C9E3 /* HTTPMethod.swift in Sources */,
 				EDCD6F05266B898100C4AA94 /* DateViewModel.swift in Sources */,
+				EDD0A65F282CE9CD00E0C9E3 /* Requestable.swift in Sources */,
 				ED9B7A3926625C88008C40F1 /* ScrollToTopButton.swift in Sources */,
 				EDCD6F07266B8F0700C4AA94 /* Extension+UICollectionView.swift in Sources */,
 			);
@@ -656,7 +680,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -711,7 +735,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
